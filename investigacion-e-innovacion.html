@@ -110,7 +110,31 @@
 <section class="cta dark" id="contacto"><div class="w">
 <h2>Empieza por una conversación de treinta minutos</h2>
 <p>Cuéntanos qué necesitas y te decimos honestamente si podemos ayudarte.</p>
-<a class="btn alt" href="mailto:contacto@ageinglabtech.com">Escríbenos</a>
+<form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
+<input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
+<div class="cf-grid">
+<label>Nombre<input type="text" name="nombre" required></label>
+<label>Tu correo<input type="email" name="email" required></label>
+<label>Empresa (opcional)<input type="text" name="empresa"></label>
+<label>¿Qué os interesa?
+<select name="interes" required>
+<option value="" disabled>Elige una opción</option>
+<option value="IA privada y automatización">IA privada y automatización</option>
+<option value="Datos con IA">Datos con IA</option>
+<option value="Software a medida">Software a medida</option>
+<option value="IoT y hardware">IoT y hardware</option>
+<option value="Interfaces para mayores">Interfaces para mayores</option>
+<option value="Investigación e innovación" selected>Investigación e innovación</option>
+<option value="Aún no lo sé">Aún no lo sé</option>
+</select>
+</label>
+<label class="cf-full">Cuéntanos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+</div>
+<div class="cf-actions">
+<button type="submit" class="btn btn-primary">Contactar</button>
+<span class="cf-note">Respondemos en menos de 48 h.</span>
+</div>
+</form>
 </div></section>
 </main>
 
