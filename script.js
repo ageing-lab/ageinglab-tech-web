@@ -2,8 +2,11 @@ var hd=document.getElementById('hd'),mis=[].slice.call(document.querySelectorAll
 function closeAll(){mis.forEach(function(m){m.classList.remove('open');m.firstElementChild.setAttribute('aria-expanded','false')})}
 mis.forEach(function(m){var b=m.firstElementChild;b.addEventListener('click',function(e){e.stopPropagation();var o=m.classList.contains('open');closeAll();if(!o){m.classList.add('open');b.setAttribute('aria-expanded','true')}})});
 document.addEventListener('click',closeAll);
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
-document.getElementById('bg').addEventListener('click',function(){hd.classList.toggle('open')});
+var bg=document.getElementById('bg');
+function setBurger(o){bg.setAttribute('aria-expanded',o?'true':'false');bg.setAttribute('aria-label',o?'Cerrar menú':'Abrir menú')}
+setBurger(false);
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeAll();hd.classList.remove('open');setBurger(false)}});
+bg.addEventListener('click',function(){setBurger(hd.classList.toggle('open'))});
 if(document.documentElement.classList.contains('js')){
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.2});
 document.querySelectorAll('main h1,main h2').forEach(function(h){
@@ -23,7 +26,7 @@ var mo=new MutationObserver(upd);mis.forEach(function(m){mo.observe(m,{attribute
 document.getElementById('bg').addEventListener('click',upd);
 addEventListener('scroll',upd,{passive:true});upd();
 
-[].forEach.call(document.querySelectorAll('nav a'),function(a){a.addEventListener('click',function(){hd.classList.remove('open')})});
+[].forEach.call(document.querySelectorAll('nav a'),function(a){a.addEventListener('click',function(){hd.classList.remove('open');setBurger(false)})});
 var thm=[].slice.call(document.querySelectorAll('.theme'));
 if(thm.length){
 var TK='al-theme';
