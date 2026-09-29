@@ -221,3 +221,6 @@ nav>a,.mi>button,.logo{white-space:nowrap}
 @media (max-width:600px){.logo-mark{width:28px;height:28px}}
 .shots{display:grid;grid-template-columns:1.35fr 1fr;gap:24px;align-items:start;margin-top:32px;max-width:900px}.shots .shot{margin:0}.shots .shot img{width:100%}
 @media (max-width:700px){.shots{grid-template-columns:1fr}.shots .shot:last-child{max-width:380px}}
+
+.shot.sm{max-width:420px}
+.txt ul{max-width:36em;margin:0 0 18px;padding-left:1.2em;font-size:20px}.txt ul li{margin:0 0 8px}
