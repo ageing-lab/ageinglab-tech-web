@@ -103,6 +103,26 @@
 </div>
 </div></section>
 
+<!-- INICIO demo voz -->
+<section class="s" id="demo-voz"><div class="w">
+<h2>Pruébalo en tu navegador</h2>
+<p class="lead">Reconocimiento de voz privado: habla en español y lo transcribimos aquí mismo. El audio se procesa en tu dispositivo y no se envía a ningún servidor. La primera vez se descarga el modelo, que después queda en la caché de tu navegador.</p>
+<div class="dv">
+<button type="button" class="btn" id="dv-cargar">Activar la demo</button>
+<button type="button" class="btn" id="dv-grabar" hidden>Grabar</button>
+<p id="dv-estado" role="status" aria-live="polite">Necesita micrófono y un navegador actual. Funciona mejor en ordenador.</p>
+<p id="dv-texto" class="dv-texto" aria-live="polite"></p>
+</div>
+<style>
+#demo-voz .dv{max-width:680px}
+#demo-voz .dv .btn{cursor:pointer}
+#demo-voz .dv .btn:disabled{opacity:.6;cursor:wait}
+#demo-voz .dv-texto{min-height:5.5em;margin-top:14px;padding:14px 16px;border:1px solid rgba(128,128,128,.4);border-radius:10px;font-size:1.05rem;line-height:1.55;white-space:pre-wrap}
+#demo-voz .dv-texto:empty::before{content:"Aquí aparecerá el texto.";opacity:.6}
+</style>
+</div></section>
+<!-- FIN demo voz -->
+
 <section class="s" id="para-quien"><div class="w">
 <h2>Para quién es</h2>
 <p class="lead">Para empresas e instituciones que manejan datos sensibles — salud, sector público, investigación o datos de clientes — y quieren usar IA sin que esa información salga de su organización. También para equipos que quieren automatizar procesos internos sin pagar por token a proveedores externos.</p>
@@ -168,5 +188,6 @@
 </div><div class="base">© 2026 AgeingLab Tech · Madrid, España</div></div></footer>
 
 <script src="../script.js"></script>
+<script type="module" src="demo-voz.js"></script>
 </body>
 </html>
