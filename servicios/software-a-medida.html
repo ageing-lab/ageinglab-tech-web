@@ -102,6 +102,48 @@
 </div>
 </div></section>
 
+<!-- INICIO demo prototipo -->
+<section class="s" id="demo-prototipo"><div class="w">
+<h2>Prueba un prototipo vivo</h2>
+<p class="lead">Elige un proceso que hoy se lleva en hojas de cálculo y verás cómo sería una aplicación a medida. Añade registros, filtra y cambia los campos: la aplicación se adapta al momento.</p>
+<p class="pv-nota"><strong>Es un prototipo de ejemplo.</strong> Los datos son inventados y lo que escribas solo existe en esta página: al recargar desaparece. En un proyecto real habría base de datos, usuarios y permisos.</p>
+<div class="pv">
+<div id="pv-plantillas" class="pv-pl" role="group" aria-label="Elige un proceso"></div>
+<h3 id="pv-titulo"></h3>
+<p id="pv-msg" role="status"></p>
+<form id="pv-form" class="pv-form" novalidate></form>
+<div class="pv-bar"><input type="search" id="pv-buscar" placeholder="Buscar" aria-label="Buscar en los registros"><select id="pv-filtro" aria-label="Filtrar registros"></select><span id="pv-n"></span></div>
+<div class="pv-tabla"><table id="pv-t"></table></div>
+<p id="pv-vacio" hidden>No hay registros que coincidan.</p>
+<h3>Personaliza la aplicación</h3>
+<p>Cambia el nombre de un campo, quítalo o añade uno nuevo y mira cómo se actualizan el formulario y la tabla.</p>
+<ul id="pv-campos" class="pv-campos"></ul>
+<div class="pv-add"><input type="text" id="pv-nn" maxlength="30" placeholder="Nombre del nuevo campo" aria-label="Nombre del nuevo campo"><select id="pv-nt" aria-label="Tipo del nuevo campo"><option value="texto">Texto</option><option value="numero">Número</option><option value="fecha">Fecha</option><option value="si">Sí / No</option></select><button type="button" class="btn" id="pv-nuevo">Añadir campo</button></div>
+</div>
+<style>
+#demo-prototipo .pv{max-width:900px}
+#demo-prototipo .pv-nota{max-width:680px;padding:12px 16px;border:1px solid rgba(128,128,128,.5);border-left-width:4px;border-radius:8px}
+#demo-prototipo .btn,#demo-prototipo .pv-q{cursor:pointer}
+#demo-prototipo .pv-pl{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+#demo-prototipo .pv-pl button[aria-pressed="true"]{outline:2px solid currentColor;outline-offset:2px}
+#demo-prototipo input,#demo-prototipo select{padding:7px 10px;border:1px solid rgba(128,128,128,.55);border-radius:8px;background:transparent;color:inherit;font:inherit;max-width:100%}
+#demo-prototipo select option{color:#111}
+#demo-prototipo .pv-form{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin:10px 0 16px}
+#demo-prototipo .pv-form label{display:flex;flex-direction:column;gap:4px;font-size:.95rem}
+#demo-prototipo .pv-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:8px}
+#demo-prototipo .pv-tabla{overflow-x:auto;border:1px solid rgba(128,128,128,.4);border-radius:8px}
+#demo-prototipo table{border-collapse:collapse;width:100%;font-size:.95rem}
+#demo-prototipo th,#demo-prototipo td{padding:7px 10px;text-align:left;border-bottom:1px solid rgba(128,128,128,.25);white-space:nowrap}
+#demo-prototipo .pv-q{padding:4px 10px;border:1px solid rgba(128,128,128,.55);border-radius:6px;background:transparent;color:inherit;font:inherit}
+#demo-prototipo .pv-q:disabled{opacity:.4;cursor:not-allowed}
+#demo-prototipo .pv-campos{list-style:none;padding:0;margin:8px 0 12px}
+#demo-prototipo .pv-campos li{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:8px}
+#demo-prototipo .pv-tipo{opacity:.7;min-width:5rem}
+#demo-prototipo .pv-add{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+</style>
+</div></section>
+<!-- FIN demo prototipo -->
+
 <section class="s" id="para-quien"><div class="w">
 <h2>Para quién es</h2>
 <p class="lead">Para startups, empresas e instituciones de tecnología médica, salud y otros sectores que necesitan una plataforma, app o backend que no existe en el mercado y que resuelva un problema concreto de su negocio, con los datos siempre bajo su control.</p>
@@ -166,5 +208,6 @@
 </div><div class="base">© 2026 AgeingLab Tech · Madrid, España</div></div></footer>
 
 <script src="../script.js"></script>
+<script src="../js/demo-prototipo.js" defer></script>
 </body>
 </html>
