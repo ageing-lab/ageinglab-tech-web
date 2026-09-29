@@ -14,7 +14,11 @@ document.querySelectorAll('.hero p,.hero .btn,.lead,.step,.why>div,.team figure,
 var i=Math.min([].indexOf.call(el.parentNode.children,el),5),d=i*.1+(el.closest('.hero')?.5:0);
 el.classList.add('rv');el.style.setProperty('--d',d+'s');io.observe(el)})}
 var hv=document.querySelector('.hv');if(hv&&matchMedia('(prefers-reduced-motion:reduce)').matches){hv.removeAttribute('autoplay');hv.pause()}
-function upd(){var o=hd.classList.contains('open')||mis.some(function(m){return m.classList.contains('open')});hd.classList.toggle('sc',scrollY>40||o)}
+var dks=[].slice.call(document.querySelectorAll('.dark'));
+function upd(){var o=hd.classList.contains('open')||mis.some(function(m){return m.classList.contains('open')});hd.classList.toggle('sc',scrollY>40||o);
+var y=hd.getBoundingClientRect().bottom-30,dk=false;
+if(!o)dks.forEach(function(d){var r=d.getBoundingClientRect();if(r.top<=y&&r.bottom>=y)dk=true});
+hd.classList.toggle('ondark',dk)}
 var mo=new MutationObserver(upd);mis.forEach(function(m){mo.observe(m,{attributes:true,attributeFilter:['class']})});
 document.getElementById('bg').addEventListener('click',upd);
 addEventListener('scroll',upd,{passive:true});upd();
