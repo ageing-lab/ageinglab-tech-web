@@ -1,4 +1,4 @@
-var CACHE='ageinglab-v1';
+var CACHE='ageinglab-v2';
 var CORE=[
 '/',
 '/styles.css',
@@ -6,6 +6,7 @@ var CORE=[
 '/sw.js',
 '/manifest.json',
 '/img/logo.svg',
+'/img/cookie.svg',
 '/hero-poster.webp',
 '/hero.mp4',
 '/img/icons/icon-192.png',

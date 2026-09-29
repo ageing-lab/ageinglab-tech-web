@@ -293,3 +293,26 @@ nav>a,.mi>button,.logo{white-space:nowrap}
 .theme .t svg .fill{fill:currentColor;stroke:none}
 .theme .t:focus-visible{outline:3px solid var(--mint);outline-offset:2px;border-radius:999px}
 @media (max-width:1180px){.theme{width:max-content;margin:14px auto 4px}}
+
+/* Aviso de cookies */
+.cookies{position:fixed;left:16px;right:16px;bottom:16px;z-index:2147483000;display:flex;gap:14px;align-items:center;padding:16px 18px;border:1px solid var(--line);border-radius:16px;background:var(--soft);box-shadow:0 10px 30px rgba(6,15,40,.25);opacity:0;transform:translateY(16px);transition:opacity .35s,transform .35s}
+@supports (background:color-mix(in srgb,red,blue)){.cookies{background:color-mix(in srgb,var(--ink) 6%,var(--bg))}}
+.cookies.in{opacity:1;transform:none}
+.cookies.out{opacity:0;pointer-events:none;transform:translateY(16px)}
+.cookies .ck-ico{flex:0 0 auto;width:36px;height:36px}
+.cookies .ck-txt{flex:1 1 auto;min-width:0}
+.cookies .ck-txt strong{font-weight:700;font-size:15px}
+.cookies .ck-txt p{margin:4px 0 0;font-size:13px;color:var(--mute);line-height:1.45}
+.cookies .ck-acc{flex:0 0 auto;display:flex;gap:10px}
+.cookies .ck-ok,.cookies .ck-no{padding:9px 16px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer}
+.cookies .ck-ok{border:1px solid var(--accent);background:var(--accent);color:#fff}
+.cookies .ck-ok:hover{filter:brightness(1.12)}
+.cookies .ck-no{border:1px solid var(--line);background:transparent;color:var(--ink)}
+.cookies .ck-no:hover{border-color:var(--ink)}
+.cookies button:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+@media (max-width:600px){
+.cookies{flex-direction:column;gap:10px;align-items:flex-start;padding:14px}
+.cookies .ck-ico{width:30px;height:30px}
+.cookies .ck-acc{width:100%;gap:8px}
+.cookies .ck-acc button{flex:1}
+}
