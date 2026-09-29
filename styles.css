@@ -258,4 +258,4 @@ nav>a,.mi>button,.logo{white-space:nowrap}
 .theme .t svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .theme .t svg .fill{fill:currentColor;stroke:none}
 .theme .t:focus-visible{outline:3px solid var(--mint);outline-offset:2px;border-radius:999px}
-@media (max-width:1180px){.theme{margin:14px 0 4px;justify-content:center}}
+@media (max-width:1180px){.theme{width:max-content;margin:14px auto 4px}}
