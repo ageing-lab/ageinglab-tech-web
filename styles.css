@@ -241,3 +241,8 @@ nav>a,.mi>button,.logo{white-space:nowrap}
 
 .shots.three{grid-template-columns:repeat(3,1fr);gap:20px}.shots.three .shot img{height:auto}
 @media (max-width:700px){.shots.three{grid-template-columns:1fr}.shots.three .shot,.shots.three .shot:last-child{max-width:300px}}
+
+.video .vplay{display:block;text-decoration:none;background:radial-gradient(60% 90% at 88% 10%,rgba(62,224,200,.32),transparent 60%),var(--navy)}
+.video .vplay em{position:absolute;left:0;right:0;bottom:22px;text-align:center;color:#fff;font-style:normal;font-weight:600;font-size:18px}
+.shots.duo{grid-template-columns:repeat(2,1fr);max-width:620px;gap:20px}
+@media (max-width:700px){.shots.duo{grid-template-columns:1fr}.shots.duo .shot,.shots.duo .shot:last-child{max-width:300px}}
