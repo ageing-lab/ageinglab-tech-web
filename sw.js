@@ -7,6 +7,7 @@ var CORE=[
 '/manifest.json',
 '/img/logo.svg',
 '/img/cookie.svg',
+'/cookies.html',
 '/hero-poster.webp',
 '/hero.mp4',
 '/img/icons/icon-192.png',
