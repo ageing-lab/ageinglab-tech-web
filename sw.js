@@ -1,4 +1,4 @@
-var CACHE='ageinglab-v2';
+var CACHE='ageinglab-v3';
 var CORE=[
 '/',
 '/styles.css',
@@ -27,7 +27,7 @@ var CORE=[
 '/casos-de-exito/integracam.html',
 '/casos-de-exito/ecare.html',
 '/casos-de-exito/integracion-fhir.html',
-'/casos-de-exito/gestion-de-casos-implantes.html',
+'/casos-de-exito/gestion-casos-quirurgicos.html',
 '/casos-de-exito/cuidame.html',
 '/casos-de-exito/juegos-cognitivos-madrid.html',
 '/casos-de-exito/ia-local.html'
