@@ -13,7 +13,7 @@ document.querySelectorAll('main h1,main h2').forEach(function(h){
 h.setAttribute('aria-label',h.textContent.trim());
 h.innerHTML=h.textContent.trim().split(/\s+/).map(function(t,i){return '<span class="wd" aria-hidden="true"><span style="--i:'+i+'">'+t+'</span></span>'}).join(' ');
 io.observe(h)});
-document.querySelectorAll('.hero p,.hero .btn,.lead,.step,.why>div,.team figure,.ind a,.cta p,.cta .btn').forEach(function(el){
+document.querySelectorAll('.hero p,.hero .btn,.lead,.step,.why>div,.team figure,.ind a,.kpi,.cta p,.cta .btn').forEach(function(el){
 var i=Math.min([].indexOf.call(el.parentNode.children,el),5),d=i*.1+(el.closest('.hero')?.5:0);
 el.classList.add('rv');el.style.setProperty('--d',d+'s');io.observe(el)})}
 var hv=document.querySelector('.hv');if(hv&&matchMedia('(prefers-reduced-motion:reduce)').matches){hv.removeAttribute('autoplay');hv.pause()}
