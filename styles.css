@@ -188,7 +188,7 @@ section.ba-s{padding:56px 0}
 
 /* Soluciones */
 .sol{display:grid;grid-template-columns:repeat(3,1fr);margin-top:32px;border:1px solid var(--line)}
-.sol a{display:flex;flex-direction:column;gap:12px;padding:32px 28px 28px;background:#fff;text-decoration:none;color:inherit;transition:background .2s}
+.sol a{display:flex;flex-direction:column;gap:12px;padding:32px 28px 28px;background:var(--bg);text-decoration:none;color:inherit;transition:background .2s}
 .sol a+a{border-left:1px solid var(--line)}
 .sol a:hover{background:var(--soft)}
 .sol .n{display:flex;align-items:center;gap:10px;font:600 13px/1 "Source Sans 3",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
