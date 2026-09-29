@@ -216,3 +216,6 @@ nav>a,.mi>button,.logo{white-space:nowrap}
 @media (max-width:900px){.sec{grid-template-columns:1fr}}
 
 .s>.w>h2+.txt{margin-top:20px}
+
+.logo{display:inline-flex;align-items:center;gap:10px}.logo-mark{display:block;width:32px;height:32px;flex:none}
+@media (max-width:600px){.logo-mark{width:28px;height:28px}}
