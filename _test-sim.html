@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Test simulación</title>
+<style>
+body{margin:0;background:#333;font:13px monospace;color:#0f0}
+iframe{border:0;display:block;background:#fff}
+#info{padding:6px 8px;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<iframe id="f" src="servicios/interfaces-para-mayores.html"></iframe>
+<div id="info">cargando…</div>
+<script>
+var f=document.getElementById('f'),q=new URLSearchParams(location.search);
+var slide=+(q.get('s')||1),theme=q.get('t')||'',w=+(q.get('w')||360),h=+(q.get('h')||640),sim=q.get('sim')||'1';
+f.style.width=w+'px';f.style.height=h+'px';
+f.addEventListener('load',function(){
+  var d=f.contentDocument;
+  if(theme==='dark')d.documentElement.setAttribute('data-theme','dark');
+  if(sim==='1'){var b=d.getElementById('sim-start');if(b)b.click();}
+  var cur=1,n=0,iv=setInterval(function(){
+    var nx=d.getElementById('simnext');
+    if(!nx){return}
+    while(cur<slide&&!nx.disabled){nx.click();cur++;n++}
+    clearInterval(iv);
+    if(q.get('ck')==='ok'){var ck=d.querySelector('.ck-ok');if(ck)ck.click()}
+    setTimeout(report,250);
+  },80);
+});
+function report(){
+  var d=f.contentDocument;
+  var on=d.querySelector('[data-slide].on');
+  var out=[];
+  out.push('sim='+(d.documentElement.getAttribute('data-sim')||'NO'));
+  out.push('slideActiva='+(on?on.id||on.className:'NINGUNA'));
+  var bodyScroll=d.documentElement.scrollHeight>d.documentElement.clientHeight?'SI(' + d.documentElement.scrollHeight+'>'+d.documentElement.clientHeight+')':'no';
+  out.push('scrollPagina='+bodyScroll);
+  if(on){
+    out.push('contenidoCabe='+(on.scrollHeight<=on.clientHeight?'SI':'NO('+on.scrollHeight+'>'+on.clientHeight+')'));
+    var nav=d.getElementById('simnav');
+    out.push('navVisible='+(getComputedStyle(nav).display!=='none'?'SI':'NO'));
+    out.push('prog='+d.getElementById('simprog').textContent);
+    out.push('prev='+ (d.getElementById('simprev').disabled?'disabled':'ok')+' next='+(d.getElementById('simnext').disabled?'disabled':'ok'));
+    var vis=[].slice.call(d.querySelectorAll('[data-slide]')).filter(function(s){return getComputedStyle(s).display!=='none'}).length;
+    out.push('slidesVisibles='+vis);
+    out.push('footer='+(getComputedStyle(d.querySelector('footer')).display==='none'?'oculto':'visible')+' headerNav='+(getComputedStyle(d.querySelector('header nav')).display==='none'?'oculto':'visible'));
+    var hiddenText=[].slice.call(d.querySelectorAll('[data-sim-text]')).filter(function(el){return el.textContent.indexOf(el.dataset.simText)<0});
+    out.push('textosCortosAplicados='+(d.querySelectorAll('[data-sim-text]').length-hiddenText.length)+'/'+d.querySelectorAll('[data-sim-text]').length);
+    var el=d.querySelector('[data-slide].on');
+    out.push('alturaContenido='+(el?el.scrollHeight:'-')+' alturaVisible='+(el?el.clientHeight:'-'));
+    if(el){
+      var w=el.querySelector('.w'),re=el.getBoundingClientRect(),wr=w.getBoundingClientRect();
+      out.push('cabeDeVerdad='+(wr.top>=re.top-1&&wr.bottom<=re.bottom+1?'SI':'NO(topOff='+Math.round(re.top-wr.top)+',botOff='+Math.round(wr.bottom-re.bottom)+')'));
+      out.push('caja w='+Math.round(wr.height)+' disp='+Math.round(re.height));
+    }
+  }
+  document.getElementById('info').textContent=out.join(' | ');
+}
+</script>
+</body>
+</html>
