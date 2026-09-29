@@ -17,6 +17,7 @@ Sitio web corporativo estático de AgeingLab Tech. HTML + CSS + JavaScript vanil
 - **Formulario de contacto:** envía directamente a Formspree (`action="https://formspree.io/f/..."` en `index.html`); no hay backend ni API propia.
 - **Imágenes:** WebP para casi todo; `loading="lazy"` en las imágenes; el vídeo del hero lleva `poster` y se pausa si `prefers-reduced-motion`.
 - **Despliegue:** push a la rama que publica GitHub Pages (normalmente `main`); se publica el contenido de la raíz del repo. `CNAME` resuelve el dominio `ageinglabtech.com`; si cambia, actualizar ese archivo.
+- **PWA:** `manifest.json` + `sw.js` (service worker: precachea las 18 URLs del sitemap + assets compartidos y cachéa el resto bajo demanda; el sitio funciona offline). El `<head>` de cada página lleva las etiquetas PWA (`rel="manifest"` — con prefijo `../` en subdirectorios, `theme-color`, `apple-touch-icon`, metas de Apple); al crear una página nueva replicarlas y añadir su URL a `CORE` en `sw.js`.
 
 ## Estructura
 
