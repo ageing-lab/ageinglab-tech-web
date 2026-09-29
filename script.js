@@ -24,3 +24,17 @@ document.getElementById('bg').addEventListener('click',upd);
 addEventListener('scroll',upd,{passive:true});upd();
 
 [].forEach.call(document.querySelectorAll('nav a'),function(a){a.addEventListener('click',function(){hd.classList.remove('open')})});
+var thm=[].slice.call(document.querySelectorAll('.theme'));
+if(thm.length){
+var TK='al-theme';
+function tcur(){var v;try{v=localStorage.getItem(TK)}catch(e){v=null}return v==='light'||v==='dark'?v:'auto'}
+function tpaint(){
+var v=tcur(),r=document.documentElement;
+if(v==='auto')r.removeAttribute('data-theme');else r.setAttribute('data-theme',v);
+thm.forEach(function(t){
+var bs=[].slice.call(t.querySelectorAll('.t')),i=0;
+bs.forEach(function(b,j){var on=b.getAttribute('data-v')===v;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on?'true':'false');if(on)i=j});
+t.style.setProperty('--i',i)});
+}
+[].forEach.call(document.querySelectorAll('.theme .t'),function(b){b.addEventListener('click',function(){try{localStorage.setItem(TK,b.getAttribute('data-v'))}catch(e){}tpaint()})});
+tpaint()}
