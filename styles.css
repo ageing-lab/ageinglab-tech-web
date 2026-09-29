@@ -167,3 +167,21 @@ header.open nav{display:flex}nav>a,.mi>button{padding:14px 0;text-align:left;wid
 .hero nav[aria-label="Miga de pan"]>a{display:inline;padding:0;border:0;font-size:16px;text-decoration:none}
 .hero nav[aria-label="Miga de pan"]>a:hover{text-decoration:underline;text-underline-offset:3px}
 @media (max-width:600px){header .w{gap:10px}.logo{font-size:18px;white-space:nowrap}header .btn{padding:10px 14px;font-size:15px}.burger{padding:8px 12px}}
+
+/* Resumen Antes / Ahora / Resultado */
+section.ba-s{padding:56px 0}
+.ba{list-style:none;margin:32px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr 1.25fr;border:1px solid var(--line);border-radius:4px}
+.ba>li{position:relative;padding:28px 28px 32px;background:var(--soft)}
+.ba>li+li{border-left:1px solid var(--line)}
+.ba .k{display:block;margin-bottom:14px;font:600 13px/1 "Source Sans 3",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.ba h3{margin:0 0 10px;font-size:clamp(20px,2vw,26px);line-height:1.2}
+.ba p{margin:0;color:var(--mute);font-size:17px;max-width:24em}
+.ba>li:not(:last-child)::after{content:"\2192";position:absolute;z-index:1;top:50%;right:-15px;transform:translateY(-50%);width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:var(--bg);border:1px solid var(--line);color:var(--accent);font-size:16px}
+.ba>li.res{background:var(--navy);border-color:var(--navy)}
+.ba>li.res .k{color:var(--mint)}
+.ba .res ul{list-style:none;margin:0;padding:0;display:grid;gap:18px}
+.ba .res ul li{padding:0;background:none;border:0}
+.ba .res strong{display:block;font:700 clamp(32px,3.4vw,46px)/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.02em;color:var(--mint)}
+.ba .res span:not(.k){display:block;margin-top:4px;color:#c9d4ec;font-size:16px}
+@media (max-width:900px){.ba{grid-template-columns:1fr}.ba>li+li{border-left:0;border-top:1px solid var(--line)}.ba>li.res{border-top-color:var(--navy)}.ba>li:not(:last-child)::after{top:auto;bottom:-15px;right:auto;left:50%;transform:translateX(-50%) rotate(90deg)}}
+.ba .res.words strong{font-size:clamp(24px,2.3vw,30px);line-height:1.15;letter-spacing:-.01em}
