@@ -106,7 +106,7 @@ if(el._simAria!==null)el.setAttribute('aria-label',el._simAria);else el.removeAt
 slides.forEach(function(s){s.classList.remove('on')});
 try{sessionStorage.removeItem(KEY)}catch(e){}
 var s=slideEl(cur);
-if(s)s.scrollIntoView({block:'start',behavior:'auto'});
+if(s){var de=document.documentElement,old=de.style.scrollBehavior;de.style.scrollBehavior='auto';s.scrollIntoView({block:'start'});de.style.scrollBehavior=old}
 focusSlide();
 }
 btn.addEventListener('click',function(){enter(1)});

@@ -14,47 +14,61 @@ iframe{border:0;display:block;background:#fff}
 <div id="info">cargando…</div>
 <script>
 var f=document.getElementById('f'),q=new URLSearchParams(location.search);
-var slide=+(q.get('s')||1),theme=q.get('t')||'',w=+(q.get('w')||360),h=+(q.get('h')||640),sim=q.get('sim')||'1';
+var slide=+(q.get('s')||1),theme=q.get('t')||'',w=+(q.get('w')||360),h=+(q.get('h')||640);
+var doSim=q.get('sim')!=='0',doExit=q.get('exit')==='1';
 f.style.width=w+'px';f.style.height=h+'px';
+var clicks=0,done=false;
 f.addEventListener('load',function(){
   var d=f.contentDocument;
-  if(theme==='dark')d.documentElement.setAttribute('data-theme','dark');
-  if(sim==='1'){var b=d.getElementById('sim-start');if(b)b.click();}
-  var cur=1,n=0,iv=setInterval(function(){
-    var nx=d.getElementById('simnext');
-    if(!nx){return}
-    while(cur<slide&&!nx.disabled){nx.click();cur++;n++}
-    clearInterval(iv);
+  if(theme)d.documentElement.setAttribute('data-theme',theme);
+  if(doSim){var b=d.getElementById('sim-start');if(b)b.click()}
+  var step=function(){
+    var nx=d.getElementById('simnext'),cur=1;
+    while(cur<slide&&nx&&!nx.disabled){nx.click();cur++;clicks++}
+    if(doExit){var ex=d.getElementById('simexit');if(ex)ex.click()}
     if(q.get('ck')==='ok'){var ck=d.querySelector('.ck-ok');if(ck)ck.click()}
-    setTimeout(report,250);
-  },80);
+    var fire=function(){if(!done){done=true;setTimeout(report,250)}};
+    if(d.fonts&&d.fonts.ready)d.fonts.ready.then(fire);else fire();
+    setTimeout(fire,1500);
+  };
+  setTimeout(step,120);
 });
 function report(){
-  var d=f.contentDocument;
-  var on=d.querySelector('[data-slide].on');
-  var out=[];
-  out.push('sim='+(d.documentElement.getAttribute('data-sim')||'NO'));
-  out.push('slideActiva='+(on?on.id||on.className:'NINGUNA'));
-  var bodyScroll=d.documentElement.scrollHeight>d.documentElement.clientHeight?'SI(' + d.documentElement.scrollHeight+'>'+d.documentElement.clientHeight+')':'no';
-  out.push('scrollPagina='+bodyScroll);
-  if(on){
-    out.push('contenidoCabe='+(on.scrollHeight<=on.clientHeight?'SI':'NO('+on.scrollHeight+'>'+on.clientHeight+')'));
-    var nav=d.getElementById('simnav');
-    out.push('navVisible='+(getComputedStyle(nav).display!=='none'?'SI':'NO'));
+  var d=f.contentDocument,de=d.documentElement;
+  var out=['qs='+location.search+' clicks='+clicks];
+  var sim=de.getAttribute('data-sim');
+  out.push('sim='+(sim||'NO'));
+  var vis=[].slice.call(d.querySelectorAll('[data-slide]')).filter(function(s){return getComputedStyle(s).display!=='none'});
+  out.push('slidesVisibles='+vis.length);
+  var nav=d.getElementById('simnav');
+  out.push('nav='+(getComputedStyle(nav).display!=='none'?'visible':'oculta'));
+  var sw=d.documentElement.scrollHeight>d.documentElement.clientHeight;
+  out.push('scrollPagina='+(sw?'SI('+d.documentElement.scrollHeight+'>'+d.documentElement.clientHeight+')':'no'));
+  out.push('footer='+(getComputedStyle(d.querySelector('footer')).display==='none'?'oculto':'visible'));
+  out.push('headerNav='+(getComputedStyle(d.querySelector('header nav')).display==='none'?'oculto':'visible'));
+  out.push('headerBtn='+(getComputedStyle(d.querySelector('header .btn')).display==='none'?'oculto':'visible'));
+  var texts=[].slice.call(d.querySelectorAll('[data-sim-text]'));
+  var shortApplied=texts.filter(function(el){return el.innerHTML===el.dataset.simText}).length;
+  out.push('textosCortos='+shortApplied+'/'+texts.length);
+  var act=sim?d.querySelector('[data-slide].on'):null;
+  if(act){
+    out.push('slide='+act.id);
+    var box=act.querySelector('.w'),re=act.getBoundingClientRect(),br=box.getBoundingClientRect();
+    var fits=br.top>=re.top-1&&br.bottom<=re.bottom+1;
+    out.push('cabe='+(fits?'SI':'NO(offTop='+Math.round(re.top-br.top)+',offBot='+Math.round(br.bottom-re.bottom)+')'));
+    out.push('caja='+Math.round(br.height)+' disp='+Math.round(re.height));
     out.push('prog='+d.getElementById('simprog').textContent);
-    out.push('prev='+ (d.getElementById('simprev').disabled?'disabled':'ok')+' next='+(d.getElementById('simnext').disabled?'disabled':'ok'));
-    var vis=[].slice.call(d.querySelectorAll('[data-slide]')).filter(function(s){return getComputedStyle(s).display!=='none'}).length;
-    out.push('slidesVisibles='+vis);
-    out.push('footer='+(getComputedStyle(d.querySelector('footer')).display==='none'?'oculto':'visible')+' headerNav='+(getComputedStyle(d.querySelector('header nav')).display==='none'?'oculto':'visible'));
-    var hiddenText=[].slice.call(d.querySelectorAll('[data-sim-text]')).filter(function(el){return el.textContent.indexOf(el.dataset.simText)<0});
-    out.push('textosCortosAplicados='+(d.querySelectorAll('[data-sim-text]').length-hiddenText.length)+'/'+d.querySelectorAll('[data-sim-text]').length);
-    var el=d.querySelector('[data-slide].on');
-    out.push('alturaContenido='+(el?el.scrollHeight:'-')+' alturaVisible='+(el?el.clientHeight:'-'));
-    if(el){
-      var w=el.querySelector('.w'),re=el.getBoundingClientRect(),wr=w.getBoundingClientRect();
-      out.push('cabeDeVerdad='+(wr.top>=re.top-1&&wr.bottom<=re.bottom+1?'SI':'NO(topOff='+Math.round(re.top-wr.top)+',botOff='+Math.round(wr.bottom-re.bottom)+')'));
-      out.push('caja w='+Math.round(wr.height)+' disp='+Math.round(re.height));
-    }
+    out.push('prev='+(d.getElementById('simprev').disabled?'off':'on')+' next='+(d.getElementById('simnext').disabled?'off':'on'));
+    var pf=d.activeElement;
+    out.push('focus='+(pf?pf.tagName+'.'+(pf.className||pf.id||''):'ninguno'));
+  }else{
+    var hero=d.querySelector('.hero');
+    out.push('heroScrollRestaurado='+(Math.abs(hero.getBoundingClientRect().top)<400?'SI':'NO(top='+Math.round(hero.getBoundingClientRect().top)+')'));
+    out.push('dataSimAttr='+(sim===null?'eliminado':'presente'));
+    var b2=d.getElementById('sim-start');
+    out.push('botonSimVisible='+(b2&&getComputedStyle(b2).display!=='none'?'SI':'NO'));
+    var pf2=d.activeElement;
+    out.push('focus='+(pf2?pf2.tagName+'.'+(pf2.className||pf2.id||''):'ninguno'));
   }
   document.getElementById('info').textContent=out.join(' | ');
 }
