@@ -102,6 +102,47 @@
 </div>
 </div></section>
 
+<!-- INICIO demo iot -->
+<section class="s" id="demo-iot"><div class="w">
+<h2>Monta la arquitectura de tu dispositivo</h2>
+<p class="lead">Elige las piezas de un dispositivo IoT y comprueba si encajan entre sí. Es lo primero que revisamos al diseñar un proyecto.</p>
+<p class="io-nota"><strong>Es un simulador de arquitectura.</strong> Aplica reglas generales sobre qué piezas encajan; no emula el firmware, no calcula autonomía ni coste y no sustituye al diseño real. Todo ocurre en tu navegador.</p>
+<div class="io">
+<div id="io-paleta" class="io-paleta"></div>
+<div class="io-acc"><button type="button" class="btn" id="io-ejemplo">Cargar un ejemplo</button><button type="button" class="btn" id="io-vaciar">Vaciar la mesa</button></div>
+<div class="io-scroll"><div id="io-mesa" class="io-mesa"><svg id="io-lin" aria-hidden="true"></svg></div></div>
+<h3>Qué opina la simulación</h3>
+<ul id="io-res" class="io-res" aria-live="polite"></ul>
+</div>
+<style>
+#demo-iot .io{max-width:860px}
+#demo-iot .io-nota{max-width:680px;padding:12px 16px;border:1px solid rgba(128,128,128,.5);border-left-width:4px;border-radius:8px}
+#demo-iot .io-paleta{display:flex;flex-wrap:wrap;gap:8px 24px;margin:12px 0}
+#demo-iot .io-paleta p{margin:0 0 4px;font-weight:600}
+#demo-iot .io-b{margin:0 6px 6px 0;padding:6px 12px;border:1px solid rgba(128,128,128,.55);border-radius:8px;color:inherit;font:inherit;cursor:pointer}
+#demo-iot .io-g{position:fixed;z-index:50;pointer-events:none;opacity:.85}
+#demo-iot .btn{cursor:pointer;margin-right:8px}
+#demo-iot .io-acc{margin:6px 0 12px}
+#demo-iot .io-scroll{overflow-x:auto;border:1px solid rgba(128,128,128,.4);border-radius:10px}
+#demo-iot .io-mesa{position:relative;width:700px;height:340px;background-image:radial-gradient(rgba(128,128,128,.35) 1px,transparent 1px);background-size:20px 20px}
+#demo-iot .io-mesa svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#demo-iot .io-vacio{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;margin:0;opacity:.7}
+#demo-iot .io-p{position:absolute;width:130px;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 10px;border:1px solid rgba(128,128,128,.7);border-radius:8px;font-size:.9rem;line-height:1.15;cursor:grab;touch-action:none;user-select:none;backdrop-filter:blur(2px)}
+#demo-iot .io-x{border:0;background:transparent;color:inherit;font-size:1.2rem;cursor:pointer;padding:0 4px}
+#demo-iot .io-mcu{background:rgba(60,140,255,.28)}
+#demo-iot .io-sen{background:rgba(60,200,170,.28)}
+#demo-iot .io-rad{background:rgba(240,170,0,.3)}
+#demo-iot .io-pow{background:rgba(230,90,90,.28)}
+#demo-iot .io-dst{background:rgba(150,110,240,.3)}
+#demo-iot .io-res{list-style:none;padding:0;margin:8px 0 0}
+#demo-iot .io-res li{padding:8px 12px;margin-bottom:6px;border-left:4px solid rgba(128,128,128,.6);background:rgba(128,128,128,.12);border-radius:0 6px 6px 0}
+#demo-iot .io-falta{border-left-color:rgba(230,60,60,.9)!important}
+#demo-iot li.io-aviso{border-left-color:rgba(240,170,0,.95)!important}
+#demo-iot .io-ok{border-left-color:rgba(40,180,90,.95)!important}
+</style>
+</div></section>
+<!-- FIN demo iot -->
+
 <section class="s" id="para-quien"><div class="w">
 <h2>Para quién es</h2>
 <p class="lead">Para organizaciones de tecnología médica, salud y otros sectores que necesitan un dispositivo o prototipo IoT a medida: sensores de medida, dispositivos portátiles, sistemas con software embebido o equipos conectados, desde la primera validación de la idea hasta la fabricación del producto.</p>
@@ -166,5 +207,6 @@
 </div><div class="base">© 2026 AgeingLab Tech · Madrid, España</div></div></footer>
 
 <script src="../script.js"></script>
+<script src="../js/demo-iot.js" defer></script>
 </body>
 </html>
