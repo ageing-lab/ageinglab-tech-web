@@ -81,7 +81,10 @@ var h=headOf(cur);
 prog.textContent='Pantalla '+cur+' de '+total+(h?' — '+h.textContent.trim():'');
 if(on){try{sessionStorage.setItem(KEY,String(cur))}catch(e){}}
 }
-function go(n){cur=Math.max(1,Math.min(total,n));paint()}
+function go(n){cur=Math.max(1,Math.min(total,n));paint();
+var a=document.activeElement;
+if(on&&(!a||a===document.body||!a.offsetParent)){var t=next.disabled?prev:next;if(t)t.focus()}
+}
 function focusSlide(){var h=headOf(cur);if(h){h.setAttribute('tabindex','-1');h.focus({preventScroll:true})}}
 function enter(start,quiet){
 if(on)return;
