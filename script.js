@@ -24,3 +24,5 @@ document.getElementById('bg').addEventListener('click',upd);
 addEventListener('scroll',upd,{passive:true});upd();
 
 [].forEach.call(document.querySelectorAll('nav a'),function(a){a.addEventListener('click',function(){hd.classList.remove('open')})});
+
+[].forEach.call(document.querySelectorAll(".vplay"),function(b){b.addEventListener("click",function(){var w=b.parentNode,f=document.createElement("iframe");f.src="https://www.youtube.com/embed/"+b.getAttribute("data-yt")+"?autoplay=1&rel=0";f.title=b.getAttribute("data-title");f.referrerPolicy="strict-origin-when-cross-origin";f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";f.allowFullscreen=true;w.replaceChild(f,b)})});
