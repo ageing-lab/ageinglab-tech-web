@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IA local para datos clínicos en un servidor de bajo presupuesto | Casos de éxito | AgeingLab Tech</title>
+<meta name="description" content="Sistema de IA local para datos clínicos: un pequeño servidor de presupuesto ajustado (≈1.200 €) con una GPU RTX Geforce 5060 Ti de 16 GB y modelos open weight como Qwen 27B a 25–50 tokens/s.">
+<link rel="canonical" href="https://www.ageinglabtech.com/casos-de-exito/ia-local.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IA local para datos clínicos en un servidor de bajo presupuesto | Casos de éxito | AgeingLab Tech">
+<meta property="og:description" content="Sistema de IA local para datos clínicos: un pequeño servidor de presupuesto ajustado (≈1.200 €) con una GPU RTX Geforce 5060 Ti de 16 GB y modelos open weight como Qwen 27B a 25–50 tokens/s.">
+<meta property="og:url" content="https://www.ageinglabtech.com/casos-de-exito/ia-local.html">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="AgeingLab Tech">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IA local para datos clínicos en un servidor de bajo presupuesto | Casos de éxito | AgeingLab Tech">
+<meta name="twitter:description" content="Sistema de IA local para datos clínicos: un pequeño servidor de presupuesto ajustado (≈1.200 €) con una GPU RTX Geforce 5060 Ti de 16 GB y modelos open weight como Qwen 27B a 25–50 tokens/s.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230b1f4b%27/%3E%3Cpath d=%27M14 46 32 16l18 30h-9l-9-16-9 16z%27 fill=%27%233ee0c8%27/%3E%3C/svg%3E">
+<meta property="og:image" content="https://www.ageinglabtech.com/hero-poster.jpg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta name="twitter:image" content="https://www.ageinglabtech.com/hero-poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
+<script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Casos de éxito","item":"https://www.ageinglabtech.com/casos-de-exito/"},{"@type":"ListItem","position":3,"name":"IA local para datos clínicos en un servidor de bajo presupuesto","item":"https://www.ageinglabtech.com/casos-de-exito/ia-local.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"IA local para datos clínicos en un servidor de bajo presupuesto","description":"Sistema de IA local para datos clínicos: un pequeño servidor de presupuesto ajustado (≈1.200 €) con una GPU RTX Geforce 5060 Ti de 16 GB y modelos open weight como Qwen 27B a 25–50 tokens/s.","url":"https://www.ageinglabtech.com/casos-de-exito/ia-local.html","isPartOf":{"@type":"WebSite","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"}}</script>
+</head>
+<body>
+<header id="hd"><div class="w">
+<a class="logo" href="../index.html"><img class="logo-mark" src="../img/logo.svg" alt="" width="32" height="32"><span>AgeingLab Tech</span></a>
+<nav aria-label="Principal">
+<a href="../index.html#hacemos">Qué hacemos</a>
+<a href="../index.html#sectores">Sectores</a>
+<a href="../soluciones/">Soluciones</a>
+<a href="../casos-de-exito/" aria-current="true">Casos de éxito</a>
+<a href="../index.html#metodo">Cómo trabajamos</a>
+<a href="../index.html#nosotros">Quiénes somos</a>
+<div class="theme" role="group" aria-label="Apariencia"><span class="thumb" aria-hidden="true"></span><button type="button" class="t" data-v="light" aria-pressed="false" title="Tema claro" aria-label="Claro"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg></button><button type="button" class="t" data-v="dark" aria-pressed="false" title="Tema oscuro" aria-label="Oscuro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.2A8.6 8.6 0 1 1 10.8 3.4a6.8 6.8 0 0 0 9.8 9.8z"/></svg></button><button type="button" class="t" data-v="auto" aria-pressed="true" title="Tema automático" aria-label="Automático"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path class="fill" d="M12 3.4a8.6 8.6 0 0 1 0 17.2z"/></svg></button></div>
+</nav>
+<a class="btn" href="../index.html#contacto">Contacto</a>
+<button class="burger" id="bg" aria-label="Abrir menú">Menú</button>
+</div></header>
+
+<main>
+<div class="hero dark case-hero"><div class="w">
+<nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="../index.html" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../casos-de-exito/" style="color:var(--mu)">Casos de éxito</a> <span aria-hidden="true">/</span> <span>IA local</span></nav>
+<h1>IA local para datos clínicos en un servidor de bajo presupuesto</h1>
+<p>Desarrollamos un sistema de IA local para trabajar con datos clínicos sin que salgan del edificio: un pequeño servidor con una GPU de 16 GB, modelos open weight como Qwen 27B y un stack que garantiza la trazabilidad, la seguridad y la disponibilidad del servicio.</p>
+<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+</div></div>
+
+<section class="s ba-s" id="resumen"><div class="w">
+<h2>De un vistazo</h2>
+<ol class="ba">
+<li><span class="k">Antes</span><h3>Sin IA disponible para datos clínicos</h3><p>Los datos clínicos no podían salir del edificio, así que no era posible apoyarse en servicios de IA en la nube para las tareas de desarrollo.</p></li>
+<li><span class="k">Ahora</span><h3>IA local en un pequeño servidor</h3><p>Un servidor con una GPU de 16 GB, dentro de un presupuesto muy ajustado, que ejecuta modelos open weight y cuenta con un stack que asegura la trazabilidad del dato, su seguridad y la disponibilidad del servicio.</p></li>
+<li class="res"><span class="k">Resultado</span><ul><li><strong>25–50 tokens/s</strong><span>con un modelo open weight de 27B (Qwen, denso)</span></li><li><strong>≈1.200 €</strong><span>presupuesto de todo el servidor</span></li><li><strong>100 %</strong><span>del dato clínico permanece dentro del edificio</span></li><li><strong>Trazabilidad, seguridad y disponibilidad</strong><span>aseguradas por el stack del sistema</span></li></ul></li>
+</ol>
+</div></section>
+
+<section class="s" id="contexto"><div class="w">
+<h2>Contexto</h2>
+<div class="detail">
+<aside><div class="who stat word"><strong>≈1.200 €</strong><span>presupuesto del servidor</span></div><dl class="facts"><div><dt>Ámbito</dt><dd>IA local para datos clínicos</dd></div><div><dt>Uso</dt><dd>Tareas de desarrollo donde el dato no puede salir</dd></div><div><dt>Hardware</dt><dd>Pequeño servidor con GPU NVIDIA RTX Geforce 5060 Ti (16 GB de VRAM)</dd></div><div><dt>Modelo</dt><dd>Qwen 27B (denso, open weight)</dd></div><div><dt>Servicios</dt><dd><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a> · <a href="../servicios/software-a-medida.html">Software a medida</a></dd></div></dl></aside>
+<div class="txt"><p>Para utilizar datos clínicos se necesitaba una instalación de IA local: el dato no podía salir, así que la IA tenía que estar dentro del edificio.</p><p>Desarrollamos un sistema de IA local sobre un pequeño servidor, con un presupuesto muy ajustado, que garantice la trazabilidad del dato, su seguridad y la disponibilidad del servicio.</p></div>
+</div>
+</div></section>
+
+<section class="s" id="problema"><div class="w">
+<h2>Problema</h2>
+<div class="txt"><p>Las tareas de desarrollo trabajaban con datos clínicos que no podían salir del edificio: enviarlos a un servicio de IA en la nube no era una opción viable.</p><p>Además, la solución tenía que caber en un presupuesto muy ajustado (en torno a 1.200 €) y, aun así, ser capaz de ejecutar un modelo grande con garantías de trazabilidad, seguridad y disponibilidad del servicio.</p></div>
+</div></section>
+
+<section class="s" id="solucion"><div class="w">
+<h2>Solución</h2>
+<div class="txt"><p>Diseñamos y montamos el sistema de IA local sobre un pequeño servidor. El trabajo incluyó:</p><ul class="plain"><li>Montaje de un pequeño servidor con una GPU NVIDIA RTX Geforce 5060 Ti de 16 GB de VRAM, dentro de un presupuesto muy ajustado (en torno a 1.200 €).</li><li>Despliegue de modelos open weight, como Qwen 27B (denso), que ejecutamos con velocidades de 25–50 tokens por segundo.</li><li>Creación de un stack que asegura la trazabilidad del dato, su seguridad y la disponibilidad del servicio.</li><li>Puesta en servicio para tareas de desarrollo donde el dato no puede salir del edificio.</li></ul>
+<figure class="shot"><img src="../img/casos/ia_local_nvidia.jpg" alt="Pequeño servidor del sistema de IA local, con la placa de vídeo NVIDIA RTX Geforce 5060 Ti de 16 GB montada en su interior" width="1011" height="417" loading="lazy" decoding="async"><figcaption>El pequeño servidor con la GPU NVIDIA RTX Geforce 5060 Ti (16 GB de VRAM).</figcaption></figure>
+<figure class="shot"><img src="../img/casos/ia_local_velocidad_tokens.png" alt="Medición de la velocidad de generación del modelo local: velocidad de salida de tokens por segundo" width="841" height="154" loading="lazy" decoding="async"><figcaption>Velocidad medida del sistema: 25–50 tokens/s con el modelo open weight de 27B.</figcaption></figure>
+<p>Es el tipo de trabajo que hacemos en <a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a>.</p></div>
+</div></section>
+
+<section class="s" id="resultados"><div class="w">
+<h2>Resultados</h2>
+<div class="txt"><p>El equipo trabaja en sus tareas de desarrollo con datos clínicos que no salen nunca del edificio: la IA corre en un servidor propio, con un modelo open weight de 27B que responde a 25–50 tokens por segundo.</p><p>El stack del sistema asegura la trazabilidad del dato, su seguridad y la disponibilidad del servicio, y todo el conjunto cabe en un presupuesto en torno a los 1.200 €.</p></div>
+</div></section>
+
+<section class="s" id="otros"><div class="w">
+<h2>Otros casos de éxito</h2>
+<div class="ind two"><a href="velocidad-marcha.html">Dispositivo de medida de la velocidad de la marcha<span>›</span></a><a href="interfaz-adherencia.html">Interfaz para personas mayores en un sistema de prevención de la fragilidad<span>›</span></a><a href="integracam.html">Integracam: prevención y mejora de la fragilidad en personas mayores<span>›</span></a><a href="ecare.html">eCare: gestión social y de la fragilidad para un proyecto europeo<span>›</span></a><a href="integracion-fhir.html">Integración de sistemas de salud con FHIR<span>›</span></a><a href="gestion-de-casos-implantes.html">Plataforma de gestión de casos de intervenciones quirúrgicas para una startup MedTech<span>›</span></a><a href="cuidame.html">Cuídame: comunicación por televisión para personas mayores<span>›</span></a><a href="juegos-cognitivos-madrid.html">Plataforma de juegos cognitivos para el Ayuntamiento de Madrid<span>›</span></a></div>
+</div></section>
+
+<section class="cta dark" id="contacto"><div class="w">
+<h2>Empieza por una conversación de treinta minutos</h2>
+<p>Cuéntanos qué necesitas y te decimos honestamente si podemos ayudarte.</p>
+<form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
+<input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
+<div class="cf-grid">
+<label>Nombre<input type="text" name="nombre" required></label>
+<label>Tu correo<input type="email" name="email" required></label>
+<label>Empresa (opcional)<input type="text" name="empresa"></label>
+<label>¿Qué os interesa?
+<select name="interes" required>
+<option value="" disabled>Elige una opción</option>
+<option value="IA privada y automatización">IA privada y automatización</option>
+<option value="Decisiones con IA">Decisiones con IA</option>
+<option value="Software a medida">Software a medida</option>
+<option value="IoT y hardware">IoT y hardware</option>
+<option value="Interfaces para mayores">Interfaces para mayores</option>
+<option value="Investigación e innovación">Investigación e innovación</option>
+<option value="Soluciones">Soluciones</option>
+<option value="Aún no lo sé" selected>Aún no lo sé</option>
+</select>
+</label>
+<label class="cf-full">Cuéntanos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+</div>
+<div class="cf-actions">
+<button type="submit" class="btn btn-primary">Contactar</button>
+<span class="cf-note">Respondemos en menos de 48 h.</span>
+</div>
+</form>
+</div></section>
+</main>
+
+
+
+<footer><div class="w"><div class="cols">
+<div><h3>AgeingLab Tech</h3><p>Te acercamos al futuro.</p></div>
+<div><h3>Qué hacemos</h3><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a></div>
+<div><h3>Sectores</h3><a href="../index.html#sector-salud">Salud</a><a href="../index.html#sector-envejecimiento">Envejecimiento y cuidados</a><a href="../index.html#sector-tecnologia-medica">Tecnología médica</a><a href="../index.html#sector-publico">Sector público</a><a href="../index.html#sector-investigacion">Investigación</a><a href="../index.html#sector-a-medida">Tecnología a medida</a></div>
+<div><h3>Empresa</h3><a href="../index.html#nosotros">Quiénes somos</a><a href="../index.html#contacto">Contacto</a></div>
+</div><div class="base">© 2026 AgeingLab Tech · Madrid, España</div></div></footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
