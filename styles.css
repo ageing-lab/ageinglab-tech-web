@@ -204,3 +204,13 @@ section.ba-s{padding:56px 0}
 /* Cabecera: sin saltos de línea y menú móvil desde 1180px (ahora hay 6 enlaces) */
 nav>a,.mi>button,.logo{white-space:nowrap}
 @media (max-width:1180px){.burger{display:block}nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);flex-direction:column;align-items:stretch;padding:8px 24px 20px;border-bottom:1px solid var(--line)}header.open nav{display:flex}nav>a,.mi>button{padding:14px 0;text-align:left;width:100%}.mega{position:static;box-shadow:none;border:0;padding:0 0 10px}.mega .w{grid-template-columns:1fr;padding:0;gap:10px}.mega ul{columns:1}.mega h3,.mega p{display:none}}
+
+/* Sectores con casos */
+.sec{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;margin-top:40px}
+.sec article{padding:24px 0 32px;border-top:1px solid var(--line);scroll-margin-top:90px}
+.sec h3{margin:0;font-size:clamp(22px,2.2vw,28px)}
+.sec p{margin:10px 0 0;color:var(--mute);font-size:17px;max-width:26em}
+.sec ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+.sec li a{color:var(--accent);font-weight:600;font-size:16px;text-decoration:none;text-underline-offset:3px}.sec li a:hover{text-decoration:underline}
+.sec li a::after{content:" \203A"}
+@media (max-width:900px){.sec{grid-template-columns:1fr}}
