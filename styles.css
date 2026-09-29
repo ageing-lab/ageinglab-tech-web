@@ -185,3 +185,22 @@ section.ba-s{padding:56px 0}
 .ba .res span:not(.k){display:block;margin-top:4px;color:#c9d4ec;font-size:16px}
 @media (max-width:900px){.ba{grid-template-columns:1fr}.ba>li+li{border-left:0;border-top:1px solid var(--line)}.ba>li.res{border-top-color:var(--navy)}.ba>li:not(:last-child)::after{top:auto;bottom:-15px;right:auto;left:50%;transform:translateX(-50%) rotate(90deg)}}
 .ba .res.words strong{font-size:clamp(24px,2.3vw,30px);line-height:1.15;letter-spacing:-.01em}
+
+/* Soluciones */
+.sol{display:grid;grid-template-columns:repeat(3,1fr);margin-top:32px;border:1px solid var(--line)}
+.sol a{display:flex;flex-direction:column;gap:12px;padding:32px 28px 28px;background:#fff;text-decoration:none;color:inherit;transition:background .2s}
+.sol a+a{border-left:1px solid var(--line)}
+.sol a:hover{background:var(--soft)}
+.sol .n{display:flex;align-items:center;gap:10px;font:600 13px/1 "Source Sans 3",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.sol h3{margin:0;font-size:clamp(22px,2.2vw,28px)}
+.sol p{margin:0;color:var(--mute);font-size:17px}
+.sol .go{margin-top:auto;padding-top:8px;font-weight:600;color:var(--accent)}
+.sol a.soon,.sol a.soon:hover{background:linear-gradient(160deg,#0b1f4b,#141b66);color:#fff}
+.sol a.soon p{color:#c9d4ec}.sol a.soon .n,.sol a.soon .go{color:var(--mint)}
+.pill{display:inline-block;margin:0 0 12px;padding:5px 10px;border:1px solid currentColor;border-radius:999px;font:600 12px/1 "Source Sans 3",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.sol .pill{margin:0;color:var(--mint)}
+@media (max-width:900px){.sol{grid-template-columns:1fr}.sol a+a{border-left:0;border-top:1px solid var(--line)}}
+
+/* Cabecera: sin saltos de línea y menú móvil desde 1180px (ahora hay 6 enlaces) */
+nav>a,.mi>button,.logo{white-space:nowrap}
+@media (max-width:1180px){.burger{display:block}nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);flex-direction:column;align-items:stretch;padding:8px 24px 20px;border-bottom:1px solid var(--line)}header.open nav{display:flex}nav>a,.mi>button{padding:14px 0;text-align:left;width:100%}.mega{position:static;box-shadow:none;border:0;padding:0 0 10px}.mega .w{grid-template-columns:1fr;padding:0;gap:10px}.mega ul{columns:1}.mega h3,.mega p{display:none}}

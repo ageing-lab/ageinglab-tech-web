@@ -22,3 +22,5 @@ hd.classList.toggle('ondark',dk)}
 var mo=new MutationObserver(upd);mis.forEach(function(m){mo.observe(m,{attributes:true,attributeFilter:['class']})});
 document.getElementById('bg').addEventListener('click',upd);
 addEventListener('scroll',upd,{passive:true});upd();
+
+[].forEach.call(document.querySelectorAll('nav a'),function(a){a.addEventListener('click',function(){hd.classList.remove('open')})});
