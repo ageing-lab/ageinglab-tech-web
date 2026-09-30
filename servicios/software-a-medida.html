@@ -12,6 +12,7 @@
     'ad_user_data': 'denied',
     'ad_personalization': 'denied'
   });
+  try{if(localStorage.getItem('al-consent')==='granted')gtag('consent','update',{'ad_storage':'granted','analytics_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'})}
 </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGJV0V53RW"></script>

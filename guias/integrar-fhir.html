@@ -12,6 +12,7 @@
     'ad_user_data': 'denied',
     'ad_personalization': 'denied'
   });
+  try{if(localStorage.getItem('al-consent')==='granted')gtag('consent','update',{'ad_storage':'granted','analytics_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'})}
 </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGJV0V53RW"></script>
@@ -27,17 +28,17 @@
 <meta name="apple-mobile-web-app-capable">
 <meta name="apple-mobile-web-app-title" content="AgeingLab Tech">
 <title>Cómo integrar tu sistema de salud con FHIR | AgeingLab Tech</title>
-<meta name="description" content="Guía práctica para integrar tu plataforma, app o dispositivo con el estándar FHIR: qué recursos exponer, cómo exponerlos, seguridad y los errores más comunes.">
+<meta name="description" content="Guía práctica para integrar tu plataforma, app o dispositivo con el estándar FHIR: qué recursos exponer, seguridad y los errores más comunes.">
 <link rel="canonical" href="https://www.ageinglabtech.com/guias/integrar-fhir.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cómo integrar tu sistema de salud con FHIR | AgeingLab Tech">
-<meta property="og:description" content="Guía práctica para integrar tu plataforma, app o dispositivo con el estándar FHIR: qué recursos exponer, cómo exponerlos, seguridad y los errores más comunes.">
+<meta property="og:description" content="Guía práctica para integrar tu plataforma, app o dispositivo con el estándar FHIR: qué recursos exponer, seguridad y los errores más comunes.">
 <meta property="og:url" content="https://www.ageinglabtech.com/guias/integrar-fhir.html">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="AgeingLab Tech">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Cómo integrar tu sistema de salud con FHIR | AgeingLab Tech">
-<meta name="twitter:description" content="Guía práctica para integrar tu plataforma, app o dispositivo con el estándar FHIR: qué recursos exponer, cómo exponerlos, seguridad y los errores más comunes.">
+<meta name="twitter:description" content="Guía práctica para integrar tu plataforma, app o dispositivo con el estándar FHIR: qué recursos exponer, seguridad y los errores más comunes.">
 <link rel="icon" href="../img/icons/favicon.ico">
 <meta property="og:image" content="https://www.ageinglabtech.com/img/hero-poster.webp">
 <meta property="og:image:width" content="1920">
@@ -54,7 +55,7 @@
   "@context":"https://schema.org",
   "@type":"Article",
   "headline":"Cómo integrar tu sistema de salud con FHIR",
-  "description":"Guía práctica para integrar tu plataforma, app o dispositivo con el estándar FHIR: qué recursos exponer, cómo exponerlos, seguridad y los errores más comunes.",
+  "description":"Guía práctica para integrar tu plataforma, app o dispositivo con el estándar FHIR: qué recursos exponer, seguridad y los errores más comunes.",
   "url":"https://www.ageinglabtech.com/guias/integrar-fhir.html",
   "datePublished":"2026-09-30",
   "dateModified":"2026-09-30",
