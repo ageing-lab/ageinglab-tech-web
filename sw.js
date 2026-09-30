@@ -1,10 +1,11 @@
-var CACHE='ageinglab-v7';
+var CACHE='ageinglab-v9';
 var CORE=[
 '/',
 '/styles.css',
 '/script.js',
 '/sw.js',
 '/manifest.json',
+'/favicon.ico',
 '/img/logo.svg',
 '/img/cookie.svg',
 '/cookies.html',
