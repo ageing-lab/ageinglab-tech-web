@@ -46,6 +46,23 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
+<style>
+/* Figuras del caso (mover a styles.css si se reutiliza) */
+.figs{--h:clamp(240px,30vw,360px);display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:clamp(24px,4vw,48px);margin:40px 0 8px;padding:clamp(24px,4vw,48px);border-radius:24px;background:radial-gradient(ellipse at 50% 100%,rgba(62,224,200,.14),transparent 65%),rgba(127,127,127,.08)}
+.fig{margin:0;display:flex;flex-direction:column;gap:16px;min-width:0}
+.fig .media{height:var(--h);border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 0 0 1.5px rgba(127,127,127,.28),0 24px 44px -20px rgba(0,0,0,.45)}
+.fig .media img{display:block;width:100%;height:100%}
+.fig-schema{flex:1 1 380px}
+.fig-schema .media{padding:clamp(12px,2vw,24px)}
+.fig-schema .media img{object-fit:contain}
+.fig-photo{flex:0 0 auto}
+.fig-photo .media{aspect-ratio:478/596}
+.fig-photo .media img{object-fit:cover}
+.fig figcaption{display:flex;flex-direction:column;gap:2px;font-size:.95rem;max-width:38ch}
+.fig figcaption strong{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-size:1.05rem}
+.fig figcaption span{opacity:.75}
+@media (max-width:720px){.figs{--h:auto}.fig-schema,.fig-photo{flex:1 1 100%}.fig-schema .media{height:auto;aspect-ratio:586/295}.fig-photo{align-items:center}.fig-photo .media{width:min(100%,300px);height:auto}.fig-photo figcaption{align-self:stretch}}
+</style>
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Casos de éxito","item":"https://www.ageinglabtech.com/casos-de-exito/"},{"@type":"ListItem","position":3,"name":"Dispositivo de medida de la velocidad de la marcha","item":"https://www.ageinglabtech.com/casos-de-exito/velocidad-marcha.html"}]}</script>
@@ -101,9 +118,15 @@
 <section class="s" id="solucion"><div class="w">
 <h2>Solución</h2>
 <div class="txt"><p>Pasamos de aquel prototipo a una solución inalámbrica basada en dos nodos, con una batería que dura meses. Mantiene la precisión y mejora claramente la usabilidad.</p><p>Además, revisamos y optimizamos la lista de materiales (BOM) y con ello reducimos el coste del producto.</p><p>Desarrollamos un nuevo prototipo y el dispositivo se ha fabricado con marcado CE a través de nuestros socios.</p><p>Es el tipo de trabajo que hacemos en <a href="../servicios/iot-y-hardware.html">IoT y hardware</a> y en <a href="../servicios/interfaces-para-mayores.html">usabilidad e interfaces para mayores</a>.</p></div>
-<div class="shots">
-<figure class="shot"><img src="../img/casos/marcha-esquema.webp" alt="Esquema del sistema: dos nodos inalámbricos situados en los extremos de un tramo de marcha, con enlace Bluetooth" width="586" height="295" loading="lazy" decoding="async"><figcaption>Esquema: dos nodos inalámbricos en los extremos del tramo de marcha.</figcaption></figure>
-<figure class="shot"><img src="../img/casos/marcha-dispositivo.webp" alt="Los dos nodos del dispositivo: cajas blancas con un sensor circular, un piloto luminoso y un icono táctil" width="478" height="596" loading="lazy" decoding="async"><figcaption>Los dos nodos del dispositivo fabricado.</figcaption></figure>
+<div class="figs">
+<figure class="fig fig-schema">
+<div class="media"><img src="../img/casos/marcha-esquema.webp" alt="Esquema del sistema: dos nodos inalámbricos situados en los extremos de un tramo de marcha, con enlace Bluetooth" width="586" height="295" loading="lazy" decoding="async"></div>
+<figcaption><strong>Esquema del sistema</strong><span>Dos nodos inalámbricos en los extremos del tramo de marcha.</span></figcaption>
+</figure>
+<figure class="fig fig-photo">
+<div class="media"><img src="../img/casos/marcha-dispositivo.webp" alt="Los dos nodos del dispositivo: cajas blancas con un sensor circular, un piloto luminoso y un icono táctil" width="478" height="596" loading="lazy" decoding="async"></div>
+<figcaption><strong>Dispositivo fabricado</strong><span>Los dos nodos, con marcado CE.</span></figcaption>
+</figure>
 </div>
 </div></section>
 

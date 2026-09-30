@@ -46,6 +46,23 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
+<style>
+/* Ventanas de navegador para capturas de la app web (mover a styles.css si se reutiliza) */
+.wins{display:flex;flex-direction:column;gap:clamp(28px,4vw,44px);margin:40px 0 8px;padding:clamp(20px,4vw,48px);border-radius:24px;background:radial-gradient(ellipse at 50% 100%,rgba(62,224,200,.14),transparent 65%),rgba(127,127,127,.08)}
+.wins-row{display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(28px,4vw,44px)}
+.win{margin:0;display:flex;flex-direction:column;gap:14px;min-width:0}
+.win-wide{width:100%}
+.win-ficha{flex:2 1 420px}
+.win-acceso{flex:1 1 240px}
+.win .chrome{border-radius:12px;overflow:hidden;background:#0d1117;box-shadow:0 0 0 1.5px rgba(127,127,127,.3),0 24px 44px -20px rgba(0,0,0,.5)}
+.win .bar{display:flex;gap:6px;align-items:center;height:26px;padding:0 12px;background:#1c222d}
+.win .bar i{width:9px;height:9px;border-radius:50%;background:#3a4252}
+.win .screen{background:#fff;line-height:0}
+.win .screen img{display:block;width:100%;height:auto}
+.win figcaption{display:flex;flex-direction:column;gap:2px;font-size:.95rem;max-width:62ch}
+.win figcaption strong{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-size:1.05rem}
+.win figcaption span{opacity:.75}
+</style>
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Casos de éxito","item":"https://www.ageinglabtech.com/casos-de-exito/"},{"@type":"ListItem","position":3,"name":"eCare: gestión social y de la fragilidad para un proyecto europeo","item":"https://www.ageinglabtech.com/casos-de-exito/ecare.html"}]}</script>
@@ -101,9 +118,22 @@
 <section class="s" id="solucion"><div class="w">
 <h2>Solución</h2>
 <div class="txt"><p>Integramos el sistema de Televes con la plataforma de mejora de la fragilidad y desarrollamos la aplicación web para los profesionales. El trabajo incluyó:</p><ul class="plain"><li>Gestión de usuarios y de perfiles profesionales: geriatras, médicos de atención primaria, nutricionistas y asistentes sociales.</li><li>Desarrollo web conforme a las pautas de accesibilidad WCAG.</li><li>Diseño centrado en la usabilidad para el personal médico.</li><li>Integración con <a href="integracion-fhir.html">FHIR</a>, el estándar de intercambio de datos de salud.</li><li>Comunicación por videollamada.</li><li>Visitas e historial clínico dentro de la propia plataforma.</li><li>Interfaz multiidioma: español, catalán, italiano y alemán.</li></ul><p>Es el tipo de trabajo que hacemos en <a href="../servicios/software-a-medida.html">software a medida</a> e <a href="../servicios/investigacion-e-innovacion.html">investigación e innovación</a>.</p></div>
-<figure class="shot"><img src="../img/casos/ecare-pacientes.webp" alt="Listado Mis pacientes de eCare, con buscador y, para cada persona, su estado de fragilidad (robusto, prefrágil, frágil o indefinido) y el número de alertas e incidencias" width="1301" height="601" loading="lazy" decoding="async"><figcaption>Listado de pacientes con su estado de fragilidad, alertas e incidencias (datos de demostración; interfaz en inglés).</figcaption></figure>
-<figure class="shot"><img src="../img/casos/ecare-panel-paciente.webp" alt="Panel de una paciente en eCare, con menú de secciones (inicio, cuidados, situación basal, perfil integral, citas, plan y nueva visita), gráfico de ejercicio físico y situación basal" width="1208" height="577" loading="lazy" decoding="async"><figcaption>Ficha de la persona: secciones de cuidados, situación basal, perfil integral, citas, plan y nueva visita (datos de demostración; interfaz en inglés).</figcaption></figure>
-<figure class="shot sm"><img src="../img/casos/ecare-acceso.webp" alt="Pantalla de acceso a eCare con usuario, contraseña y selector de idioma" width="451" height="390" loading="lazy" decoding="async"><figcaption>Pantalla de acceso con selector de idioma.</figcaption></figure>
+<div class="wins">
+<figure class="win win-wide">
+<div class="chrome"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="screen"><img src="../img/casos/ecare-pacientes.webp" alt="Listado Mis pacientes de eCare, con buscador y, para cada persona, su estado de fragilidad (robusto, prefrágil, frágil o indefinido) y el número de alertas e incidencias" width="1301" height="601" loading="lazy" decoding="async"></div></div>
+<figcaption><strong>Listado de pacientes</strong><span>Estado de fragilidad, alertas e incidencias de cada persona (datos de demostración; interfaz en inglés).</span></figcaption>
+</figure>
+<div class="wins-row">
+<figure class="win win-ficha">
+<div class="chrome"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="screen"><img src="../img/casos/ecare-panel-paciente.webp" alt="Panel de una paciente en eCare, con menú de secciones (inicio, cuidados, situación basal, perfil integral, citas, plan y nueva visita), gráfico de ejercicio físico y situación basal" width="1208" height="577" loading="lazy" decoding="async"></div></div>
+<figcaption><strong>Ficha de la persona</strong><span>Cuidados, situación basal, perfil integral, citas, plan y nueva visita (datos de demostración; interfaz en inglés).</span></figcaption>
+</figure>
+<figure class="win win-acceso">
+<div class="chrome"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="screen"><img src="../img/casos/ecare-acceso.webp" alt="Pantalla de acceso a eCare con usuario, contraseña y selector de idioma" width="451" height="390" loading="lazy" decoding="async"></div></div>
+<figcaption><strong>Acceso</strong><span>Con selector de idioma.</span></figcaption>
+</figure>
+</div>
+</div>
 </div></section>
 
 <section class="s" id="resultados"><div class="w">

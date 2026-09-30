@@ -127,3 +127,14 @@ else if(e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}
 var back=0;try{back=+sessionStorage.getItem(KEY)||0}catch(e){}
 if(back>=1)enter(back,true);
 })();
+/* "Prueba tú mismo" del hero: despliega la demo y baja hasta ella */
+[].forEach.call(document.querySelectorAll('.hero a[data-prueba]'),function(a){
+a.addEventListener('click',function(e){
+e.preventDefault();
+var s=document.querySelector(a.getAttribute('href'));
+if(!s)return;
+var d=s.querySelector('details');
+if(d)d.open=true;
+s.scrollIntoView({block:'start'});
+});
+});

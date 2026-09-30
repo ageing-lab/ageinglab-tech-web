@@ -98,6 +98,14 @@ nav>a:hover,.mi>button:hover,.mi.open>button{color:var(--fg);border-bottom-color
 section.s{padding:84px 0;border-top:1px solid var(--line)}
 .s h2{font-size:clamp(32px,4.4vw,56px);max-width:15em}
 .lead{color:var(--mute);max-width:36em;margin:16px 0 0}
+/* Acordeón "Prueba tú mismo" de las demos */
+.prueba{margin-top:4px}
+.prueba summary{cursor:pointer;display:inline-block;padding:13px 24px;border-radius:2px;background:var(--navy);color:#fff;font-weight:600;font-size:1rem;list-style:none}
+.prueba summary::-webkit-details-marker,.prueba summary::marker{display:none}
+.prueba summary::after{content:"⌄";margin-left:10px}
+.prueba[open] summary::after{content:"⌃"}
+.prueba h2{margin-top:20px}
+.s:has(details:not([open])){padding:24px 0}
 .ind{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;margin-top:40px}
 .ind a{display:flex;justify-content:space-between;padding:20px 0;border-top:1px solid var(--line);text-decoration:none;font:500 22px "Bricolage Grotesque",sans-serif}
 .ind a span{color:var(--accent);transition:transform .3s}
@@ -352,6 +360,7 @@ html[data-sim="mayor"] main{flex:1 1 auto;min-height:0;display:flex;flex-directi
 html[data-sim="mayor"] [data-slide]{display:none}
 html[data-sim="mayor"] [data-slide].on{display:flex;flex-direction:column;justify-content:center;flex:1 1 auto;min-height:0;overflow:hidden}
 html[data-sim="mayor"] section.s[data-slide].on{border-top:0;padding:24px 0}
+html[data-sim="mayor"] .prueba summary{padding:14px 26px;font-size:clamp(20px,2.1vw,26px)}
 html[data-sim="mayor"] .hero[data-slide].on{padding:32px 0 40px}
 html[data-sim="mayor"] .cta[data-slide].on{padding:22px 0 24px}
 
