@@ -131,7 +131,7 @@
 <ul id="wb-lista" class="wb-lista"></ul>
 <h3>Estilo</h3>
 <div id="wb-estilos" class="wb-gr" role="group" aria-label="Estilo"></div>
-<h3>Vista</h3>
+<h3 id="wb-vista">Vista</h3>
 <div id="wb-disp" class="wb-gr" role="group" aria-label="Tipo de pantalla"></div>
 </div>
 <div>
@@ -164,6 +164,10 @@
 #demo-web .wb-marco{border:1px solid rgba(128,128,128,.5);border-radius:10px;overflow:auto;background:rgba(128,128,128,.12);padding:10px}
 #demo-web .wb-prev{--bg:#fff;--tx:#1b1f24;--ac:#0b1f4b;--bd:#d8dce3;background:var(--bg);color:var(--tx);border:1px solid var(--bd);font:15px/1.5 system-ui,sans-serif;min-height:260px;margin:0 auto;overflow:hidden}
 #demo-web .wb-marco.wb-m .wb-prev{width:360px;max-width:100%}
+@media(max-width:760px),(pointer:coarse) and (max-width:1024px){
+#demo-web #wb-vista,#demo-web #wb-disp{display:none}
+#demo-web .wb-marco.wb-m .wb-prev{width:auto;max-width:none}
+}
 #demo-web .wb-prev.wb-moderno{--bg:#0f172a;--tx:#e5e7eb;--ac:#3ee0c8;--bd:#2a3550}
 #demo-web .wb-prev.wb-calido{--bg:#fff8f0;--tx:#3b2a1a;--ac:#c2410c;--bd:#ecd9c6;font-family:Georgia,serif}
 #demo-web .wb-prev *{box-sizing:border-box}
