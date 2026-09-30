@@ -519,3 +519,17 @@ section.s.staff{padding:72px 0 80px}
 .pb{padding:18px 20px 20px}
 .pb .li{margin-top:10px;padding-top:0}
 }
+
+/* Glow inicial: un destello recorre los cuatro bordes del viewport (solo index, solo móvil) */
+.gt{position:fixed;inset:0;z-index:90;overflow:hidden;pointer-events:none;display:none}
+@media (max-width:640px),(pointer:coarse) and (max-width:1180px){.js .gt{display:block}}
+.gt i{position:absolute;border-radius:99px;background:var(--accent);filter:blur(1.6px);box-shadow:0 0 14px 2px var(--accent);box-shadow:0 0 14px 2px color-mix(in srgb,var(--accent) 65%,transparent);animation-duration:4s;animation-timing-function:linear;animation-fill-mode:both}
+.gt i:nth-child(1){top:env(safe-area-inset-top,0px);left:env(safe-area-inset-left,0px);width:34vw;height:4px;background:linear-gradient(90deg,transparent,var(--accent) 52%,color-mix(in srgb,var(--accent) 50%,#fff) 92%,transparent);animation-name:gt1}
+.gt i:nth-child(2){top:env(safe-area-inset-top,0px);right:env(safe-area-inset-right,0px);width:4px;height:34vh;background:linear-gradient(180deg,transparent,var(--accent) 52%,color-mix(in srgb,var(--accent) 50%,#fff) 92%,transparent);animation-name:gt2}
+.gt i:nth-child(3){bottom:env(safe-area-inset-bottom,0px);left:env(safe-area-inset-left,0px);width:34vw;height:4px;background:linear-gradient(270deg,transparent,var(--accent) 52%,color-mix(in srgb,var(--accent) 50%,#fff) 92%,transparent);animation-name:gt3}
+.gt i:nth-child(4){top:env(safe-area-inset-top,0px);left:env(safe-area-inset-left,0px);width:4px;height:34vh;background:linear-gradient(0deg,transparent,var(--accent) 52%,color-mix(in srgb,var(--accent) 50%,#fff) 92%,transparent);animation-name:gt4}
+@keyframes gt1{0%{transform:translate3d(-34vw,0,0)}25%,100%{transform:translate3d(100vw,0,0)}}
+@keyframes gt2{0%,25%{transform:translate3d(0,-34vh,0)}50%,100%{transform:translate3d(0,100vh,0)}}
+@keyframes gt3{0%,50%{transform:translate3d(100vw,0,0)}75%,100%{transform:translate3d(-34vw,0,0)}}
+@keyframes gt4{0%,75%{transform:translate3d(0,100vh,0)}100%{transform:translate3d(0,-34vh,0)}}
+

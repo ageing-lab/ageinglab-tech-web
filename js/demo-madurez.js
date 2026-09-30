@@ -53,7 +53,7 @@ if (typeof document !== 'undefined') {
   const stages = Array.prototype.slice.call(document.querySelectorAll('#demo-madurez .mt-st'));
   const burst = $('mt-burst');
   const barras = [];
-  let abierto = false, rafId = 0, burstFin = 0;
+  let abierto = false, rafId = 0, burstFin = 0, prev = 1;
 
   const par = (id, titulo, texto) => { const p = $(id); p.textContent = ''; p.append(el('strong', '', titulo + ' '), texto); };
 
@@ -107,6 +107,8 @@ if (typeof document !== 'undefined') {
     const b = barras[v - 1];
     orb.style.left = (b.offsetLeft + b.offsetWidth / 2) + 'px';
     orb.style.top = (b.offsetTop - 12) + 'px';
+    if (abierto && v !== prev && !reduce) { orb.classList.remove('mt-hop'); void orb.offsetWidth; orb.classList.add('mt-hop'); }
+    prev = v;
     if (!reduce) { res.classList.remove('sw'); void res.offsetWidth; res.classList.add('sw'); }
     cuenta(v);
     if (v === 9) fiereza();

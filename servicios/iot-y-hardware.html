@@ -125,39 +125,114 @@
 </summary>
 <div class="pr-c">
 <div class="io">
+<div class="io-top">
+<p class="io-score"><span class="io-sc-l">Piezas esenciales</span><span class="io-meter" id="io-meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="io-sc-n" id="io-cuenta">0 de 5</span></p>
+<p class="io-cnt" id="io-cnt">Mesa vacía</p>
+</div>
 <div id="io-paleta" class="io-paleta"></div>
-<div class="io-acc"><button type="button" class="btn" id="io-ejemplo">Cargar un ejemplo</button><button type="button" class="btn" id="io-vaciar">Vaciar la mesa</button></div>
-<div class="io-scroll"><div id="io-mesa" class="io-mesa"><svg id="io-lin" aria-hidden="true"></svg></div></div>
-<h3>Qué opina la simulación</h3>
+<div class="io-acc">
+<label class="io-sel"><span class="sr-only">Ejemplo para cargar</span><select id="io-ejemplo-sel"></select><svg class="io-sel-a" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></label>
+<button type="button" class="io-btn" id="io-ejemplo">Cargar ejemplo</button>
+<button type="button" class="io-btn ghost" id="io-deshacer" disabled>Deshacer</button>
+<button type="button" class="io-btn ghost" id="io-vaciar">Vaciar la mesa</button>
+</div>
+<p class="io-hint" id="io-hint" hidden>Desliza la mesa para verla entera.</p>
+<div class="io-scroll"><div id="io-mesa" class="io-mesa"><svg id="io-lin" class="io-sv" aria-hidden="true"></svg></div></div>
+<h3 class="io-h">Qué opina la simulación <span class="io-pill" id="io-pill" hidden></span></h3>
 <ul id="io-res" class="io-res" aria-live="polite"></ul>
 </div>
 </div>
-</details>
 <style>
-#demo-iot .io{max-width:860px}
+#demo-iot .io{max-width:860px;--err:#c62828;--warn:#8a5a00;--c-mcu:#1a6ae0;--c-sen:#0f9e8a;--c-rad:#b07400;--c-pow:#d23737;--c-dst:#7349d7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #demo-iot .io{--err:#ff8a8d;--warn:#f0b429;--c-mcu:#5c9bff;--c-sen:#3ecdb1;--c-rad:#f5b428;--c-pow:#ff7878;--c-dst:#af87fa}}
+:root[data-theme="dark"] #demo-iot .io{--err:#ff8a8d;--warn:#f0b429;--c-mcu:#5c9bff;--c-sen:#3ecdb1;--c-rad:#f5b428;--c-pow:#ff7878;--c-dst:#af87fa}
+#demo-iot .io-mcu{--ct:var(--c-mcu)}
+#demo-iot .io-sen{--ct:var(--c-sen)}
+#demo-iot .io-rad{--ct:var(--c-rad)}
+#demo-iot .io-pow{--ct:var(--c-pow)}
+#demo-iot .io-dst{--ct:var(--c-dst)}
 #demo-iot .io-nota{max-width:680px;padding:12px 16px;border:1px solid rgba(128,128,128,.5);border-left-width:4px;border-radius:8px}
-#demo-iot .io-paleta{display:flex;flex-wrap:wrap;gap:8px 24px;margin:12px 0}
-#demo-iot .io-paleta p{margin:0 0 4px;font-weight:600}
-#demo-iot .io-b{margin:0 6px 6px 0;padding:6px 12px;border:1px solid rgba(128,128,128,.55);border-radius:8px;color:inherit;font:inherit;cursor:pointer}
-#demo-iot .io-g{position:fixed;z-index:50;pointer-events:none;opacity:.85}
-#demo-iot .btn{cursor:pointer;margin-right:8px}
-#demo-iot .io-acc{margin:6px 0 12px}
-#demo-iot .io-scroll{overflow-x:auto;border:1px solid rgba(128,128,128,.4);border-radius:10px}
-#demo-iot .io-mesa{position:relative;width:700px;height:340px;background-image:radial-gradient(rgba(128,128,128,.35) 1px,transparent 1px);background-size:20px 20px}
-#demo-iot .io-mesa svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-#demo-iot .io-vacio{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;margin:0;opacity:.7}
-#demo-iot .io-p{position:absolute;width:130px;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 10px;border:1px solid rgba(128,128,128,.7);border-radius:8px;font-size:.9rem;line-height:1.15;cursor:grab;touch-action:none;user-select:none;backdrop-filter:blur(2px)}
-#demo-iot .io-x{border:0;background:transparent;color:inherit;font-size:1.2rem;cursor:pointer;padding:0 4px}
-#demo-iot .io-mcu{background:rgba(60,140,255,.28)}
-#demo-iot .io-sen{background:rgba(60,200,170,.28)}
-#demo-iot .io-rad{background:rgba(240,170,0,.3)}
-#demo-iot .io-pow{background:rgba(230,90,90,.28)}
-#demo-iot .io-dst{background:rgba(150,110,240,.3)}
-#demo-iot .io-res{list-style:none;padding:0;margin:8px 0 0}
-#demo-iot .io-res li{padding:8px 12px;margin-bottom:6px;border-left:4px solid rgba(128,128,128,.6);background:rgba(128,128,128,.12);border-radius:0 6px 6px 0}
-#demo-iot .io-falta{border-left-color:rgba(230,60,60,.9)!important}
-#demo-iot li.io-aviso{border-left-color:rgba(240,170,0,.95)!important}
-#demo-iot .io-ok{border-left-color:rgba(40,180,90,.95)!important}
+#demo-iot .io-top{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;margin-top:4px}
+#demo-iot .io-score{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0}
+#demo-iot .io-sc-l{font:600 12px/1 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+#demo-iot .io-meter{display:flex;gap:5px}
+#demo-iot .io-meter i{width:24px;height:9px;border-radius:99px;background:rgba(128,128,128,.25);border:1px solid rgba(128,128,128,.3);transition:background .3s,border-color .3s,box-shadow .3s}
+#demo-iot .io-meter i.on{background:var(--accent);border-color:transparent;box-shadow:0 0 10px color-mix(in srgb,var(--accent) 55%,transparent)}
+#demo-iot .io-sc-n{font-weight:700;font-variant-numeric:tabular-nums}
+#demo-iot .io-cnt{margin:0;color:var(--mute);font-size:.95rem}
+#demo-iot .io-paleta{display:flex;flex-wrap:wrap;gap:16px 28px;margin:18px 0 4px}
+#demo-iot .io-gpo{min-width:0}
+#demo-iot .io-gpo p{display:flex;align-items:center;gap:7px;margin:0 0 9px;font:600 12px/1 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+#demo-iot .io-dot{width:9px;height:9px;border-radius:50%;background:var(--ct)}
+#demo-iot .io-b{display:inline-flex;align-items:center;gap:8px;margin:0 8px 8px 0;padding:8px 15px;border:1px solid color-mix(in srgb,var(--ct) 55%,transparent);border-radius:999px;background:color-mix(in srgb,var(--ct) 12%,transparent);color:inherit;font:inherit;font-weight:600;cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s,border-color .18s}
+#demo-iot .io-b svg{width:17px;height:17px;flex:none;color:var(--ct)}
+#demo-iot .io-b:hover{background:color-mix(in srgb,var(--ct) 26%,transparent);border-color:var(--ct);transform:translateY(-2px);box-shadow:0 8px 18px -10px var(--ct)}
+#demo-iot .io-b:active{transform:none}
+#demo-iot .io-b[aria-pressed="true"]{background:color-mix(in srgb,var(--ct) 30%,transparent);border-color:var(--ct);box-shadow:inset 0 0 0 1px var(--ct)}
+#demo-iot .io-b[aria-pressed="true"]::after{content:"\2713";font-size:.9em;color:var(--ct)}
+#demo-iot .io-b:focus-visible,#demo-iot .io-sel select:focus-visible,#demo-iot .io-btn:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+#demo-iot .io-acc{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0 14px}
+#demo-iot .io-sel{position:relative;display:inline-flex;align-items:center;max-width:100%}
+#demo-iot .io-sel select{appearance:none;-webkit-appearance:none;padding:12px 38px 12px 16px;border:1px solid var(--line);border-radius:999px;background:var(--soft);color:inherit;font:inherit;font-weight:600;cursor:pointer;max-width:100%}
+#demo-iot .io-sel select option{background:var(--bg);color:var(--ink)}
+#demo-iot .io-sel-a{position:absolute;right:14px;width:15px;height:15px;pointer-events:none;color:var(--mute)}
+#demo-iot .io-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--navy);color:#fff;border:1px solid rgba(62,224,200,.5);border-radius:999px;padding:12px 22px;font:600 15px/1 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer;transition:transform .18s,background .18s,border-color .18s,color .18s,box-shadow .18s}
+#demo-iot .io-btn:hover{transform:translateY(-2px);background:#12306a}
+#demo-iot .io-btn:active{transform:none}
+#demo-iot .io-btn.ghost{background:transparent;color:inherit;border-color:var(--line);padding:11px 20px}
+#demo-iot .io-btn.ghost:hover{background:transparent;color:var(--accent);border-color:var(--accent)}
+#demo-iot .io-btn:disabled{opacity:.45;pointer-events:none}
+#demo-iot .io-hint{margin:0 0 8px;color:var(--mute);font-size:.9rem}
+#demo-iot .io-hint[hidden]{display:none}
+#demo-iot .io-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+#demo-iot .io-mesa{position:relative;width:700px;height:340px;background-color:rgba(128,128,128,.06);background-image:radial-gradient(rgba(128,128,128,.4) 1px,transparent 1px);background-size:20px 20px;transition:background-color .2s,box-shadow .2s}
+#demo-iot .io-mesa.io-over{background-color:color-mix(in srgb,var(--accent) 12%,transparent);box-shadow:inset 0 0 0 2px var(--accent)}
+#demo-iot .io-mesa svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+#demo-iot .io-ln{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:7 9;opacity:.85;animation:io-flujo 1.6s linear infinite;transition:opacity .2s,stroke-width .2s}
+#demo-iot .io-l-mcu{stroke:var(--c-mcu)}
+#demo-iot .io-l-sen{stroke:var(--c-sen)}
+#demo-iot .io-l-rad{stroke:var(--c-rad)}
+#demo-iot .io-l-pow{stroke:var(--c-pow)}
+#demo-iot .io-l-dst{stroke:var(--c-dst)}
+#demo-iot .io-ln.io-hot{opacity:1;stroke-width:3.5}
+#demo-iot .io-sv.io-focus .io-ln{opacity:.12}
+#demo-iot .io-sv.io-focus .io-ln.io-hot{opacity:1;stroke-width:3.5}
+#demo-iot .io-p{position:absolute;display:flex;align-items:center;gap:7px;width:140px;height:46px;padding:0 6px 0 10px;border:1px solid color-mix(in srgb,var(--ct) 60%,transparent);border-radius:11px;background:color-mix(in srgb,var(--ct) 16%,var(--bg));font-size:.86rem;line-height:1.14;cursor:grab;touch-action:none;user-select:none;box-shadow:0 6px 16px -10px rgba(0,0,0,.7);transition:box-shadow .18s,transform .18s}
+#demo-iot .io-p svg{width:16px;height:16px;flex:none;color:var(--ct)}
+#demo-iot .io-pt{flex:1;min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:600}
+#demo-iot .io-x{flex:none;border:0;background:transparent;color:var(--mute);font-size:1.15rem;line-height:1;padding:3px 4px;border-radius:7px;cursor:pointer}
+#demo-iot .io-x:hover{color:var(--ink);background:rgba(128,128,128,.25)}
+#demo-iot .io-p:hover{z-index:2;box-shadow:0 14px 26px -12px color-mix(in srgb,var(--ct) 80%,#000)}
+#demo-iot .io-p:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+#demo-iot .io-p.io-drag{z-index:6;cursor:grabbing;box-shadow:0 22px 34px -16px rgba(0,0,0,.75);transform:scale(1.04)}
+#demo-iot .io-p.io-nue{animation:io-up .38s cubic-bezier(.2,.8,.3,1.25) backwards}
+#demo-iot .io-p.io-flash{animation:io-flash .5s ease 2}
+#demo-iot .io-g{position:fixed;z-index:60;pointer-events:none;opacity:.9;transform:rotate(-2deg) scale(1.05);box-shadow:0 16px 32px -12px rgba(0,0,0,.55);margin:0}
+#demo-iot .io-vacio{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;margin:0;padding:24px;text-align:center;color:var(--mute);pointer-events:none}
+#demo-iot .io-vacio-i{display:grid;place-items:center;width:54px;height:54px;border-radius:50%;border:1px dashed rgba(128,128,128,.6)}
+#demo-iot .io-vacio-i svg{width:24px;height:24px}
+#demo-iot .io-vacio strong{font:700 19px/1.2 "Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;color:var(--ink)}
+#demo-iot .io-vacio-t{max-width:36ch;font-size:.95rem}
+#demo-iot .io-h{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:26px 0 0;font-size:21px}
+#demo-iot .io-pill{display:inline-flex;align-items:center;padding:5px 14px;border-radius:999px;border:1px solid transparent;font:600 13px/1.35 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.04em}
+#demo-iot .io-pill[hidden]{display:none}
+#demo-iot .io-pill.io-falta{background:color-mix(in srgb,var(--err) 15%,transparent);border-color:color-mix(in srgb,var(--err) 55%,transparent);color:var(--err)}
+#demo-iot .io-pill.io-aviso{background:color-mix(in srgb,var(--warn) 18%,transparent);border-color:color-mix(in srgb,var(--warn) 55%,transparent);color:var(--warn)}
+#demo-iot .io-pill.io-ok{background:color-mix(in srgb,var(--accent) 18%,transparent);border-color:color-mix(in srgb,var(--accent) 55%,transparent);color:var(--accent)}
+#demo-iot .io-pill.io-pop{animation:io-pop .45s cubic-bezier(.2,.8,.3,1.4) both}
+#demo-iot .io-res{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-direction:column;gap:8px}
+#demo-iot .io-res li{--c:rgba(128,128,128,.8);display:flex;gap:11px;align-items:flex-start;padding:11px 14px;border-left:4px solid var(--c);border-radius:0 10px 10px 0;background:rgba(128,128,128,.12);font-size:.97rem;animation:io-up .4s cubic-bezier(.2,.75,.3,1) backwards}
+#demo-iot .io-res li::before{content:"";flex:none;width:9px;height:9px;margin-top:.45em;border-radius:50%;background:var(--c)}
+#demo-iot .io-res li strong{color:var(--ink)}
+#demo-iot .io-res li.io-falta{--c:var(--err)}
+#demo-iot .io-res li.io-aviso{--c:var(--warn)}
+#demo-iot .io-res li.io-ok{--c:var(--accent)}
+@keyframes io-flujo{to{stroke-dashoffset:-32}}
+@keyframes io-up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes io-flash{50%{transform:scale(1.07);box-shadow:0 0 0 5px color-mix(in srgb,var(--ct) 55%,transparent)}}
+@keyframes io-pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+@media (max-width:600px){#demo-iot .io-btn{padding:11px 17px}#demo-iot .io-paleta{gap:14px 16px}#demo-iot .io-meter i{width:16px}}
+@media (prefers-reduced-motion:reduce){#demo-iot .io-ln{animation:none;stroke-dasharray:none}#demo-iot .io-p.io-nue,#demo-iot .io-p.io-flash,#demo-iot .io-res li,#demo-iot .io-pill.io-pop{animation:none}#demo-iot .io-b,#demo-iot .io-btn,#demo-iot .io-p,#demo-iot .io-meter i{transition:none}}
 </style>
 </div></section>
 <!-- FIN demo iot -->
