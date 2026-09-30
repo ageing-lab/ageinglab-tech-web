@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preview demo datos</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main id="main">
+<!-- INICIO demo datos -->
+<section class="s" id="demo-datos"><div class="w">
+<h2>Simula la revisión de tus datos</h2>
+<p class="lead">Así empieza un proyecto real: antes de construir ningún modelo, comprobamos si los datos son fiables. Esta es una versión reducida.</p>
+<p class="dd-aviso"><strong>Es un simulador.</strong> Aplica reglas fijas (duplicados, huecos, formatos mezclados y valores atípicos) y no usa inteligencia artificial. Los datos de ejemplo son inventados. Si cargas tu propio CSV, se procesa en tu navegador y no se envía a ningún sitio.</p>
+<details class="prueba" open>
+<summary>
+<span class="pr-dot" aria-hidden="true"></span>
+<span class="pr-l"><span class="pr-et">Demo interactiva</span><span class="pr-t">Prueba tú mismo</span></span>
+<span class="pr-ar" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+</summary>
+<div class="pr-c">
+<div class="dd" id="dd-ui" data-k="idle">
+<div class="dd-top">
+<span class="dd-chip"><i aria-hidden="true"></i>Revisión de datos · simulador</span>
+<span class="dd-priv"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>El CSV no sale de tu navegador</span>
+</div>
+<div class="dd-panel">
+<div class="dd-acts">
+<button type="button" class="dd-btn" id="dd-revisar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8 20.5 20.5"/></svg>Revisar datos de ejemplo</button>
+<label class="dd-file" id="dd-drop">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16.5V4m0 0L8 8m4-4 4 4M4.5 19.5h15"/></svg>
+<span class="dd-file-t" id="dd-file-t">Arrastra aquí tu CSV o haz clic para elegirlo</span>
+<span class="dd-file-s">Máximo 1 MB · se procesa en tu equipo</span>
+<input type="file" id="dd-archivo" accept=".csv,text/csv">
+</label>
+</div>
+<p class="dd-msg" id="dd-msg" role="status" aria-live="polite"></p>
+</div>
+<div class="dd-res" id="dd-res" hidden>
+<div class="dd-kpis">
+<div class="dd-kpi" style="--i:0"><b id="dd-k-filas">0</b><span>filas</span></div>
+<div class="dd-kpi" style="--i:1"><b id="dd-k-col">0</b><span>columnas</span></div>
+<div class="dd-kpi dd-kpi-warn" style="--i:2"><b id="dd-k-inc">0</b><span>incidencias</span></div>
+<div class="dd-kpi dd-kpi-ok" style="--i:3"><b id="dd-k-cal">0 %</b><span>celdas sin marca</span></div>
+</div>
+<p class="dd-resumen" id="dd-resumen" role="status"></p>
+<div class="dd-inc-wrap" id="dd-inc-wrap" hidden>
+<h3 class="dd-h">Qué ha encontrado</h3>
+<ul class="dd-incid" id="dd-incid"></ul>
+</div>
+<div class="dd-bar">
+<div class="dd-seg" role="group" aria-label="Vista de la tabla">
+<button type="button" id="dd-orig" aria-pressed="true">Originales marcados</button>
+<button type="button" id="dd-limp" aria-pressed="false">Datos limpios</button>
+</div>
+<button type="button" class="dd-btn ghost" id="dd-desc"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12m0 0-4-4m4 4 4-4M4.5 19.5h15"/></svg>Descargar CSV limpio</button>
+<button type="button" class="dd-btn ghost" id="dd-reset">Empezar de nuevo</button>
+</div>
+<p class="dd-ley"><span class="dd-miss">vacío</span><span class="dd-fmt">formato distinto</span><span class="dd-var">escritura distinta</span><span class="dd-out">valor atípico</span><span class="dd-dup">fila duplicada</span></p>
+<p id="dd-tabla-t" class="dd-tt"></p>
+<div class="dd-tabla"><table id="dd-t"></table></div>
+<p id="dd-mas" class="dd-mas"></p>
+<p class="dd-nota">La limpieza unifica formatos, mayúsculas y separadores y quita duplicados. Los valores atípicos y los huecos no se corrigen solos: decidir qué hacer con ellos requiere criterio. Las fechas con barras se interpretan como día/mes/año.</p>
+</div>
+</div>
+</div>
+</details>
+<style>
+#demo-datos .dd{max-width:860px;--err:#c62828;--warn:#8a5a00}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #demo-datos .dd{--err:#ff8a8d;--warn:#f0b429}}
+:root[data-theme="dark"] #demo-datos .dd{--err:#ff8a8d;--warn:#f0b429}
+#demo-datos .dd-aviso{max-width:680px;padding:12px 16px;border:1px solid rgba(128,128,128,.5);border-left-width:4px;border-radius:8px}
+#demo-datos .dd-top{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;margin-bottom:14px}
+#demo-datos .dd-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;border:1px solid rgba(62,224,200,.5);background:rgba(62,224,200,.12);color:var(--accent);font:600 12px/1 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.14em;text-transform:uppercase}
+#demo-datos .dd-chip i{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:dd-blink 2.2s ease-in-out infinite}
+#demo-datos .dd-priv{display:inline-flex;align-items:center;gap:7px;color:var(--mute);font-size:.92rem}
+#demo-datos .dd-panel{border:1px solid var(--line);border-radius:18px;padding:24px;background:linear-gradient(180deg,rgba(62,224,200,.10),rgba(62,224,200,0) 60%)}
+#demo-datos .dd-acts{display:flex;flex-wrap:wrap;gap:14px;align-items:stretch}
+#demo-datos .dd-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--navy);color:#fff;border:1px solid rgba(62,224,200,.5);border-radius:999px;padding:15px 26px;font:600 17px/1 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer;box-shadow:0 16px 30px -16px rgba(11,31,75,.9);transition:transform .18s,background .18s,border-color .18s,color .18s,box-shadow .18s}
+#demo-datos .dd-btn:hover{transform:translateY(-2px);background:#12306a;box-shadow:0 20px 34px -16px rgba(11,31,75,.95)}
+#demo-datos .dd-btn:active{transform:none}
+#demo-datos .dd-btn.ghost{background:transparent;color:inherit;border-color:var(--line);box-shadow:none;padding:11px 20px;font-size:15px}
+#demo-datos .dd-btn.ghost:hover{background:transparent;color:var(--accent);border-color:var(--accent);box-shadow:none}
+#demo-datos .dd-file{position:relative;flex:1;min-width:250px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;padding:14px 18px;border:2px dashed rgba(62,224,200,.55);border-radius:14px;color:var(--mute);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+#demo-datos .dd-file input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+#demo-datos .dd-file:hover,#demo-datos .dd-file.dd-drag{background:rgba(62,224,200,.12);border-style:solid;border-color:var(--accent);color:var(--ink)}
+#demo-datos .dd-file:focus-within{outline:3px solid var(--mint);outline-offset:4px;box-shadow:0 0 0 3px var(--ink)}
+#demo-datos .dd-file-t{font-weight:600;color:var(--ink);font-size:1rem;word-break:break-word}
+#demo-datos .dd-file-s{font-size:.85rem}
+#demo-datos .dd-msg{display:flex;gap:10px;align-items:flex-start;margin:14px 0 0;color:var(--mute);font-size:.97rem}
+#demo-datos .dd-msg:empty{display:none}
+#demo-datos .dd-msg::before{content:"";flex:none;width:9px;height:9px;margin-top:.5em;border-radius:50%;background:var(--accent)}
+#demo-datos .dd[data-k="err"] .dd-msg{color:var(--err);font-weight:600}
+#demo-datos .dd[data-k="err"] .dd-msg::before{background:var(--err)}
+#demo-datos .dd-res{animation:dd-up .5s cubic-bezier(.2,.75,.3,1) both}
+#demo-datos .dd-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+#demo-datos .dd-kpi{display:flex;flex-direction:column;gap:3px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--soft);animation:dd-up .45s cubic-bezier(.2,.75,.3,1) both;animation-delay:calc(var(--i,0)*70ms)}
+#demo-datos .dd-kpi b{font:700 clamp(26px,3vw,34px)/1 "Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+#demo-datos .dd-kpi span{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+#demo-datos .dd-kpi-warn b{color:var(--warn)}
+#demo-datos .dd-kpi-ok b{color:var(--accent)}
+#demo-datos .dd-resumen{margin:14px 0 0;color:var(--mute)}
+#demo-datos .dd-h{font-size:21px;margin:24px 0 10px}
+#demo-datos .dd-incid{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+#demo-datos .dd-incid li{--c:var(--warn);display:flex;gap:11px;align-items:flex-start;padding:11px 14px;border-left:4px solid var(--c);border-radius:0 10px 10px 0;background:rgba(128,128,128,.12);font-size:.97rem}
+#demo-datos .dd-incid li::before{content:"";flex:none;width:9px;height:9px;margin-top:.45em;border-radius:50%;background:var(--c)}
+#demo-datos .dd-incid li strong{color:var(--ink)}
+#demo-datos .dd-incid li.dd-i-dup{--c:#7f6ef0}
+#demo-datos .dd-incid li.dd-i-miss{--c:#8a97ab}
+#demo-datos .dd-incid li.dd-i-out{--c:#e5484d}
+#demo-datos .dd-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:22px}
+#demo-datos .dd-seg{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:999px;background:var(--soft)}
+#demo-datos .dd-seg button{border:0;background:transparent;color:var(--mute);font:600 15px/1 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;padding:10px 18px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
+#demo-datos .dd-seg button:hover{color:var(--ink)}
+#demo-datos .dd-seg button[aria-pressed="true"]{background:var(--navy);color:#fff}
+#demo-datos .dd-ley{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+#demo-datos .dd-ley span{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:.85rem;font-weight:600;border:1px solid transparent}
+#demo-datos .dd-ley span::before{content:"";width:8px;height:8px;border-radius:2px;background:currentColor;opacity:.75}
+#demo-datos .dd-ley .dd-miss{background:rgba(128,128,128,.20);border-color:rgba(128,128,128,.45);color:inherit}
+#demo-datos .dd-ley .dd-fmt,#demo-datos .dd-ley .dd-var{background:rgba(240,170,0,.20);border-color:rgba(240,170,0,.55);color:var(--warn)}
+#demo-datos .dd-ley .dd-out{background:rgba(230,60,60,.16);border-color:rgba(230,60,60,.5);color:var(--err)}
+#demo-datos .dd-ley .dd-dup{background:rgba(127,110,240,.16);border-color:rgba(127,110,240,.5);color:#7f6ef0}
+#demo-datos .dd-tt{margin:20px 0 8px;font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+#demo-datos .dd-tabla{overflow:auto;max-height:420px;border:1px solid var(--line);border-radius:12px}
+#demo-datos table{border-collapse:separate;border-spacing:0;width:100%;font-size:.95rem}
+#demo-datos th{position:sticky;top:0;z-index:1;background:var(--soft);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);border-bottom:1px solid var(--line)}
+#demo-datos th,#demo-datos td{padding:8px 12px;text-align:left;white-space:nowrap}
+#demo-datos td{border-bottom:1px solid rgba(128,128,128,.18)}
+#demo-datos tbody tr:nth-child(even){background:rgba(128,128,128,.07)}
+#demo-datos td.dd-miss{background:rgba(128,128,128,.30);font-style:italic}
+#demo-datos td.dd-fmt,#demo-datos td.dd-var{background:rgba(240,170,0,.32)}
+#demo-datos td.dd-out{background:rgba(230,60,60,.30);font-weight:700}
+#demo-datos tr.dd-dup td{opacity:.6;text-decoration:line-through}
+#demo-datos tr.dd-dup td:last-child::after{content:"dup";display:inline-block;margin-left:8px;padding:1px 7px;border-radius:999px;background:rgba(127,110,240,.35);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;opacity:1}
+#demo-datos .dd-mas{margin:8px 0 0;font-size:.9rem;color:var(--mute);text-align:right}
+#demo-datos .dd-nota{max-width:680px;margin:16px 0 0;font-size:.95rem;opacity:.85}
+@keyframes dd-blink{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes dd-up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (max-width:640px){
+#demo-datos .pr-c{padding:20px 16px 26px}
+#demo-datos .dd-panel{padding:18px}
+#demo-datos .dd-acts{flex-direction:column}
+#demo-datos .dd-btn{width:100%}
+#demo-datos .dd-file{min-width:0}
+#demo-datos .dd-kpis{grid-template-columns:repeat(2,1fr)}
+#demo-datos .dd-bar{flex-direction:column;align-items:stretch}
+#demo-datos .dd-seg{justify-content:center}
+#demo-datos .dd-seg button{flex:1}
+}
+@media (prefers-reduced-motion:reduce){#demo-datos .dd-chip i,#demo-datos .dd-res,#demo-datos .dd-kpi,#demo-datos .dd-btn,#demo-datos .dd-seg button{animation:none;transition:none}}
+</style>
+</div></section>
+<script>window.addEventListener("load",function(){setTimeout(function(){document.getElementById("dd-revisar").click()},60)})</script>
+</main>
+<script src="js/demo-datos.js" defer></script>
+</body>
+</html>

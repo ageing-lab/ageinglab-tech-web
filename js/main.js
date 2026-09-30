@@ -45,7 +45,7 @@ if(mtc)mtc.setAttribute('content',getComputedStyle(document.documentElement).get
 var mq=matchMedia('(prefers-color-scheme: dark)');
 if(mq.addEventListener)mq.addEventListener('change',function(){if(tcur()==='auto')tpaint()});
 tpaint()}
-if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){navigator.serviceWorker.register('/sw.js').catch(function(){})}
+if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){navigator.serviceWorker.register('/js/service-worker.js').catch(function(){})}
 (function(){
 var CK='al-consent';
 function val(){try{var v=localStorage.getItem(CK);return v==='granted'||v==='denied'?v:null}catch(e){return null}}

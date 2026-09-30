@@ -1,17 +1,17 @@
-var CACHE='ageinglab-v9';
+var CACHE='ageinglab-v10';
 var CORE=[
 '/',
 '/styles.css',
-'/script.js',
-'/sw.js',
+'/js/main.js',
+'/js/service-worker.js',
 '/manifest.json',
-'/favicon.ico',
+'/img/icons/favicon.ico',
 '/img/logo.svg',
 '/img/cookie.svg',
 '/cookies.html',
 '/privacidad.html',
 '/aviso-legal.html',
-'/hero-poster.webp',
+'/img/hero-poster.webp',
 '/fonts/fonts.css',
 '/fonts/bricolage-grotesque-latin-1.woff2',
 '/fonts/bricolage-grotesque-latin-ext-1.woff2',

@@ -9,8 +9,7 @@ Sin framework ni build: HTML + CSS + JavaScript vanilla. Sin dependencias extern
 ```
 index.html                 # Landing
 styles.css                 # Hoja de estilos global (temas claro/oscuro/auto)
-script.js                  # Menú móvil, animaciones (IntersectionObserver), tema
-hero.mp4 / hero-poster.webp  # Vídeo de fondo del hero
+hero.mp4                   # Vídeo de fondo del hero
 img/
   servicios/               # Imágenes de las fichas de servicio
   casos/                   # Capturas y fotos de los casos de éxito
@@ -18,7 +17,12 @@ img/
   equipo-*.webp           # Fotos del equipo
   equipo/                 # Retratos de la sección Equipo (4:5, p. ej. 640x800, <slug>.webp)
   logo.svg
-  icons/                  # Iconos PWA (192, 512, maskable y apple-touch 180)
+  hero-poster.webp        # Poster del vídeo del hero
+  icons/                  # Iconos PWA (192, 512, maskable y apple-touch 180) y favicon
+js/
+  main.js                  # Menú móvil, animaciones (IntersectionObserver), tema y consentimiento de cookies
+  service-worker.js        # PWA: service worker con caché offline del sitio completo
+  demo-*.js                # Scripts de demostración (voz, datos, IoT, web, madurez)
 fonts/                     # Tipografías auto-hospedadas (.woff2 + fonts.css)
 servicios/                 # Índice de servicios + 6 fichas (una página por servicio)
 soluciones/                # Página de soluciones de IA privada
@@ -26,7 +30,6 @@ casos-de-exito/            # Índice + 9 casos de éxito (+ gestión-de-casos-im
 guias/                     # Índice de guías + 7 guías
 aviso-legal.html / cookies.html / privacidad.html / 404.html  # Legales y página de error
 manifest.json              # PWA: manifiesto (instalable como app)
-sw.js                      # PWA: service worker con caché offline del sitio completo
 sitemap.xml                # Indexación (30 URLs)
 robots.txt
 CNAME                      # Dominio personalizado (ageinglabtech.com)
@@ -61,7 +64,7 @@ Después abrir `http://localhost:8000` (o el puerto que use el servidor).
 - **Imágenes:** WebP para casi todo. Si se añaden JPG grandes, comprimirlos a WebP (p. ej. con `sharp` o `cwebp`) y actualizar las referencias HTML.
 - **Rendimiento:** las imágenes llevan `loading="lazy"`; el vídeo del hero tiene `poster` y se pausa si `prefers-reduced-motion`.
 - **Tipografías:** auto-hospedadas en `fonts/` (Bricolage Grotesque 500/700 para títulos, Source Sans 3 400/600 para cuerpo), sin CDN. Cada página enlaza `fonts/fonts.css` y hace preload de 2 `.woff2` con la misma ruta relativa que `styles.css` (`../` en subdirectorios); `404.html` usa rutas absolutas porque se sirve bajo cualquier URL.
-- **PWA:** cada página replica las etiquetas PWA en el `<head>` (`rel="manifest"`, `theme-color`, `apple-touch-icon` y metas de Apple); en páginas de subdirectorio se usan rutas con `../` (`../manifest.json`, `../img/icons/...`). `sw.js` precachea las 30 URLs del sitemap + los assets compartidos y cachéa el resto bajo demanda (el sitio funciona offline). Al crear una página nueva: replicar también esas etiquetas y añadir su URL a la lista `CORE` de `sw.js`.
+- **PWA:** cada página replica las etiquetas PWA en el `<head>` (`rel="manifest"`, `theme-color`, `apple-touch-icon` y metas de Apple); en páginas de subdirectorio se usan rutas con `../` (`../manifest.json`, `../img/icons/...`). `js/service-worker.js` precachea las 30 URLs del sitemap + los assets compartidos y cachéa el resto bajo demanda (el sitio funciona offline). Al crear una página nueva: replicar también esas etiquetas y añadir su URL a la lista `CORE` de `js/service-worker.js`.
 
 ## Verificación rápida de enlaces
 

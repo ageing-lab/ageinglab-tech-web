@@ -55,7 +55,7 @@ function analizar(tabla) {
   const incid = [];
   const vistos = new Set(), dup = new Set();
   datos.forEach((f, i) => { const k = f.map(norm).join('\u0001'); vistos.has(k) ? dup.add(i) : vistos.add(k); });
-  if (dup.size) incid.push({ col: 'Filas', t: `${dup.size} fila(s) duplicada(s), ignorando mayúsculas y espacios.` });
+  if (dup.size) incid.push({ col: 'Filas', k: 'dup', t: `${dup.size} fila(s) duplicada(s), ignorando mayúsculas y espacios.` });
   const act = datos.map((_, i) => i).filter((i) => !dup.has(i));
 
   cab.forEach((nombre, c) => {
@@ -63,7 +63,7 @@ function analizar(tabla) {
     const con = act.filter((i) => !esNulo(datos[i][c]));
     const vacios = act.filter((i) => esNulo(datos[i][c]));
     marca(vacios, 'miss');
-    if (vacios.length) incid.push({ col: nombre, t: `${vacios.length} valor(es) vacío(s) o sin dato.` });
+    if (vacios.length) incid.push({ col: nombre, k: 'miss', t: `${vacios.length} valor(es) vacío(s) o sin dato.` });
     if (!con.length) return;
     const val = (i) => datos[i][c];
     const pNum = con.filter((i) => !isNaN(num(val(i)))).length / con.length;
@@ -73,7 +73,7 @@ function analizar(tabla) {
       meta[c].tipo = 'num';
       const malos = con.filter((i) => isNaN(num(val(i))));
       marca(malos, 'fmt');
-      if (malos.length) incid.push({ col: nombre, t: `${malos.length} valor(es) no numérico(s) en una columna numérica.` });
+      if (malos.length) incid.push({ col: nombre, k: 'fmt', t: `${malos.length} valor(es) no numérico(s) en una columna numérica.` });
       const ok = con.filter((i) => !isNaN(num(val(i))));
       const dec = ok.filter((i) => /[.,]\d/.test(val(i)));
       const estilo = (i) => (val(i).includes(',') ? ',' : '.');
@@ -82,7 +82,7 @@ function analizar(tabla) {
         const may = nComa === nPunto ? estilo(dec[0]) : nComa > nPunto ? ',' : '.';
         const min = dec.filter((i) => estilo(i) !== may);
         marca(min, 'fmt');
-        incid.push({ col: nombre, t: `${min.length} valor(es) con separador decimal distinto (coma y punto mezclados).` });
+        incid.push({ col: nombre, k: 'fmt', t: `${min.length} valor(es) con separador decimal distinto (coma y punto mezclados).` });
       }
       const nums = ok.map((i) => num(val(i))).sort((a, b) => a - b);
       const consecutivo = new Set(nums).size === nums.length && nums.every(Number.isInteger) && nums[nums.length - 1] - nums[0] === nums.length - 1;
@@ -93,21 +93,21 @@ function analizar(tabla) {
         if (r > 0) {
           const fuera = ok.filter((i) => { const v = num(val(i)); return v < q1 - 1.5 * r || v > q3 + 1.5 * r; });
           marca(fuera, 'out');
-          if (fuera.length) incid.push({ col: nombre, t: `${fuera.length} valor(es) atípico(s), fuera de 1,5 veces el rango intercuartílico. Se marcan, no se modifican.` });
+          if (fuera.length) incid.push({ col: nombre, k: 'out', t: `${fuera.length} valor(es) atípico(s), fuera de 1,5 veces el rango intercuartílico. Se marcan, no se modifican.` });
         }
       }
     } else if (pFec >= 0.8) {
       meta[c].tipo = 'fec';
       const malos = con.filter((i) => !fecha(val(i)));
       marca(malos, 'fmt');
-      if (malos.length) incid.push({ col: nombre, t: `${malos.length} valor(es) que no parecen una fecha.` });
+      if (malos.length) incid.push({ col: nombre, k: 'fmt', t: `${malos.length} valor(es) que no parecen una fecha.` });
       const ok = con.filter((i) => fecha(val(i)));
       const nIso = ok.filter((i) => fecha(val(i)).f === 'ISO').length;
       if (nIso && nIso < ok.length) {
         const minF = nIso >= ok.length - nIso ? 'DMY' : 'ISO';
         const min = ok.filter((i) => fecha(val(i)).f === minF);
         marca(min, 'fmt');
-        incid.push({ col: nombre, t: `${min.length} fecha(s) con formato distinto (mezcla de AAAA-MM-DD y DD/MM/AAAA).` });
+        incid.push({ col: nombre, k: 'fmt', t: `${min.length} fecha(s) con formato distinto (mezcla de AAAA-MM-DD y DD/MM/AAAA).` });
       }
     } else {
       const grupos = new Map();
@@ -120,7 +120,7 @@ function analizar(tabla) {
       const canon = (i) => meta[c].canon.get(norm(val(i)));
       const dif = con.filter((i) => val(i) !== canon(i));
       marca(dif, 'var');
-      if (dif.length) incid.push({ col: nombre, t: `${dif.length} valor(es) con mayúsculas o espacios distintos al resto (por ejemplo «${val(dif[0]).trim()}» frente a «${canon(dif[0])}»).` });
+      if (dif.length) incid.push({ col: nombre, k: 'var', t: `${dif.length} valor(es) con mayúsculas o espacios distintos al resto (por ejemplo «${val(dif[0]).trim()}» frente a «${canon(dif[0])}»).` });
     }
   });
   return { cab, datos, flags, meta, incid, dup };
@@ -147,8 +147,37 @@ if (typeof document !== 'undefined') {
   const $ = (id) => document.getElementById(id);
   const ETQ = { miss: 'vacío', fmt: 'formato distinto', var: 'escritura distinta', out: 'valor atípico' };
   const MAX = 40;
-  let actual = null, limpio = false;
-  const msg = (t) => { $('dd-msg').textContent = t; };
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const ui = $('dd-ui');
+  let actual = null, limpio = false, archivo = 'datos';
+
+  const ponMsg = (t, k) => { $('dd-msg').textContent = t; ui.dataset.k = k || 'idle'; };
+
+  function cuenta(el, to, suf) {
+    if (reduce || !to) { el.textContent = to + suf; return; }
+    const fin = () => { el.textContent = to + suf; };
+    const t0 = performance.now();
+    const paso = (t) => {
+      const p = Math.min(1, (t - t0) / 500), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(to * e) + suf;
+      if (p < 1) requestAnimationFrame(paso); else fin();
+    };
+    requestAnimationFrame(paso);
+    setTimeout(fin, 800);
+  }
+
+  function pintarKpis(a) {
+    const activas = [];
+    a.datos.forEach((_, i) => { if (!a.dup.has(i)) activas.push(i); });
+    let marcadas = 0;
+    activas.forEach((i) => { a.flags[i].forEach((f) => { if (f) marcadas++; }); });
+    const total = activas.length * a.cab.length;
+    const pct = total ? Math.round(((total - marcadas) / total) * 100) : 100;
+    cuenta($('dd-k-filas'), a.datos.length, '');
+    cuenta($('dd-k-col'), a.cab.length, '');
+    cuenta($('dd-k-inc'), marcadas + a.dup.size, '');
+    cuenta($('dd-k-cal'), pct, ' %');
+  }
 
   function dibuja() {
     const a = actual, t = $('dd-t');
@@ -169,38 +198,101 @@ if (typeof document !== 'undefined') {
       });
     });
     $('dd-mas').textContent = filas.length > MAX ? `Se muestran las primeras ${MAX} de ${filas.length} filas.` : '';
-    $('dd-alt').textContent = limpio ? 'Ver datos originales' : 'Ver datos limpios';
     $('dd-tabla-t').textContent = limpio ? 'Datos tras la limpieza automática' : 'Datos originales con las incidencias marcadas';
+  }
+
+  function ver(l) {
+    limpio = l;
+    $('dd-orig').setAttribute('aria-pressed', String(!l));
+    $('dd-limp').setAttribute('aria-pressed', String(l));
+    if (actual) dibuja();
+  }
+
+  function pintarIncidencias(a) {
+    const wrap = $('dd-inc-wrap'), ul = $('dd-incid');
+    ul.textContent = '';
+    wrap.hidden = !a.incid.length;
+    a.incid.forEach(({ col, t, k }) => {
+      const li = document.createElement('li'), b = document.createElement('strong');
+      li.className = 'dd-i dd-i-' + (k || 'fmt');
+      b.textContent = col;
+      li.append(b, ': ' + t);
+      ul.appendChild(li);
+    });
   }
 
   function ejecutar(texto) {
     const tabla = parseCSV(texto.replace(/^\uFEFF/, ''));
-    if (tabla.length < 2) return msg('El archivo necesita una fila de cabecera y al menos una fila de datos.');
-    if (tabla.length > 5001) return msg('El archivo tiene más de 5.000 filas. Esta demo trabaja con archivos pequeños.');
-    msg('');
-    actual = analizar(tabla); limpio = false;
+    if (tabla.length < 2) return ponMsg('El archivo necesita una fila de cabecera y al menos una fila de datos.', 'err');
+    if (tabla.length > 5001) return ponMsg('El archivo tiene más de 5.000 filas. Esta demo trabaja con archivos pequeños.', 'err');
+    actual = analizar(tabla);
+    ponMsg('', 'ok');
+    pintarKpis(actual);
     const total = actual.dup.size + actual.flags.flat().filter(Boolean).length;
     $('dd-resumen').textContent = total
       ? `${actual.datos.length} filas y ${actual.cab.length} columnas revisadas. Incidencias detectadas: ${total}.`
       : 'No se han detectado incidencias con estas reglas. Eso no garantiza que los datos sean correctos.';
-    const ul = $('dd-incid'); ul.textContent = '';
-    actual.incid.forEach(({ col, t }) => {
-      const li = document.createElement('li'), b = document.createElement('strong');
-      b.textContent = col; li.append(b, ': ' + t); ul.appendChild(li);
-    });
+    pintarIncidencias(actual);
+    ver(false);
     $('dd-res').hidden = false;
-    dibuja();
+    requestAnimationFrame(() => {
+      const r = $('dd-res').getBoundingClientRect();
+      if (r.top < 0 || r.bottom > innerHeight) $('dd-res').scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+    });
   }
 
-  $('dd-revisar').addEventListener('click', () => ejecutar(MUESTRA));
-  $('dd-alt').addEventListener('click', () => { limpio = !limpio; dibuja(); });
-  $('dd-archivo').addEventListener('change', async (e) => {
-    const f = e.target.files[0];
+  async function leer(f) {
     if (!f) return;
-    if (f.size > 1e6) return msg('El archivo pesa más de 1 MB. Prueba con uno más pequeño.');
+    if (!/\.csv$/i.test(f.name) && !/csv|text\/plain/.test(f.type || '')) return ponMsg('Solo se aceptan archivos CSV.', 'err');
+    if (f.size > 1e6) return ponMsg('El archivo pesa más de 1 MB. Prueba con uno más pequeño.', 'err');
+    archivo = f.name.replace(/\.csv$/i, '') || 'datos';
+    $('dd-file-t').textContent = f.name;
+    ponMsg('Leyendo «' + f.name + '» y revisando sus columnas…');
     const buf = await f.arrayBuffer();
     let txt;
     try { txt = new TextDecoder('utf-8', { fatal: true }).decode(buf); } catch { txt = new TextDecoder('windows-1252').decode(buf); }
     ejecutar(txt);
+  }
+
+  function csvLimpio() {
+    const esc = (s) => { s = String(s); return /[",\n;]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+    const filas = limpiar(actual);
+    return [actual.cab.map(esc).join(','), ...filas.map((r) => r.v.map(esc).join(','))].join('\r\n');
+  }
+
+  $('dd-revisar').addEventListener('click', () => { archivo = 'datos-ejemplo'; ejecutar(MUESTRA); });
+  $('dd-orig').addEventListener('click', () => ver(false));
+  $('dd-limp').addEventListener('click', () => ver(true));
+  $('dd-archivo').addEventListener('change', (e) => leer(e.target.files[0]));
+
+  $('dd-desc').addEventListener('click', () => {
+    if (!actual) return;
+    const blob = new Blob(['\uFEFF' + csvLimpio()], { type: 'text/csv;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = archivo + '-limpio.csv';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+  });
+
+  $('dd-reset').addEventListener('click', () => {
+    actual = null;
+    limpio = false;
+    $('dd-res').hidden = true;
+    $('dd-archivo').value = '';
+    $('dd-file-t').textContent = 'Arrastra aquí tu CSV o haz clic para elegirlo';
+    ponMsg('', 'idle');
+    $('dd-revisar').focus();
+  });
+
+  const drop = $('dd-drop');
+  ['dragenter', 'dragover'].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add('dd-drag'); }));
+  ['dragleave', 'dragend'].forEach((ev) => drop.addEventListener(ev, () => drop.classList.remove('dd-drag')));
+  drop.addEventListener('drop', (e) => {
+    e.preventDefault();
+    drop.classList.remove('dd-drag');
+    leer(e.dataTransfer && e.dataTransfer.files[0]);
   });
 }
