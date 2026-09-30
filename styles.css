@@ -76,6 +76,7 @@ nav>a:hover,.mi>button:hover,.mi.open>button{color:var(--fg);border-bottom-color
 .nf-btn{display:inline-block;margin-top:34px}
 @media (prefers-reduced-motion:reduce){.nf .glitch::before,.nf .glitch::after{animation:none;opacity:0}}
 .hero p{max-width:32em;font-size:21px;color:#c9d4ec;margin:28px 0 34px}
+@media (max-width:600px){.hero .btn{width:100%;text-align:center}.hero .btn+.btn{margin-left:0;margin-top:14px}}
 .car{padding:20px 0 90px}
 .car .top{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}
 .car h2{font-size:clamp(30px,4vw,46px)}
