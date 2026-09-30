@@ -46,25 +46,90 @@ if (typeof module !== 'undefined') module.exports = { NIVELES, ETAPAS };
 if (typeof document !== 'undefined') {
   const $ = (id) => document.getElementById(id);
   const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
-  const r = $('mt-r'), esc = $('mt-esc');
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const det = document.querySelector('#demo-madurez .prueba');
+  const r = $('mt-r'), esc = $('mt-esc'), orb = esc.querySelector('.mt-orb');
+  const num = $('mt-num'), res = document.querySelector('#demo-madurez .mt-res');
+  const stages = Array.prototype.slice.call(document.querySelectorAll('#demo-madurez .mt-st'));
+  const burst = $('mt-burst');
+  const barras = [];
+  let abierto = false, rafId = 0, burstFin = 0;
+
   const par = (id, titulo, texto) => { const p = $(id); p.textContent = ''; p.append(el('strong', '', titulo + ' '), texto); };
 
+  function cuenta(v) {
+    if (rafId) cancelAnimationFrame(rafId);
+    if (reduce) { num.textContent = v; return; }
+    const desde = parseInt(num.textContent, 10) || 0;
+    if (desde === v) return;
+    const t0 = performance.now(), dur = 420;
+    const paso = (t) => {
+      const k = Math.min(1, (t - t0) / dur);
+      const e = 1 - Math.pow(1 - k, 3);
+      num.textContent = Math.round(desde + (v - desde) * e);
+      if (k < 1) rafId = requestAnimationFrame(paso); else rafId = 0;
+    };
+    rafId = requestAnimationFrame(paso);
+  }
+
+  function fiereza() {
+    if (reduce) return;
+    if (burstFin) clearTimeout(burstFin);
+    burst.innerHTML = '';
+    const colores = ['#3ee0c8', '#786eff', '#ffd166', '#fff'];
+    for (let i = 0; i < 18; i++) {
+      const p = el('i');
+      p.style.setProperty('--a', Math.round(Math.random() * 360) + 'deg');
+      p.style.setProperty('--d', Math.round(70 + Math.random() * 90) + 'px');
+      p.style.setProperty('--c', colores[i % 4]);
+      burst.appendChild(p);
+    }
+    burst.classList.remove('go'); void burst.offsetWidth; burst.classList.add('go');
+    burstFin = setTimeout(() => { burst.classList.remove('go'); burst.innerHTML = ''; burstFin = 0; }, 1200);
+  }
+
   function pon(v) {
-    const d = NIVELES[v - 1], txt = `Nivel ${v}: ${d.n}`;
+    const d = NIVELES[v - 1], txt = 'Nivel ' + v + ': ' + d.n;
     r.value = v; r.setAttribute('aria-valuetext', txt);
-    esc.querySelectorAll('button').forEach((b, i) => { b.classList.toggle('mt-on', i + 1 <= v); b.setAttribute('aria-pressed', String(i + 1 === v)); });
-    $('mt-eta').textContent = ETAPAS[Math.floor((v - 1) / 3)];
+    r.style.setProperty('--fill', (v / 9 * 100) + '%');
+    barras.forEach((b, i) => {
+      b.classList.toggle('mt-on', i + 1 <= v);
+      b.classList.toggle('mt-act', i + 1 === v);
+      b.setAttribute('aria-pressed', String(i + 1 === v));
+    });
+    const etapa = Math.floor((v - 1) / 3);
+    $('mt-eta').textContent = 'Etapa ' + (etapa + 1) + ' de 3 · ' + ETAPAS[etapa];
     $('mt-tit').textContent = txt;
     par('mt-sig', 'Qué significa:', d.s);
     par('mt-sen', 'Cómo saber que estás aquí:', d.c);
     par('mt-toc', 'Qué suele tocar ahora:', d.t);
+    stages.forEach((s, i) => s.classList.toggle('on', i === etapa));
+    const b = barras[v - 1];
+    orb.style.left = (b.offsetLeft + b.offsetWidth / 2) + 'px';
+    orb.style.top = (b.offsetTop - 12) + 'px';
+    if (!reduce) { res.classList.remove('sw'); void res.offsetWidth; res.classList.add('sw'); }
+    cuenta(v);
+    if (v === 9) fiereza();
   }
 
   NIVELES.forEach((d, i) => {
     const b = el('button', 'mt-p', String(i + 1));
-    b.type = 'button'; b.style.height = 34 + i * 16 + 'px'; b.setAttribute('aria-label', `Nivel ${i + 1}: ${d.n}`);
-    b.addEventListener('click', () => pon(i + 1)); esc.append(b);
+    b.type = 'button';
+    b.style.height = 34 + i * 16 + 'px';
+    b.style.setProperty('--i', i);
+    b.setAttribute('aria-label', 'Nivel ' + (i + 1) + ': ' + d.n);
+    b.addEventListener('click', () => pon(i + 1));
+    barras.push(b);
+    esc.append(b);
   });
+  stages.forEach((s) => s.addEventListener('click', () => pon(+s.dataset.n)));
   r.addEventListener('input', () => pon(+r.value));
+  det.addEventListener('toggle', () => {
+    if (det.open && !abierto) {
+      abierto = true;
+      esc.classList.add('in');
+      requestAnimationFrame(() => pon(+r.value));
+    }
+  });
   pon(1);
 }
