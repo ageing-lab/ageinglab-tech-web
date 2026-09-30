@@ -102,47 +102,70 @@
 </div>
 </div></section>
 
-<!-- INICIO demo prototipo -->
-<section class="s" id="demo-prototipo"><div class="w">
-<h2>Prueba un prototipo vivo</h2>
-<p class="lead">Elige un proceso que hoy se lleva en hojas de cálculo y verás cómo sería una aplicación a medida. Añade registros, filtra y cambia los campos: la aplicación se adapta al momento.</p>
-<p class="pv-nota"><strong>Es un prototipo de ejemplo.</strong> Los datos son inventados y lo que escribas solo existe en esta página: al recargar desaparece. En un proyecto real habría base de datos, usuarios y permisos.</p>
-<div class="pv">
-<div id="pv-plantillas" class="pv-pl" role="group" aria-label="Elige un proceso"></div>
-<h3 id="pv-titulo"></h3>
-<p id="pv-msg" role="status"></p>
-<form id="pv-form" class="pv-form" novalidate></form>
-<div class="pv-bar"><input type="search" id="pv-buscar" placeholder="Buscar" aria-label="Buscar en los registros"><select id="pv-filtro" aria-label="Filtrar registros"></select><span id="pv-n"></span></div>
-<div class="pv-tabla"><table id="pv-t"></table></div>
-<p id="pv-vacio" hidden>No hay registros que coincidan.</p>
-<h3>Personaliza la aplicación</h3>
-<p>Cambia el nombre de un campo, quítalo o añade uno nuevo y mira cómo se actualizan el formulario y la tabla.</p>
-<ul id="pv-campos" class="pv-campos"></ul>
-<div class="pv-add"><input type="text" id="pv-nn" maxlength="30" placeholder="Nombre del nuevo campo" aria-label="Nombre del nuevo campo"><select id="pv-nt" aria-label="Tipo del nuevo campo"><option value="texto">Texto</option><option value="numero">Número</option><option value="fecha">Fecha</option><option value="si">Sí / No</option></select><button type="button" class="btn" id="pv-nuevo">Añadir campo</button></div>
+<!-- INICIO demo web -->
+<section class="s" id="demo-web"><div class="w">
+<h2>Construye una web paso a paso</h2>
+<p class="lead">Marca las secciones que quieres, cámbialas de orden, elige un estilo y mira cómo se monta tu web al instante.</p>
+<p class="wb-nota"><strong>Es una maqueta de ejemplo.</strong> El contenido es de relleno y no se genera código ni se guarda nada. Sirve para ver cómo se va componiendo una web; el diseño real se hace a medida.</p>
+<div class="wb">
+<div class="wb-panel">
+<h3>Tu negocio</h3>
+<label>Nombre<input type="text" id="wb-nombre" maxlength="40" placeholder="Tu negocio"></label>
+<label>Frase principal<input type="text" id="wb-lema" maxlength="70" placeholder="Una frase que explique lo que haces"></label>
+<h3>Secciones</h3>
+<ul id="wb-lista" class="wb-lista"></ul>
+<h3>Estilo</h3>
+<div id="wb-estilos" class="wb-gr" role="group" aria-label="Estilo"></div>
+<h3>Vista</h3>
+<div id="wb-disp" class="wb-gr" role="group" aria-label="Tipo de pantalla"></div>
+</div>
+<div>
+<p id="wb-n" role="status"></p>
+<div id="wb-marco" class="wb-marco"><div id="wb-prev" class="wb-prev" role="region" aria-label="Vista previa de tu web"></div></div>
+</div>
 </div>
 <style>
-#demo-prototipo .pv{max-width:900px}
-#demo-prototipo .pv-nota{max-width:680px;padding:12px 16px;border:1px solid rgba(128,128,128,.5);border-left-width:4px;border-radius:8px}
-#demo-prototipo .btn,#demo-prototipo .pv-q{cursor:pointer}
-#demo-prototipo .pv-pl{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
-#demo-prototipo .pv-pl button[aria-pressed="true"]{outline:2px solid currentColor;outline-offset:2px}
-#demo-prototipo input,#demo-prototipo select{padding:7px 10px;border:1px solid rgba(128,128,128,.55);border-radius:8px;background:transparent;color:inherit;font:inherit;max-width:100%}
-#demo-prototipo select option{color:#111}
-#demo-prototipo .pv-form{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin:10px 0 16px}
-#demo-prototipo .pv-form label{display:flex;flex-direction:column;gap:4px;font-size:.95rem}
-#demo-prototipo .pv-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:8px}
-#demo-prototipo .pv-tabla{overflow-x:auto;border:1px solid rgba(128,128,128,.4);border-radius:8px}
-#demo-prototipo table{border-collapse:collapse;width:100%;font-size:.95rem}
-#demo-prototipo th,#demo-prototipo td{padding:7px 10px;text-align:left;border-bottom:1px solid rgba(128,128,128,.25);white-space:nowrap}
-#demo-prototipo .pv-q{padding:4px 10px;border:1px solid rgba(128,128,128,.55);border-radius:6px;background:transparent;color:inherit;font:inherit}
-#demo-prototipo .pv-q:disabled{opacity:.4;cursor:not-allowed}
-#demo-prototipo .pv-campos{list-style:none;padding:0;margin:8px 0 12px}
-#demo-prototipo .pv-campos li{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:8px}
-#demo-prototipo .pv-tipo{opacity:.7;min-width:5rem}
-#demo-prototipo .pv-add{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+#demo-web .wb-nota{max-width:680px;padding:12px 16px;border:1px solid rgba(128,128,128,.5);border-left-width:4px;border-radius:8px}
+#demo-web .wb{display:grid;grid-template-columns:minmax(240px,300px) 1fr;gap:28px;align-items:start;margin-top:16px}
+@media(max-width:760px){#demo-web .wb{grid-template-columns:1fr}}
+#demo-web .wb-panel h3{margin:16px 0 8px;font-size:1rem}
+#demo-web .wb-panel h3:first-child{margin-top:0}
+#demo-web .wb-panel label{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;font-size:.95rem}
+#demo-web .wb-panel input[type=text]{padding:7px 10px;border:1px solid rgba(128,128,128,.55);border-radius:8px;background:transparent;color:inherit;font:inherit}
+#demo-web .wb-lista{list-style:none;margin:0;padding:0}
+#demo-web .wb-lista li{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+#demo-web .wb-lista label{flex:1;flex-direction:row;align-items:center;gap:6px;margin:0}
+#demo-web .wb-mv,#demo-web .wb-op{border:1px solid rgba(128,128,128,.55);border-radius:6px;background:transparent;color:inherit;font:inherit;cursor:pointer;padding:3px 9px}
+#demo-web .wb-mv:disabled{opacity:.35;cursor:not-allowed}
+#demo-web .wb-gr{display:flex;flex-wrap:wrap;gap:8px}
+#demo-web .wb-op{padding:6px 12px}
+#demo-web .wb-op[aria-pressed="true"]{outline:2px solid currentColor;outline-offset:2px}
+#demo-web .wb-marco{border:1px solid rgba(128,128,128,.5);border-radius:10px;overflow:auto;background:rgba(128,128,128,.12);padding:10px}
+#demo-web .wb-prev{--bg:#fff;--tx:#1b1f24;--ac:#0b1f4b;--bd:#d8dce3;background:var(--bg);color:var(--tx);border:1px solid var(--bd);font:15px/1.5 system-ui,sans-serif;min-height:260px;margin:0 auto;overflow:hidden}
+#demo-web .wb-marco.wb-m .wb-prev{width:360px;max-width:100%}
+#demo-web .wb-prev.wb-moderno{--bg:#0f172a;--tx:#e5e7eb;--ac:#3ee0c8;--bd:#2a3550}
+#demo-web .wb-prev.wb-calido{--bg:#fff8f0;--tx:#3b2a1a;--ac:#c2410c;--bd:#ecd9c6;font-family:Georgia,serif}
+#demo-web .wb-prev *{box-sizing:border-box}
+#demo-web .wb-prev p{margin:0 0 8px;color:inherit}
+#demo-web .wb-cab,#demo-web .wb-pie{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid var(--bd)}
+#demo-web .wb-pie{border-bottom:0;border-top:1px solid var(--bd);font-size:.85rem;opacity:.85}
+#demo-web .wb-cab strong{color:var(--ac)}
+#demo-web .wb-nav{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.9rem}
+#demo-web .wb-s{padding:22px 18px;border-bottom:1px solid var(--bd)}
+#demo-web .wb-por{padding:36px 18px}
+#demo-web .wb-t{font-size:1.6rem;font-weight:700;line-height:1.2;margin-bottom:10px;color:var(--ac)}
+#demo-web .wb-h{font-size:1.15rem;font-weight:700;margin-bottom:12px;color:var(--ac)}
+#demo-web .wb-bt{display:inline-block;padding:7px 16px;border-radius:8px;background:var(--ac);color:var(--bg);font-weight:600;font-size:.9rem}
+#demo-web .wb-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+#demo-web .wb-c{padding:12px;border:1px solid var(--bd);border-radius:8px}
+#demo-web .wb-prev details{border-bottom:1px solid var(--bd);padding:6px 0}
+#demo-web .wb-prev summary{cursor:pointer}
+#demo-web .wb-f{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+#demo-web .wb-f input{padding:7px 10px;border:1px solid var(--bd);border-radius:8px;background:transparent;color:inherit;font:inherit;min-width:0;flex:1 1 130px}
+#demo-web .wb-vacio{padding:40px 18px;text-align:center;opacity:.7}
 </style>
 </div></section>
-<!-- FIN demo prototipo -->
+<!-- FIN demo web -->
 
 <section class="s" id="para-quien"><div class="w">
 <h2>Para quién es</h2>
@@ -208,6 +231,6 @@
 </div><div class="base">© 2026 AgeingLab Tech · Madrid, España</div></div></footer>
 
 <script src="../script.js"></script>
-<script src="../js/demo-prototipo.js" defer></script>
+<script src="../js/demo-web.js" defer></script>
 </body>
 </html>
