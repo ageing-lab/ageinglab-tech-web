@@ -138,3 +138,19 @@ if(d)d.open=true;
 s.scrollIntoView({block:'start'});
 });
 });
+
+/* Vídeos de YouTube: la miniatura se incrusta en la página al pulsar (sin JS, el enlace va a YouTube) */
+[].forEach.call(document.querySelectorAll('.vplay[data-embed]'),function(a){
+a.addEventListener('click',function(e){
+e.preventDefault();
+var box=a.parentNode,f=document.createElement('iframe');
+f.src=a.getAttribute('data-embed');
+f.title=a.getAttribute('data-title')||'Vídeo de YouTube';
+f.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+f.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+f.setAttribute('allowfullscreen','');
+box.innerHTML='';
+box.appendChild(f);
+f.focus();
+});
+});

@@ -110,16 +110,22 @@
 
 <!-- INICIO demo voz -->
 <section class="s" id="demo-voz"><div class="w">
-<details class="prueba">
-<summary>Prueba tú mismo</summary>
 <h2>Pruébalo en tu navegador</h2>
 <p class="lead">Habla en español y lo transcribimos aquí mismo, en tu navegador.</p>
 <p class="dv-nota"><strong>Es una transcripción real.</strong> El audio se procesa en tu dispositivo y no se envía a ningún servidor. La primera vez se descargan la librería y el modelo, que después quedan en la caché de tu navegador. No es la infraestructura de producción: en un proyecto real los modelos corren sobre tu propio hardware.</p>
+<details class="prueba">
+<summary>
+<span class="pr-dot" aria-hidden="true"></span>
+<span class="pr-l"><span class="pr-et">Demo interactiva</span><span class="pr-t">Prueba tú mismo</span></span>
+<span class="pr-ar" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+</summary>
+<div class="pr-c">
 <div class="dv">
 <button type="button" class="btn" id="dv-cargar">Activar la demo</button>
 <button type="button" class="btn" id="dv-grabar" hidden>Grabar</button>
 <p id="dv-estado" role="status" aria-live="polite">Necesita micrófono y un navegador actual. Funciona mejor en ordenador.</p>
 <p id="dv-texto" class="dv-texto" aria-live="polite"></p>
+</div>
 </div>
 </details>
 <style>

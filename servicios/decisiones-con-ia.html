@@ -109,11 +109,16 @@
 
 <!-- INICIO demo datos -->
 <section class="s" id="demo-datos"><div class="w">
-<details class="prueba">
-<summary>Prueba tú mismo</summary>
 <h2>Simula la revisión de tus datos</h2>
 <p class="lead">Así empieza un proyecto real: antes de construir ningún modelo, comprobamos si los datos son fiables. Esta es una versión reducida.</p>
 <p class="dd-aviso"><strong>Es un simulador.</strong> Aplica reglas fijas (duplicados, huecos, formatos mezclados y valores atípicos) y no usa inteligencia artificial. Los datos de ejemplo son inventados. Si cargas tu propio CSV, se procesa en tu navegador y no se envía a ningún sitio.</p>
+<details class="prueba">
+<summary>
+<span class="pr-dot" aria-hidden="true"></span>
+<span class="pr-l"><span class="pr-et">Demo interactiva</span><span class="pr-t">Prueba tú mismo</span></span>
+<span class="pr-ar" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+</summary>
+<div class="pr-c">
 <div class="dd">
 <div class="dd-acc">
 <button type="button" class="btn" id="dd-revisar">Revisar datos de ejemplo</button>
@@ -132,6 +137,7 @@
 <div class="dd-tabla"><table id="dd-t"></table></div>
 <p id="dd-mas"></p>
 <p class="dd-nota">La limpieza unifica formatos, mayúsculas y separadores y quita duplicados. Los valores atípicos y los huecos no se corrigen solos: decidir qué hacer con ellos requiere criterio. Las fechas con barras se interpretan como día/mes/año.</p>
+</div>
 </div>
 </div>
 </details>
