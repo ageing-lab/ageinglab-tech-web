@@ -9,7 +9,8 @@ Sin framework ni build: HTML + CSS + JavaScript vanilla. Sin dependencias extern
 ```
 index.html                 # Landing
 styles.css                 # Hoja de estilos global (temas claro/oscuro/auto)
-hero.mp4                   # Vídeo de fondo del hero
+video/
+  hero.mp4                 # Vídeo de fondo del hero
 img/
   servicios/               # Imágenes de las fichas de servicio
   casos/                   # Capturas y fotos de los casos de éxito
