@@ -16,6 +16,7 @@ img/
   casos/                   # Capturas y fotos de los casos de éxito
   clientes/                # Logos de clientes
   equipo-*.webp           # Fotos del equipo
+  equipo/                 # Retratos de la sección Equipo (4:5, p. ej. 640x800, <slug>.webp)
   logo.svg
   icons/                  # Iconos PWA (192, 512, maskable y apple-touch 180)
 servicios/                 # 6 fichas de servicio (una página por servicio)
