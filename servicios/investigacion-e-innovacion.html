@@ -102,6 +102,39 @@
 </div>
 </div></section>
 
+<!-- INICIO demo madurez -->
+<section class="s" id="demo-madurez"><div class="w">
+<h2>¿En qué punto está tu proyecto?</h2>
+<p class="lead">Mueve el control por la escala de madurez tecnológica (TRL) y mira qué suele tocar en cada punto del camino, de la idea a un sistema en uso real.</p>
+<p class="mt-nota"><strong>Es una guía orientativa.</strong> Se basa en la escala TRL, que va del 1 al 9, y no evalúa tu proyecto: cada caso es distinto y el nivel real depende de la evidencia que tengas.</p>
+<div class="mt">
+<div id="mt-esc" class="mt-esc" role="group" aria-label="Escala de madurez tecnológica"></div>
+<input type="range" id="mt-r" class="mt-r" min="1" max="9" step="1" value="1" aria-label="Nivel de madurez tecnológica">
+<div class="mt-res" aria-live="polite">
+<p class="mt-eta" id="mt-eta"></p>
+<h3 id="mt-tit"></h3>
+<p id="mt-sig"></p>
+<p id="mt-sen"></p>
+<p id="mt-toc"></p>
+</div>
+<a class="btn" href="../index.html#contacto">Cuéntanos en qué punto estás</a>
+</div>
+<style>
+#demo-madurez .mt-nota{max-width:680px;padding:12px 16px;border:1px solid rgba(128,128,128,.5);border-left-width:4px;border-radius:8px}
+#demo-madurez .mt{max-width:760px;margin-top:16px}
+#demo-madurez .mt-esc{display:flex;align-items:flex-end;gap:6px;height:170px}
+#demo-madurez .mt-p{flex:1;padding:0;border:1px solid rgba(128,128,128,.55);border-radius:6px 6px 0 0;background:rgba(128,128,128,.12);color:inherit;font:inherit;font-weight:600;cursor:pointer}
+#demo-madurez .mt-p.mt-on{background:rgba(62,224,200,.35)}
+#demo-madurez .mt-p[aria-pressed="true"]{outline:2px solid currentColor;outline-offset:2px}
+#demo-madurez .mt-r{width:100%;margin:14px 0 8px}
+#demo-madurez .mt-res{padding:14px 18px;border:1px solid rgba(128,128,128,.4);border-radius:10px;margin-bottom:16px}
+#demo-madurez .mt-eta{margin:0 0 4px;font-size:.9rem;opacity:.75}
+#demo-madurez .mt-res h3{margin:0 0 10px}
+#demo-madurez .mt-res p{margin:0 0 8px}
+</style>
+</div></section>
+<!-- FIN demo madurez -->
+
 <section class="s" id="para-quien"><div class="w">
 <h2>Para quién es</h2>
 <p class="lead">Para startups, empresas de tecnología e instituciones —especialmente de salud, envejecimiento y biomedicina— que tienen un proyecto de innovación y necesitan un socio técnico que lo defina, lo diseñe y construya sus prototipos, con un equipo que hable tanto el idioma clínico como el tecnológico.</p>
@@ -167,5 +200,6 @@
 </div><div class="base">© 2026 AgeingLab Tech · Madrid, España</div></div></footer>
 
 <script src="../script.js"></script>
+<script src="../js/demo-madurez.js" defer></script>
 </body>
 </html>
