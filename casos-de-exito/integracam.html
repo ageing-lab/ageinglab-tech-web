@@ -46,6 +46,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
+<style>
+/* Marcos de tablet y móvil (mover a styles.css si se reutiliza en otros casos) */
+.devices{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center;gap:clamp(28px,6vw,72px);margin:40px 0 8px;padding:clamp(28px,5vw,56px) clamp(16px,4vw,48px);border-radius:24px;background:radial-gradient(ellipse at 50% 100%,rgba(62,224,200,.14),transparent 65%),rgba(127,127,127,.08)}
+.dev{margin:0;display:flex;flex-direction:column;align-items:center;gap:18px}
+.dev .frame{position:relative;background:#0d1117;box-shadow:0 0 0 1.5px rgba(255,255,255,.14),0 0 0 3px #1c222d,0 28px 50px -18px rgba(0,0,0,.55)}
+.dev .screen{overflow:hidden;background:#fff;line-height:0}
+.dev .screen img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center}
+.dev-tablet{width:min(100%,340px)}
+.dev-tablet .frame{padding:14px;border-radius:30px}
+.dev-tablet .frame::before{content:"";position:absolute;top:5px;left:50%;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:#2b3240}
+.dev-tablet .screen{border-radius:16px;aspect-ratio:600/960}
+.dev-movil{width:min(100%,228px)}
+.dev-movil .frame{padding:10px;border-radius:38px}
+.dev-movil .frame::before{content:"";position:absolute;z-index:2;top:17px;left:50%;width:62px;height:16px;margin-left:-31px;border-radius:10px;background:#0d1117}
+.dev-movil .frame::after{content:"";position:absolute;right:-5px;top:96px;width:3px;height:46px;border-radius:0 3px 3px 0;background:#1c222d}
+.dev-movil .screen{border-radius:29px;aspect-ratio:300/649}
+.dev figcaption{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;font-size:.95rem;max-width:26ch}
+.dev figcaption strong{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-size:1.05rem}
+.dev figcaption span{opacity:.75}
+@media (max-width:640px){.dev-tablet{width:min(100%,300px)}.dev-movil{width:min(100%,210px)}}
+</style>
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Casos de éxito","item":"https://www.ageinglabtech.com/casos-de-exito/"},{"@type":"ListItem","position":3,"name":"Integracam: prevención y mejora de la fragilidad en personas mayores","item":"https://www.ageinglabtech.com/casos-de-exito/integracam.html"}]}</script>
@@ -101,9 +122,15 @@
 <section class="s" id="solucion"><div class="w">
 <h2>Solución</h2>
 <div class="txt"><p>Adaptamos la plataforma para su uso hospitalario, coordinados con el equipo de Atos. El resultado se compone de:</p><ul class="plain"><li>Una interfaz para profesionales.</li><li>Una interfaz para la persona mayor.</li><li>Una aplicación conectada por Bluetooth a un nodo IoT y a dispositivos de biomarcadores.</li></ul><p>Es el tipo de trabajo que hacemos en <a href="../servicios/interfaces-para-mayores.html">interfaces para mayores</a>, <a href="../servicios/software-a-medida.html">software a medida</a> e <a href="../servicios/iot-y-hardware.html">IoT y hardware</a>.</p></div>
-<div class="shots duo">
-<figure class="shot"><img src="../img/casos/integracam-plan.webp" alt="Pantalla Plan de ejercicios con botones grandes: Caminar, Apretar una pelota, Levantar una botella, Extensión de pierna con tobillera, Levantarse de la silla con ayuda, Caminar con los pies en línea y Estiramiento de brazos" width="600" height="960" loading="lazy" decoding="async"><figcaption>Plan de ejercicios de la persona mayor.</figcaption></figure>
-<figure class="shot"><img src="../img/casos/integracam-ejercicio.webp" alt="Pantalla del ejercicio Levantar una botella, con una fotografía de una persona mayor haciendo el ejercicio y los botones Leer instrucciones y Ver vídeo" width="300" height="649" loading="lazy" decoding="async"><figcaption>Cada ejercicio, con instrucciones y vídeo.</figcaption></figure>
+<div class="devices">
+<figure class="dev dev-tablet">
+<div class="frame"><div class="screen"><img src="../img/casos/integracam-plan.webp" alt="Pantalla Plan de ejercicios con botones grandes: Caminar, Apretar una pelota, Levantar una botella, Extensión de pierna con tobillera, Levantarse de la silla con ayuda, Caminar con los pies en línea y Estiramiento de brazos" width="600" height="960" loading="lazy" decoding="async"></div></div>
+<figcaption><strong>Vista tablet</strong><span>Plan de ejercicios de la persona mayor.</span></figcaption>
+</figure>
+<figure class="dev dev-movil">
+<div class="frame"><div class="screen"><img src="../img/casos/integracam-ejercicio.webp" alt="Pantalla del ejercicio Levantar una botella, con una fotografía de una persona mayor haciendo el ejercicio y los botones Leer instrucciones y Ver vídeo" width="300" height="649" loading="lazy" decoding="async"></div></div>
+<figcaption><strong>Vista móvil</strong><span>Cada ejercicio, con instrucciones y vídeo.</span></figcaption>
+</figure>
 </div>
 </div></section>
 
