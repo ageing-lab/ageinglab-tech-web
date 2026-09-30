@@ -125,6 +125,14 @@ section.s{padding:84px 0;border-top:1px solid var(--line)}
 .prueba[open] .pr-c{animation:pr-in .5s cubic-bezier(.2,.75,.3,1) both}
 @keyframes pr-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.pr-dot{animation:none}.prueba[open] .pr-c{animation:none}}
+/* Las demos en móvil: casi a sangre y con más aire para que se vean completas */
+@media (max-width:700px){
+.prueba{margin-inline:-16px}
+.prueba summary{padding:22px 18px;gap:14px}
+.pr-t{font-size:clamp(26px,8vw,34px)}
+.pr-ar{width:44px;height:44px}
+.pr-c{padding:20px 16px 28px}
+}
 .ind{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;margin-top:40px}
 .ind a{display:flex;justify-content:space-between;padding:20px 0;border-top:1px solid var(--line);text-decoration:none;font:500 22px "Bricolage Grotesque",sans-serif}
 .ind a span{color:var(--accent);transition:transform .3s}

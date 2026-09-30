@@ -241,15 +241,18 @@
 @keyframes dd-blink{0%,100%{opacity:.35}50%{opacity:1}}
 @keyframes dd-up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media (max-width:640px){
-#demo-datos .pr-c{padding:20px 16px 26px}
-#demo-datos .dd-panel{padding:18px}
+#demo-datos .pr-c{padding:18px 14px 26px}
+#demo-datos .dd-panel{padding:22px 16px}
 #demo-datos .dd-acts{flex-direction:column}
-#demo-datos .dd-btn{width:100%}
-#demo-datos .dd-file{min-width:0}
-#demo-datos .dd-kpis{grid-template-columns:repeat(2,1fr)}
+#demo-datos .dd-btn{width:100%;padding:17px 22px}
+#demo-datos .dd-file{min-width:0;padding:20px 16px}
+#demo-datos .dd-kpis{grid-template-columns:repeat(2,1fr);gap:10px}
+#demo-datos .dd-kpi{padding:16px 14px}
+#demo-datos .dd-kpi b{font-size:clamp(30px,9vw,38px)}
 #demo-datos .dd-bar{flex-direction:column;align-items:stretch}
 #demo-datos .dd-seg{justify-content:center}
-#demo-datos .dd-seg button{flex:1}
+#demo-datos .dd-seg button{flex:1;padding:13px 14px}
+#demo-datos .dd-tabla{max-height:58vh}
 }
 @media (prefers-reduced-motion:reduce){#demo-datos .dd-chip i,#demo-datos .dd-res,#demo-datos .dd-kpi,#demo-datos .dd-btn,#demo-datos .dd-seg button{animation:none;transition:none}}
 </style>

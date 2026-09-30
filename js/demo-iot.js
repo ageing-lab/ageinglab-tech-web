@@ -253,6 +253,8 @@ if (typeof document !== 'undefined') {
         mesa.append(v);
       }
       const vivo = !!piezas.find((q) => PIEZAS[q.k].t === 'mcu') && (tiene('bat') || tiene('red'));
+      const con = new Set();
+      if (vivo) aristas().forEach(([a, b]) => { con.add(a); con.add(b); });
       svg.classList.toggle('io-live', vivo);
       piezas.forEach((q) => {
         const v = PIEZAS[q.k];
@@ -280,7 +282,7 @@ if (typeof document !== 'undefined') {
         d.addEventListener('keyup', (e) => { if (e.key.indexOf('Arrow') === 0) tecMov = false; });
         if (efecto === 'todos') { d.classList.add('io-nue'); d.style.animationDelay = `${(piezas.indexOf(q) % 6) * 70}ms`; }
         else if (efecto === q.k) d.classList.add('io-nue');
-        if (vivo && (q.k === 'bat' || q.k === 'red')) d.classList.add('io-live');
+        if (con.has(q.k)) d.classList.add('io-live');
         mesa.append(d);
       });
       efecto = null;

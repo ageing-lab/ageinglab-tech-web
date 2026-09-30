@@ -117,7 +117,6 @@ if (typeof document !== 'undefined') {
   NIVELES.forEach((d, i) => {
     const b = el('button', 'mt-p', String(i + 1));
     b.type = 'button';
-    b.style.height = 34 + i * 16 + 'px';
     b.style.setProperty('--i', i);
     b.setAttribute('aria-label', 'Nivel ' + (i + 1) + ': ' + d.n);
     b.addEventListener('click', () => pon(i + 1));
