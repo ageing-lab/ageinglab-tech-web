@@ -106,7 +106,8 @@
 <!-- INICIO demo voz -->
 <section class="s" id="demo-voz"><div class="w">
 <h2>Pruébalo en tu navegador</h2>
-<p class="lead">Reconocimiento de voz privado: habla en español y lo transcribimos aquí mismo. El audio se procesa en tu dispositivo y no se envía a ningún servidor. La primera vez se descarga el modelo, que después queda en la caché de tu navegador.</p>
+<p class="lead">Habla en español y lo transcribimos aquí mismo, en tu navegador.</p>
+<p class="dv-nota"><strong>Es una transcripción real.</strong> El audio se procesa en tu dispositivo y no se envía a ningún servidor. La primera vez se descargan la librería y el modelo, que después quedan en la caché de tu navegador. No es la infraestructura de producción: en un proyecto real los modelos corren sobre tu propio hardware.</p>
 <div class="dv">
 <button type="button" class="btn" id="dv-cargar">Activar la demo</button>
 <button type="button" class="btn" id="dv-grabar" hidden>Grabar</button>
@@ -115,6 +116,7 @@
 </div>
 <style>
 #demo-voz .dv{max-width:680px}
+#demo-voz .dv-nota{max-width:680px;padding:12px 16px;border:1px solid rgba(128,128,128,.5);border-left-width:4px;border-radius:8px}
 #demo-voz .dv .btn{cursor:pointer}
 #demo-voz .dv .btn:disabled{opacity:.6;cursor:wait}
 #demo-voz .dv-texto{min-height:5.5em;margin-top:14px;padding:14px 16px;border:1px solid rgba(128,128,128,.4);border-radius:10px;font-size:1.05rem;line-height:1.55;white-space:pre-wrap}
