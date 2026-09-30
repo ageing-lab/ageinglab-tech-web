@@ -38,8 +38,12 @@ thm.forEach(function(t){
 var bs=[].slice.call(t.querySelectorAll('.t')),i=0;
 bs.forEach(function(b,j){var on=b.getAttribute('data-v')===v;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on?'true':'false');if(on)i=j});
 t.style.setProperty('--i',i)});
+var mtc=document.querySelector('meta[name="theme-color"]');
+if(mtc)mtc.setAttribute('content',getComputedStyle(document.documentElement).getPropertyValue('--bg').trim())
 }
 [].forEach.call(document.querySelectorAll('.theme .t'),function(b){b.addEventListener('click',function(){try{localStorage.setItem(TK,b.getAttribute('data-v'))}catch(e){}tpaint()})});
+var mq=matchMedia('(prefers-color-scheme: dark)');
+if(mq.addEventListener)mq.addEventListener('change',function(){if(tcur()==='auto')tpaint()});
 tpaint()}
 if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){navigator.serviceWorker.register('/sw.js').catch(function(){})}
 (function(){
