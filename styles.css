@@ -331,8 +331,6 @@ nav>a,.mi>button,.logo{white-space:nowrap}
 }
 
 /* ===== Modo simulación "persona mayor" (solo servicios/interfaces-para-mayores.html) ===== */
-.sim-go{display:block;width:-moz-fit-content;width:fit-content;margin-top:16px;background:transparent;border:2px solid var(--mint);color:var(--mint)}
-p.sim-hint{margin:14px 0 0;max-width:34em;font-size:15px;color:#c9d4ec}
 .simnav{display:none}
 
 html[data-sim="mayor"]{scroll-behavior:auto;padding-bottom:0;overflow:hidden}
@@ -346,8 +344,8 @@ html[data-sim="mayor"] header{position:static;background:var(--bg);border-bottom
 html[data-sim="mayor"] header nav,html[data-sim="mayor"] header .btn,html[data-sim="mayor"] header .burger{display:none}
 html[data-sim="mayor"] header .w{height:64px}
 
-/* Fuera: pie, migas, CTA y pista del botón, nota del formulario */
-html[data-sim="mayor"] footer,html[data-sim="mayor"] .hero nav[aria-label="Miga de pan"],html[data-sim="mayor"] .hero .btn,html[data-sim="mayor"] p.sim-hint,html[data-sim="mayor"] .cf-note{display:none}
+/* Fuera: pie, migas, CTA, botón de simulación, nota del formulario */
+html[data-sim="mayor"] footer,html[data-sim="mayor"] .hero nav[aria-label="Miga de pan"],html[data-sim="mayor"] .hero .btn,html[data-sim="mayor"] #sim-start,html[data-sim="mayor"] .cf-note{display:none}
 
 /* Paginación: una pantalla por vez, sin scroll */
 html[data-sim="mayor"] main{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden}
