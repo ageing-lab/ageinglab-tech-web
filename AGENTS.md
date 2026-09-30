@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Sitio web corporativo estático de AgeingLab Tech. HTML + CSS + JavaScript vanilla, sin framework, sin build, sin dependencias (la única externa es Google Fonts). Publicado en GitHub Pages. No hay tests, lint ni pipeline de código: editar un archivo y servirlo localmente es todo el ciclo.
+Sitio web corporativo estático de AgeingLab Tech. HTML + CSS + JavaScript vanilla, sin framework, sin build, sin dependencias (fuentes auto-hospedadas, sin CDN). Publicado en GitHub Pages. No hay tests, lint ni pipeline de código: editar un archivo y servirlo localmente es todo el ciclo.
 
 ## Comandos
 
@@ -13,6 +13,7 @@ Sitio web corporativo estático de AgeingLab Tech. HTML + CSS + JavaScript vanil
 - **Cada página HTML replica el bloque `<head>` completo** (canonical, Open Graph, Twitter Cards, JSON-LD: Organization/Service/BreadcrumbList). Al crear una página nueva: copiar el `<head>` de una existente, adaptar título/descripción/canonical/JSON-LD y **añadir su URL a `sitemap.xml`** (29 URLs actualmente).
 - **Rutas relativas:** las páginas de subdirectorio (`servicios/`, `soluciones/`, `casos-de-exito/`) refieren a los assets compartidos con `../` (p. ej. `../styles.css`, `../script.js`); las de la raíz sin prefijo.
 - **Enlaces al inicio:** logo, "Inicio", botón de contacto y anclas de la landing apuntan a la raíz absoluta (`/`, `/#contacto`), nunca a `index.html`. Así la barra de dirección queda limpia y `404.html` (servido bajo cualquier ruta) no rompe los enlaces.
+- **Fuentes:** auto-hospedadas en `fonts/` (Google Fonts, licencia OFL) y enlazadas desde cada página con `fonts/fonts.css` + 2 preloads, usando el mismo prefijo relativo que `styles.css`. Pesos disponibles: Bricolage Grotesque 500/700 (títulos, por defecto 700) y Source Sans 3 400/600 (cuerpo); no existen otros pesos ni cursivas (se sintetizan). `404.html` usa rutas absolutas `/fonts/...` porque se sirve bajo cualquier URL. Al añadir un peso o subconjunto: copiar el `.woff2`, declararlo en `fonts/fonts.css` y añadirlo a `CORE` en `sw.js`.
 - **`styles.css` y `script.js` son compartidos por todas las páginas**: cualquier cambio afecta al sitio entero.
 - **Tema** claro/oscuro/auto persistido en `localStorage` con la clave `al-theme`; el toggle (grupo `.theme`) está en la cabecera de cada página.
 - **Formulario de contacto:** envía directamente a Formspree (`action="https://formspree.io/f/..."` en `index.html`); no hay backend ni API propia.
