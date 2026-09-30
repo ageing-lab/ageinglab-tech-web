@@ -143,7 +143,7 @@
 </div>
 </div>
 <style>
-#demo-iot .io{max-width:860px;--err:#c62828;--warn:#8a5a00;--c-mcu:#1a6ae0;--c-sen:#0f9e8a;--c-rad:#b07400;--c-pow:#d23737;--c-dst:#7349d7}
+#demo-iot .io{max-width:1040px;--err:#c62828;--warn:#8a5a00;--c-mcu:#1a6ae0;--c-sen:#0f9e8a;--c-rad:#b07400;--c-pow:#d23737;--c-dst:#7349d7}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #demo-iot .io{--err:#ff8a8d;--warn:#f0b429;--c-mcu:#5c9bff;--c-sen:#3ecdb1;--c-rad:#f5b428;--c-pow:#ff7878;--c-dst:#af87fa}}
 :root[data-theme="dark"] #demo-iot .io{--err:#ff8a8d;--warn:#f0b429;--c-mcu:#5c9bff;--c-sen:#3ecdb1;--c-rad:#f5b428;--c-pow:#ff7878;--c-dst:#af87fa}
 #demo-iot .io-mcu{--ct:var(--c-mcu)}
@@ -185,24 +185,30 @@
 #demo-iot .io-hint{margin:0 0 8px;color:var(--mute);font-size:.9rem}
 #demo-iot .io-hint[hidden]{display:none}
 #demo-iot .io-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
-#demo-iot .io-mesa{position:relative;width:700px;height:340px;background-color:rgba(128,128,128,.06);background-image:radial-gradient(rgba(128,128,128,.4) 1px,transparent 1px);background-size:20px 20px;transition:background-color .2s,box-shadow .2s}
+#demo-iot .io-mesa{position:relative;width:100%;height:420px;min-width:700px;background-color:rgba(128,128,128,.06);background-image:radial-gradient(rgba(128,128,128,.4) 1px,transparent 1px);background-size:20px 20px;transition:background-color .2s,box-shadow .2s}
 #demo-iot .io-mesa.io-over{background-color:color-mix(in srgb,var(--accent) 12%,transparent);box-shadow:inset 0 0 0 2px var(--accent)}
 #demo-iot .io-mesa svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
-#demo-iot .io-ln{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:7 9;opacity:.85;animation:io-flujo 1.6s linear infinite;transition:opacity .2s,stroke-width .2s}
-#demo-iot .io-l-mcu{stroke:var(--c-mcu)}
-#demo-iot .io-l-sen{stroke:var(--c-sen)}
-#demo-iot .io-l-rad{stroke:var(--c-rad)}
-#demo-iot .io-l-pow{stroke:var(--c-pow)}
-#demo-iot .io-l-dst{stroke:var(--c-dst)}
+#demo-iot .io-ln{fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:7 9;opacity:.85;animation:io-flujo 1.6s linear infinite;transition:opacity .2s,stroke-width .2s}
+#demo-iot .io-ln-p{fill:none;stroke:currentColor;stroke-width:4.5;stroke-linecap:round;stroke-dasharray:18 1018;opacity:0;pointer-events:none;transition:opacity .3s}
+#demo-iot .io-l-mcu{color:var(--c-mcu)}
+#demo-iot .io-l-sen{color:var(--c-sen)}
+#demo-iot .io-l-rad{color:var(--c-rad)}
+#demo-iot .io-l-pow{color:var(--c-pow)}
+#demo-iot .io-l-dst{color:var(--c-dst)}
 #demo-iot .io-ln.io-hot{opacity:1;stroke-width:3.5}
 #demo-iot .io-sv.io-focus .io-ln{opacity:.12}
 #demo-iot .io-sv.io-focus .io-ln.io-hot{opacity:1;stroke-width:3.5}
+#demo-iot .io-sv.io-live .io-ln{stroke-width:3;animation-duration:.7s}
+#demo-iot .io-sv.io-live .io-ln-p{opacity:1;animation:io-pulso 1.5s linear infinite;filter:drop-shadow(0 0 5px currentColor)}
+#demo-iot .io-sv.io-live.io-focus .io-ln-p{opacity:.12}
+#demo-iot .io-sv.io-live.io-focus .io-ln-p.io-hot{opacity:1}
 #demo-iot .io-p{position:absolute;display:flex;align-items:center;gap:7px;width:140px;height:46px;padding:0 6px 0 10px;border:1px solid color-mix(in srgb,var(--ct) 60%,transparent);border-radius:11px;background:color-mix(in srgb,var(--ct) 16%,var(--bg));font-size:.86rem;line-height:1.14;cursor:grab;touch-action:none;user-select:none;box-shadow:0 6px 16px -10px rgba(0,0,0,.7);transition:box-shadow .18s,transform .18s}
 #demo-iot .io-p svg{width:16px;height:16px;flex:none;color:var(--ct)}
 #demo-iot .io-pt{flex:1;min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:600}
 #demo-iot .io-x{flex:none;border:0;background:transparent;color:var(--mute);font-size:1.15rem;line-height:1;padding:3px 4px;border-radius:7px;cursor:pointer}
 #demo-iot .io-x:hover{color:var(--ink);background:rgba(128,128,128,.25)}
 #demo-iot .io-p:hover{z-index:2;box-shadow:0 14px 26px -12px color-mix(in srgb,var(--ct) 80%,#000)}
+#demo-iot .io-p.io-live{box-shadow:0 0 0 1px color-mix(in srgb,var(--ct) 65%,transparent),0 0 22px -4px var(--ct)}
 #demo-iot .io-p:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
 #demo-iot .io-p.io-drag{z-index:6;cursor:grabbing;box-shadow:0 22px 34px -16px rgba(0,0,0,.75);transform:scale(1.04)}
 #demo-iot .io-p.io-nue{animation:io-up .38s cubic-bezier(.2,.8,.3,1.25) backwards}
@@ -228,11 +234,12 @@
 #demo-iot .io-res li.io-aviso{--c:var(--warn)}
 #demo-iot .io-res li.io-ok{--c:var(--accent)}
 @keyframes io-flujo{to{stroke-dashoffset:-32}}
+@keyframes io-pulso{to{stroke-dashoffset:-1036}}
 @keyframes io-up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes io-flash{50%{transform:scale(1.07);box-shadow:0 0 0 5px color-mix(in srgb,var(--ct) 55%,transparent)}}
 @keyframes io-pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
 @media (max-width:600px){#demo-iot .io-btn{padding:11px 17px}#demo-iot .io-paleta{gap:14px 16px}#demo-iot .io-meter i{width:16px}}
-@media (prefers-reduced-motion:reduce){#demo-iot .io-ln{animation:none;stroke-dasharray:none}#demo-iot .io-p.io-nue,#demo-iot .io-p.io-flash,#demo-iot .io-res li,#demo-iot .io-pill.io-pop{animation:none}#demo-iot .io-b,#demo-iot .io-btn,#demo-iot .io-p,#demo-iot .io-meter i{transition:none}}
+@media (prefers-reduced-motion:reduce){#demo-iot .io-ln{animation:none;stroke-dasharray:none}#demo-iot .io-sv.io-live .io-ln-p{animation:none;stroke-dasharray:none;opacity:.9}#demo-iot .io-p.io-nue,#demo-iot .io-p.io-flash,#demo-iot .io-res li,#demo-iot .io-pill.io-pop{animation:none}#demo-iot .io-b,#demo-iot .io-btn,#demo-iot .io-p,#demo-iot .io-meter i{transition:none}}
 </style>
 </div></section>
 <!-- FIN demo iot -->

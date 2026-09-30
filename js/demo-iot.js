@@ -9,7 +9,7 @@ const PIEZAS = {
   imu: { t: 'sen', n: 'Movimiento', d: 'Acelerómetro: caídas, giros y actividad.' },
   th: { t: 'sen', n: 'Temperatura y humedad', s: 'Temp. y humedad', d: 'Clima del interior o del entorno.' },
   dist: { t: 'sen', n: 'Distancia', d: 'Presencia de personas u objetos cercanos.' },
-  peso: { t: 'sen', n: 'Peso', d: 'Balanzas y control de cargas.' },
+  peso: { t: 'sen', n: 'Peso', d: 'Básculas y control de cargas.' },
   wifi: { t: 'rad', n: 'Wi-Fi', d: 'Muchos datos y corta distancia, a cambio de más consumo.' },
   ble: { t: 'rad', n: 'Bluetooth LE', d: 'Muy poco consumo; llega a un móvil o a una pasarela.' },
   lora: { t: 'rad', n: 'LoRa', d: 'Larga distancia y bajo consumo, con pocos datos.' },
@@ -53,10 +53,10 @@ if (typeof document !== 'undefined') {
     const svg = $('io-lin'), paleta = $('io-paleta'), res = $('io-res');
     const meter = $('io-meter'), cuenta = $('io-cuenta'), cnt = $('io-cnt'), pill = $('io-pill');
     const sel = $('io-ejemplo-sel'), hint = $('io-hint'), deshacerBtn = $('io-deshacer');
-    const W = 700, H = 340, PW = 140, PH = 46, PASO = 10, SVGNS = 'http://www.w3.org/2000/svg';
+    let W = 700, H = 420;
+    const PW = 140, PH = 46, PASO = 10, SVGNS = 'http://www.w3.org/2000/svg';
     const ROT = { falta: 'Falta', aviso: 'Ojo', info: 'Nota', ok: 'Bien' };
     const TITULO = Object.fromEntries(GRUPOS);
-    const COL = { sen: 16, mcu: 200, pow: 200, rad: 384, dst: 548 };
     const ICONO = {
       mcu: '<rect x="6.5" y="6.5" width="11" height="11" rx="2"/><path d="M9.5 3.5v3M14.5 3.5v3M9.5 17.5v3M14.5 17.5v3M3.5 9.5h3M3.5 14.5h3M17.5 9.5h3M17.5 14.5h3"/>',
       sen: '<path d="M3 12.5h3.6L9.2 6.2l3.7 11.6 2.4-5.3H21"/>',
@@ -66,7 +66,7 @@ if (typeof document !== 'undefined') {
     };
     const EJEMPLOS = [
       { n: 'Seguimiento en el domicilio', p: ['esp32', 'imu', 'ble', 'bat', 'pas', 'nube'] },
-      { n: 'Balanza conectada a la nube', p: ['esp8266', 'peso', 'wifi', 'red', 'nube'] },
+      { n: 'Báscula conectada a la nube', p: ['esp8266', 'peso', 'wifi', 'red', 'nube'] },
       { n: 'Sensor de campo con LoRa', p: ['stm32', 'th', 'lora', 'bat', 'pas', 'nube'] },
       { n: 'Bluetooth sin destino (incompleto)', p: ['esp32', 'imu', 'ble', 'bat'] },
     ];
@@ -74,6 +74,8 @@ if (typeof document !== 'undefined') {
     const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
     const snap = (v) => Math.round(v / PASO) * PASO;
     const tiene = (k) => piezas.some((q) => q.k === k);
+    const colX = (t) => Math.round(W * ({ sen: 0.02, mcu: 0.3, pow: 0.3, rad: 0.58, dst: 0.82 }[t] || 0.5));
+    const filaY = (t, n) => (t === 'pow' ? H - 80 : t === 'mcu' ? Math.round(H * 0.32) : 20 + n * 62);
 
     let piezas = [], historial = [], arrastrado = false, efecto = null, pillEstado = '', tecMov = false;
 
@@ -88,6 +90,24 @@ if (typeof document !== 'undefined') {
       piezas = historial.pop();
       efecto = null;
       pinta();
+    }
+    function mide() {
+      const w = mesa.clientWidth, h = mesa.clientHeight;
+      if (w > 100) W = w;
+      if (h > 100) H = h;
+    }
+    function reajusta() {
+      const w0 = W, h0 = H;
+      mide();
+      if (W === w0 && H === h0) return;
+      const kx = w0 ? W / w0 : 1, ky = h0 ? H / h0 : 1;
+      piezas.forEach((q) => {
+        q.x = clamp(Math.round(q.x * kx), 0, Math.max(0, W - PW));
+        q.y = clamp(Math.round(q.y * ky), 0, Math.max(0, H - PH));
+        const el = mesa.querySelector(`.io-p[data-k="${q.k}"]`);
+        if (el) { el.style.left = q.x + 'px'; el.style.top = q.y + 'px'; }
+      });
+      lineas();
     }
 
     GRUPOS.forEach(([t, nombre]) => {
@@ -128,7 +148,8 @@ if (typeof document !== 'undefined') {
       const mcu = piezas.find((q) => PIEZAS[q.k].t === 'mcu');
       if (mcu) piezas.forEach((q) => {
         const t = PIEZAS[q.k].t;
-        if (t === 'sen' || t === 'pow' || t === 'rad') e.push([mcu.k, q.k, t]);
+        if (t === 'sen' || t === 'rad') e.push([mcu.k, q.k, t]);
+        else if (t === 'pow') e.push([q.k, mcu.k, t]);
       });
       piezas.filter((q) => PIEZAS[q.k].t === 'rad').forEach((q) => {
         const dst = q.k === 'wifi' ? (piezas.find((z) => z.k === 'nube') || piezas.find((z) => z.k === 'pas')) : piezas.find((z) => z.k === 'pas');
@@ -146,19 +167,26 @@ if (typeof document !== 'undefined') {
         if (!p1 || !p2) return;
         const dx = p2[0] - p1[0], dy = p2[1] - p1[1], d = Math.hypot(dx, dy) || 1;
         const off = Math.min(26, d * 0.16);
-        const cx = (p1[0] + p2[0]) / 2 - (dy / d) * off, cy = (p1[1] + p2[1]) / 2 + (dx / d) * off;
+        const dd = `M${p1[0]} ${p1[1]} Q${(p1[0] + p2[0]) / 2 - (dy / d) * off} ${(p1[1] + p2[1]) / 2 + (dx / d) * off} ${p2[0]} ${p2[1]}`;
+        const ab = a + ' ' + b;
         const p = document.createElementNS(SVGNS, 'path');
-        p.setAttribute('d', `M${p1[0]} ${p1[1]} Q${cx} ${cy} ${p2[0]} ${p2[1]}`);
+        p.setAttribute('d', dd);
         p.setAttribute('class', `io-ln io-l-${t}`);
-        p.dataset.ab = a + ' ' + b;
+        p.dataset.ab = ab;
         svg.append(p);
+        const c2 = document.createElementNS(SVGNS, 'path');
+        c2.setAttribute('d', dd);
+        c2.setAttribute('pathLength', '1000');
+        c2.setAttribute('class', `io-ln-p io-l-${t}`);
+        c2.dataset.ab = ab;
+        svg.append(c2);
       });
     }
 
     function resalta(k) {
       const on = !!k;
       svg.classList.toggle('io-focus', on);
-      Array.prototype.forEach.call(svg.querySelectorAll('.io-ln'), (p) => {
+      Array.prototype.forEach.call(svg.querySelectorAll('[data-ab]'), (p) => {
         p.classList.toggle('io-hot', on && p.dataset.ab.split(' ').includes(k));
       });
     }
@@ -224,6 +252,8 @@ if (typeof document !== 'undefined') {
         v.append(i, t, s);
         mesa.append(v);
       }
+      const vivo = !!piezas.find((q) => PIEZAS[q.k].t === 'mcu') && (tiene('bat') || tiene('red'));
+      svg.classList.toggle('io-live', vivo);
       piezas.forEach((q) => {
         const v = PIEZAS[q.k];
         const d = document.createElement('div');
@@ -250,6 +280,7 @@ if (typeof document !== 'undefined') {
         d.addEventListener('keyup', (e) => { if (e.key.indexOf('Arrow') === 0) tecMov = false; });
         if (efecto === 'todos') { d.classList.add('io-nue'); d.style.animationDelay = `${(piezas.indexOf(q) % 6) * 70}ms`; }
         else if (efecto === q.k) d.classList.add('io-nue');
+        if (vivo && (q.k === 'bat' || q.k === 'red')) d.classList.add('io-live');
         mesa.append(d);
       });
       efecto = null;
@@ -271,10 +302,10 @@ if (typeof document !== 'undefined') {
       if (t === 'mcu' || t === 'pow') piezas = piezas.filter((q) => PIEZAS[q.k].t !== t);
       if (x === undefined) {
         const n = piezas.filter((q) => PIEZAS[q.k].t === t).length;
-        x = COL[t];
-        y = t === 'pow' ? 250 : t === 'mcu' ? 110 : 16 + n * 62;
+        x = colX(t);
+        y = filaY(t, n);
       }
-      piezas.push({ k, x: snap(clamp(x, 0, W - PW)), y: snap(clamp(y, 0, H - PH)) });
+      piezas.push({ k, x: snap(clamp(x, 0, Math.max(0, W - PW))), y: snap(clamp(y, 0, Math.max(0, H - PH))) });
       return true;
     }
 
@@ -305,8 +336,8 @@ if (typeof document !== 'undefined') {
         e.preventDefault();
         if (!tecMov) { guardar(); tecMov = true; }
         const paso = PASO * (e.shiftKey ? 4 : 1);
-        q.x = clamp(q.x + dir[0] * paso, 0, W - PW);
-        q.y = clamp(q.y + dir[1] * paso, 0, H - PH);
+        q.x = clamp(q.x + dir[0] * paso, 0, Math.max(0, W - PW));
+        q.y = clamp(q.y + dir[1] * paso, 0, Math.max(0, H - PH));
         const el = mesa.querySelector(`.io-p[data-k="${q.k}"]`);
         if (el) { el.style.left = q.x + 'px'; el.style.top = q.y + 'px'; }
         lineas();
@@ -377,8 +408,8 @@ if (typeof document !== 'undefined') {
       const mv = (ev) => {
         if (!movido) { guardar(); movido = true; }
         const r = mesa.getBoundingClientRect();
-        q.x = snap(clamp(ev.clientX - r.left - dx, 0, W - PW));
-        q.y = snap(clamp(ev.clientY - r.top - dy, 0, H - PH));
+        q.x = snap(clamp(ev.clientX - r.left - dx, 0, Math.max(0, W - PW)));
+        q.y = snap(clamp(ev.clientY - r.top - dy, 0, Math.max(0, H - PH)));
         el.style.left = q.x + 'px';
         el.style.top = q.y + 'px';
         lineas();
@@ -421,11 +452,12 @@ if (typeof document !== 'undefined') {
     function pista() {
       hint.hidden = !(scroller.clientWidth > 2 && scroller.scrollWidth > scroller.clientWidth + 2);
     }
-    window.addEventListener('resize', pista);
+    function alCambiar() { requestAnimationFrame(() => { reajusta(); pista(); }); }
+    window.addEventListener('resize', alCambiar);
     const det = $('demo-iot').querySelector('details');
-    if (det) det.addEventListener('toggle', () => requestAnimationFrame(pista));
-    pista();
-
+    if (det) det.addEventListener('toggle', alCambiar);
+    mide();
     pinta();
+    pista();
   }
 }
