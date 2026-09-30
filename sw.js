@@ -1,4 +1,4 @@
-var CACHE='ageinglab-v4';
+var CACHE='ageinglab-v5';
 var CORE=[
 '/',
 '/styles.css',
@@ -18,6 +18,7 @@ var CORE=[
 '/img/icons/apple-touch-icon.png',
 '/soluciones/',
 '/casos-de-exito/',
+'/servicios/',
 '/servicios/ia-privada-automatizacion.html',
 '/servicios/decisiones-con-ia.html',
 '/servicios/software-a-medida.html',

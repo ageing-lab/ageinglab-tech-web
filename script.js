@@ -183,3 +183,46 @@ var ps=[].slice.call(document.querySelectorAll('.person'));
 if(!ps.length||!matchMedia('(hover:hover)').matches)return;
 ps.forEach(function(p){p.addEventListener('pointermove',function(e){var r=p.getBoundingClientRect();p.style.setProperty('--mx',(e.clientX-r.left)+'px');p.style.setProperty('--my',(e.clientY-r.top)+'px')})});
 })();
+
+/* ===== GA4 · eventos de conversión =====
+   Consent Mode v2 (en el <head>) decide si los hits van con cookies o modelados;
+   aquí solo se empujan los eventos a dataLayer. */
+(function(){
+if(typeof gtag!=='function')return;
+function ev(n,p){try{gtag('event',n,p)}catch(e){}}
+function label(el){return((el&&el.textContent)||'').replace(/\s+/g,' ').trim().slice(0,60)}
+
+/* 1 · Envío del formulario de contacto (Formspree).
+   Se retrasa la navegación para que el beacon llegue a GA antes de salir. */
+document.addEventListener('submit',function(e){
+var f=e.target;
+if(!f||f.tagName!=='FORM'||!/formspree\.io/.test(f.getAttribute('action')||''))return;
+e.preventDefault();
+var s=f.querySelector('select[name="interes"]');
+ev('contact_submit',{page:location.pathname,interes:s?s.value:''});
+var sent=false;
+setTimeout(function(){
+if(sent)return;sent=true;
+try{HTMLFormElement.prototype.submit.call(f)}catch(x){try{f.submit()}catch(y){}}
+},250);
+},true);
+
+/* 2 · Clic en cualquier CTA (botones y enlaces a #contacto) */
+document.addEventListener('click',function(e){
+var a=e.target&&e.target.closest?e.target.closest('a.btn, a[href*="#contacto"]'):null;
+if(!a||a.hasAttribute('data-prueba'))return;
+ev('cta_click',{page:location.pathname,cta:label(a),target:a.getAttribute('href')||''});
+},true);
+
+/* 3 · Apertura de demos: "Prueba tú mismo" (hero) y acordeones de las fichas */
+document.addEventListener('click',function(e){
+var t=e.target;
+if(!t||!t.closest)return;
+var p=t.closest('[data-prueba]');
+if(p){ev('demo_open',{page:location.pathname,demo:(p.getAttribute('href')||'').replace('#','')||'cta',via:'cta'});return}
+var sm=t.closest('.prueba summary');
+if(!sm)return;
+var d=sm.parentNode,sec=d.closest('section');
+ev('demo_open',{page:location.pathname,demo:(sec&&sec.id)||d.id||'acordeon',via:'accordion'});
+},true);
+})();

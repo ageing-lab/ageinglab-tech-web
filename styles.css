@@ -78,7 +78,10 @@ nav>a:hover,.mi>button:hover,.mi.open>button{color:var(--fg);border-bottom-color
 .hero p{max-width:32em;font-size:21px;color:#c9d4ec;margin:28px 0 34px}
 @media (max-width:600px){.hero .btn{width:100%;text-align:center}.hero .btn+.btn{margin-left:0;margin-top:14px}}
 .car{padding:20px 0 90px}
-.car .top{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}
+.car .top{display:flex;align-items:end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.car .top a{color:var(--accent);text-decoration:none;font-weight:600}
+.car.dark .top a{color:var(--mint)}
+.car .top a:hover{text-decoration:underline}
 .car h2{font-size:clamp(30px,4vw,46px)}
 .ctl button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:none;color:#fff;font-size:20px;margin-left:8px}
 .ctl button:hover{background:var(--mint);color:#06202a;border-color:var(--mint)}
