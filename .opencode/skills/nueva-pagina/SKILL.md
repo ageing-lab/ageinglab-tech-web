@@ -23,9 +23,9 @@ No hay CMS ni plantillas: cada HTML es independiente y replica el `<head>` compl
 3. **Añadir la URL a `sitemap.xml`**:
    - Servicios: `<changefreq>monthly</changefreq><priority>0.8</priority>`
    - Casos de éxito: `<changefreq>yearly</changefreq><priority>0.7</priority>`
-4. **Rutas**: páginas en subdirectorio usan `../` para assets compartidos (`../styles.css`, `../script.js`, `../img/...`, `../index.html#...`); la raíz, sin prefijo.
+4. **Rutas**: páginas en subdirectorio usan `../` para assets compartidos (`../styles.css`, `../script.js`, `../img/...`); la raíz, sin prefijo. Los enlaces al inicio (logo, "Inicio", anclas de la landing) usan siempre la raíz absoluta: `/` y `/#seccion` (nunca `index.html` ni `../index.html`).
 5. **Imágenes**: WebP en `img/servicios/` o `img/casos/`, siempre con `loading="lazy"`.
-6. **Miga de pan** en el hero: `<nav aria-label="Miga de pan">` con enlaces relativos (`../`).
+6. **Miga de pan** en el hero: `<nav aria-label="Miga de pan">` con enlaces relativos (`../`), salvo "Inicio" que apunta a `/`.
 7. **Contenido en español** (`lang="es"`), mismo estilo redaccional que el resto del sitio.
 
 ## Si es un servicio nuevo (no solo una página)

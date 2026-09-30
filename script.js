@@ -163,6 +163,20 @@ f.focus();
 });
 
 
+/* Estado de éxito tras el redirect de Formspree (?enviado=1) */
+(function(){
+if(!/[?&]enviado=1/.test(location.search))return;
+var f=document.querySelector('.contact-form');
+if(!f)return;
+var box=document.createElement('div');
+box.className='cf-ok';
+box.setAttribute('role','status');
+box.innerHTML='<p class="cf-ok-t">¡Gracias! Hemos recibido tu mensaje.</p><p>Te responderemos en menos de 48 h.</p>';
+f.replaceWith(box);
+var s=box.closest('section');
+if(s)setTimeout(function(){s.scrollIntoView({block:'center'})},0);
+})();
+
 /* Equipo: foco de luz que sigue al puntero */
 (function(){
 var ps=[].slice.call(document.querySelectorAll('.person'));

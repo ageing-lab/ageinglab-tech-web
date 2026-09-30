@@ -12,6 +12,7 @@ Sitio web corporativo estático de AgeingLab Tech. HTML + CSS + JavaScript vanil
 - **Idioma:** todo el contenido en español (`lang="es"`).
 - **Cada página HTML replica el bloque `<head>` completo** (canonical, Open Graph, Twitter Cards, JSON-LD: Organization/Service/BreadcrumbList). Al crear una página nueva: copiar el `<head>` de una existente, adaptar título/descripción/canonical/JSON-LD y **añadir su URL a `sitemap.xml`** (21 URLs actualmente).
 - **Rutas relativas:** las páginas de subdirectorio (`servicios/`, `soluciones/`, `casos-de-exito/`) refieren a los assets compartidos con `../` (p. ej. `../styles.css`, `../script.js`); las de la raíz sin prefijo.
+- **Enlaces al inicio:** logo, "Inicio", botón de contacto y anclas de la landing apuntan a la raíz absoluta (`/`, `/#contacto`), nunca a `index.html`. Así la barra de dirección queda limpia y `404.html` (servido bajo cualquier ruta) no rompe los enlaces.
 - **`styles.css` y `script.js` son compartidos por todas las páginas**: cualquier cambio afecta al sitio entero.
 - **Tema** claro/oscuro/auto persistido en `localStorage` con la clave `al-theme`; el toggle (grupo `.theme`) está en la cabecera de cada página.
 - **Formulario de contacto:** envía directamente a Formspree (`action="https://formspree.io/f/..."` en `index.html`); no hay backend ni API propia.
