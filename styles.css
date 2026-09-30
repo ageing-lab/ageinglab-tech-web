@@ -115,7 +115,7 @@ section.s{padding:84px 0;border-top:1px solid var(--line)}
 @keyframes pr-pulse{0%,100%{opacity:.45;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
 .pr-l{display:flex;flex-direction:column;gap:6px;min-width:0}
 .pr-et{font:600 12px/1 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--mint)}
-.pr-t{font:600 clamp(24px,2.7vw,34px)/1.1 "Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;letter-spacing:-.02em}
+.pr-t{font:700 clamp(24px,2.7vw,34px)/1.1 "Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;letter-spacing:-.02em}
 .pr-ar{flex:none;margin-left:auto;width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.45);color:#fff;display:grid;place-items:center;transition:transform .45s cubic-bezier(.2,.75,.3,1),border-color .3s}
 .prueba summary:hover .pr-ar{border-color:var(--mint);transform:translateY(3px)}
 .prueba[open] .pr-ar{transform:rotate(180deg);border-color:var(--mint)}
