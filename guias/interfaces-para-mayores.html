@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<script>
+  // Consent Mode v2: denied por defecto
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EGJV0V53RW"></script>
+<script>
+  gtag('js', new Date());
+
+  gtag('config', 'G-EGJV0V53RW');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#0b1f4b">
+<link rel="apple-touch-icon" href="../img/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable">
+<meta name="apple-mobile-web-app-title" content="AgeingLab Tech">
+<title>Interfaces para personas mayores: guía de usabilidad y accesibilidad | AgeingLab Tech</title>
+<meta name="description" content="Cómo diseñar interfaces que las personas mayores usen sin ayuda: qué cambia respecto al diseño habitual, cómo validarlas con usuarios reales y los errores más frecuentes.">
+<link rel="canonical" href="https://www.ageinglabtech.com/guias/interfaces-para-mayores.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interfaces para personas mayores: guía de usabilidad y accesibilidad | AgeingLab Tech">
+<meta property="og:description" content="Cómo diseñar interfaces que las personas mayores usen sin ayuda: qué cambia respecto al diseño habitual, cómo validarlas con usuarios reales y los errores más frecuentes.">
+<meta property="og:url" content="https://www.ageinglabtech.com/guias/interfaces-para-mayores.html">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="AgeingLab Tech">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Interfaces para personas mayores: guía de usabilidad y accesibilidad | AgeingLab Tech">
+<meta name="twitter:description" content="Cómo diseñar interfaces que las personas mayores usen sin ayuda: qué cambia respecto al diseño habitual, cómo validarlas con usuarios reales y los errores más frecuentes.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230b1f4b%27/%3E%3Cpath d=%27M14 46 32 16l18 30h-9l-9-16-9 16z%27 fill=%27%233ee0c8%27/%3E%3C/svg%3E">
+<meta property="og:image" content="https://www.ageinglabtech.com/hero-poster.webp">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta name="twitter:image" content="https://www.ageinglabtech.com/hero-poster.webp">
+<link rel="preload" as="font" type="font/woff2" href="../fonts/bricolage-grotesque-latin-1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../styles.css">
+<script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
+<script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Guías","item":"https://www.ageinglabtech.com/guias/"},{"@type":"ListItem","position":3,"name":"Interfaces para personas mayores: guía de usabilidad y accesibilidad","item":"https://www.ageinglabtech.com/guias/interfaces-para-mayores.html"}]}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Interfaces para personas mayores: guía de usabilidad y accesibilidad",
+  "description":"Cómo diseñar interfaces que las personas mayores usen sin ayuda: qué cambia respecto al diseño habitual, cómo validarlas con usuarios reales y los errores más frecuentes.",
+  "url":"https://www.ageinglabtech.com/guias/interfaces-para-mayores.html",
+  "datePublished":"2026-09-30",
+  "dateModified":"2026-09-30",
+  "inLanguage":"es",
+  "author":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},
+  "isPartOf":{"@type":"WebSite","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"}
+}</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header id="hd"><div class="w">
+<a class="logo" href="/"><img class="logo-mark" src="../img/logo.svg" alt="" width="32" height="32"><span>AgeingLab Tech</span></a>
+<nav aria-label="Principal">
+<a href="/#hacemos">Qué hacemos</a>
+<a href="/#sectores">Sectores</a>
+<a href="../soluciones/">Soluciones</a>
+<a href="../casos-de-exito/">Casos de éxito</a>
+<a href="/#metodo">Cómo trabajamos</a>
+<a href="/#nosotros">Quiénes somos</a>
+<div class="theme" role="group" aria-label="Apariencia"><span class="thumb" aria-hidden="true"></span><button type="button" class="t" data-v="light" aria-pressed="false" title="Tema claro" aria-label="Claro"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg></button><button type="button" class="t" data-v="dark" aria-pressed="false" title="Tema oscuro" aria-label="Oscuro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.2A8.6 8.6 0 1 1 10.8 3.4a6.8 6.8 0 0 0 9.8 9.8z"/></svg></button><button type="button" class="t" data-v="auto" aria-pressed="true" title="Tema automático" aria-label="Automático"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path class="fill" d="M12 3.4a8.6 8.6 0 0 1 0 17.2z"/></svg></button></div>
+</nav>
+<a class="btn" href="/#contacto">Contacto</a>
+<button class="burger" id="bg" aria-expanded="false" aria-label="Abrir menú">Menú</button>
+</div></header>
+
+<main id="main">
+<div class="hero dark case-hero"><div class="w">
+<nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>Interfaces para mayores</span></nav>
+<h1>Interfaces para personas mayores: guía de usabilidad y accesibilidad</h1>
+<p>Qué cambia una interfaz cuando quien la usa tiene 80 años y poca experiencia tecnológica: principios de diseño, cómo validarla con usuarios reales y los errores que más proyectos cuestan.</p>
+<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+</div></div>
+
+<section class="s" id="por-que"><div class="w">
+<h2>Por qué no basta con agrandar la letra</h2>
+<p class="lead">Diseñar para personas mayores no es hacer la misma interfaz más grande. En un proyecto real de monitorización en el domicilio, las personas usuarias tenían 82 años de media, casi nueve de cada diez no habían pasado de los estudios primarios y cerca de dos de cada tres no tenían experiencia previa con tecnología —y aun así tenían que hacer ellas solas las mediciones, cada semana, durante meses.</p>
+<ul class="plain">
+<li><strong>La tarea tiene que completarse sin ayuda:</strong> la persona mayor suele estar sola frente a la pantalla; si se atasca, abandona el sistema, no a un formulario de soporte.</li>
+<li><strong>El error tiene un coste alto:</strong> en un producto de salud, confundirse no es frustración: es una medición perdida, una cita mal cancelada o un dato clínico erróneo.</li>
+<li><strong>La vista y la motricidad cambian:</strong> contraste insuficiente, objetivos táctiles pequeños y gestos finos no son detalles estéticos, son barreras de uso.</li>
+<li><strong>La confianza decide la adopción:</strong> una interfaz que muestra lo que va a pasar y confirma lo que ha pasado genera la confianza necesaria para seguir usándola mañana.</li>
+</ul>
+</div></section>
+
+<section class="s" id="principios"><div class="w">
+<h2>Qué cambia en el diseño</h2>
+<p class="lead">Estos son los puntos que siempre aparecen en la evaluación de una interfaz para personas mayores, y que resumimos en nuestra guía de diseño derivada de la investigación.</p>
+<div class="why">
+<div><h3>Tipografía y contraste</h3><p>Texto grande de por sí —no solo ampliable—, contraste alto entre texto y fondo, interlineado amplio y sin texto gris de bajo contraste. Que la ampliación de letra no rompa la maquetación es parte del diseño, no un añadido.</p></div>
+<div><h3>Una acción por pantalla</h3><p>Frases cortas y una tarea por vista. Navegación de una pantalla, sin menús que se esconden ni desplazamientos largos para encontrar lo esencial. Cada pantalla responde a «¿qué hago ahora?».</p></div>
+<div><h3>Objetivos y feedback</h3><p>Botones grandes, bien separados y con espacio alrededor, para que un toque impreciso no acierte en el equivocado. Y cada acción deja constancia: qué se ha hecho, qué ha salido bien y qué sigue.</p></div>
+<div><h3>Lenguaje sin jerga</h3><p>Etiquetas que dicen lo que pasará («Enviar cita», no «Confirmar»), mensajes de error que explican cómo salir del problema y nunca códigos sueltos.</p></div>
+<div><h3>Ayuda en el momento</h3><p>Instrucciones ahí donde se usan: un vídeo corto antes de una tarea, voz e imágenes guiando un paso, un aviso de lo que toca. En lugar de un manual que nadie lee.</p></div>
+<div><h3>Configuración que llega lista</h3><p>El dispositivo o la app se entrega ya configurada y con una sesión de formación corta. Esperar que la persona mayor configure la cuenta, el wifi y los permisos es esperar lo que no va a pasar.</p></div>
+</div>
+</div></section>
+
+<section class="s" id="validacion"><div class="w">
+<h2>Cómo validar que funciona</h2>
+<p class="lead">Un diseño «para mayores» que no se prueba con personas mayores es una hipótesis. Así estructuramos la validación, con metodologías probadas.</p>
+<div class="steps">
+<div class="step"><i>1</i><h3>Evaluación heurística</h3><p>Antes de gastar tiempo de usuarios: un experto recorre la interfaz identificando barreras de usabilidad y los puntos que conviene mejorar. Barato, rápido y detecta la mayoría de los problemas evidentes.</p></div>
+<div class="step"><i>2</i><h3>Pruebas con usuarios reales</h3><p>Personas mayores usando el producto en condiciones reales —idealmente en su propio domicilio, no solo en un laboratorio—, observando dónde se atascan. Si el producto es de monitorización, la prueba debe incluir el ciclo completo de uso, no una sola tarea.</p></div>
+<div class="step"><i>3</i><h3>Auditoría de accesibilidad</h3><p>Comprobación frente a estándares internacionales (WCAG) para que el producto sea usable por personas de distintas capacidades. La accesibilidad asegura el mínimo garantizado; las pruebas con usuarios reales dicen si el producto se usa de verdad.</p></div>
+</div>
+<p class="lead" style="margin-top:18px">Los resultados se miden con escalas estándar: usabilidad (SUS) y experiencia de usuario (UEQ), que permiten comparar el producto con otros estudios del sector en lugar de quedarse con una impresión subjetiva.</p>
+</div></section>
+
+<section class="s" id="errores"><div class="w">
+<h2>Errores frecuentes</h2>
+<ul class="plain">
+<li><strong>Diseñar para «un usuario medio»:</strong> si la media de tu público son 82 años, el usuario medio no es un adulto de 35 con gafas. Diseñar para el promedio de una población joven deja fuera a quien va a usar el producto.</li>
+<li><strong>Confundir accesibilidad con usabilidad:</strong> una interfaz puede cumplir WCAG y seguir siendo difícil de usar. La norma es el mínimo; la validación con usuarios es lo que demuestra que funciona.</li>
+<li><strong>Probar solo en laboratorio:</strong> el domicilio tiene distracciones, miedo a romper el dispositivo y nadie que ayude. Si la prueba no ocurre donde se va a usar, no mide la adopción real.</li>
+<li><strong>Entregar sin configurar:</strong> cada paso de instalación o registro que se deja a la persona es un punto de abandono. La entrega debe empezar en «ya funciona».</li>
+<li><strong>Medir solo al final:</strong> si la adherencia cae a mitad del seguimiento, el problema aparece antes de la última medición. Los indicadores de uso se revisan durante el proyecto, no al cerrarlo.</li>
+<li><strong>Dejar la ayuda para después:</strong> si la persona necesita un tutorial largo para empezar, la interfaz está mal diseñada; el tutorial no lo arregla.</li>
+</ul>
+</div></section>
+
+<section class="s" id="caso"><div class="w">
+<h2>Un caso real, con números</h2>
+<p class="lead">En el sistema de prevención de la fragilidad CAPACITY diseñamos la interfaz de la persona mayor: una tableta que avisa de cada medición pendiente, muestra un vídeo corto de cómo hacerla y la guía con voz e imágenes, conectada por Bluetooth a tres dispositivos —sensor de velocidad de la marcha, prueba de levantarse de la silla y báscula—. Durante seis meses, 46 personas mayores lo usaron en su domicilio con una adherencia al plan cercana al 100%, una usabilidad de 83,7/100 en la escala SUS y resultados de experiencia de usuario en la banda «excelente» del cuestionario UEQ. <a href="../casos-de-exito/interfaz-adherencia.html">El caso completo, con el problema y el estudio, está aquí</a>.</p>
+</div></section>
+
+<section class="s" id="relacionados"><div class="w">
+<h2>Guías y servicios relacionados</h2>
+<div class="ind two">
+<a href="iot-sensores-domicilio.html">Guía: sensores IoT para el seguimiento en domicilio<span>›</span></a>
+<a href="../servicios/interfaces-para-mayores.html">Servicio: interfaces para mayores<span>›</span></a>
+<a href="../casos-de-exito/integracam.html">Caso de éxito: Integracam, dos interfaces para hospitales<span>›</span></a>
+<a href="../casos-de-exito/cuidame.html">Caso de éxito: Cuídame, comunicación por televisión<span>›</span></a>
+</div>
+</div></section>
+
+<section class="cta dark" id="contacto"><div class="w">
+<h2>Empieza por una conversación de treinta minutos</h2>
+<p>Cuéntanos qué necesitas y te decimos honestamente si podemos ayudarte.</p>
+<form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
+<input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
+<input type="hidden" name="_gotcha">
+<input type="hidden" name="_next" value="https://www.ageinglabtech.com/guias/interfaces-para-mayores.html?enviado=1">
+<div class="cf-grid">
+<label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
+<label>Tu correo<input type="email" name="email" autocomplete="email" required></label>
+<label>Empresa (opcional)<input type="text" name="empresa"></label>
+<label>¿Qué os interesa?
+<select name="interes" required>
+<option value="" disabled>Elige una opción</option>
+<option value="IA privada y automatización">IA privada y automatización</option>
+<option value="Decisiones con IA">Decisiones con IA</option>
+<option value="Software a medida">Software a medida</option>
+<option value="IoT y hardware">IoT y hardware</option>
+<option value="Interfaces para mayores" selected>Interfaces para mayores</option>
+<option value="Investigación e innovación">Investigación e innovación</option>
+<option value="Soluciones">Soluciones</option>
+<option value="Aún no lo sé">Aún no lo sé</option>
+</select>
+</label>
+<label class="cf-full">Cuéntanos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+</div>
+<div class="cf-actions">
+<button type="submit" class="btn btn-primary">Contactar</button>
+<span class="cf-note">Respondemos en menos de 48 h.</span>
+</div>
+</form>
+</div></section>
+</main>
+
+<footer><div class="w"><div class="cols">
+<div><h3>AgeingLab Tech</h3><p>Te acercamos al futuro desde la ciencia.</p></div>
+<div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a></div>
+<div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
+<div><h3>Empresa</h3><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#nosotros">Quiénes somos</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>
+</div><div class="base">© 2026 AgeingLab Tech · Madrid, España</div></div></footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

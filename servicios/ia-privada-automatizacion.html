@@ -43,8 +43,9 @@
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="1080">
 <meta name="twitter:image" content="https://www.ageinglabtech.com/hero-poster.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" href="../fonts/bricolage-grotesque-latin-1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="../styles.css">
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
@@ -62,8 +63,9 @@
   "@type":"Service",
   "name":"IA privada y automatización",
   "description":"Agentes IA a medida, orquestación de procesos y automatización interna sobre tu propia infraestructura, con tus datos bajo control.",
-  "provider":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},
-  "areaServed":"ES",
+  "provider":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/","sameAs":["https://ageinglab.ctb.upm.es/"]},
+  "areaServed":[{"@type":"Country","name":"España","alternateName":"ES"},{"@type":"Place","name":"Unión Europea"}],
+  "serviceType":"Infraestructura de IA privada, agentes IA y automatización de procesos",
   "url":"https://www.ageinglabtech.com/servicios/ia-privada-automatizacion.html"
 }</script>
 </head>
@@ -96,6 +98,7 @@
 <h2>Para quién es</h2>
 <p class="lead">Para empresas e instituciones que manejan datos sensibles — salud, sector público, investigación o datos de clientes — y quieren usar IA sin que esa información salga de su organización. También para equipos que quieren automatizar procesos internos sin pagar por token a proveedores externos.</p>
 <p class="rel"><a href="../guias/ia-privada-en-hospitales.html">Si trabajas en un hospital, tienes una guía práctica: IA privada en hospitales</a></p>
+<p class="rel"><a href="../guias/transcripcion-clinica-privada.html">Y para el dictado y la redacción clínica, otra guía: transcripción con IA privada</a></p>
 </div></section>
 
 <section class="s" id="incluye"><div class="w">

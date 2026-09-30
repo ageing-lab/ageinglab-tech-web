@@ -1,4 +1,4 @@
-var CACHE='ageinglab-v5';
+var CACHE='ageinglab-v7';
 var CORE=[
 '/',
 '/styles.css',
@@ -11,7 +11,11 @@ var CORE=[
 '/privacidad.html',
 '/aviso-legal.html',
 '/hero-poster.webp',
-'/hero.mp4',
+'/fonts/fonts.css',
+'/fonts/bricolage-grotesque-latin-1.woff2',
+'/fonts/bricolage-grotesque-latin-ext-1.woff2',
+'/fonts/source-sans-3-latin-1.woff2',
+'/fonts/source-sans-3-latin-ext-1.woff2',
 '/img/icons/icon-192.png',
 '/img/icons/icon-512.png',
 '/img/icons/icon-maskable-512.png',
@@ -21,6 +25,11 @@ var CORE=[
   '/guias/',
   '/guias/ia-privada-en-hospitales.html',
   '/guias/integrar-fhir.html',
+  '/guias/interfaces-para-mayores.html',
+  '/guias/iot-sensores-domicilio.html',
+  '/guias/transcripcion-clinica-privada.html',
+  '/guias/software-a-medida-salud.html',
+  '/guias/hardware-ia-local.html',
 '/servicios/',
 '/servicios/ia-privada-automatizacion.html',
 '/servicios/decisiones-con-ia.html',
@@ -45,6 +54,7 @@ var r=e.request;
 if(r.method!=='GET')return;
 var u;try{u=new URL(r.url)}catch(x){return}
 if(u.origin!==self.location.origin)return;
+if(r.destination==='video'||/\.(mp4|webm|ogv)$/.test(u.pathname))return;
 e.respondWith(caches.match(r).then(function(c){
 var n=fetch(r).then(function(res){if(res.ok)e.waitUntil(caches.open(CACHE).then(function(c2){c2.put(r,res.clone())}));return res}).catch(function(){return c});
 return c?(e.waitUntil(n),c):n}));

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<script>
+  // Consent Mode v2: denied por defecto
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EGJV0V53RW"></script>
+<script>
+  gtag('js', new Date());
+
+  gtag('config', 'G-EGJV0V53RW');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#0b1f4b">
+<link rel="apple-touch-icon" href="../img/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable">
+<meta name="apple-mobile-web-app-title" content="AgeingLab Tech">
+<title>Sensores IoT para el seguimiento en domicilio: guía práctica | AgeingLab Tech</title>
+<meta name="description" content="Cómo montar un sistema de monitorización en el domicilio: qué medir, qué sensores y conectividad elegir, cómo diseñar la interfaz y llevar el prototipo a producción.">
+<link rel="canonical" href="https://www.ageinglabtech.com/guias/iot-sensores-domicilio.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sensores IoT para el seguimiento en domicilio: guía práctica | AgeingLab Tech">
+<meta property="og:description" content="Cómo montar un sistema de monitorización en el domicilio: qué medir, qué sensores y conectividad elegir, cómo diseñar la interfaz y llevar el prototipo a producción.">
+<meta property="og:url" content="https://www.ageinglabtech.com/guias/iot-sensores-domicilio.html">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="AgeingLab Tech">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sensores IoT para el seguimiento en domicilio: guía práctica | AgeingLab Tech">
+<meta name="twitter:description" content="Cómo montar un sistema de monitorización en el domicilio: qué medir, qué sensores y conectividad elegir, cómo diseñar la interfaz y llevar el prototipo a producción.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230b1f4b%27/%3E%3Cpath d=%27M14 46 32 16l18 30h-9l-9-16-9 16z%27 fill=%27%233ee0c8%27/%3E%3C/svg%3E">
+<meta property="og:image" content="https://www.ageinglabtech.com/hero-poster.webp">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta name="twitter:image" content="https://www.ageinglabtech.com/hero-poster.webp">
+<link rel="preload" as="font" type="font/woff2" href="../fonts/bricolage-grotesque-latin-1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../styles.css">
+<script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
+<script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Guías","item":"https://www.ageinglabtech.com/guias/"},{"@type":"ListItem","position":3,"name":"Sensores IoT para el seguimiento en domicilio: guía práctica","item":"https://www.ageinglabtech.com/guias/iot-sensores-domicilio.html"}]}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Sensores IoT para el seguimiento en domicilio: guía práctica",
+  "description":"Cómo montar un sistema de monitorización en el domicilio: qué medir, qué sensores y conectividad elegir, cómo diseñar la interfaz y llevar el prototipo a producción.",
+  "url":"https://www.ageinglabtech.com/guias/iot-sensores-domicilio.html",
+  "datePublished":"2026-09-30",
+  "dateModified":"2026-09-30",
+  "inLanguage":"es",
+  "author":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},
+  "isPartOf":{"@type":"WebSite","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"}
+}</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header id="hd"><div class="w">
+<a class="logo" href="/"><img class="logo-mark" src="../img/logo.svg" alt="" width="32" height="32"><span>AgeingLab Tech</span></a>
+<nav aria-label="Principal">
+<a href="/#hacemos">Qué hacemos</a>
+<a href="/#sectores">Sectores</a>
+<a href="../soluciones/">Soluciones</a>
+<a href="../casos-de-exito/">Casos de éxito</a>
+<a href="/#metodo">Cómo trabajamos</a>
+<a href="/#nosotros">Quiénes somos</a>
+<div class="theme" role="group" aria-label="Apariencia"><span class="thumb" aria-hidden="true"></span><button type="button" class="t" data-v="light" aria-pressed="false" title="Tema claro" aria-label="Claro"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg></button><button type="button" class="t" data-v="dark" aria-pressed="false" title="Tema oscuro" aria-label="Oscuro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.2A8.6 8.6 0 1 1 10.8 3.4a6.8 6.8 0 0 0 9.8 9.8z"/></svg></button><button type="button" class="t" data-v="auto" aria-pressed="true" title="Tema automático" aria-label="Automático"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path class="fill" d="M12 3.4a8.6 8.6 0 0 1 0 17.2z"/></svg></button></div>
+</nav>
+<a class="btn" href="/#contacto">Contacto</a>
+<button class="burger" id="bg" aria-expanded="false" aria-label="Abrir menú">Menú</button>
+</div></header>
+
+<main id="main">
+<div class="hero dark case-hero"><div class="w">
+<nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>Sensores IoT en domicilio</span></nav>
+<h1>Sensores IoT para el seguimiento en domicilio: guía práctica</h1>
+<p>Cómo se monta un sistema de monitorización remota que funcione de verdad: qué medir, cómo elegir sensores y conectividad, y lo que casi nadie considera hasta que el prototipo llega al domicilio.</p>
+<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+</div></div>
+
+<section class="s" id="por-que"><div class="w">
+<h2>Por qué medir en el domicilio</h2>
+<p class="lead">En la práctica habitual, la persona solo se evalúa en consultas periódicas: entre una visita y la siguiente no hay datos, y el seguimiento depende de que alguien recuerde cómo estaba hace tres meses. La monitorización en el domicilio llena ese hueco —pero solo si el sistema se usa, sin ayuda y durante meses.</p>
+<ul class="plain">
+<li><strong>Datos entre visitas:</strong> medidas repetidas en casa permiten ver la evolución, no solo un punto aislado.</li>
+<li><strong>Menos desplazamientos:</strong> la persona no tiene que desplazarse para cada control, y el equipo profesional ve a quien más lo necesita.</li>
+<li><strong>Detección temprana:</strong> indicadores como la velocidad de la marcha —uno de los más usados para valorar la fragilidad— pierden sentido solo si se miden con regularidad.</li>
+<li><strong>El dato es clínico:</strong> por eso la infraestructura, el cifrado y la auditoría forman parte del alcance, no son un extra.</li>
+</ul>
+</div></section>
+
+<section class="s" id="que-medir"><div class="w">
+<h2>Qué medir: empieza por la tarea, no por el sensor</h2>
+<p class="lead">El error habitual es comprar el dispositivo y luego buscarle un uso. Al revés: primero se define qué decisión clínica o de seguimiento va a apoyar cada medida, y eso determina el sensor, la precisión y la frecuencia.</p>
+<div class="why">
+<div><h3>Medidas de movilidad</h3><p>Velocidad de la marcha y prueba de levantarse de la silla: se capturan con un sensor específico —no con un móvil que la persona tiene que colocar bien— y guiando el paso a paso.</p></div>
+<div><h3>Peso y composición</h3><p>Una báscula inteligente que registra sin que la persona tenga que anotar nada. La pérdida involuntaria de peso es una señal de alerta temprana en fragilidad.</p></div>
+<div><h3>Actividad y comportamiento</h3><p>Sensores de presencia, movimiento o uso de electrodomésticos para seguir la rutina diaria sin cámaras en el domicilio, respetando la privacidad por diseño.</p></div>
+<div><h3>Cuestionarios y síntomas</h3><p>No todo es hardware: la app que recoge lo que la persona nota —dolor, ánimo, adherencia— es parte del sistema y suele ser la mitad del valor.</p></div>
+</div>
+</div></section>
+
+<section class="s" id="arquitectura"><div class="w">
+<h2>La arquitectura: las piezas que tienen que encajar</h2>
+<p class="lead">Un sistema de monitorización se compone de piezas que deben ser compatibles entre sí desde el primer día. Es exactamente lo primero que revisamos al diseñar un proyecto —puedes probarlo con el <a href="../servicios/iot-y-hardware.html#demo-iot">simulador de arquitectura IoT</a> del servicio—.</p>
+<ul class="plain">
+<li><strong>Sensor:</strong> elige por la magnitud a medir y la precisión requerida, no por el precio. Si la medida es clínica, la precisión no se negocia.</li>
+<li><strong>Microcontrolador:</strong> Arduino, ESP8266, ESP32 o STM32 según consumo, conectividad y coste. La misma placa no sirve igual para un prototipo de mesa que para un dispositivo con batería.</li>
+<li><strong>Conectividad:</strong> Bluetooth para el vínculo con el teléfono o la tableta de la persona; Wi-Fi u otros protocolos para subir el dato a la plataforma. Cada salto es un punto de fallo y de batería.</li>
+<li><strong>Alimentación:</strong> la autonomía se diseña, no se improvisa. Un dispositivo en un domicilio no puede depender de que alguien lo recargue cada dos días.</li>
+<li><strong>Software y plataforma:</strong> el firmware, la app de la persona y la vista del profesional. La cadena completa tiene que funcionar; el sensor es solo el primer eslabón.</li>
+</ul>
+</div></section>
+
+<section class="s" id="paso-a-paso"><div class="w">
+<h2>Paso a paso, del prototipo al producto</h2>
+<p class="lead">El mismo camino que recorremos en los proyectos de IoT.</p>
+<div class="steps">
+<div class="step"><i>1</i><h3>Define la medida y el caso de uso</h3><p>Qué se mide, con qué frecuencia, quién decide qué a partir de ese dato y qué pasa si falta. Sin esto, el sistema genera datos que nadie usa.</p></div>
+<div class="step"><i>2</i><h3>Diseña el prototipo</h3><p>Elige la electrónica —Arduino, ESP32, STM32— y conecta los sensores por Bluetooth, Wi-Fi u otro protocolo. Prototipo funcional antes que prototipo bonito.</p></div>
+<div class="step"><i>3</i><h3>Valida en uso real, con la persona que lo va a usar</h3><p>Se prueba en el domicilio, no solo en la mesa del laboratorio, y se mide la usabilidad —incluida la de personas mayores—. Aquí es donde se descubre que la batería dura dos días o que nadie entiende el aviso.</p></div>
+<div class="step"><i>4</i><h3>Diseña la interfaz de la persona</h3><p>Una tarea por pantalla, aviso de lo que toca, vídeo o voz que guíe el paso a paso y entrega ya configurada. El mejor sensor del mundo no vale si la persona no lo usa. Hay una <a href="interfaces-para-mayores.html">guía entera sobre esto</a>.</p></div>
+<div class="step"><i>5</i><h3>Optimiza y prepara la producción</h3><p>Revisión de la lista de materiales para reducir coste, pruebas de fiabilidad y, si es producto sanitario o requiere marcado CE, la gestión a través de socios de fabricación.</p></div>
+<div class="step"><i>6</i><h3>Integra con la plataforma clínica</h3><p>El dato llega a la herramienta donde el profesional lo consulta, con seguridad, trazabilidad y, si hay que hablar con otros sistemas de salud, <a href="integrar-fhir.html">interoperabilidad FHIR</a>.</p></div>
+</div>
+</div></section>
+
+<section class="s" id="errores"><div class="w">
+<h2>Errores comunes</h2>
+<ul class="plain">
+<li><strong>Empezar por el gadget:</strong> comprar el sensor antes de definir qué decisión apoya el dato. El resultado es un piloto con datos que nadie mira.</li>
+<li><strong>Ignorar la batería:</strong> la autonomía en uso real manda. Un prototipo con cable funciona siempre; en el domicilio, cambiar pilotos cada semana significa abandono.</li>
+<li><strong>Probar solo en el laboratorio:</strong> el domicilio tiene wifi inestable, manos temblorosas y nadie técnico al lado. Si solo se ha probado en el laboratorio, no se ha probado.</li>
+<li><strong>Diseñar la interfaz al final:</strong> la app de la persona es la mitad del producto. Dejarla para el último sprint garantiza que sea el eslabón débil.</li>
+<li><strong>Olvidar el caso de no uso:</strong> qué pasa cuando la medida no llega —¿una alerta para el profesional, un aviso para la persona?— define la calidad del sistema tanto como la medida correcta.</li>
+<li><strong>Subestimar el camino a producción:</strong> lista de materiales, fiabilidad y marcado CE tardan meses. Si el producto se va a fabricar, hay que tenerlo en cuenta desde el diseño.</li>
+</ul>
+</div></section>
+
+<section class="s" id="caso"><div class="w">
+<h2>Un caso real</h2>
+<p class="lead">Para MG Biomed convertimos un prototipo preciso pero inusable y obsoleto en un dispositivo inalámbrico de dos nodos, con batería de meses, mejor usabilidad y una lista de materiales optimizada que redujo el coste, fabricado con marcado CE a través de nuestros socios. Es el dispositivo de medida de la velocidad de la marcha que, conectado a la app de la persona mayor, formó parte del sistema con <a href="../casos-de-exito/interfaz-adherencia.html">adherencia cercana al 100% durante seis meses</a>. <a href="../casos-de-exito/velocidad-marcha.html">El caso completo está aquí</a>.</p>
+</div></section>
+
+<section class="s" id="relacionados"><div class="w">
+<h2>Guías y servicios relacionados</h2>
+<div class="ind two">
+<a href="interfaces-para-mayores.html">Guía: interfaces para personas mayores<span>›</span></a>
+<a href="../servicios/iot-y-hardware.html">Servicio: IoT y hardware<span>›</span></a>
+<a href="../casos-de-exito/velocidad-marcha.html">Caso de éxito: dispositivo de velocidad de la marcha<span>›</span></a>
+<a href="../casos-de-exito/integracam.html">Caso de éxito: Integracam, IoT y biomarcadores<span>›</span></a>
+</div>
+</div></section>
+
+<section class="cta dark" id="contacto"><div class="w">
+<h2>Empieza por una conversación de treinta minutos</h2>
+<p>Cuéntanos qué necesitas y te decimos honestamente si podemos ayudarte.</p>
+<form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
+<input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
+<input type="hidden" name="_gotcha">
+<input type="hidden" name="_next" value="https://www.ageinglabtech.com/guias/iot-sensores-domicilio.html?enviado=1">
+<div class="cf-grid">
+<label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
+<label>Tu correo<input type="email" name="email" autocomplete="email" required></label>
+<label>Empresa (opcional)<input type="text" name="empresa"></label>
+<label>¿Qué os interesa?
+<select name="interes" required>
+<option value="" disabled>Elige una opción</option>
+<option value="IA privada y automatización">IA privada y automatización</option>
+<option value="Decisiones con IA">Decisiones con IA</option>
+<option value="Software a medida">Software a medida</option>
+<option value="IoT y hardware" selected>IoT y hardware</option>
+<option value="Interfaces para mayores">Interfaces para mayores</option>
+<option value="Investigación e innovación">Investigación e innovación</option>
+<option value="Soluciones">Soluciones</option>
+<option value="Aún no lo sé">Aún no lo sé</option>
+</select>
+</label>
+<label class="cf-full">Cuéntanos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+</div>
+<div class="cf-actions">
+<button type="submit" class="btn btn-primary">Contactar</button>
+<span class="cf-note">Respondemos en menos de 48 h.</span>
+</div>
+</form>
+</div></section>
+</main>
+
+<footer><div class="w"><div class="cols">
+<div><h3>AgeingLab Tech</h3><p>Te acercamos al futuro desde la ciencia.</p></div>
+<div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a></div>
+<div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
+<div><h3>Empresa</h3><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#nosotros">Quiénes somos</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>
+</div><div class="base">© 2026 AgeingLab Tech · Madrid, España</div></div></footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

@@ -40,11 +40,9 @@
 <meta name="twitter:description" content="IA privada, análisis de datos, software a medida, IoT e interfaces para personas mayores. Tecnología para salud e innovación con los datos bajo tu control.">
 <script type="application/ld+json">{
   "@context":"https://schema.org",
-  "@type":"Organization",
-  "name":"AgeingLab Tech",
-  "url":"https://www.ageinglabtech.com/",
+  "@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/","sameAs":["https://ageinglab.ctb.upm.es/"],
   "description":"IA privada, análisis de datos, software a medida, IoT e interfaces para personas mayores.",
-  "areaServed":"ES",
+  "areaServed":[{"@type":"Country","name":"España","alternateName":"ES"},{"@type":"Place","name":"Unión Europea"}],
   "member":[{"@type":"Person","name":"Ismael González Oviedo","jobTitle":"CTO y tech leader","sameAs":"https://www.linkedin.com/in/ismael-gonzalez-oviedo/"},{"@type":"Person","name":"Elena Villalba Mora","jobTitle":"CSO · IP Lab","sameAs":"https://www.linkedin.com/in/elenavillalba/"},{"@type":"Person","name":"Sergio Barrero","jobTitle":"Desarrollador backend","sameAs":"https://www.linkedin.com/in/sergio-barrero/"},{"@type":"Person","name":"Adrián Arana","jobTitle":"Experto en IA","sameAs":"https://www.linkedin.com/in/adri%C3%A1n-arana-hern%C3%A1ndez-a39083262/"},{"@type":"Person","name":"Juan Medina","jobTitle":"Experto en IoT","sameAs":"https://www.linkedin.com/in/juan-enrique-medina-miguela%C3%B1ez-55a688182/"},{"@type":"Person","name":"Maximilian Menschel","jobTitle":"Desarrollador front-end","sameAs":"https://www.linkedin.com/in/maximilian-menschel/"}]
 }</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230b1f4b%27/%3E%3Cpath d=%27M14 46 32 16l18 30h-9l-9-16-9 16z%27 fill=%27%233ee0c8%27/%3E%3C/svg%3E">
@@ -52,8 +50,9 @@
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="1080">
 <meta name="twitter:image" content="https://www.ageinglabtech.com/hero-poster.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" href="fonts/bricolage-grotesque-latin-1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/source-sans-3-latin-1.woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="styles.css">
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
@@ -76,7 +75,7 @@
 </div></header>
 
 <main id="main">
-<div class="hero dark"><video class="hv" autoplay muted loop playsinline preload="auto" poster="hero-poster.webp" aria-hidden="true"><source src="hero.mp4" type="video/mp4"></video><div class="w">
+<div class="hero dark"><video class="hv" autoplay muted loop playsinline preload="metadata" poster="hero-poster.webp" aria-hidden="true"><source src="hero.mp4" type="video/mp4"></video><div class="w">
 <p class="tagline">Te acercamos al futuro desde la ciencia</p>
 <h1>IA privada, software a medida e IoT</h1>
 <p>Tecnología para salud e innovación, con tus datos bajo tu control. Para organizaciones donde la tecnología y la innovación importan.</p>

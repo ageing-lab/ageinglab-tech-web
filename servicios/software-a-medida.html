@@ -43,8 +43,9 @@
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="1080">
 <meta name="twitter:image" content="https://www.ageinglabtech.com/hero-poster.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" href="../fonts/bricolage-grotesque-latin-1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="../styles.css">
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
@@ -62,8 +63,9 @@
   "@type":"Service",
   "name":"Software a medida",
   "description":"Plataformas web, apps móviles y backend para tu negocio, del primer prototipo a producción.",
-  "provider":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},
-  "areaServed":"ES",
+  "provider":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/","sameAs":["https://ageinglab.ctb.upm.es/"]},
+  "areaServed":[{"@type":"Country","name":"España","alternateName":"ES"},{"@type":"Place","name":"Unión Europea"}],
+  "serviceType":"Desarrollo de software a medida: plataformas web, apps móviles y backend",
   "url":"https://www.ageinglabtech.com/servicios/software-a-medida.html"
 }</script>
 </head>
@@ -95,6 +97,7 @@
 <section class="s" id="para-quien"><div class="w">
 <h2>Para quién es</h2>
 <p class="lead">Para startups, empresas e instituciones de tecnología médica, salud y otros sectores que necesitan una plataforma, app o backend que no existe en el mercado y que resuelva un problema concreto de su negocio, con los datos siempre bajo su control.</p>
+<p class="rel"><a href="../guias/software-a-medida-salud.html">¿A medida o producto estándar? Hay una guía para decidir: software a medida en salud</a></p>
 </div></section>
 
 <section class="s" id="incluye"><div class="w">

@@ -27,24 +27,25 @@
 <meta name="apple-mobile-web-app-capable">
 <meta name="apple-mobile-web-app-title" content="AgeingLab Tech">
 <title>Guías de IA y salud digital | AgeingLab Tech</title>
-<meta name="description" content="Guías prácticas sobre IA privada en hospitales e integración de sistemas de salud con FHIR, escritas desde los proyectos que entrega AgeingLab Tech.">
+<meta name="description" content="Siete guías prácticas sobre IA privada en hospitales, integración con FHIR, interfaces para mayores, sensores IoT en domicilio, transcripción clínica, el hardware para modelos locales y software a medida en salud.">
 <link rel="canonical" href="https://www.ageinglabtech.com/guias/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Guías de IA y salud digital | AgeingLab Tech">
-<meta property="og:description" content="Guías prácticas sobre IA privada en hospitales e integración de sistemas de salud con FHIR, escritas desde los proyectos que entrega AgeingLab Tech.">
+<meta property="og:description" content="Siete guías prácticas sobre IA privada en hospitales, integración con FHIR, interfaces para mayores, sensores IoT en domicilio, transcripción clínica, el hardware para modelos locales y software a medida en salud.">
 <meta property="og:url" content="https://www.ageinglabtech.com/guias/">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="AgeingLab Tech">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Guías de IA y salud digital | AgeingLab Tech">
-<meta name="twitter:description" content="Guías prácticas sobre IA privada en hospitales e integración de sistemas de salud con FHIR, escritas desde los proyectos que entrega AgeingLab Tech.">
+<meta name="twitter:description" content="Siete guías prácticas sobre IA privada en hospitales, integración con FHIR, interfaces para mayores, sensores IoT en domicilio, transcripción clínica, el hardware para modelos locales y software a medida en salud.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230b1f4b%27/%3E%3Cpath d=%27M14 46 32 16l18 30h-9l-9-16-9 16z%27 fill=%27%233ee0c8%27/%3E%3C/svg%3E">
 <meta property="og:image" content="https://www.ageinglabtech.com/hero-poster.webp">
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="1080">
 <meta name="twitter:image" content="https://www.ageinglabtech.com/hero-poster.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" href="../fonts/bricolage-grotesque-latin-1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="../styles.css">
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
@@ -53,12 +54,17 @@
   "@context":"https://schema.org",
   "@type":"CollectionPage",
   "name":"Guías de IA y salud digital",
-  "description":"Guías prácticas sobre IA privada en hospitales e integración de sistemas de salud con FHIR, escritas desde los proyectos que entrega AgeingLab Tech.",
+  "description":"Siete guías prácticas sobre IA privada en hospitales, integración con FHIR, interfaces para mayores, sensores IoT en domicilio, transcripción clínica, el hardware para modelos locales y software a medida en salud, escritas desde los proyectos que entrega AgeingLab Tech.",
   "url":"https://www.ageinglabtech.com/guias/",
   "isPartOf":{"@type":"WebSite","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},
   "mainEntity":{"@type":"ItemList","itemListElement":[
     {"@type":"ListItem","position":1,"item":{"@type":"Article","headline":"IA privada en hospitales: guía práctica","description":"Cómo desplegar modelos de IA en el propio hospital sin que los datos de los pacientes salgan: casos de uso, infraestructura y el camino para empezar.","url":"https://www.ageinglabtech.com/guias/ia-privada-en-hospitales.html","datePublished":"2026-09-30","inLanguage":"es"}},
-    {"@type":"ListItem","position":2,"item":{"@type":"Article","headline":"Cómo integrar tu sistema de salud con FHIR","description":"El estándar FHIR paso a paso: qué recursos exponer, cómo exponerlos y los errores más comunes al integrar.","url":"https://www.ageinglabtech.com/guias/integrar-fhir.html","datePublished":"2026-09-30","inLanguage":"es"}}
+    {"@type":"ListItem","position":2,"item":{"@type":"Article","headline":"Cómo integrar tu sistema de salud con FHIR","description":"El estándar FHIR paso a paso: qué recursos exponer, cómo exponerlos y los errores más comunes al integrar.","url":"https://www.ageinglabtech.com/guias/integrar-fhir.html","datePublished":"2026-09-30","inLanguage":"es"}},
+    {"@type":"ListItem","position":3,"item":{"@type":"Article","headline":"Interfaces para personas mayores: guía de usabilidad y accesibilidad","description":"Qué cambia una interfaz cuando quien la usa tiene 80 años: principios de diseño, validación con usuarios reales y errores frecuentes.","url":"https://www.ageinglabtech.com/guias/interfaces-para-mayores.html","datePublished":"2026-09-30","inLanguage":"es"}},
+    {"@type":"ListItem","position":4,"item":{"@type":"Article","headline":"Sensores IoT para el seguimiento en domicilio: guía práctica","description":"Qué medir, cómo elegir sensores y conectividad y llevar el prototipo a producción en un sistema de monitorización remota.","url":"https://www.ageinglabtech.com/guias/iot-sensores-domicilio.html","datePublished":"2026-09-30","inLanguage":"es"}},
+    {"@type":"ListItem","position":5,"item":{"@type":"Article","headline":"Transcripción clínica con IA privada: guía práctica","description":"Cómo transcribir y resumir en el propio hospital con modelos de IA locales, sin que el audio salga del edificio.","url":"https://www.ageinglabtech.com/guias/transcripcion-clinica-privada.html","datePublished":"2026-09-30","inLanguage":"es"}},
+    {"@type":"ListItem","position":6,"item":{"@type":"Article","headline":"Software a medida en salud: cuándo compensa","description":"Cuándo compensa desarrollar a medida frente a comprar un producto estándar, cómo se hace y los errores que encarecen el proyecto.","url":"https://www.ageinglabtech.com/guias/software-a-medida-salud.html","datePublished":"2026-09-30","inLanguage":"es"}},
+    {"@type":"ListItem","position":7,"item":{"@type":"Article","headline":"Qué hardware necesitas para un modelo de IA local","description":"Memoria de vídeo, cuantización y el servidor real de un proyecto entregado: 16 GB de VRAM, Qwen 27B y 20–50 tokens por segundo.","url":"https://www.ageinglabtech.com/guias/hardware-ia-local.html","datePublished":"2026-09-30","inLanguage":"es"}}
   ]}
 }</script>
 </head>
@@ -83,13 +89,13 @@
 <div class="hero dark"><div class="w">
 <nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <span>Guías</span></nav>
 <h1>Guías de IA y salud digital</h1>
-<p>Contenido práctico sobre IA privada e interoperabilidad de la salud, escrito desde los proyectos que entregamos. Sin humo: lo que hemos hecho y cómo lo harías tú.</p>
-<a class="btn alt" href="#guia-hospitales">IA privada en hospitales</a> <a class="btn fantasma" href="#guia-fhir">Cómo integrar FHIR</a>
+<p>Contenido práctico sobre IA privada, interoperabilidad de la salud, interfaces accesibles, sensores y software a medida, escrito desde los proyectos que entregamos. Sin humo: lo que hemos hecho y cómo lo harías tú.</p>
+<a class="btn alt" href="#guias">Ver las guías</a> <a class="btn fantasma" href="#por-que">Por qué las publicamos</a>
 </div></div>
 
 <section class="s" id="guias"><div class="w">
 <h2>Guías para leer</h2>
-<p class="lead">Dos guías que responden a las dos preguntas que más nos hacen en salud: cómo usar IA sin sacar el dato del hospital, y cómo conectar tu sistema con el estándar FHIR.</p>
+<p class="lead">Siete guías que responden a las preguntas que más nos hacen en salud: usar IA sin sacar el dato del hospital, conectar con FHIR, diseñar para personas mayores, monitorizar en el domicilio, transcribir en privado, dimensionar el hardware para la IA local y decidir cuándo compensa el software a medida.</p>
 <div class="cases">
 <article class="case" id="guia-hospitales">
 <div class="who stat word"><strong>IA privada</strong><span>En el propio hospital</span></div>
@@ -99,12 +105,32 @@
 <div class="who stat word"><strong>FHIR</strong><span>Estándar de datos de salud</span></div>
 <div class="body"><h3><a href="integrar-fhir.html">Cómo integrar tu sistema de salud con FHIR</a></h3><p>El estándar FHIR paso a paso: qué recursos exponer, cómo exponerlos, seguridad y los errores más comunes al integrar.</p><p class="rel"><a href="integrar-fhir.html">Leer la guía</a></p></div>
 </article>
+<article class="case" id="guia-interfaces">
+<div class="who stat word"><strong>Interfaces</strong><span>Para personas mayores</span></div>
+<div class="body"><h3><a href="interfaces-para-mayores.html">Interfaces para personas mayores: guía de usabilidad y accesibilidad</a></h3><p>Qué cambia una interfaz cuando quien la usa tiene 80 años: principios de diseño, validación con usuarios reales y errores frecuentes.</p><p class="rel"><a href="interfaces-para-mayores.html">Leer la guía</a></p></div>
+</article>
+<article class="case" id="guia-iot">
+<div class="who stat word"><strong>IoT</strong><span>Sensores en domicilio</span></div>
+<div class="body"><h3><a href="iot-sensores-domicilio.html">Sensores IoT para el seguimiento en domicilio: guía práctica</a></h3><p>Qué medir, cómo elegir sensores y conectividad, cómo diseñar la interfaz de la persona y llevar el prototipo a producción.</p><p class="rel"><a href="iot-sensores-domicilio.html">Leer la guía</a></p></div>
+</article>
+<article class="case" id="guia-voz">
+<div class="who stat word"><strong>Voz clínica</strong><span>Transcripción privada</span></div>
+<div class="body"><h3><a href="transcripcion-clinica-privada.html">Transcripción clínica con IA privada: guía práctica</a></h3><p>Cómo transcribir y resumir en el propio hospital con modelos de IA locales: por qué el audio no debe salir, qué infraestructura hace falta y cómo empezar.</p><p class="rel"><a href="transcripcion-clinica-privada.html">Leer la guía</a></p></div>
+</article>
+<article class="case" id="guia-software">
+<div class="who stat word"><strong>A medida</strong><span>Software en salud</span></div>
+<div class="body"><h3><a href="software-a-medida-salud.html">Software a medida en salud: cuándo compensa</a></h3><p>Comprar un producto estándar o desarrollar el tuyo: criterios para decidir, capas propias de la salud y errores que encarecen el proyecto.</p><p class="rel"><a href="software-a-medida-salud.html">Leer la guía</a></p></div>
+</article>
+<article class="case" id="guia-hardware">
+<div class="who stat word"><strong>IA local</strong><span>El servidor que la ejecuta</span></div>
+<div class="body"><h3><a href="hardware-ia-local.html">Qué hardware necesitas para un modelo de IA local</a></h3><p>Memoria de vídeo, cuantización y el servidor real de un proyecto entregado: 16 GB de VRAM, Qwen 27B y 20–50 tokens por segundo.</p><p class="rel"><a href="hardware-ia-local.html">Leer la guía</a></p></div>
+</article>
 </div>
 </div></section>
 
 <section class="s" id="por-que"><div class="w">
 <h2>Por qué publicamos estas guías</h2>
-<p class="lead">Porque estas son las dos preguntas que casi todos los hospitales, centros y proyectos de salud nos hacen antes de hablar con nosotros. Si te sirve a ti, te la contamos sin que tengas que pedir cita primero.</p>
+<p class="lead">Porque estas son las preguntas que hospitales, centros y proyectos de salud nos hacen antes de hablar con nosotros. Si te sirve a ti, te la contamos sin que tengas que pedir cita primero.</p>
 <div class="why">
 <div><h3>Escrito desde el proyecto</h3><p>Cada guía nace de un proyecto entregado: la IA local para datos clínicos, la integración FHIR con GMV, las plataformas en hospitales. No es teoría.</p></div>
 <div><h3>Con los números reales</h3><p>Cuando hay cifras medidas —velocidad de inferencia, adherencia, casos de uso— las ponemos. Si algo no lo hemos medido, lo decimos.</p></div>

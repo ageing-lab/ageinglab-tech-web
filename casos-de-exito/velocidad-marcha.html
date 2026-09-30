@@ -43,8 +43,9 @@
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="1080">
 <meta name="twitter:image" content="https://www.ageinglabtech.com/hero-poster.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" href="../fonts/bricolage-grotesque-latin-1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="../styles.css">
 <style>
 /* Figuras del caso (mover a styles.css si se reutiliza) */
@@ -117,7 +118,7 @@
 
 <section class="s" id="solucion"><div class="w">
 <h2>Solución</h2>
-<div class="txt"><p>Pasamos de aquel prototipo a una solución inalámbrica basada en dos nodos, con una batería que dura meses. Mantiene la precisión y mejora claramente la usabilidad.</p><p>Además, revisamos y optimizamos la lista de materiales (BOM) y con ello reducimos el coste del producto.</p><p>Desarrollamos un nuevo prototipo y el dispositivo se ha fabricado con marcado CE a través de nuestros socios.</p><p>Es el tipo de trabajo que hacemos en <a href="../servicios/iot-y-hardware.html">IoT y hardware</a> y en <a href="../servicios/interfaces-para-mayores.html">usabilidad e interfaces para mayores</a>.</p></div>
+<div class="txt"><p>Pasamos de aquel prototipo a una solución inalámbrica basada en dos nodos, con una batería que dura meses. Mantiene la precisión y mejora claramente la usabilidad.</p><p>Además, revisamos y optimizamos la lista de materiales (BOM) y con ello reducimos el coste del producto.</p><p>Desarrollamos un nuevo prototipo y el dispositivo se ha fabricado con marcado CE a través de nuestros socios.</p><p>Es el tipo de trabajo que hacemos en <a href="../servicios/iot-y-hardware.html">IoT y hardware</a> y en <a href="../servicios/interfaces-para-mayores.html">usabilidad e interfaces para mayores</a>.</p><p class="rel"><a href="../guias/iot-sensores-domicilio.html">Y si vas a montar un sistema de sensores en domicilios, hay una guía práctica: sensores IoT para el seguimiento</a></p></div>
 <div class="figs">
 <figure class="fig fig-schema">
 <div class="media"><img src="../img/casos/marcha-esquema.webp" alt="Esquema del sistema: dos nodos inalámbricos situados en los extremos de un tramo de marcha, con enlace Bluetooth" width="586" height="295" loading="lazy" decoding="async"></div>
