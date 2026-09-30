@@ -19,12 +19,12 @@ img/
   equipo/                 # Retratos de la sección Equipo (4:5, p. ej. 640x800, <slug>.webp)
   logo.svg
   icons/                  # Iconos PWA (192, 512, maskable y apple-touch 180)
-servicios/                 # 6 fichas de servicio (una página por servicio)
+servicios/                 # Índice de servicios + 6 fichas (una página por servicio)
 soluciones/                # Página de soluciones de IA privada
 casos-de-exito/           # 10 casos de éxito + índice
 manifest.json              # PWA: manifiesto (instalable como app)
 sw.js                    # PWA: service worker con caché offline del sitio completo
-sitemap.xml                # Indexación (21 URLs)
+sitemap.xml                # Indexación (22 URLs)
 robots.txt
 CNAME                      # Dominio personalizado (ageinglabtech.com)
 ```
@@ -57,7 +57,7 @@ Después abrir `http://localhost:8000` (o el puerto que use el servidor).
 - **Contacto:** formulario vía [Formspree](https://formspree.io) (`index.html`, `action="https://formspree.io/f/..."`). Las respuestas llegan a la cuenta de Formspree.
 - **Imágenes:** WebP para casi todo. Si se añaden JPG grandes, comprimirlos a WebP (p. ej. con `sharp` o `cwebp`) y actualizar las referencias HTML.
 - **Rendimiento:** las imágenes llevan `loading="lazy"`; el vídeo del hero tiene `poster` y se pausa si `prefers-reduced-motion`.
-- **PWA:** cada página replica las etiquetas PWA en el `<head>` (`rel="manifest"`, `theme-color`, `apple-touch-icon` y metas de Apple); en páginas de subdirectorio se usan rutas con `../` (`../manifest.json`, `../img/icons/...`). `sw.js` precachea las 21 URLs del sitemap + los assets compartidos y cachéa el resto bajo demanda (el sitio funciona offline). Al crear una página nueva: replicar también esas etiquetas y añadir su URL a la lista `CORE` de `sw.js`.
+- **PWA:** cada página replica las etiquetas PWA en el `<head>` (`rel="manifest"`, `theme-color`, `apple-touch-icon` y metas de Apple); en páginas de subdirectorio se usan rutas con `../` (`../manifest.json`, `../img/icons/...`). `sw.js` precachea las 22 URLs del sitemap + los assets compartidos y cachéa el resto bajo demanda (el sitio funciona offline). Al crear una página nueva: replicar también esas etiquetas y añadir su URL a la lista `CORE` de `sw.js`.
 
 ## Verificación rápida de enlaces
 

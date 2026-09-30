@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<script>
+  // Consent Mode v2: denied por defecto
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EGJV0V53RW"></script>
+<script>
+  gtag('js', new Date());
+
+  gtag('config', 'G-EGJV0V53RW');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#0b1f4b">
+<link rel="apple-touch-icon" href="../img/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable">
+<meta name="apple-mobile-web-app-title" content="AgeingLab Tech">
+<title>IA privada en hospitales: guía práctica | AgeingLab Tech</title>
+<meta name="description" content="Cómo desplegar modelos de IA en el propio hospital sin que los datos de los pacientes salgan: casos de uso, infraestructura, hardware y el camino para empezar.">
+<link rel="canonical" href="https://www.ageinglabtech.com/guias/ia-privada-en-hospitales.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IA privada en hospitales: guía práctica | AgeingLab Tech">
+<meta property="og:description" content="Cómo desplegar modelos de IA en el propio hospital sin que los datos de los pacientes salgan: casos de uso, infraestructura, hardware y el camino para empezar.">
+<meta property="og:url" content="https://www.ageinglabtech.com/guias/ia-privada-en-hospitales.html">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="AgeingLab Tech">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IA privada en hospitales: guía práctica | AgeingLab Tech">
+<meta name="twitter:description" content="Cómo desplegar modelos de IA en el propio hospital sin que los datos de los pacientes salgan: casos de uso, infraestructura, hardware y el camino para empezar.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230b1f4b%27/%3E%3Cpath d=%27M14 46 32 16l18 30h-9l-9-16-9 16z%27 fill=%27%233ee0c8%27/%3E%3C/svg%3E">
+<meta property="og:image" content="https://www.ageinglabtech.com/hero-poster.webp">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta name="twitter:image" content="https://www.ageinglabtech.com/hero-poster.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
+<script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Guías","item":"https://www.ageinglabtech.com/guias/"},{"@type":"ListItem","position":3,"name":"IA privada en hospitales: guía práctica","item":"https://www.ageinglabtech.com/guias/ia-privada-en-hospitales.html"}]}</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"IA privada en hospitales: guía práctica",
+  "description":"Cómo desplegar modelos de IA en el propio hospital sin que los datos de los pacientes salgan: casos de uso, infraestructura, hardware y el camino para empezar.",
+  "url":"https://www.ageinglabtech.com/guias/ia-privada-en-hospitales.html",
+  "datePublished":"2026-09-30",
+  "dateModified":"2026-09-30",
+  "inLanguage":"es",
+  "author":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},
+  "isPartOf":{"@type":"WebSite","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"}
+}</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header id="hd"><div class="w">
+<a class="logo" href="/"><img class="logo-mark" src="../img/logo.svg" alt="" width="32" height="32"><span>AgeingLab Tech</span></a>
+<nav aria-label="Principal">
+<a href="/#hacemos">Qué hacemos</a>
+<a href="/#sectores">Sectores</a>
+<a href="../soluciones/">Soluciones</a>
+<a href="../casos-de-exito/">Casos de éxito</a>
+<a href="/#metodo">Cómo trabajamos</a>
+<a href="/#nosotros">Quiénes somos</a>
+<div class="theme" role="group" aria-label="Apariencia"><span class="thumb" aria-hidden="true"></span><button type="button" class="t" data-v="light" aria-pressed="false" title="Tema claro" aria-label="Claro"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg></button><button type="button" class="t" data-v="dark" aria-pressed="false" title="Tema oscuro" aria-label="Oscuro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.2A8.6 8.6 0 1 1 10.8 3.4a6.8 6.8 0 0 0 9.8 9.8z"/></svg></button><button type="button" class="t" data-v="auto" aria-pressed="true" title="Tema automático" aria-label="Automático"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path class="fill" d="M12 3.4a8.6 8.6 0 0 1 0 17.2z"/></svg></button></div>
+</nav>
+<a class="btn" href="/#contacto">Contacto</a>
+<button class="burger" id="bg" aria-expanded="false" aria-label="Abrir menú">Menú</button>
+</div></header>
+
+<main id="main">
+<div class="hero dark case-hero"><div class="w">
+<nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>IA privada en hospitales</span></nav>
+<h1>IA privada en hospitales: guía práctica</h1>
+<p>Cómo desplegar IA en un hospital sin que los datos de los pacientes salgan de la institución: casos de uso, infraestructura y el camino para empezar.</p>
+<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+</div></div>
+
+<section class="s" id="por-que"><div class="w">
+<h2>Por qué la IA privada tiene sentido en un hospital</h2>
+<p class="lead">Un hospital maneja los datos más sensibles que existen: historiales clínicos, resultados de laboratorio, diagnósticos. Por eso enviarlos a una API en la nube de un proveedor externo suele ser una descartada directa. La alternativa es ejecutar los modelos de IA en tu propia infraestructura: los datos no salen del hospital, y la IA sigue trabajando.</p>
+<ul class="plain">
+<li><strong>El dato no sale de la institución:</strong> transcripción, análisis y generación de textos ocurren dentro de la red del hospital.</li>
+<li><strong>Compliance más simple:</strong> al no ceder el dato a un tercero, el mapa de riesgos y la base legal del tratamiento son más fáciles de sostener.</li>
+<li><strong>Sin coste por uso:</strong> no pagas por token a un proveedor externo; el coste es la infraestructura, que es fija y tuya.</li>
+<li><strong>Trazabilidad:</strong> cada uso queda registrado por equipo y caso, con registro de auditoría independiente.</li>
+</ul>
+</div></section>
+
+<section class="s" id="casos-de-uso"><div class="w">
+<h2>Qué puede hacer la IA en un hospital</h2>
+<p class="lead">Estos son los casos de uso que más sentido tienen en un hospital y los que más nos piden. Todos funcionan con modelos abiertos sobre tu propio hardware.</p>
+<div class="why">
+<div><h3>Transcripción clínica privada</h3><p>El profesional habla y el modelo transcribe en el propio entorno del hospital, sin que el audio ni el texto salgan del edificio. Es el mismo reconocedor de voz privado que <a href="../soluciones/#voz">puedes probar en tu navegador</a>.</p></div>
+<div><h3>Agentes conectados a la historia clínica</h3><p>Agentes que consultan la historia clínica, combinan información de varios sistemas y ejecutan acciones: generar resúmenes, redactar informes o preparar documentación para el alta, siempre dentro de los límites que marques.</p></div>
+<div><h3>Resumen y extracción de documentos</h3><p>Extraer y estructurar información de informes clínicos, pruebas y notas de evolución para seguimientos, estudios o alertas, sin pasar el documento por un servicio externo.</p></div>
+<div><h3>Alertas y seguimiento</h3><p>Detectar riesgos y seguir a pacientes en fases críticas —por ejemplo, el <a href="../casos-de-exito/gestion-casos-quirurgicos.html">seguimiento post-operatorio de intervenciones quirúrgicas</a>— con alertas generadas sobre tus propios datos.</p></div>
+<div><h3>Automatización administrativa</h3><p>Informes, documentación, notificaciones y flujos entre sistemas: las tareas repetitivas que consumen tiempo de tu equipo, automatizadas sin mover información fuera.</p></div>
+</div>
+</div></section>
+
+<section class="s" id="infraestructura"><div class="w">
+<h2>La infraestructura, en números</h2>
+<p class="lead">No hace falta un data center. En un proyecto real basta con un servidor en tu red, dentro de la Unión Europea, corriendo modelos abiertos —por ejemplo Qwen 27B y variantes cuantizadas— con registro de uso independiente por equipo y cliente.</p>
+<ul class="plain">
+<li>Un servidor con una GPU de 16 GB de VRAM llega a 20–50 tokens/s con un modelo 27B: suficiente para transcripción, resumen y agentes. Es lo que entregamos en el caso de <a href="../casos-de-exito/ia-local.html">IA local para datos clínicos</a>.</li>
+<li>Red segmentada y tráfico cifrado: la IA vive en un tramo de tu red, no en la de los clínicos.</li>
+<li>Monitorización activa y registro de auditoría por equipo y cliente.</li>
+<li>Nunca alojamos nada en nuestros servidores: la infraestructura es tuya y la elegimos contigo.</li>
+</ul>
+</div></section>
+
+<section class="s" id="como-empezar"><div class="w">
+<h2>Cómo empezar: tres fases</h2>
+<p class="lead">El mismo camino que seguimos en todos los proyectos de IA privada.</p>
+<div class="steps">
+<div class="step"><i>1</i><h3>Diagnóstico</h3><p>Miramos qué IA usas hoy y qué datos maneja tu equipo. Entregamos una auditoría de usos y una hoja de ruta priorizada: qué casos de uso tienen sentido primero y con qué infraestructura.</p></div>
+<div class="step"><i>2</i><h3>Prueba</h3><p>Probamos el sistema con tus propios casos en nuestro servidor de pruebas, sin compromiso todavía. Una prueba suele estar lista en dos o tres semanas.</p></div>
+<div class="step"><i>3</i><h3>Despliegue y mantenimiento</h3><p>Instalamos la infraestructura en tu hardware, dentro de la UE, con un caso de uso en producción. La mantenemos mes a mes: actualizaciones, seguridad, soporte, formación de tu equipo y revisión de la normativa.</p></div>
+</div>
+</div></section>
+
+<section class="s" id="faq"><div class="w">
+<h2>Preguntas frecuentes</h2>
+<div class="steps" style="grid-template-columns:1fr">
+<div class="step"><h3>¿Puedo seguir usando ChatGPT o Copilot en el hospital?</h3><p>Para lo que no sea sensible, sí. Lo práctico es migrar primero los flujos con datos de pacientes a tu infraestructura propia y ampliar desde ahí, a tu ritmo.</p></div>
+<div class="step"><h3>¿Cuánto hardware necesito?</h3><p>Para empezar con modelos 27B, un servidor con una GPU de 16 GB de VRAM es punto de partida razonable. Si no tienes hardware, el diagnóstico incluye dimensionar el servidor adecuado —lo instalas en tus oficinas, no en las nuestras.</p></div>
+<div class="step"><h3>¿Y si no tengo equipo de IA interno?</h3><p>Por eso la fase de diagnóstico existe: dimensionamos la infraestructura mínima, elegimos el hardware y formamos a tu equipo para operar y auditar el sistema.</p></div>
+<div class="step"><h3>¿Quién actualiza los modelos?</h3><p>La fase de mantenimiento mensual: actualizaciones de modelos y seguridad, soporte, revisión de la normativa y formación. No entregamos la infraestructura y desaparecemos.</p></div>
+</div>
+</div></section>
+
+<section class="s" id="relacionados"><div class="w">
+<h2>Casos y servicios relacionados</h2>
+<div class="ind two">
+<a href="../casos-de-exito/ia-local.html">IA local para datos clínicos en un servidor de bajo presupuesto<span>›</span></a>
+<a href="../casos-de-exito/gestion-casos-quirurgicos.html">Plataforma de gestión de casos de intervenciones quirúrgicas<span>›</span></a>
+<a href="../servicios/ia-privada-automatizacion.html">Servicio: IA privada y automatización<span>›</span></a>
+<a href="../soluciones/">Soluciones de IA privada<span>›</span></a>
+</div>
+</div></section>
+
+<section class="cta dark" id="contacto"><div class="w">
+<h2>Empieza por una conversación de treinta minutos</h2>
+<p>Cuéntanos qué necesitas y te decimos honestamente si podemos ayudarte.</p>
+<form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
+<input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
+<input type="hidden" name="_gotcha">
+<input type="hidden" name="_next" value="https://www.ageinglabtech.com/guias/ia-privada-en-hospitales.html?enviado=1">
+<div class="cf-grid">
+<label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
+<label>Tu correo<input type="email" name="email" autocomplete="email" required></label>
+<label>Empresa (opcional)<input type="text" name="empresa"></label>
+<label>¿Qué os interesa?
+<select name="interes" required>
+<option value="" disabled>Elige una opción</option>
+<option value="IA privada y automatización">IA privada y automatización</option>
+<option value="Decisiones con IA">Decisiones con IA</option>
+<option value="Software a medida">Software a medida</option>
+<option value="IoT y hardware">IoT y hardware</option>
+<option value="Interfaces para mayores">Interfaces para mayores</option>
+<option value="Investigación e innovación">Investigación e innovación</option>
+<option value="Soluciones">Soluciones</option>
+<option value="Aún no lo sé" selected>Aún no lo sé</option>
+</select>
+</label>
+<label class="cf-full">Cuéntanos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+</div>
+<div class="cf-actions">
+<button type="submit" class="btn btn-primary">Contactar</button>
+<span class="cf-note">Respondemos en menos de 48 h.</span>
+</div>
+</form>
+</div></section>
+</main>
+
+<footer><div class="w"><div class="cols">
+<div><h3>AgeingLab Tech</h3><p>Te acercamos al futuro desde la ciencia.</p></div>
+<div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a></div>
+<div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
+<div><h3>Empresa</h3><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#nosotros">Quiénes somos</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>
+</div><div class="base">© 2026 AgeingLab Tech · Madrid, España</div></div></footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

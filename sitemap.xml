@@ -19,6 +19,9 @@
   <url><loc>https://www.ageinglabtech.com/casos-de-exito/juegos-cognitivos-madrid.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.ageinglabtech.com/casos-de-exito/ia-local.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.ageinglabtech.com/soluciones/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.ageinglabtech.com/guias/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.ageinglabtech.com/guias/ia-privada-en-hospitales.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.ageinglabtech.com/guias/integrar-fhir.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.ageinglabtech.com/cookies.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <url><loc>https://www.ageinglabtech.com/privacidad.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <url><loc>https://www.ageinglabtech.com/aviso-legal.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>

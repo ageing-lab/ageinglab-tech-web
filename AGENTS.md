@@ -10,7 +10,7 @@ Sitio web corporativo estático de AgeingLab Tech. HTML + CSS + JavaScript vanil
 ## Convenciones que suelen pasar desapercibidas
 
 - **Idioma:** todo el contenido en español (`lang="es"`).
-- **Cada página HTML replica el bloque `<head>` completo** (canonical, Open Graph, Twitter Cards, JSON-LD: Organization/Service/BreadcrumbList). Al crear una página nueva: copiar el `<head>` de una existente, adaptar título/descripción/canonical/JSON-LD y **añadir su URL a `sitemap.xml`** (21 URLs actualmente).
+- **Cada página HTML replica el bloque `<head>` completo** (canonical, Open Graph, Twitter Cards, JSON-LD: Organization/Service/BreadcrumbList). Al crear una página nueva: copiar el `<head>` de una existente, adaptar título/descripción/canonical/JSON-LD y **añadir su URL a `sitemap.xml`** (22 URLs actualmente).
 - **Rutas relativas:** las páginas de subdirectorio (`servicios/`, `soluciones/`, `casos-de-exito/`) refieren a los assets compartidos con `../` (p. ej. `../styles.css`, `../script.js`); las de la raíz sin prefijo.
 - **Enlaces al inicio:** logo, "Inicio", botón de contacto y anclas de la landing apuntan a la raíz absoluta (`/`, `/#contacto`), nunca a `index.html`. Así la barra de dirección queda limpia y `404.html` (servido bajo cualquier ruta) no rompe los enlaces.
 - **`styles.css` y `script.js` son compartidos por todas las páginas**: cualquier cambio afecta al sitio entero.
@@ -18,8 +18,8 @@ Sitio web corporativo estático de AgeingLab Tech. HTML + CSS + JavaScript vanil
 - **Formulario de contacto:** envía directamente a Formspree (`action="https://formspree.io/f/..."` en `index.html`); no hay backend ni API propia.
 - **Imágenes:** WebP para casi todo; `loading="lazy"` en las imágenes; el vídeo del hero lleva `poster` y se pausa si `prefers-reduced-motion`.
 - **Despliegue:** push a la rama que publica GitHub Pages (normalmente `main`); se publica el contenido de la raíz del repo. `CNAME` resuelve el dominio `ageinglabtech.com`; si cambia, actualizar ese archivo.
-- **PWA:** `manifest.json` + `sw.js` (service worker: precachea las 21 URLs del sitemap + assets compartidos y cachéa el resto bajo demanda; el sitio funciona offline). El `<head>` de cada página lleva las etiquetas PWA (`rel="manifest"` — con prefijo `../` en subdirectorios, `theme-color`, `apple-touch-icon`, metas de Apple); al crear una página nueva replicarlas y añadir su URL a `CORE` en `sw.js`.
+- **PWA:** `manifest.json` + `sw.js` (service worker: precachea las 22 URLs del sitemap + assets compartidos y cachéa el resto bajo demanda; el sitio funciona offline). El `<head>` de cada página lleva las etiquetas PWA (`rel="manifest"` — con prefijo `../` en subdirectorios, `theme-color`, `apple-touch-icon`, metas de Apple); al crear una página nueva replicarlas y añadir su URL a `CORE` en `sw.js`.
 
 ## Estructura
 
-`index.html` (landing) + `servicios/` (una página por servicio), `soluciones/`, `casos-de-exito/` (índice + casos). Los assets van en `img/` (subcarpetas `servicios/`, `casos/`, `clientes/`). Ver `README.md` para el detalle.
+`index.html` (landing) + `servicios/` (índice de categoría + una página por servicio), `soluciones/`, `casos-de-exito/` (índice + casos). Los assets van en `img/` (subcarpetas `servicios/`, `casos/`, `clientes/`). Ver `README.md` para el detalle.
