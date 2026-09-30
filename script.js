@@ -139,12 +139,15 @@ s.scrollIntoView({block:'start'});
 });
 });
 
-/* Vídeos de YouTube: la miniatura se incrusta en la página al pulsar (sin JS, el enlace va a YouTube) */
+/* Vídeos de YouTube: la miniatura se incrusta en la página al pulsar.
+   Sin JS, o abriendo el archivo en file:// (sin origen, YouTube da error 153), el enlace va a YouTube. */
 [].forEach.call(document.querySelectorAll('.vplay[data-embed]'),function(a){
 a.addEventListener('click',function(e){
+if(location.protocol==='file:')return;
 e.preventDefault();
-var box=a.parentNode,f=document.createElement('iframe');
-f.src=a.getAttribute('data-embed');
+var src=a.getAttribute('data-embed'),box=a.parentNode,f=document.createElement('iframe');
+if(location.protocol==='http:'||location.protocol==='https:')src+='&origin='+encodeURIComponent(location.origin)+'&widget_referrer='+encodeURIComponent(location.href);
+f.src=src;
 f.title=a.getAttribute('data-title')||'Vídeo de YouTube';
 f.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
 f.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
