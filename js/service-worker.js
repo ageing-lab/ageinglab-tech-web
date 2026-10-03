@@ -1,4 +1,4 @@
-var CACHE='ageinglab-v11';
+var CACHE='ageinglab-v12';
 var CORE=[
 '/',
 '/styles.css',
@@ -11,6 +11,7 @@ var CORE=[
 '/cookies.html',
 '/privacidad.html',
 '/aviso-legal.html',
+'/gracias.html',
 '/img/hero-poster.webp',
 '/fonts/fonts.css',
 '/fonts/bricolage-grotesque-latin-1.woff2',

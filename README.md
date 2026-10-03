@@ -61,11 +61,11 @@ Después abrir `http://localhost:8000` (o el puerto que use el servidor).
 - **Idioma:** español (`lang="es"`).
 - **SEO en cada página:** `canonical`, Open Graph, Twitter Cards y JSON-LD (Organization / Service / BreadcrumbList). Al crear una página nueva, replicar el bloque `<head>` de una página existente y añadir su URL a `sitemap.xml`. Límites: `<title>` ≤ 60 caracteres y `meta description` ≤ 155 (replicados en `og:` y `twitter:`).
 - **Tema:** claro / oscuro / automático, persistido en `localStorage` (`al-theme`). El toggle está en la cabecera de todas las páginas.
-- **Contacto:** formulario vía [Formspree](https://formspree.io) (`index.html`, `action="https://formspree.io/f/..."`). Las respuestas llegan a la cuenta de Formspree.
+- **Contacto:** formulario vía [Formspree](https://formspree.io) (presente en todas las páginas, `action="https://formspree.io/f/..."`). Las respuestas llegan a la cuenta de Formspree; tras el envío, el campo oculto `_next` redirige a `gracias.html`.
 - **Imágenes:** WebP para casi todo. Si se añaden JPG grandes, comprimirlos a WebP (p. ej. con `sharp` o `cwebp`) y actualizar las referencias HTML.
 - **Rendimiento:** las imágenes llevan `loading="lazy"`; el vídeo del hero tiene `poster` y se pausa si `prefers-reduced-motion`.
 - **Tipografías:** auto-hospedadas en `fonts/` (Bricolage Grotesque 500/700 para títulos, Source Sans 3 400/600 para cuerpo), sin CDN. Cada página enlaza `fonts/fonts.css` y hace preload de 2 `.woff2` con la misma ruta relativa que `styles.css` (`../` en subdirectorios); `404.html` usa rutas absolutas porque se sirve bajo cualquier URL.
-- **PWA:** cada página replica las etiquetas PWA en el `<head>` (`rel="manifest"`, `theme-color`, `apple-touch-icon` y metas de Apple); en páginas de subdirectorio se usan rutas con `../` (`../manifest.json`, `../img/icons/...`). `js/service-worker.js` precachea las 30 URLs del sitemap + los assets compartidos y cachéa el resto bajo demanda (el sitio funciona offline). Al crear una página nueva: replicar también esas etiquetas y añadir su URL a la lista `CORE` de `js/service-worker.js`.
+- **PWA:** cada página replica las etiquetas PWA en el `<head>` (`rel="manifest"`, `theme-color`, `apple-touch-icon` y metas de Apple); en páginas de subdirectorio se usan rutas con `../` (`../manifest.json`, `../img/icons/...`). `js/service-worker.js` precachea las 31 URLs del sitemap + los assets compartidos y cachéa el resto bajo demanda (el sitio funciona offline). Al crear una página nueva: replicar también esas etiquetas y añadir su URL a la lista `CORE` de `js/service-worker.js`.
 
 ## Verificación rápida de enlaces
 

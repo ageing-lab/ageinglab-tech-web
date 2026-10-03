@@ -162,9 +162,7 @@ section.s{padding:84px 0;border-top:1px solid var(--line)}
 .contact-form .btn-primary{background:var(--mint);color:#06202a}
 .cf-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 .cf-note{font-size:14px;color:#9fb0d6}
-.cf-ok{max-width:640px;margin-top:8px;padding:22px 24px;border:1px solid rgba(255,255,255,.3);border-radius:2px;background:rgba(255,255,255,.06)}
-.cf-ok .cf-ok-t{color:#fff;font-size:18px;font-weight:600;margin:0 0 8px}
-.cf-ok p{color:#9fb0d6;font-size:15px;margin:0}
+
 .badge-recommended{background:var(--mint);color:#06202a;font-size:11px;font-weight:600;padding:1px 6px;border-radius:2px;margin-left:6px}
 @media (max-width:600px){.cf-grid{grid-template-columns:1fr}}
 footer{padding:48px 0 36px;font-size:16px;color:var(--mute)}

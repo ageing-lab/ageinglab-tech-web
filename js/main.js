@@ -160,19 +160,18 @@ f.focus();
 });
 
 
-/* Estado de éxito tras el redirect de Formspree (?enviado=1) */
-(function(){
-if(!/[?&]enviado=1/.test(location.search))return;
-var f=document.querySelector('.contact-form');
-if(!f)return;
-var box=document.createElement('div');
-box.className='cf-ok';
-box.setAttribute('role','status');
-box.innerHTML='<p class="cf-ok-t">¡Gracias! Hemos recibido tu mensaje.</p><p>Te responderemos en menos de 48 h.</p>';
-f.replaceWith(box);
-var s=box.closest('section');
-if(s)setTimeout(function(){s.scrollIntoView({block:'center'})},0);
-})();
+/* Relleno automático del desplegable "interes": si la página no trae ninguna
+   opción marcada (o marca el placeholder), se elige una sola. */
+[].forEach.call(document.querySelectorAll('.contact-form select[name="interes"]'),function(s){
+if(s.value)return;
+var os=[].slice.call(s.options).filter(function(o){return o.value&&!o.disabled});
+if(!os.length)return;
+var fallback=os.filter(function(o){return o.value==='Aún no lo sé'})[0]||os[0];
+s.value=fallback.value;
+});
+
+
+
 
 /* Equipo: foco de luz que sigue al puntero */
 (function(){
