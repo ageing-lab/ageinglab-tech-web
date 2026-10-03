@@ -1,4 +1,4 @@
-var CACHE='ageinglab-v10';
+var CACHE='ageinglab-v11';
 var CORE=[
 '/',
 '/styles.css',
