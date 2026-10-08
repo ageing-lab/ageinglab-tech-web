@@ -1,7 +1,8 @@
 # Plan: des-IA-izar el copy sin perder SEO ni estructura
 
 Fecha: 2026-10-08
-Estado: pendiente de decidir alcance / tono / ejecución
+Estado: aprobado, en pausa — NO ejecutar sin orden explícita
+Decisiones aprobadas: alcance rojos+amarillos / tono tecnico-concreto / ejecución por lotes
 Origen: análisis de marcas de IA en `index.html`, `soluciones/`, `servicios/`, `casos-de-exito/`, `guias/`
 
 ## 0. Principios (para no romper lo que ya funciona)
@@ -30,25 +31,25 @@ Origen: análisis de marcas de IA en `index.html`, `soluciones/`, `servicios/`, 
 
 ## 2. Lotes propuestos (orden por impacto)
 
-### Lote 1 — Casos rojos (mayor tufo)
-- `casos-de-exito/ia-local.html`: unificar tríada a 1 mención + ficha técnica (16GB, 1.200€, Qwen 27B ya están en aside → referenciar, no repetir). Reescribir `#contexto` circular ("el dato no podía salir, así que la IA tenía que estar dentro").
-- `casos-de-exito/integracion-fhir.html`: deduplicar las 4 frases "basado en el estándar FHIR...", dejar 1 + añadir detalle técnico real del proyecto GMV.
-- `casos-de-exito/gestion-casos-quirurgicos.html`: corregir cacofonía "avisos que avisaran", quitar "integral" o definir qué integra, sustituir "ha impulsado una metodología basada en nuevas tecnologías" por cambio concreto.
+### Lote 1 — Casos rojos (mayor tufo) — EN CURSO, PAUSADO
+- [x] `casos-de-exito/ia-local.html`: unificar tríada a 1 mención + ficha técnica (16GB, 1.200€, Qwen 27B ya están en aside → referenciar, no repetir). Reescribir `#contexto` circular ("el dato no podía salir, así que la IA tenía que estar dentro"). — REALIZADO 2026-10-08: hero, `#resumen` Ahora, resultado `Registro y API local`, `#contexto`, `#problema`, `#solucion` (registro + API), `#resultados`. Ya no queda "trazabilidad, seguridad y disponibilidad" repetida.
+- [~] `casos-de-exito/integracion-fhir.html`: deduplicar las 4 frases "basado en el estándar FHIR...", dejar 1 + añadir detalle técnico real del proyecto GMV. — PARCIAL 2026-10-08: hechos hero, `#resumen` Ahora + Resultado (`Un conector FHIR` / `Sin canales por pareja`), `#contexto`. PENDIENTE: `#solucion` (bullets) y `#resultados`.
+- [ ] `casos-de-exito/gestion-casos-quirurgicos.html`: corregir cacofonía "avisos que avisaran", quitar "integral" o definir qué integra, sustituir "ha impulsado una metodología basada en nuevas tecnologías" por cambio concreto. — NO INICIADO.
 
-### Lote 2 — Servicios rojos
-- `servicios/ia-privada-automatizacion.html`: quitar `no solo... sino`, "para liberar tiempo", "a tu ritmo", "hoja de ruta priorizada" → poner entregables (auditoría = qué documentos, qué límites).
-- `servicios/decisiones-con-ia.html`: eliminar "motor de decisión" (3x), "accionable", "se afinan", "realmente relevantes / descartamos el ruido" → "predicen X con precisión/recall Y validado en tus datos".
+### Lote 2 — Servicios rojos — PENDIENTE, NO EJECUTAR AÚN
+- [ ] `servicios/ia-privada-automatizacion.html`: quitar `no solo... sino`, "para liberar tiempo", "a tu ritmo", "hoja de ruta priorizada" → poner entregables (auditoría = qué documentos, qué límites).
+- [ ] `servicios/decisiones-con-ia.html`: eliminar "motor de decisión" (3x), "accionable", "se afinan", "realmente relevantes / descartamos el ruido" → "predicen X con precisión/recall Y validado en tus datos".
 
-### Lote 3 — Guías
-- `guias/hardware-ia-local.html #no-hagas` + `guias/integrar-fhir.html` (2x `no es...`) + variar los 5 `no un extra`.
-- `guias/software-a-medida-salud.html`: romper paralelismo "X gana cuando... / Y gana cuando..." + `Del problema al software...`.
-- `guias/iot-sensores-domicilio.html`, `interfaces-para-mayores.html`, `transcripcion-clinica-privada.html`: quitar clickbait ("lo que casi nadie..."), aforismos ("Si solo se ha probado en laboratorio, no se ha probado"), tríada final vacía.
+### Lote 3 — Guías — PENDIENTE, NO EJECUTAR AÚN
+- [ ] `guias/hardware-ia-local.html #no-hagas` + `guias/integrar-fhir.html` (2x `no es...`) + variar los 5 `no un extra`.
+- [ ] `guias/software-a-medida-salud.html`: romper paralelismo "X gana cuando... / Y gana cuando..." + `Del problema al software...`.
+- [ ] `guias/iot-sensores-domicilio.html`, `interfaces-para-mayores.html`, `transcripcion-clinica-privada.html`: quitar clickbait ("lo que casi nadie..."), aforismos ("Si solo se ha probado en laboratorio, no se ha probado"), tríada final vacía.
 
-### Lote 4 — Landing + transversales amarillos
-- `index.html:85,120`: fusionar las 2 frases circulares "donde la innovación/tecnología importan" en 1 con sectores reales (salud, envejecimiento, biomedicina + 3 hospitales).
-- `soluciones/index.html:86-94`: deduplicar "privado / no se comparte / dentro de tu entorno" (hoy 4-5x en un bloque → 2x max).
-- `servicios/index.html:98`: corregir bug "Servicios de Construimos..." (es plantilla, no IA, pero canta).
-- `servicios/investigacion-e-innovacion.html`: concretar "track record" con N líneas/proyectos/publicaciones, quitar "que vayan surgiendo".
+### Lote 4 — Landing + transversales amarillos — PENDIENTE, NO EJECUTAR AÚN
+- [ ] `index.html:85,120`: fusionar las 2 frases circulares "donde la innovación/tecnología importan" en 1 con sectores reales (salud, envejecimiento, biomedicina + 3 hospitales).
+- [ ] `soluciones/index.html:86-94`: deduplicar "privado / no se comparte / dentro de tu entorno" (hoy 4-5x en un bloque → 2x max).
+- [ ] `servicios/index.html:98`: corregir bug "Servicios de Construimos..." (es plantilla, no IA, pero canta).
+- [ ] `servicios/investigacion-e-innovacion.html`: concretar "track record" con N líneas/proyectos/publicaciones, quitar "que vayan surgiendo".
 
 ## 3. Verificación por lote
 
@@ -57,8 +58,8 @@ Origen: análisis de marcas de IA en `index.html`, `soluciones/`, `servicios/`, 
 2. Servir en local (`python -m http.server 8000`) + pasada del script de enlaces del `README.md` (skill `verificar-enlaces`) — solo lectura, sin cambios de rutas.
 3. Revisión humana: ¿cada sección responde a *qué se entregó / con qué dato*? Si solo editorializa, recortar.
 
-## 4. Decisiones pendientes
+## 4. Decisiones (cerradas 2026-10-08)
 
-1. Alcance: solo rojos / rojos+amarillos (recomendado) / sitio completo.
-2. Tono referencia: técnico-concreto (recomendado) / cercano-humano / institucional UPM.
-3. Ejecución: por lotes (recomendado) / todo de golpe / solo plan.
+1. Alcance: rojos+amarillos.
+2. Tono referencia: tecnico-concreto.
+3. Ejecución: por lotes, actualmente PAUSADA por el usuario. No continuar con Lote 1 pendiente ni Lotes 2-4 sin orden explícita.
