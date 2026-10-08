@@ -102,7 +102,7 @@
 <div><h3>Memoria de vídeo (VRAM)</h3><p>Es la que manda. El modelo y sus pesos cargan en la GPU: si no cabe la VRAM, el modelo no funciona a la velocidad que necesitas. Para un modelo 27B en cuantización de 4 bits, 16 GB de VRAM es el punto de partida que usamos en nuestros proyectos.</p></div>
 <div><h3>El modelo y su cuantización</h3><p>Los modelos de pesos abiertos —por ejemplo Qwen 27B— se pueden cuantizar a 4 o 8 bits: se pierde una pequeña calidad a cambio de caber en menos memoria. La cuantización es la diferencia entre un equipo de gama media y uno de gama alta para el mismo trabajo.</p></div>
 <div><h3>RAM y disco</h3><p>La RAM del sistema tiene que aguantar la carga del modelo y el tráfico de trabajo; el disco, los pesos de varios modelos y los registros de uso. No son el cuello de botella, pero no los ignores.</p></div>
-<div><h3>Red segmentada</h3><p>El servidor vive en un tramo de tu red, no en la de los usuarios. La segmentación y el tráfico cifrado son parte del diseño, no un extra.</p></div>
+<div><h3>Red segmentada</h3><p>El servidor vive en un tramo de tu red, no en la de los usuarios. La segmentación y el tráfico cifrado son parte del diseño del servidor.</p></div>
 </div>
 </div></section>
 
@@ -123,8 +123,8 @@
 <div class="why">
 <div><h3>No hace falta un data center</h3><p>Un servidor de sobremesa en tu red resuelve la mayoría de casos de uso. Escalar después, si el uso lo pide, es más barato que dimensionar mal al principio.</p></div>
 <div><h3>No hace falta pagar por token</h3><p>El coste es la infraestructura, fija y tuya. No hay coste de uso que crezca con el volumen de trabajo.</p></div>
-<div><h3>No hace falta comprar la GPU más cara</h3><p>Si tu caso de uso cabe en un modelo 27B cuantizado, una GPU de 16 GB de VRAM es suficiente. La primera decisión es el caso de uso, no la tarjeta.</p></div>
-<div><h3>No hace falta un equipo de IA propio</h3><p>En el diagnóstico dimensionamos el servidor, elegimos el hardware y formamos a tu equipo para operar y auditar el sistema. No entregamos el servidor y desaparecemos.</p></div>
+<div><h3>16 GB de VRAM cubren un 27B cuantizado</h3><p>En el caso real, una GPU RTX 5060 Ti de 16 GB de VRAM, en torno a 1.200 €, corre Qwen 27B cuantizado. La primera decisión es el caso de uso, no la tarjeta.</p></div>
+<div><h3>Cuándo sí hace falta más</h3><p>Si el caso de uso necesita un modelo mayor, se recalcula la VRAM y se escala el servidor después: es más barato que dimensionar mal al principio. En el diagnóstico te dimensionamos el equipo y formamos a tu equipo para operar y auditar el sistema.</p></div>
 </div>
 </div></section>
 
@@ -142,7 +142,7 @@
 <div class="steps" style="grid-template-columns:1fr">
 <div class="step"><h3>¿Cuánto cuesta el hardware?</h3><p>Depende del modelo y del caso de uso, pero un punto de partida razonable para modelos 27B es un servidor con una GPU de 16 GB de VRAM: en nuestro caso real, en torno a 1.200 € de presupuesto.</p></div>
 <div class="step"><h3>¿Qué pasa si mi caso necesita un modelo más grande?</h3><p>Se mira el siguiente tamaño de modelo y se recalcula la VRAM. La lógica es la misma: caso de uso, modelo, cuantización y memoria. Lo dimensionamos en el diagnóstico.</p></div>
-<div class="step"><h3>¿Puedo usar la nube para las partes no sensibles?</h3><p>Sí, y es lo que hacemos en la práctica: se migran primero los flujos con datos sensibles a tu infraestructura y el resto se deja donde esté, a tu ritmo.</p></div>
+<div class="step"><h3>¿Puedo usar la nube para las partes no sensibles?</h3><p>Sí, y es lo que hacemos en la práctica: se migran primero los flujos con datos sensibles a tu infraestructura y el resto se deja donde esté, caso a caso.</p></div>
 <div class="step"><h3>¿Quién lo actualiza después?</h3><p>La fase de mantenimiento mensual: actualizaciones de modelos y seguridad, soporte, revisión de la normativa y formación de tu equipo.</p></div>
 </div>
 </div></section>

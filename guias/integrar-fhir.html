@@ -94,7 +94,7 @@
 <p class="lead">FHIR (Fast Healthcare Interoperability Resources) es el estándar de HL7 para el intercambio de datos de salud. Frente a los formatos legados, FHIR es moderno: recursos JSON, API REST y un modelo de datos pensado para la web. En la práctica, un sistema FHIR expone recursos como <em>Patient</em>, <em>Observation</em>, <em>Condition</em>, <em>Encounter</em> o <em>MedicationRequest</em>, y cualquier otro sistema que hable FHIR puede consultarlos o publicarlos con las mismas reglas.</p>
 <ul class="plain">
 <li><strong>API REST + JSON:</strong> las mismas mecánicas que cualquier API web moderna, con versionado (R4, R5) y cabeceras estándar.</li>
-<li><strong>Recursos tipados:</strong> el dato no es un blob sino un recurso con semántica definida, lo que permite interoperar sin acoplarse a una plataforma concreta.</li>
+<li><strong>Recursos tipados:</strong> cada dato es un recurso FHIR con semántica definida, lo que permite interoperar sin acoplarse a una plataforma concreta.</li>
 <li><strong>Acceso autorizado:</strong> SMART on FHIR define cómo conceder acceso a los recursos (OAuth 2, consentimiento del paciente, scopes por recurso).</li>
 </ul>
 </div></section>
@@ -116,8 +116,8 @@
 <div class="step"><i>1</i><h3>Define el alcance de los datos</h3><p>Qué recursos necesitas exponer y cuáles consumir: pacientes, observaciones, diagnósticos, citas, medicación. Empezar con un subconjunto pequeño es lo que permite que la integración se apruebe.</p></div>
 <div class="step"><i>2</i><h3>Elige la arquitectura</h3><p>¿Un servidor FHIR propio (por ejemplo, HAPI FHIR o un motor open source equivalente), una capa de integración entre tus sistemas, o exponer FHIR desde tu plataforma actual? Depende de qué sistemas ya existen y de quién es dueño de cada dato.</p></div>
 <div class="step"><i>3</i><h3>Mapea tu modelo de datos a recursos FHIR</h3><p>Cada campo de tu sistema se mapea a un recurso y a sus campos definidos. Es el paso donde más vive la integración: hacerlo bien al principio ahorra meses de parches.</p></div>
-<div class="step"><i>4</i><h3>Exponde la API REST con las reglas FHIR</h3><p>Endpoints por recurso, versionado, manejo de errores estándar y búsquedas. Tu sistema pasa a ser una parte más del ecosistema FHIR, no una isla.</p></div>
-<div class="step"><i>5</i><h3>Resuelve la autorización</h3><p>SMART on FHIR: OAuth 2, scopes por recurso y consentimiento del paciente. Quién puede leer qué, y con qué permiso, es parte de la integración, no un extra.</p></div>
+<div class="step"><i>4</i><h3>Exponde la API REST con las reglas FHIR</h3><p>Endpoints por recurso, versionado, manejo de errores estándar y búsquedas. Tu sistema pasa a ser una parte más del ecosistema FHIR.</p></div>
+<div class="step"><i>5</i><h3>Resuelve la autorización</h3><p>SMART on FHIR: OAuth 2, scopes por recurso y consentimiento del paciente. Quién puede leer qué, y con qué permiso, forma parte del alcance de la integración.</p></div>
 <div class="step"><i>6</i><h3>Seguridad y privacidad</h3><p>Transporte cifrado (TLS), control de acceso por recurso, registro de auditoría de cada lectura y escritura, y pseudonimización cuando el flujo lo permita.</p></div>
 <div class="step"><i>7</i><h3>Prueba con casos reales</h3><p>Interoperabilidad con el servidor FHIR de la otra parte, casos de uso clínicos de verdad y un test de conformidad antes de producción.</p></div>
 </div>
@@ -126,7 +126,7 @@
 <section class="s" id="errores"><div class="w">
 <h2>Errores comunes al integrar con FHIR</h2>
 <ul class="plain">
-<li><strong>Tratar FHIR como si fuera solo una base de datos:</strong> FHIR es un servicio (API, semántica, acceso), no un volcado de tablas. Si lo implementas como un dump, pierdes el valor de la interoperabilidad.</li>
+<li><strong>Tratar FHIR como si fuera solo una base de datos:</strong> FHIR es un servicio: API, semántica y acceso. Implementarlo como un volcado de tablas (un dump) pierde esa semántica y esa autorización.</li>
 <li><strong>Omitir la autorización:</strong> exponer recursos sin SMART on FHIR o sin control de acceso por recurso es el error de seguridad más frecuente en despliegues.</li>
 <li><strong>Empezar con todo el alcance:</strong> intentar exponer todos los recursos de la historia clínica a la vez suele frenar el proyecto. Un piloto con pocos recursos y casos de uso reales es mucho más rápido de aprobar.</li>
 <li><strong>Versión desalineada entre las partes:</strong> un sistema en R4 y otro en R5 generan incompatibilidades silenciosas. Fijar la versión y testearla es parte del alcance.</li>
@@ -136,7 +136,7 @@
 
 <section class="s" id="caso"><div class="w">
 <h2>Un caso real</h2>
-<p class="lead">En un proyecto con GMV desarrollamos un sistema basado en el estándar FHIR para que el historial clínico se comunique entre sistemas de salud de forma estándar, sin acoplarse a una sola plataforma. <a href="../casos-de-exito/integracion-fhir.html">El caso completo, con el problema y la solución, está aquí</a>.</p>
+<p class="lead">En un proyecto con GMV desarrollamos un servicio FHIR para el historial clínico: cualquier sistema que hable FHIR se conecta al mismo servicio, sin un canal por cada par de sistemas. <a href="../casos-de-exito/integracion-fhir.html">El caso completo, con el problema y la solución, está aquí</a>.</p>
 </div></section>
 
 <section class="s" id="relacionados"><div class="w">
