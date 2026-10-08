@@ -425,14 +425,29 @@ html[data-sim="mayor"] .contact-form textarea{height:96px;min-height:0}
 html[data-sim="mayor"] .cf-actions .btn-primary{padding:15px 30px;font-size:clamp(20px,2vw,23px);border-radius:8px}
 html[data-sim="mayor"] .cta p{margin:12px 0 18px}
 
-/* Navegación inferior: Atrás | Salir | Siguiente */
-html[data-sim="mayor"] .simnav{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px;align-items:stretch;padding:16px 28px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--bg)}
+/* Navegación inferior: Leer | Atrás | Salir | Siguiente | Alto contraste */
+html[data-sim="mayor"] .simnav{display:grid;grid-template-columns:1fr 1fr 1.25fr 1fr 1fr;gap:14px;align-items:stretch;padding:16px 28px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--bg)}
 .sim-prog{grid-column:1/-1;margin:0;text-align:center;font-weight:600;font-size:clamp(18px,1.9vw,21px);color:var(--ink)}
 .simnav .sim-b{min-height:58px;padding:12px 26px;border-radius:12px;font-size:clamp(20px,2.1vw,23px);font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;line-height:1.2}
 .simnav .sim-prev .sim-ar{order:-1}
 .simnav .sim-prev,.simnav .sim-next{background:var(--navy);color:#fff;border:2px solid var(--mint)}
 .simnav .sim-exit{background:var(--accent);color:var(--ck-ink);border:2px solid var(--accent);font-size:clamp(22px,2.3vw,25px);padding:14px 26px}
+.simnav .sim-read,.simnav .sim-con{background:var(--bg);color:var(--ink);border:2px solid var(--line)}
+.simnav .sim-read[aria-pressed="true"],.simnav .sim-con[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--mint)}
+.simnav .sim-ico{flex:none;display:grid;place-items:center;width:26px;height:26px}
 .simnav .sim-b:disabled{opacity:.35;cursor:default}
+
+/* Alto contraste (solo dentro del modo simulación) */
+html[data-sim="mayor"][data-contrast="alto"]{--bg:#000;--soft:#000;--ink:#fff;--mute:#fff;--line:#fff;--accent:#fff;--navy:#000;--mint:#fff;--ck-ink:#000}
+html[data-sim="mayor"][data-contrast="alto"] .hero,html[data-sim="mayor"][data-contrast="alto"] .cta,html[data-sim="mayor"][data-contrast="alto"] .prueba{background:#000;box-shadow:none}
+html[data-sim="mayor"][data-contrast="alto"] .hero::before{display:none}
+html[data-sim="mayor"][data-contrast="alto"] .hero p,html[data-sim="mayor"][data-contrast="alto"] .cta p,html[data-sim="mayor"][data-contrast="alto"] .cf-grid label{color:#fff}
+html[data-sim="mayor"][data-contrast="alto"] .contact-form input,html[data-sim="mayor"][data-contrast="alto"] .contact-form select,html[data-sim="mayor"][data-contrast="alto"] .contact-form textarea{background:#000;border-color:#fff;color:#fff}
+html[data-sim="mayor"][data-contrast="alto"] .contact-form .btn-primary{background:#fff;color:#000}
+html[data-sim="mayor"][data-contrast="alto"] .pr-c{background:#000;color:#fff}
+html[data-sim="mayor"][data-contrast="alto"] .step i{background:#fff;color:#000}
+html[data-sim="mayor"][data-contrast="alto"] .simnav .sim-read,html[data-sim="mayor"][data-contrast="alto"] .simnav .sim-con{background:#000;color:#fff;border-color:#fff}
+html[data-sim="mayor"][data-contrast="alto"] .simnav .sim-read[aria-pressed="true"],html[data-sim="mayor"][data-contrast="alto"] .simnav .sim-con[aria-pressed="true"]{background:#fff;color:#000;border-color:#fff}
 
 /* Aviso de cookies reubicado arriba para no tapar la navegación */
 html[data-sim="mayor"] .cookies{top:76px;bottom:auto}
@@ -481,13 +496,16 @@ html[data-sim="mayor"] .cf-grid label{font-size:17px;gap:4px}
 html[data-sim="mayor"] .contact-form input,html[data-sim="mayor"] .contact-form select{font-size:17px;padding:11px 12px}
 html[data-sim="mayor"] .contact-form textarea{font-size:17px;padding:10px 12px;height:64px;min-height:0}
 html[data-sim="mayor"] .cf-actions .btn-primary{padding:13px 22px;font-size:19px}
-html[data-sim="mayor"] .simnav{padding:8px 14px calc(8px + env(safe-area-inset-bottom,0px));gap:6px}
+html[data-sim="mayor"] .simnav{padding:8px 14px calc(8px + env(safe-area-inset-bottom,0px));gap:6px;grid-template-columns:repeat(3,1fr)}
 html[data-sim="mayor"] .simnav .sim-b{min-height:52px;padding:8px 10px;border-radius:10px;font-size:19px;flex-direction:column;gap:2px}
 html[data-sim="mayor"] .simnav .sim-prev .sim-ar{order:0}
 html[data-sim="mayor"] .sim-ar{font-size:.85em;line-height:1}
 html[data-sim="mayor"] .sim-prog{font-size:17px}
 html[data-sim="mayor"] .steps{margin-top:12px}
 html[data-sim="mayor"] .step{padding:11px 14px}
+}
+@media (max-width:400px){
+html[data-sim="mayor"] .simnav{grid-template-columns:repeat(2,1fr)}
 }
 
 /* Equipo (staff) */

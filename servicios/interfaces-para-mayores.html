@@ -116,8 +116,8 @@
 <!-- INICIO demo simulación -->
 <section class="s" id="demo-sim" data-slide="4"><div class="w">
 <h2 data-sim-text="Así se vería esta web">Prueba cómo la vería una persona mayor</h2>
-<p class="lead" data-sim-text="Letra grande, frases cortas y sin scroll.">Pulsa el botón y verás esta misma página con letra grande, textos cortos y sin scroll, como la vería una persona mayor.</p>
-<p class="si-nota" data-sim-text="Una simulación orientativa, no una auditoría."><strong>Es una simulación.</strong> Aplica a esta página algunos de los rasgos de una interfaz para personas mayores: tipografía grande, frases cortas y limitación de elementos en pantalla; no sustituye la evaluación de usabilidad ni las pruebas con usuarios reales. Todo ocurre en tu navegador.</p>
+<p class="lead" data-sim-text="Letra grande, frases cortas, lectura en voz alta y alto contraste.">Pulsa el botón y verás esta misma página con letra grande, textos cortos y sin scroll, como la vería una persona mayor. Dentro de la simulación puedes leer la pantalla en voz alta (botón «Leer») y activar el modo de alto contraste (botón «Contraste»).</p>
+<p class="si-nota" data-sim-text="Una simulación orientativa, no una auditoría."><strong>Es una simulación.</strong> Aplica a esta página algunos de los rasgos de una interfaz para personas mayores: tipografía grande, frases cortas, limitación de elementos en pantalla, lectura de la pantalla en voz alta y modo de alto contraste; no sustituye la evaluación de usabilidad ni las pruebas con usuarios reales. Todo ocurre en tu navegador.</p>
 <details class="prueba">
 <summary>
 <span class="pr-dot" aria-hidden="true"></span>
@@ -214,9 +214,11 @@ html[data-sim="mayor"] #demo-sim .btn.sim-go{display:none}
 
 <div class="simnav" id="simnav">
 <p class="sim-prog" id="simprog" aria-live="polite"></p>
+<button type="button" class="sim-b sim-read" id="simread" aria-pressed="false" title="Leer la pantalla en voz alta"><span class="sim-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></span><span class="sim-l">Leer</span></button>
 <button type="button" class="sim-b sim-prev" id="simprev"><span class="sim-l">Atrás</span><span class="sim-ar" aria-hidden="true">&larr;</span></button>
 <button type="button" class="sim-b sim-exit" id="simexit">Salir</button>
 <button type="button" class="sim-b sim-next" id="simnext"><span class="sim-l">Siguiente</span><span class="sim-ar" aria-hidden="true">&rarr;</span></button>
+<button type="button" class="sim-b sim-con" id="simcontrast" aria-pressed="false" title="Alto contraste"><span class="sim-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></span><span class="sim-l">Contraste</span></button>
 </div>
 
 <script src="../js/main.js"></script>
