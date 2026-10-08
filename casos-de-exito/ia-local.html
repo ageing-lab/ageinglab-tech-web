@@ -74,7 +74,7 @@
 <div class="hero dark case-hero"><div class="w">
 <nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../casos-de-exito/" style="color:var(--mu)">Casos de éxito</a> <span aria-hidden="true">/</span> <span>IA local</span></nav>
 <h1>IA local para datos clínicos en un servidor de bajo presupuesto</h1>
-<p>Desarrollamos un sistema de IA local para trabajar con datos clínicos sin que salgan del edificio: un pequeño servidor con una GPU de 16 GB, modelos open weight como Qwen 27B y un stack que garantiza la trazabilidad, la seguridad y la disponibilidad del servicio.</p>
+<p>Desarrollamos un sistema de IA local para trabajar con datos clínicos sin que salgan del edificio: un servidor de ≈1.200 € con GPU RTX 5060 Ti de 16 GB, modelo Qwen 27B a 20–50 tokens/s, con registro de peticiones y acceso por API desde las herramientas del equipo.</p>
 <a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
 </div></div>
 
@@ -82,8 +82,8 @@
 <h2>De un vistazo</h2>
 <ol class="ba">
 <li><span class="k">Antes</span><h3>Sin IA disponible para datos clínicos</h3><p>Los datos clínicos no podían salir del edificio, así que no era posible apoyarse en servicios de IA en la nube para las tareas de desarrollo.</p></li>
-<li><span class="k">Ahora</span><h3>IA local en un pequeño servidor</h3><p>Un servidor con una GPU de 16 GB, dentro de un presupuesto muy ajustado, que ejecuta modelos open weight y cuenta con un stack que asegura la trazabilidad del dato, su seguridad y la disponibilidad del servicio.</p></li>
-<li class="res"><span class="k">Resultado</span><ul><li><strong>20–50 tokens/s</strong><span>con un modelo open weight de 27B (Qwen, denso)</span></li><li><strong>≈1.200 €</strong><span>presupuesto de todo el servidor</span></li><li><strong>100 %</strong><span>del dato clínico permanece dentro del edificio</span></li><li><strong>Trazabilidad, seguridad y disponibilidad</strong><span>aseguradas por el stack del sistema</span></li></ul></li>
+<li><span class="k">Ahora</span><h3>IA local en un servidor propio</h3><p>Un servidor de ≈1.200 € con GPU de 16 GB, dentro de la red interna, que ejecuta Qwen 27B a 20–50 tokens/s con registro de cada petición.</p></li>
+<li class="res"><span class="k">Resultado</span><ul><li><strong>20–50 tokens/s</strong><span>con un modelo open weight de 27B (Qwen, denso)</span></li><li><strong>≈1.200 €</strong><span>presupuesto de todo el servidor</span></li><li><strong>100 %</strong><span>del dato clínico permanece dentro del edificio</span></li><li><strong>Registro y API local</strong><span>peticiones con log y acceso desde Copilot, Opencode y chat interno</span></li></ul></li>
 </ol>
 </div></section>
 
@@ -91,18 +91,18 @@
 <h2>Contexto</h2>
 <div class="detail">
 <aside><div class="who stat word"><strong>16 GB de VRAM</strong><span>a 20–50 tokens/s con un modelo 27B denso</span></div><dl class="facts"><div><dt>Ámbito</dt><dd>IA local para datos clínicos</dd></div><div><dt>Uso</dt><dd>Tareas de desarrollo donde el dato no puede salir</dd></div><div><dt>Hardware</dt><dd>Pequeño servidor con GPU NVIDIA RTX Geforce 5060 Ti (16 GB de VRAM)</dd></div><div><dt>Modelo</dt><dd>Qwen 27B (denso, open weight)</dd></div><div><dt>Servicios</dt><dd><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a> · <a href="../servicios/software-a-medida.html">Software a medida</a></dd></div></dl></aside>
-<div class="txt"><p>Para utilizar datos clínicos se necesitaba una instalación de IA local: el dato no podía salir, así que la IA tenía que estar dentro del edificio.</p><p>Desarrollamos un sistema de IA local sobre un pequeño servidor, con un presupuesto muy ajustado, que garantice la trazabilidad del dato, su seguridad y la disponibilidad del servicio.</p></div>
+<div class="txt"><p>El equipo necesitaba usar IA en tareas de desarrollo con datos clínicos que, por requisito del centro, no podían enviarse a servicios en la nube.</p><p>Montamos el sistema sobre un servidor de ≈1.200 €: GPU RTX 5060 Ti de 16 GB, Qwen 27B a 20–50 tokens/s y registro de cada petición.</p></div>
 </div>
 </div></section>
 
 <section class="s" id="problema"><div class="w">
 <h2>Problema</h2>
-<div class="txt"><p>Las tareas de desarrollo trabajaban con datos clínicos que no podían salir del edificio: enviarlos a un servicio de IA en la nube no era una opción viable.</p><p>Además, la solución tenía que caber en un presupuesto muy ajustado (en torno a 1.200 €) y, aun así, ser capaz de ejecutar un modelo grande con garantías de trazabilidad, seguridad y disponibilidad del servicio.</p></div>
+<div class="txt"><p>Las tareas de desarrollo trabajaban con datos clínicos que no podían salir del edificio: enviarlos a un servicio de IA en la nube no era una opción viable.</p><p>Además, la solución tenía que caber en ≈1.200 € y, aun así, ejecutar un modelo de 27B con registro de uso y servicio disponible en la red interna.</p></div>
 </div></section>
 
 <section class="s" id="solucion"><div class="w">
 <h2>Solución</h2>
-<div class="txt"><p>Diseñamos y montamos el sistema de IA local sobre un pequeño servidor. El trabajo incluyó:</p><ul class="plain"><li>Montaje de un pequeño servidor con una GPU NVIDIA RTX Geforce 5060 Ti de 16 GB de VRAM, dentro de un presupuesto muy ajustado (en torno a 1.200 €).</li><li>Despliegue de modelos open weight, como Qwen 27B (denso), que ejecutamos con velocidades de 20–50 tokens por segundo.</li><li>Creación de un stack que asegura la trazabilidad del dato, su seguridad y la disponibilidad del servicio.</li><li>Conexión a las herramientas de trabajo del equipo: GitHub Copilot, Opencode, agentes y chatbots, que consumen el modelo local a través de la API del servidor.</li><li>Puesta en servicio para tareas de desarrollo donde el dato no puede salir del edificio.</li></ul>
+<div class="txt"><p>Montamos el sistema en un servidor propio. El trabajo incluyó:</p><ul class="plain"><li>Montaje de un servidor con GPU NVIDIA RTX Geforce 5060 Ti de 16 GB de VRAM, por ≈1.200 € en total.</li><li>Despliegue de Qwen 27B (denso, open weight) a 20–50 tokens por segundo.</li><li>Registro de peticiones y control de acceso en la red interna, con el modelo expuesto por API.</li><li>Conexión a las herramientas de trabajo del equipo: GitHub Copilot, Opencode, agentes y chatbots, que consumen el modelo local a través de la API del servidor.</li><li>Puesta en servicio para tareas de desarrollo donde el dato no puede salir del edificio.</li></ul>
 <figure class="shot"><img src="../img/casos/ia_local_nvidia.webp" alt="Pequeño servidor del sistema de IA local, con la placa de vídeo NVIDIA RTX Geforce 5060 Ti de 16 GB montada en su interior" width="1011" height="417" loading="lazy" decoding="async"><figcaption>El pequeño servidor con la GPU NVIDIA RTX Geforce 5060 Ti (16 GB de VRAM).</figcaption></figure>
 <figure class="shot"><img src="../img/casos/ia_local_velocidad_tokens.webp" alt="Medición de la velocidad de generación del modelo local: velocidad de salida de tokens por segundo" width="841" height="154" loading="lazy" decoding="async"><figcaption>Velocidad medida del sistema: 20–50 tokens/s con el modelo open weight de 27B.</figcaption></figure>
 <p>Es el tipo de trabajo que hacemos en <a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a>.</p><p class="rel"><a href="../guias/ia-privada-en-hospitales.html">Si llevas esto al hospital, hay una guía práctica: IA privada en hospitales</a></p></div>
@@ -110,7 +110,7 @@
 
 <section class="s" id="resultados"><div class="w">
 <h2>Resultados</h2>
-<div class="txt"><p>El equipo trabaja en sus tareas de desarrollo con datos clínicos que no salen nunca del edificio: la IA corre en un servidor propio, con un modelo open weight de 27B que responde a 20–50 tokens por segundo.</p><p>El stack del sistema asegura la trazabilidad del dato, su seguridad y la disponibilidad del servicio, y todo el conjunto cabe en un presupuesto en torno a los 1.200 €.</p></div>
+<div class="txt"><p>El equipo trabaja en sus tareas de desarrollo con datos clínicos que no salen nunca del edificio: la IA corre en un servidor propio, con Qwen 27B que responde a 20–50 tokens por segundo.</p><p>Cada petición queda registrada, el acceso queda limitado a la red interna y todo el hardware cuesta ≈1.200 €.</p></div>
 </div></section>
 
 <section class="s" id="otros"><div class="w">
