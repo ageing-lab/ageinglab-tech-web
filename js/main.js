@@ -107,8 +107,6 @@ on=false;
 stopSpeech();
 readOn=false;
 readBtn.setAttribute('aria-pressed','false');
-readBtn.classList.remove('talking');
-readLbl.textContent='Leer';
 root.removeAttribute('data-sim');
 texts.forEach(function(el){
 el.innerHTML=el._simHtml;
@@ -123,27 +121,41 @@ btn.addEventListener('click',function(){enter(1)});
 prev.addEventListener('click',function(){go(cur-1)});
 next.addEventListener('click',function(){go(cur+1)});
 exitB.addEventListener('click',leave);
-/* Lector de pantalla: lee la pantalla visible en voz alta (Web Speech API) */
+/* Lector de pantalla: lee la pantalla visible en voz alta, elemento a
+   elemento, y resalta con .sim-hl lo que se está escuchando (Web Speech API) */
 var synth=window.speechSynthesis||null;
 var readOn=false,readTok=0;
 var readBtn=document.getElementById('simread');
 var readLbl=readBtn?readBtn.querySelector('.sim-l'):null;
-function stopSpeech(){readTok++;if(synth)synth.cancel()}
+function clearHl(){[].slice.call(root.querySelectorAll('.sim-hl')).forEach(function(e){e.classList.remove('sim-hl')})}
+function readUI(talking){readBtn.classList.toggle('talking',talking);if(readLbl)readLbl.textContent=talking?'Escuchando':'Leer'}
+function stopSpeech(){readTok++;if(synth)synth.cancel();clearHl();readUI(false)}
 function readScreen(){
 if(!synth||!readOn)return;
-readTok++;
+var my=++readTok;
+synth.cancel();
+clearHl();
 var s=slideEl(cur);
-var tx=s?s.innerText.replace(/\s+/g,' ').trim():'';
-if(!tx)return;
+if(!s)return;
+var els=[].slice.call(s.querySelectorAll('h1,h2,h3,p,li,summary,label,button'));
+var items=[];
+els.forEach(function(el){var t=el.textContent.replace(/\s+/g,' ').trim();if(t)items.push([el,t])});
+if(!items.length)return;
+var i=0;
+function pick(u){var vs=synth.getVoices();for(var j=0;j<vs.length;j++){if(vs[j].lang&&vs[j].lang.toLowerCase().indexOf('es')===0){u.voice=vs[j];break}}}
+function step(){
+if(i>=items.length||my!==readTok)return;
+var el=items[i][0],tx=items[i][1];
+el.classList.add('sim-hl');
+readUI(true);
 var u=new SpeechSynthesisUtterance(tx);
 u.lang='es-ES';
-var vs=synth.getVoices();
-for(var i=0;i<vs.length;i++){if(vs[i].lang&&vs[i].lang.toLowerCase().indexOf('es')===0){u.voice=vs[i];break}}
-u.onstart=function(){readBtn.classList.add('talking');if(readLbl)readLbl.textContent='Escuchando'};
-u.onend=function(){readBtn.classList.remove('talking');if(readLbl)readLbl.textContent='Leer'};
-u.onerror=function(){readBtn.classList.remove('talking');if(readLbl)readLbl.textContent='Leer'};
-synth.cancel();
+pick(u);
+u.onend=function(){if(my!==readTok)return;el.classList.remove('sim-hl');i++;if(i<items.length)step();else readUI(false)};
+u.onerror=function(){if(my!==readTok)return;el.classList.remove('sim-hl');readUI(false)};
 synth.speak(u);
+}
+step();
 }
 readBtn.addEventListener('click',function(){
 readOn=!readOn;

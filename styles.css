@@ -436,6 +436,7 @@ html[data-sim="mayor"] .simnav{display:grid;grid-template-columns:1fr 1fr 1.25fr
 .simnav .sim-read[aria-pressed="true"],.simnav .sim-con[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--mint)}
 .simnav .sim-ico{flex:none;display:grid;place-items:center;width:26px;height:26px}
 .simnav .sim-b:disabled{opacity:.35;cursor:default}
+html[data-sim="mayor"] .sim-hl{background:var(--mint);color:#06202a;border-radius:4px}
 
 /* Alto contraste (solo dentro del modo simulación) */
 html[data-sim="mayor"][data-contrast="alto"]{--bg:#000;--soft:#000;--ink:#fff;--mute:#fff;--line:#fff;--accent:#fff;--navy:#000;--mint:#fff;--ck-ink:#000}

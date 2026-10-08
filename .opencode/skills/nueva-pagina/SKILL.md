@@ -26,7 +26,19 @@ No hay CMS ni plantillas: cada HTML es independiente y replica el `<head>` compl
 4. **Rutas**: páginas en subdirectorio usan `../` para assets compartidos (`../styles.css`, `../js/main.js`, `../img/...`); la raíz, sin prefijo. Los enlaces al inicio (logo, "Inicio", anclas de la landing) usan siempre la raíz absoluta: `/` y `/#seccion` (nunca `index.html` ni `../index.html`).
 5. **Imágenes**: WebP en `img/servicios/` o `img/casos/`, siempre con `loading="lazy"`.
 6. **Miga de pan** en el hero: `<nav aria-label="Miga de pan">` con enlaces relativos (`../`), salvo "Inicio" que apunta a `/`.
-7. **Contenido en español** (`lang="es"`), mismo estilo redaccional que el resto del sitio.
+7. **Contenido en español** (`lang="es"`), mismo estilo redaccional que el resto del sitio (ver "Redacción" abajo).
+
+## Redacción: que no se note que lo ha escrito una IA
+
+El texto debe parecer escrito por el equipo: directo, corto y concreto, como el del resto del sitio.
+
+- Frase corta y directa por bloques: sujeto + verbo + qué se hace. Sin relleno ni subordinadas encadenadas.
+- Concreto donde hay datos reales (SUS, adherencia, número de casos, UPM, CTB); si no hay dato, no inventar cifras ni porcentajes.
+- Sin clichés de marketing o IA: "soluciones innovadoras", "en el mundo actual", "potenciar", "transformar", "ecosistema", "imprescindible", "de cara al futuro", "elevamos a un nuevo nivel".
+- Sin triadas vacías ("rápido, fácil y confiable"), sin exclamaciones ni imperativos de venta ("¡Descubre!", "No lo pierdas").
+- Sin superlativos sin sustento ("el mejor", "referente"); si se afirma algo, que sea comprobable o esté en la investigación de AgeingLab.
+- Seguir la estructura de las páginas del mismo tipo (hero: titular + párrafo de apoyo; sección: `h2` + `lead` + cuerpo; FAQ en `steps`), no inventar nuevos patrones.
+- Antes de guardar, leer el texto en voz alta: si suena a discurso o a folleto, reescribirlo más corto.
 
 ## Si es un servicio nuevo (no solo una página)
 
