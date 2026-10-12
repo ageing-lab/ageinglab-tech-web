@@ -5,6 +5,7 @@
 [hidden]{display:none!important}
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px);scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.55 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif}
+::selection{background:var(--navy);color:#fff}
 h1,h2,h3{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;line-height:1.05;margin:0;letter-spacing:-.02em}
 a{color:inherit}button{font:inherit;color:inherit;cursor:pointer}
 a:focus-visible,button:focus-visible{outline:3px solid var(--mint);outline-offset:4px;box-shadow:0 0 0 3px var(--ink)}
