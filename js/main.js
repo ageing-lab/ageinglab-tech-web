@@ -274,3 +274,133 @@ var d=sm.parentNode,sec=d.closest('section');
 ev('demo_open',{page:location.pathname,demo:(sec&&sec.id)||d.id||'acordeon',via:'accordion'});
 },true);
 })();
+
+/* Simulador de velocidad de tokens: escribe una respuesta de ejemplo
+   a ~30 tokens/s (1 token ≈ 1 palabra). En index.html e ia-local.html. */
+(function(){
+var boxes=document.querySelectorAll('[data-tok-sim]');
+if(!boxes.length)return;
+var TEXT='Informe de prueba (datos ficticios): la paciente, de 78 años, presenta marcha estable con apoyo puntual. Se recomienda revisar la medicación actual, mantener los paseos diarios y citar en dos semanas para control. No se observan signos de alarma y la adherencia al plan se mantiene en torno al 80 %. Este borrador se ha generado dentro del servidor local, sin que ningún dato salga del edificio.';
+var toks=TEXT.match(/\S+\s*/g)||[];
+var reduced=false;
+try{reduced=matchMedia('(prefers-reduced-motion:reduce)').matches}catch(e){}
+function fmtT(ms){return (ms/1000).toFixed(1).replace('.',',')+' s'}
+[].forEach.call(boxes,function(box){
+var out=box.querySelector('[data-tok-out]');
+var btn=box.querySelector('[data-tok-go]');
+var meta=box.querySelector('[data-tok-meta]');
+if(!out||!btn||!meta)return;
+var RATE=+(box.getAttribute('data-rate')||30)||30;
+function paint(n,ms){meta.textContent=n+' tokens · '+fmtT(ms)+' · '+RATE+' tokens/s'}
+var timer=null;
+btn.addEventListener('click',function(){
+if(timer)return;
+out.textContent='';
+var cur=document.createElement('span');
+cur.className='tok-cur';cur.setAttribute('aria-hidden','true');
+out.appendChild(cur);
+var i=0,t0=performance.now();
+btn.textContent='Generando…';
+paint(0,0);
+if(reduced){
+out.textContent=TEXT;
+paint(toks.length,1000*toks.length/RATE);
+btn.textContent='Repetir a '+RATE+' tokens/s';
+return;
+}
+timer=setInterval(function(){
+var el=performance.now()-t0;
+var want=Math.min(toks.length,Math.floor(el*RATE/1000));
+while(i<want){
+cur.insertAdjacentText('beforebegin',toks[i]);
+i++;
+}
+paint(i,el);
+if(i>=toks.length){
+clearInterval(timer);timer=null;
+cur.remove();
+btn.textContent='Repetir a '+RATE+' tokens/s';
+if(typeof gtag==='function'){try{gtag('event','demo_open',{page:location.pathname,demo:'simulador-tokens',via:'button'})}catch(e){}}
+}
+},33);
+});
+});
+})();
+
+/* Relleno de la sección a 30 tokens/s: el botón [data-tok-fill] vacía
+   los textos de su sección (h2, párrafos y KPIs) y los reescribe
+   palabra a palabra a 30 tokens/s, conservando enlaces y formato. */
+(function(){
+var btns=document.querySelectorAll('[data-tok-fill]');
+if(!btns.length)return;
+var RATE=30;
+var reduced=false;
+try{reduced=matchMedia('(prefers-reduced-motion:reduce)').matches}catch(e){}
+function fmtT(ms){return (ms/1000).toFixed(1).replace('.',',')+' s'}
+[].forEach.call(btns,function(btn){
+var sec=btn.closest('section');
+if(!sec)return;
+var meta=sec.querySelector('[data-tok-fill-meta]');
+var status=sec.querySelector('[data-tok-fill-status]');
+var nodes=[];
+[].forEach.call(sec.querySelectorAll('h2, p.lead, .kpi'),function(el){
+var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null);
+var n;
+while(n=w.nextNode()){
+if(/\S/.test(n.nodeValue))nodes.push({n:n,full:n.nodeValue});
+}
+});
+if(!nodes.length)return;
+var toks=[];
+nodes.forEach(function(o){
+var m=o.full.match(/\S+\s*/g)||[];
+m.forEach(function(t){toks.push({n:o.n,t:t})});
+});
+function paint(c,ms){if(meta)meta.textContent=c+' tokens · '+fmtT(ms)+' · '+RATE+' tokens/s'}
+var timer=null;
+var cur=document.createElement('span');
+cur.className='tok-cur';cur.setAttribute('aria-hidden','true');
+btn.addEventListener('click',function(){
+if(timer)return;
+/* Salto instantáneo al inicio de la sección, sin transición suave */
+var de=document.documentElement,old=de.style.scrollBehavior;
+de.style.scrollBehavior='auto';
+try{sec.scrollIntoView({block:'start'})}catch(e){sec.scrollIntoView()}
+de.style.scrollBehavior=old;
+nodes.forEach(function(o){o.n.nodeValue=''});
+if(cur.parentNode)cur.remove();
+var i=0,t0=performance.now();
+btn.textContent='Generando…';
+paint(0,0);
+if(status)status.textContent='';
+if(reduced){
+nodes.forEach(function(o){o.n.nodeValue=o.full});
+paint(toks.length,1000*toks.length/RATE);
+btn.textContent='Repetir la prueba';
+if(status)status.textContent='Texto mostrado al completo.';
+return;
+}
+timer=setInterval(function(){
+var el=performance.now()-t0;
+var want=Math.min(toks.length,Math.floor(el*RATE/1000));
+while(i<want){
+var tk=toks[i];
+tk.n.nodeValue+=tk.t;
+i++;
+}
+if(i<toks.length){
+var cn=toks[Math.min(i,toks.length-1)].n;
+if(cn.parentNode)cn.parentNode.insertBefore(cur,cn.nextSibling);
+}
+paint(i,el);
+if(i>=toks.length){
+clearInterval(timer);timer=null;
+if(cur.parentNode)cur.remove();
+btn.textContent='Repetir la prueba';
+if(status)status.textContent='Texto regenerado a 30 tokens por segundo de media.';
+if(typeof gtag==='function'){try{gtag('event','demo_open',{page:location.pathname,demo:'relleno-30-tokens',via:'button'})}catch(e){}}
+}
+},33);
+});
+});
+})();

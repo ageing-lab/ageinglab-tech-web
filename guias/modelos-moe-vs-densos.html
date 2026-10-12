@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<script>
+  // Consent Mode v2: denied por defecto
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  try{if(localStorage.getItem('al-consent')==='granted')gtag('consent','update',{'ad_storage':'granted','analytics_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'})}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EGJV0V53RW"></script>
+<script>
+  gtag('js', new Date());
+
+  gtag('config', 'G-EGJV0V53RW');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#0b1f4b">
+<link rel="apple-touch-icon" href="../img/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable">
+<meta name="apple-mobile-web-app-title" content="AgeingLab Tech">
+<title>MoE frente a denso: qué modelo usar | AgeingLab Tech</title>
+<meta name="description" content="MoE frente a denso con ejemplos (Qwen3, DeepSeek, Mixtral, gpt-oss): qué cambia y cuál conviene cuando la IA corre en tu propio equipo.">
+<link rel="canonical" href="https://www.ageinglabtech.com/guias/modelos-moe-vs-densos.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MoE frente a denso: qué modelo usar | AgeingLab Tech">
+<meta property="og:description" content="MoE frente a denso con ejemplos (Qwen3, DeepSeek, Mixtral, gpt-oss): qué cambia y cuál conviene cuando la IA corre en tu propio equipo.">
+<meta property="og:url" content="https://www.ageinglabtech.com/guias/modelos-moe-vs-densos.html">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="AgeingLab Tech">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MoE frente a denso: qué modelo usar | AgeingLab Tech">
+<meta name="twitter:description" content="MoE frente a denso con ejemplos (Qwen3, DeepSeek, Mixtral, gpt-oss): qué cambia y cuál conviene cuando la IA corre en tu propio equipo.">
+<link rel="icon" href="../img/icons/favicon.ico">
+<meta property="og:image" content="https://www.ageinglabtech.com/img/hero-poster.webp">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta name="twitter:image" content="https://www.ageinglabtech.com/img/hero-poster.webp">
+<link rel="preload" as="font" type="font/woff2" href="../fonts/bricolage-grotesque-latin-1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../styles.css">
+<script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
+<script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Guías","item":"https://www.ageinglabtech.com/guias/"},{"@type":"ListItem","position":3,"name":"MoE frente a denso: qué modelo usar en tu equipo","item":"https://www.ageinglabtech.com/guias/modelos-moe-vs-densos.html"}]}</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"MoE frente a denso: qué modelo usar en tu equipo",
+  "description":"MoE frente a denso con ejemplos (Qwen3, DeepSeek, Mixtral, gpt-oss): qué cambia y cuál conviene cuando la IA corre en tu propio equipo.",
+  "url":"https://www.ageinglabtech.com/guias/modelos-moe-vs-densos.html",
+  "datePublished":"2026-10-12",
+  "dateModified":"2026-10-12",
+  "inLanguage":"es",
+  "author":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},
+  "isPartOf":{"@type":"WebSite","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"}
+}</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header id="hd"><div class="w">
+<a class="logo" href="/"><img class="logo-mark" src="../img/logo.svg" alt="" width="32" height="32"><span>AgeingLab Tech</span></a>
+<nav aria-label="Principal">
+<a href="../servicios/">Servicios</a>
+<a href="/#sectores">Sectores</a>
+<a href="../soluciones/">Soluciones</a>
+<a href="../casos-de-exito/">Casos de éxito</a>
+<a href="/#metodo">Cómo trabajamos</a>
+<a href="/#nosotros">Quiénes somos</a>
+<div class="theme" role="group" aria-label="Apariencia"><span class="thumb" aria-hidden="true"></span><button type="button" class="t" data-v="light" aria-pressed="false" title="Tema claro" aria-label="Claro"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg></button><button type="button" class="t" data-v="dark" aria-pressed="false" title="Tema oscuro" aria-label="Oscuro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.2A8.6 8.6 0 1 1 10.8 3.4a6.8 6.8 0 0 0 9.8 9.8z"/></svg></button><button type="button" class="t" data-v="auto" aria-pressed="true" title="Tema automático" aria-label="Automático"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path class="fill" d="M12 3.4a8.6 8.6 0 0 1 0 17.2z"/></svg></button></div>
+</nav>
+<a class="btn" href="/#contacto">Contacto</a>
+<button class="burger" id="bg" aria-expanded="false" aria-label="Abrir menú">Menú</button>
+</div></header>
+
+<main id="main">
+<div class="hero dark case-hero"><div class="w">
+<nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>MoE frente a denso</span></nav>
+<h1>MoE frente a denso: qué modelo usar en tu equipo</h1>
+<p>Los modelos abiertos vienen en dos arquitecturas: densos y de expertos (MoE). La diferencia que importa en local es cuánta memoria piden y cuántos parámetros trabajan por palabra. Esta guía lo explica con ejemplos.</p>
+<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+</div></div>
+
+<section class="s" id="dos-tipos"><div class="w">
+<h2>Densos y de expertos: la diferencia</h2>
+<p class="lead">Un denso usa todo el modelo para cada palabra. Uno de expertos (MoE) tiene muchos especialistas y solo llama a unos pocos cada vez. De ahí las dos cifras de cada ficha: parámetros totales y parámetros activos.</p>
+<div class="why">
+<div><h3>Denso</h3><p>Cada palabra pasa por el modelo entero. 27B densos son 27B trabajando. Ejemplos: Gemma 3 27B o Qwen3-32B.</p></div>
+<div><h3>De expertos (MoE)</h3><p>Cada palabra la atienden unos pocos expertos que elige un distribuidor. El nombre ya trae las dos cifras: Qwen3-30B-A3B son unos 30B en total y unos 3B activos por palabra.</p></div>
+</div>
+<figure class="mx-fig" aria-label="Comparación visual: en un modelo denso todos los parámetros trabajan en cada palabra; en uno de expertos solo unos pocos">
+<div class="mx-panel">
+<p class="mx-lab">Modelo denso</p>
+<div class="mx-grid" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+<p class="cap">Todos los parámetros participan en cada palabra. Más capacidad = más cómputo por respuesta.</p>
+</div>
+<div class="mx-panel hot">
+<p class="mx-lab">Mixture of experts (MoE)</p>
+<div class="mx-grid" id="moe-grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<p class="mx-tok" id="moe-tok">Cada palabra activa unos pocos expertos.</p>
+<p class="cap">Un router activa solo unos pocos «expertos» por palabra. Mucha capacidad total, poco cómputo real.</p>
+</div>
+</figure>
+<style>
+.mx-fig{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:28px 0 0}
+.mx-panel{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--bg)}
+.mx-panel.hot{border-color:#3ee0c8}
+.mx-lab{margin:0;font:600 12px/1 "Source Sans 3",system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.mx-panel.hot .mx-lab{color:#3ee0c8}
+.mx-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:7px;margin:18px 0 14px}
+.mx-grid i{display:block;aspect-ratio:1/1;border-radius:4px;background:var(--soft);border:1px solid var(--line);transition:background .3s,border-color .3s}
+.mx-grid i.on{background:#3ee0c8;border-color:#3ee0c8}
+.mx-tok{margin:0 0 10px;min-height:1.5em;font-size:15px;color:var(--mute);font-variant-numeric:tabular-nums}
+.mx-panel .cap{margin:0;color:var(--mute);font-size:17px}
+@media (max-width:700px){.mx-fig{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.mx-grid i{transition:none}}
+</style>
+</div></section>
+
+<section class="s" id="ejemplos"><div class="w">
+<h2>Ejemplos con cifras</h2>
+<p class="lead">Cuatro de expertos y dos densos que verás citados por todas partes:</p>
+<ul class="plain">
+<li><strong>Qwen3-30B-A3B:</strong> 30B en total, unos 3B activos por palabra. Licencia Apache 2.0.</li>
+<li><strong>Qwen3-235B-A22B:</strong> 235B en total, 22B activos. Solo para equipo grande.</li>
+<li><strong>DeepSeek V3 (y R1, del mismo tamaño):</strong> 671B en total, 37B activos. El archivo comprimido pesa unos 400 GB: no es para un equipo modesto.</li>
+<li><strong>Mixtral 8x7B:</strong> 47B en total, unos 13B activos. El MoE abierto clásico, con licencia Apache 2.0.</li>
+<li><strong>gpt-oss 20B:</strong> 21B en total, 3,6B activos; de serie ocupa 13 GB y cabe en 16 GB. Su hermano mayor, gpt-oss 120B: 117B en total, 5B activos; pide una gráfica de 80 GB. Ambos con licencia Apache 2.0.</li>
+<li><strong>Densos Qwen3-32B y Gemma 3 27B:</strong> aquí lo que ves es lo que hay; todo el modelo trabaja.</li>
+</ul>
+<p>DeepSeek trae licencia propia: como con todo, léela antes de ponerlo en producción.</p>
+</div></section>
+
+<section class="s" id="matiz"><div class="w">
+<h2>Lo que importa cuando corre en tu equipo</h2>
+<p class="lead">La tarjeta tiene que cargar el modelo entero: los totales mandan en memoria. Los activos mandan en velocidad.</p>
+<ul class="plain">
+<li>Un MoE grande no cabe en una gráfica modesta aunque use pocos parámetros por palabra: los 671B de DeepSeek ocupan cientos de GB sí o sí.</li>
+<li>Con poco equipo, el denso mediano suele ser la opción sensata: unas 27–32B comprimidas caben en 16 GB para un usuario a la vez.</li>
+<li>El MoE compensa cuando hay memoria de sobra: más calidad por palabra, porque cada una la atiende el experto que toca.</li>
+<li>Para voz, ni uno ni otro: la transcripción usa modelos de voz pequeños.</li>
+</ul>
+</div></section>
+
+<section class="s" id="elegir"><div class="w">
+<h2>Cómo elegir</h2>
+<div class="steps">
+<div class="step"><i>1</i><h3>Poco equipo (16 GB)</h3><p>Un denso de unas 27–32B en versión comprimida, o un MoE pequeño como gpt-oss 20B.</p></div>
+<div class="step"><i>2</i><h3>Equipo grande (80 GB)</h3><p>Un MoE mediano (Qwen3-30B-A3B, gpt-oss 120B) da más calidad por palabra.</p></div>
+<div class="step"><i>3</i><h3>Centro de datos</h3><p>Los grandes (DeepSeek, Qwen3-235B) solo tienen sentido con cientos de GB de memoria.</p></div>
+</div>
+<p style="margin-top:18px">Los nombres cambian cada pocos meses; la cuenta no: memoria para los totales, velocidad para los activos.</p>
+</div></section>
+
+<section class="s" id="faq"><div class="w">
+<h2>Preguntas que nos hacen</h2>
+<div class="steps" style="grid-template-columns:1fr">
+<div class="step"><h3>¿Un MoE es mejor que un denso?</h3><p>Por palabra generada, un MoE rinde como un denso mayor con menos cálculo. Pero pide la memoria del modelo entero. En local manda lo que quepa en tu tarjeta.</p></div>
+<div class="step"><h3>¿Cabe DeepSeek en mi servidor?</h3><p>No, salvo que tengas cientos de GB de memoria. Para equipos normales, mira Qwen3, gpt-oss o Mixtral.</p></div>
+<div class="step"><h3>¿Y esto qué tiene que ver con el hospital?</h3><p>Lo mismo que el hardware: si la IA corre en tu centro, alguien elige modelo y equipo. La <a href="hardware-ia-local.html">guía de hardware lo baja a tierra</a>.</p></div>
+<div class="step"><h3>¿Puedo usar estos modelos en producción?</h3><p>Qwen3, Mixtral y gpt-oss salieron con Apache 2.0, que permite uso comercial. Cada modelo trae su licencia: léela antes de ponerlo en marcha.</p></div>
+</div>
+</div></section>
+
+<section class="s" id="relacionados"><div class="w">
+<h2>Casos y servicios relacionados</h2>
+<div class="ind two">
+<a href="cuantizacion-modelos-ia.html">Guía: cuantizar modelos de IA<span>›</span></a>
+<a href="hardware-ia-local.html">Guía: qué hardware necesitas para un modelo de IA local<span>›</span></a>
+<a href="ia-privada-en-hospitales.html">Guía: IA privada en hospitales<span>›</span></a>
+<a href="../servicios/ia-privada-automatizacion.html">Servicio: IA privada y automatización<span>›</span></a>
+<a href="../casos-de-exito/ia-local.html">Caso de éxito: IA local para datos clínicos<span>›</span></a>
+</div>
+</div></section>
+
+<section class="cta dark" id="contacto"><div class="w">
+<h2>Empieza por una conversación de treinta minutos</h2>
+<p>Cuéntanos qué necesitas y te decimos honestamente si podemos ayudarte.</p>
+<form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
+<input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
+<input type="hidden" name="_gotcha">
+<input type="hidden" name="_next" value="https://www.ageinglabtech.com/gracias.html">
+<div class="cf-grid">
+<label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
+<label>Tu correo<input type="email" name="email" autocomplete="email" required></label>
+<label>Empresa (opcional)<input type="text" name="empresa"></label>
+<label>¿Qué os interesa?
+<select name="interes" required>
+<option value="" disabled>Elige una opción</option>
+<option value="IA privada y automatización" selected>IA privada y automatización</option>
+<option value="Decisiones con IA">Decisiones con IA</option>
+<option value="Software a medida">Software a medida</option>
+<option value="IoT y hardware">IoT y hardware</option>
+<option value="Interfaces para mayores">Interfaces para mayores</option>
+<option value="Investigación e innovación">Investigación e innovación</option>
+<option value="Soluciones">Soluciones</option>
+<option value="Aún no lo sé">Aún no lo sé</option>
+</select>
+</label>
+<label class="cf-full">Cuéntanos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+</div>
+<div class="cf-actions">
+<button type="submit" class="btn btn-primary">Contactar</button>
+</div>
+</form>
+</div></section>
+</main>
+
+<footer><div class="w"><div class="cols">
+<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de AgeingLab en el Centro de Tecnología Biomédica de la UPM. Te acercamos al futuro desde la ciencia.</p></div>
+<div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a><a href="/#metodo">Cómo trabajamos</a></div>
+<div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
+<div><h3>Nosotros</h3><a href="/#nosotros">Quiénes somos</a><a href="/#equipo">Equipo</a><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>
+</div><div class="base">© 2026 AgeingLab Tech · Servicio de AgeingLab – CTB – UPM · Madrid, España</div></div></footer>
+
+<script src="../js/main.js"></script>
+<script>
+(function(){var g=document.getElementById('moe-grid');if(!g||!g.querySelectorAll)return;var cells=g.querySelectorAll('i'),n=cells.length,K=3,tok=document.getElementById('moe-tok'),c=0,timer=null,vis=true;
+function pick(){var s=[];while(s.length<K){var r=Math.floor(Math.random()*n);if(s.indexOf(r)<0)s.push(r);}return s.sort(function(a,b){return a-b;});}
+function draw(){for(var i=0;i<n;i++)cells[i].classList.remove('on');var s=pick();for(var j=0;j<s.length;j++)cells[s[j]].classList.add('on');c++;if(tok)tok.textContent='palabra '+c+' \u2192 expertos '+(s[0]+1)+', '+(s[1]+1)+', '+(s[2]+1);}
+if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+function go(){if(!timer&&vis&&!document.hidden){draw();timer=setInterval(draw,1100);}}
+function stop(){if(timer){clearInterval(timer);timer=null;}}
+if('IntersectionObserver' in window){new IntersectionObserver(function(e){vis=e[0].isIntersecting;if(vis)go();else stop();},{threshold:.2}).observe(g);}
+document.addEventListener('visibilitychange',function(){if(document.hidden)stop();else go();});
+go();})();
+</script>
+</body>
+</html>

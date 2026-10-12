@@ -32,6 +32,8 @@ var CORE=[
   '/guias/transcripcion-clinica-privada.html',
   '/guias/software-a-medida-salud.html',
   '/guias/hardware-ia-local.html',
+  '/guias/modelos-moe-vs-densos.html',
+  '/guias/cuantizacion-modelos-ia.html',
 '/servicios/',
 '/servicios/ia-privada-automatizacion.html',
 '/servicios/decisiones-con-ia.html',

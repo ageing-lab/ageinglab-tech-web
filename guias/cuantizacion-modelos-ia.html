@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<script>
+  // Consent Mode v2: denied por defecto
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  try{if(localStorage.getItem('al-consent')==='granted')gtag('consent','update',{'ad_storage':'granted','analytics_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'})}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EGJV0V53RW"></script>
+<script>
+  gtag('js', new Date());
+
+  gtag('config', 'G-EGJV0V53RW');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#0b1f4b">
+<link rel="apple-touch-icon" href="../img/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable">
+<meta name="apple-mobile-web-app-title" content="AgeingLab Tech">
+<title>Cuantizar modelos de IA: guía práctica | AgeingLab Tech</title>
+<meta name="description" content="Qué es cuantizar un modelo de IA, cuánta memoria ahorra cada nivel y ejemplos con Qwen3: del modelo original al que cabe en tu tarjeta.">
+<link rel="canonical" href="https://www.ageinglabtech.com/guias/cuantizacion-modelos-ia.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cuantizar modelos de IA: guía práctica | AgeingLab Tech">
+<meta property="og:description" content="Qué es cuantizar un modelo de IA, cuánta memoria ahorra cada nivel y ejemplos con Qwen3: del modelo original al que cabe en tu tarjeta.">
+<meta property="og:url" content="https://www.ageinglabtech.com/guias/cuantizacion-modelos-ia.html">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="AgeingLab Tech">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cuantizar modelos de IA: guía práctica | AgeingLab Tech">
+<meta name="twitter:description" content="Qué es cuantizar un modelo de IA, cuánta memoria ahorra cada nivel y ejemplos con Qwen3: del modelo original al que cabe en tu tarjeta.">
+<link rel="icon" href="../img/icons/favicon.ico">
+<meta property="og:image" content="https://www.ageinglabtech.com/img/hero-poster.webp">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta name="twitter:image" content="https://www.ageinglabtech.com/img/hero-poster.webp">
+<link rel="preload" as="font" type="font/woff2" href="../fonts/bricolage-grotesque-latin-1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../styles.css">
+<script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
+<script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Guías","item":"https://www.ageinglabtech.com/guias/"},{"@type":"ListItem","position":3,"name":"Cuantizar modelos de IA: que quepan en tu equipo","item":"https://www.ageinglabtech.com/guias/cuantizacion-modelos-ia.html"}]}</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Cuantizar modelos de IA: que quepan en tu equipo",
+  "description":"Qué es cuantizar un modelo de IA, cuánta memoria ahorra cada nivel y ejemplos con Qwen3: del modelo original al que cabe en tu tarjeta.",
+  "url":"https://www.ageinglabtech.com/guias/cuantizacion-modelos-ia.html",
+  "datePublished":"2026-10-12",
+  "dateModified":"2026-10-12",
+  "inLanguage":"es",
+  "author":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},
+  "isPartOf":{"@type":"WebSite","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"}
+}</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header id="hd"><div class="w">
+<a class="logo" href="/"><img class="logo-mark" src="../img/logo.svg" alt="" width="32" height="32"><span>AgeingLab Tech</span></a>
+<nav aria-label="Principal">
+<a href="../servicios/">Servicios</a>
+<a href="/#sectores">Sectores</a>
+<a href="../soluciones/">Soluciones</a>
+<a href="../casos-de-exito/">Casos de éxito</a>
+<a href="/#metodo">Cómo trabajamos</a>
+<a href="/#nosotros">Quiénes somos</a>
+<div class="theme" role="group" aria-label="Apariencia"><span class="thumb" aria-hidden="true"></span><button type="button" class="t" data-v="light" aria-pressed="false" title="Tema claro" aria-label="Claro"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg></button><button type="button" class="t" data-v="dark" aria-pressed="false" title="Tema oscuro" aria-label="Oscuro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.2A8.6 8.6 0 1 1 10.8 3.4a6.8 6.8 0 0 0 9.8 9.8z"/></svg></button><button type="button" class="t" data-v="auto" aria-pressed="true" title="Tema automático" aria-label="Automático"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path class="fill" d="M12 3.4a8.6 8.6 0 0 1 0 17.2z"/></svg></button></div>
+</nav>
+<a class="btn" href="/#contacto">Contacto</a>
+<button class="burger" id="bg" aria-expanded="false" aria-label="Abrir menú">Menú</button>
+</div></header>
+
+<main id="main">
+<div class="hero dark case-hero"><div class="w">
+<nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>Cuantizar modelos de IA</span></nav>
+<h1>Cuantizar modelos de IA: que quepan en tu equipo</h1>
+<p>Un modelo ocupa lo que ocupan sus parámetros por los bits de cada uno. Cuantizar es guardarlos con menos bits para que quepan en tu tarjeta, perdiendo un poco de calidad. Niveles, formatos y ejemplos con Qwen3.</p>
+<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+</div></div>
+
+<section class="s" id="cuenta"><div class="w">
+<h2>La cuenta</h2>
+<p class="lead">Parámetros por bytes por parámetro. Eso es todo.</p>
+<ul class="plain">
+<li><strong>Original (16 bits):</strong> 2 bytes por parámetro. Un 32B ocupa unos 64 GB: no cabe en una gráfica normal.</li>
+<li><strong>Q8:</strong> ~1 byte por parámetro. El mismo 32B baja a unos 34 GB, casi sin pérdida apreciable.</li>
+<li><strong>Q4:</strong> ~0,6 bytes por parámetro. El 32B se queda en unos 20 GB: el equilibrio típico, con algo de pérdida.</li>
+<li><strong>Q2–Q3:</strong> menos de la mitad que Q4, y ahí la pérdida ya se nota.</li>
+<li><strong>Y suma la memoria de trabajo:</strong> el contexto y el programa también ocupan. Calcula un 20% por encima del archivo.</li>
+</ul>
+</div></section>
+
+<section class="s" id="formatos"><div class="w">
+<h2>Los formatos sin lío</h2>
+<p class="lead">El nivel dice cuánto ocupa; el formato dice con qué programa se usa.</p>
+<div class="why">
+<div><h3>GGUF</h3><p>El de llama.cpp y Ollama. El que usarás en local casi seguro. El nombre dice el nivel: Q8_0, Q6_K, Q4_K_M… la M es el punto de partida recomendado.</p></div>
+<div><h3>AWQ y GPTQ</h3><p>Compresión de 4 bits pensada para servir en GPU con programas como vLLM. Si el modelo va a un servidor, mira estos.</p></div>
+<div><h3>FP8</h3><p>A medio camino entre el original y los 4 bits. DeepSeek V3 salió directamente así. Para equipo serio.</p></div>
+<div><h3>NF4</h3><p>Para programar y ajustar modelos en Python, no para servirlos.</p></div>
+</div>
+</div></section>
+
+<section class="s" id="ejemplos"><div class="w">
+<h2>Ejemplos con Qwen3</h2>
+<p class="lead">La familia Qwen3 vale para verlo porque tiene todos los tamaños, con licencia Apache 2.0.</p>
+<ul class="plain">
+<li><strong>Qwen3-32B en Q4 ≈ 20 GB:</strong> no cabe en 16 GB; pide tarjeta de 24 GB o más.</li>
+<li><strong>Qwen3-30B-A3B (de expertos) en Q4 ≈ 19 GB:</strong> tampoco entra en 16 GB, aunque use 3B por palabra. La memoria la mandan los totales.</li>
+<li><strong>Qwen3-14B en Q4 ≈ 9 GB:</strong> cabe holgado en 16 GB y deja sitio para el contexto.</li>
+<li><strong>Qwen3-8B en Q4 ≈ 5 GB:</strong> tira hasta en un portátil apañado.</li>
+</ul>
+<p>Regla práctica: el modelo mayor que quepa en Q4 suele dar más que uno menor en Q8, hasta que bajas de 3 bits: ahí compensa más un modelo menor en Q4. Y ante la duda, se prueba con tu caso.</p>
+</div></section>
+
+<section class="s" id="faq"><div class="w">
+<h2>Preguntas que nos hacen</h2>
+<div class="steps" style="grid-template-columns:1fr">
+<div class="step"><h3>¿Se nota la pérdida?</h3><p>En Q8 casi no; en Q4 un poco, y depende de la tarea: para redactar y resumir se nota menos que para mates o código. Se prueba con tu caso.</p></div>
+<div class="step"><h3>¿Qué formato uso?</h3><p>En local con Ollama o llama.cpp: GGUF Q4_K_M para empezar. En servidor con vLLM: AWQ o FP8.</p></div>
+<div class="step"><h3>¿Comprimo yo o descargo?</h3><p>Descarga: casi todos los modelos abiertos traen versiones ya comprimidas. Comprimir tú solo compensa en casos raros.</p></div>
+<div class="step"><h3>¿La compresión vale para MoE?</h3><p>Sí, con la misma regla: se comprimen los totales. Por eso un MoE grande sigue sin caber en poco equipo. Lo explicamos en la <a href="modelos-moe-vs-densos.html">guía de MoE frente a denso</a>.</p></div>
+</div>
+</div></section>
+
+<section class="s" id="relacionados"><div class="w">
+<h2>Casos y servicios relacionados</h2>
+<div class="ind two">
+<a href="modelos-moe-vs-densos.html">Guía: MoE frente a denso<span>›</span></a>
+<a href="hardware-ia-local.html">Guía: qué hardware necesitas para un modelo de IA local<span>›</span></a>
+<a href="../casos-de-exito/ia-local.html">Caso de éxito: IA local para datos clínicos<span>›</span></a>
+<a href="../servicios/ia-privada-automatizacion.html">Servicio: IA privada y automatización<span>›</span></a>
+</div>
+</div></section>
+
+<section class="cta dark" id="contacto"><div class="w">
+<h2>Empieza por una conversación de treinta minutos</h2>
+<p>Cuéntanos qué necesitas y te decimos honestamente si podemos ayudarte.</p>
+<form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
+<input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
+<input type="hidden" name="_gotcha">
+<input type="hidden" name="_next" value="https://www.ageinglabtech.com/gracias.html">
+<div class="cf-grid">
+<label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
+<label>Tu correo<input type="email" name="email" autocomplete="email" required></label>
+<label>Empresa (opcional)<input type="text" name="empresa"></label>
+<label>¿Qué os interesa?
+<select name="interes" required>
+<option value="" disabled>Elige una opción</option>
+<option value="IA privada y automatización" selected>IA privada y automatización</option>
+<option value="Decisiones con IA">Decisiones con IA</option>
+<option value="Software a medida">Software a medida</option>
+<option value="IoT y hardware">IoT y hardware</option>
+<option value="Interfaces para mayores">Interfaces para mayores</option>
+<option value="Investigación e innovación">Investigación e innovación</option>
+<option value="Soluciones">Soluciones</option>
+<option value="Aún no lo sé">Aún no lo sé</option>
+</select>
+</label>
+<label class="cf-full">Cuéntanos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+</div>
+<div class="cf-actions">
+<button type="submit" class="btn btn-primary">Contactar</button>
+</div>
+</form>
+</div></section>
+</main>
+
+<footer><div class="w"><div class="cols">
+<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de AgeingLab en el Centro de Tecnología Biomédica de la UPM. Te acercamos al futuro desde la ciencia.</p></div>
+<div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a><a href="/#metodo">Cómo trabajamos</a></div>
+<div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
+<div><h3>Nosotros</h3><a href="/#nosotros">Quiénes somos</a><a href="/#equipo">Equipo</a><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>
+</div><div class="base">© 2026 AgeingLab Tech · Servicio de AgeingLab – CTB – UPM · Madrid, España</div></div></footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
