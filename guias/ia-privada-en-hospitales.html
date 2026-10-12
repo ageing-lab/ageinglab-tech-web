@@ -58,7 +58,7 @@
   "description":"Cómo desplegar modelos de IA en el propio hospital sin que salgan los datos de los pacientes: casos de uso, hardware y el camino para empezar.",
   "url":"https://www.ageinglabtech.com/guias/ia-privada-en-hospitales.html",
   "datePublished":"2026-09-30",
-  "dateModified":"2026-09-30",
+  "dateModified":"2026-10-12",
   "inLanguage":"es",
   "author":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},
   "isPartOf":{"@type":"WebSite","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"}
@@ -85,61 +85,63 @@
 <div class="hero dark case-hero"><div class="w">
 <nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>IA privada en hospitales</span></nav>
 <h1>IA privada en hospitales: guía práctica</h1>
-<p>Cómo desplegar IA en un hospital sin que los datos de los pacientes salgan de la institución: casos de uso, infraestructura y el camino para empezar.</p>
+<p>Si trabajas en un hospital y te planteas usar IA con datos de pacientes, esta guía es para ti: qué se puede hacer hoy con modelos que corren dentro del propio centro, qué equipo necesitas y cómo lo planteamos nosotros.</p>
 <a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
 </div></div>
 
 <section class="s" id="por-que"><div class="w">
-<h2>Por qué la IA privada tiene sentido en un hospital</h2>
-<p class="lead">Un hospital maneja los datos más sensibles que existen: historiales clínicos, resultados de laboratorio, diagnósticos. Por eso enviarlos a una API en la nube de un proveedor externo suele ser una descartada directa. La alternativa es ejecutar los modelos de IA en tu propia infraestructura: los datos no salen del hospital, y la IA sigue trabajando.</p>
+<h2>Por qué la IA tiene que correr dentro del hospital</h2>
+<p class="lead">En un hospital casi todo lo que toca la IA son datos de salud, y esos datos tienen una protección reforzada: RGPD de categoría especial, secreto profesional y, en centros públicos, el Esquema Nacional de Seguridad. Pegar un informe en un chatbot de fuera no es una opción. Por eso planteamos la IA al revés: los modelos corren en máquinas del propio centro y los datos no tienen por qué salir.</p>
 <ul class="plain">
-<li><strong>El dato no sale de la institución:</strong> transcripción, análisis y generación de textos ocurren dentro de la red del hospital.</li>
-<li><strong>Compliance más simple:</strong> al no ceder el dato a un tercero, el mapa de riesgos y la base legal del tratamiento son más fáciles de sostener.</li>
-<li><strong>Sin coste por uso:</strong> no pagas por token a un proveedor externo; el coste es la infraestructura, que es fija y tuya.</li>
-<li><strong>Trazabilidad:</strong> cada uso queda registrado por equipo y caso, con registro de auditoría independiente.</li>
+<li><strong>Lo que entra no sale:</strong> la transcripción, los resúmenes o las búsquedas se procesan en vuestra red, no en la de un proveedor externo.</li>
+<li><strong>Menos terceros en el circuito:</strong> si ningún proveedor recibe datos de pacientes, hay menos contratos de encargo y menos riesgos que gestionar. Eso no os libra del trabajo con vuestro DPO —registro de actividades, evaluación de impacto cuando toque, revisar si el uso es de alto riesgo según la AI Act—, pero lo deja en un terreno más controlable. Os entregamos la documentación técnica para que el DPO y jurídica puedan valorarlo.</li>
+<li><strong>Coste previsible:</strong> en vez de pagar por cada consulta a un proveedor, el gasto principal es el equipo y su mantenimiento. Sabéis de antemano lo que cuesta.</li>
+<li><strong>Constancia de uso:</strong> queda registrado qué servicio lo usó y cuándo, algo que en un hospital os van a pedir tarde o temprano.</li>
 </ul>
 </div></section>
 
 <section class="s" id="casos-de-uso"><div class="w">
-<h2>Qué puede hacer la IA en un hospital</h2>
-<p class="lead">Estos son los casos de uso que más sentido tienen en un hospital y los que más nos piden. Todos funcionan con modelos abiertos sobre tu propio hardware.</p>
+<h2>Qué encaja bien en un hospital</h2>
+<p class="lead">Lo que mejor funciona hoy no es que la IA decida, sino que prepare trabajo para que el profesional revise. Cinco ejemplos que vemos repetirse:</p>
 <div class="why">
-<div><h3>Transcripción clínica privada</h3><p>El profesional habla y el modelo transcribe en el propio entorno del hospital, sin que el audio ni el texto salgan del edificio. Es el mismo reconocedor de voz privado que <a href="../soluciones/#voz">puedes probar en tu navegador</a>.</p></div>
-<div><h3>Agentes conectados a la historia clínica</h3><p>Agentes que consultan la historia clínica, combinan información de varios sistemas y ejecutan acciones: generar resúmenes, redactar informes o preparar documentación para el alta, siempre dentro de los límites que marques.</p></div>
-<div><h3>Resumen y extracción de documentos</h3><p>Extraer y estructurar información de informes clínicos, pruebas y notas de evolución para seguimientos, estudios o alertas, sin pasar el documento por un servicio externo.</p></div>
-<div><h3>Alertas y seguimiento</h3><p>Detectar riesgos y seguir a pacientes en fases críticas —por ejemplo, el <a href="../casos-de-exito/gestion-casos-quirurgicos.html">seguimiento post-operatorio de intervenciones quirúrgicas</a>— con alertas generadas sobre tus propios datos.</p></div>
-<div><h3>Automatización administrativa</h3><p>Informes, documentación, notificaciones y flujos entre sistemas: las tareas repetitivas que consumen tiempo de tu equipo, automatizadas sin mover información fuera.</p></div>
+<div><h3>Dictado y ayuda a redactar</h3><p>El médico dicta y el sistema transcribe dentro del centro y deja el borrador en el formato que ya uséis. El profesional lo revisa y firma. Ese audio no lo escucha nadie más. Es el mismo reconocedor privado que <a href="../soluciones/#voz">puedes probar en tu navegador</a>.</p></div>
+<div><h3>Encontrar cosas en la historia</h3><p>Buscar entre informes, analíticas y notas de evolución y pedir un resumen cronológico antes de pasar consulta o de preparar un alta. La IA propone el resumen; quien decide es el clínico.</p></div>
+<div><h3>Sacar datos de documentos</h3><p>Extraer diagnósticos, medicación o fechas de un lote de informes para codificación, listados o un estudio interno. Ahorra mucho tiempo de picar datos, pero siempre con revisión humana: los modelos se equivocan, y en clínica eso importa.</p></div>
+<div><h3>Seguimiento de pacientes</h3><p>Reunir la información del postoperatorio o del crónico y avisar cuando algo se desvía de lo esperado —por ejemplo, el <a href="../casos-de-exito/gestion-casos-quirurgicos.html">seguimiento post-operatorio de intervenciones quirúrgicas</a>—. Son avisos organizativos, no decisiones clínicas automáticas.</p></div>
+<div><h3>Papeleo entre sistemas</h3><p>Pasar información de un sistema a otro, preparar borradores de informes o notificaciones: lo pesado y repetitivo, sin copiar datos a mano de una pantalla a otra y sin sacarlos del centro.</p></div>
 </div>
+<p style="margin-top:18px">Lo que no hacemos: poner una IA a triar urgencias o a decidir tratamientos por su cuenta. Si un uso puede ser de alto riesgo según la AI Act o entrar en normativa de producto sanitario, hay que estudiarlo con el DPO y con asesoría antes de ponerlo en marcha. Os lo diremos claro en el diagnóstico.</p>
 </div></section>
 
 <section class="s" id="infraestructura"><div class="w">
-<h2>La infraestructura, en números</h2>
-<p class="lead">No hace falta un data center. En un proyecto real basta con un servidor en tu red, dentro de la Unión Europea, corriendo modelos abiertos —por ejemplo Qwen 27B y variantes cuantizadas— con registro de uso independiente por equipo y cliente.</p>
+<h2>Qué equipo hace falta</h2>
+<p class="lead">Para un primer piloto no hace falta montar un centro de datos. Un servidor normal en vuestra sala técnica, dentro de vuestra red, puede correr modelos abiertos de tamaño medio y dar servicio a una unidad. Cuando el uso crece, se amplía. Esto es lo que montamos en un proyecto real:</p>
 <ul class="plain">
-<li>Un servidor con una GPU de 16 GB de VRAM llega a 20–50 tokens/s con un modelo 27B: suficiente para transcripción, resumen y agentes. Es lo que entregamos en el caso de <a href="../casos-de-exito/ia-local.html">IA local para datos clínicos</a>.</li>
-<li>Red segmentada y tráfico cifrado: la IA vive en un tramo de tu red, no en la de los clínicos.</li>
-<li>Monitorización activa y registro de auditoría por equipo y cliente.</li>
-<li>Nunca alojamos nada en nuestros servidores: la infraestructura es tuya y la elegimos contigo.</li>
+<li>Un servidor modesto con una GPU de 16 GB de memoria de vídeo. En aquel proyecto el equipo completo rondó los 1.200 € y movía un modelo abierto de unas 27–30B de parámetros, cuantizado, a un ritmo suficiente para transcribir, resumir y responder a un grupo pequeño. Las cifras exactas están en el caso de <a href="../casos-de-exito/ia-local.html">IA local para datos clínicos</a>.</li>
+<li>Vive en vuestra red, separado del resto: en un tramo propio, con accesos limitados y conexiones cifradas. Cómo se segmenta lo acuerda vuestro servicio de informática, no lo imponemos nosotros.</li>
+<li>Con el mismo cuidado que el resto de vuestros sistemas: quién lo usó y cuándo, y copias de seguridad con vuestra política habitual.</li>
+<li>El equipo es vuestro y se queda en vuestro centro. Os ayudamos a elegirlo y lo dejamos instalado allí. Nosotros no nos quedamos copia de vuestros datos.</li>
 </ul>
 </div></section>
 
 <section class="s" id="como-empezar"><div class="w">
-<h2>Cómo empezar: tres fases</h2>
-<p class="lead">El mismo camino que seguimos en todos los proyectos de IA privada.</p>
+<h2>Cómo lo planteamos</h2>
+<p class="lead">Sin atajos: primero entender el caso, luego probar en pequeño y solo después llevarlo a producción.</p>
 <div class="steps">
-<div class="step"><i>1</i><h3>Diagnóstico</h3><p>Miramos qué IA usas hoy y qué datos maneja tu equipo. Entregamos una auditoría de usos y una hoja de ruta priorizada: qué casos de uso tienen sentido primero y con qué infraestructura.</p></div>
-<div class="step"><i>2</i><h3>Prueba</h3><p>Probamos el sistema con tus propios casos en nuestro servidor de pruebas, sin compromiso todavía.</p></div>
-<div class="step"><i>3</i><h3>Despliegue y mantenimiento</h3><p>Instalamos la infraestructura en tu hardware, dentro de la UE, con un caso de uso en producción. La mantenemos mes a mes: actualizaciones, seguridad, soporte, formación de tu equipo y revisión de la normativa.</p></div>
+<div class="step"><i>1</i><h3>Diagnóstico</h3><p>Nos sentamos con informática, el DPO y el servicio que lo va a usar. Vemos qué tarea duele, qué datos toca y con qué sistemas habla. Os lleváis un informe corto: si tiene sentido, con qué piloto empezar y qué haría falta. Y si no lo tiene, también os lo decimos.</p></div>
+<div class="step"><i>2</i><h3>Piloto acotado</h3><p>Un solo caso, pocos usuarios y datos controlados: al principio sintéticos o históricos ya tratados, no la historia viva. Se mide lo único que importa: cuánto tiempo ahorra, cuántos fallos aparecen y si el personal lo usa a gusto.</p></div>
+<div class="step"><i>3</i><h3>Puesta en marcha y cuidado</h3><p>Si el piloto convence y hay visto bueno de informática, DPO y responsables clínicos, se instala en vuestro equipo y se deja documentado. Después lo mantenemos: actualizaciones, vigilancia, formación y cambios cuando la normativa o los modelos se mueven.</p></div>
 </div>
 </div></section>
 
 <section class="s" id="faq"><div class="w">
-<h2>Preguntas frecuentes</h2>
+<h2>Preguntas que nos hacen</h2>
 <div class="steps" style="grid-template-columns:1fr">
-<div class="step"><h3>¿Puedo seguir usando ChatGPT o Copilot en el hospital?</h3><p>Para lo que no sea sensible, sí. Lo práctico es migrar primero los flujos con datos de pacientes a tu infraestructura propia y ampliar desde ahí, a tu ritmo.</p></div>
-<div class="step"><h3>¿Cuánto hardware necesito?</h3><p>Para empezar con modelos 27B, un servidor con una GPU de 16 GB de VRAM es punto de partida razonable. Si no tienes hardware, el diagnóstico incluye dimensionar el servidor adecuado —lo instalas en tus oficinas, no en las nuestras. Hay una <a href="hardware-ia-local.html">guía completa con los números del hardware</a>.</p></div>
-<div class="step"><h3>¿Y si no tengo equipo de IA interno?</h3><p>Por eso la fase de diagnóstico existe: dimensionamos la infraestructura mínima, elegimos el hardware y formamos a tu equipo para operar y auditar el sistema.</p></div>
-<div class="step"><h3>¿Quién actualiza los modelos?</h3><p>La fase de mantenimiento mensual: actualizaciones de modelos y seguridad, soporte, revisión de la normativa y formación. No entregamos la infraestructura y desaparecemos.</p></div>
+<div class="step"><h3>¿Podemos seguir usando ChatGPT o Copilot?</h3><p>Para redactar un correo o buscar información general, con cuenta profesional, no hay problema. Para cualquier cosa con datos de pacientes, no: nada de pegar informes, nombres, historiales o audios. Es la regla que más disgustos evita. Ante la duda, vuestro DPO manda.</p></div>
+<div class="step"><h3>¿Cuánto equipo hay que comprar?</h3><p>Para un piloto de transcripción o resumen, un servidor con una GPU de 16 GB suele bastar. En la <a href="hardware-ia-local.html">guía de hardware lo desglosamos con cifras de un proyecto real</a>. No compréis nada antes del diagnóstico: primero el caso, luego el equipo.</p></div>
+<div class="step"><h3>¿Y si no tenemos gente de IA en el hospital?</h3><p>Es lo normal. Nos basta con tres interlocutores: alguien de informática, el DPO y un clínico que conozca el proceso. Formamos a vuestra gente para el día a día y lo dejamos todo documentado.</p></div>
+<div class="step"><h3>¿Esto ya cumple el RGPD y la AI Act?</h3><p>La infraestructura ayuda —si los datos no salen, hay menos que gestionar—, pero ningún equipo cumple la ley por sí solo. Cada uso hay que encajarlo: base jurídica, evaluación de impacto si toca, ver si es de alto riesgo según la AI Act y, si orienta diagnóstico o tratamiento, si entra en normativa de producto sanitario. Preparamos la parte técnica para que vuestro DPO y jurídica lo evalúen.</p></div>
+<div class="step"><h3>¿Quién lo actualiza después?</h3><p>Nosotros, en el mantenimiento: actualizaciones de seguridad y de modelos, revisión de cambios normativos y formación. No instalamos y desaparecemos.</p></div>
 </div>
 </div></section>
 
