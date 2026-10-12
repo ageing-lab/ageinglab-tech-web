@@ -63,6 +63,7 @@
 .fhir-bar .btn{border:0;cursor:pointer}
 .fhir-copy{background:transparent!important;border:2px solid rgba(255,255,255,.4)!important;color:#fff!important;padding:11px 22px;border-radius:2px;font-weight:600}
 .fhir-copy:hover{border-color:var(--mint,#3ee0c8)!important}
+.fhir-copy:disabled{opacity:.5;cursor:default}
 .fhir-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:12px;margin-top:16px}
 .fhir-h{margin:0;font:600 12px/1 "Source Sans 3",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#9fb0d6;display:flex;align-items:center;gap:8px}
 .fhir-st{font:600 11px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em;padding:5px 9px;border-radius:99px;background:rgba(62,224,200,.15);border:1px solid rgba(62,224,200,.5);color:#7df0d9}
@@ -70,6 +71,13 @@
 .fhir pre{margin:8px 0 0;padding:14px;background:#050b1e;border:1px solid rgba(255,255,255,.16);border-radius:8px;font:400 13px/1.65 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;min-height:170px;color:#c8fff4}
 .fhir-audit{margin:12px 0 0;padding:10px 12px;border-radius:8px;background:rgba(255,210,139,.08);border:1px solid rgba(255,210,139,.4);font:400 12.5px/1.6 ui-monospace,Menlo,Consolas,monospace;color:#ffd28b;white-space:pre-wrap;word-break:break-word}
 @media (max-width:900px){.fhir-grid{grid-template-columns:1fr}}
+/* Estado de envío y aparición de la respuesta */
+.fhir-grid{transition:opacity .3s}
+.fhir-grid.is-sending{opacity:.4}
+.fhir-bar .btn:disabled{opacity:.65;cursor:wait}
+.fhir-pop{animation:fhir-in .45s cubic-bezier(.2,.7,.2,1) both}
+@keyframes fhir-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.fhir-grid{transition:none}.fhir-pop{animation:none}}
 </style>
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
@@ -140,13 +148,13 @@
 </label>
 <label class="fhir-notok"><input type="checkbox" data-fhir-notok> Sin token válido</label>
 <button type="button" class="btn alt" data-fhir-go>Enviar petición</button>
-<button type="button" class="fhir-copy" data-fhir-copy>Copiar JSON</button>
+<button type="button" class="fhir-copy" data-fhir-copy disabled>Copiar JSON</button>
 </div>
-<div class="fhir-grid">
-<div><p class="fhir-h">Petición</p><pre data-fhir-req></pre></div>
-<div><p class="fhir-h">Respuesta <span class="fhir-st" data-fhir-status>200 OK</span></p><pre data-fhir-resp></pre></div>
+<div class="fhir-grid" data-fhir-grid>
+<div><p class="fhir-h">Petición</p><pre data-fhir-req># Pulsa «Enviar petición» para construir la petición…</pre></div>
+<div><p class="fhir-h">Respuesta <span class="fhir-st" data-fhir-status>···</span></p><pre data-fhir-resp># La respuesta aparecerá aquí…</pre></div>
 </div>
-<p class="fhir-audit" data-fhir-audit aria-live="polite"></p>
+<p class="fhir-audit" data-fhir-audit aria-live="polite"># El log de auditoría aparecerá aquí…</p>
 <noscript><p class="fhir-sub">Activa JavaScript para usar el playground.</p></noscript>
 </div>
 </div>
@@ -222,9 +230,12 @@ Observation:{path:'/fhir/Observation/ejemplo-2',body:{resourceType:'Observation'
 Condition:{path:'/fhir/Condition/ejemplo-3',body:{resourceType:'Condition',id:'ejemplo-3',clinicalStatus:{text:'active'},code:{text:'Fragilidad'},subject:{reference:'Patient/ejemplo-1'}}}
 };
 function now(){var d=new Date();function p(x){return (x<10?'0':'')+x}return p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds())}
-function send(){
-var r=sel.value,bad=notok.checked,R=RES[r];
-evDemo('fhir-playground',{recurso:r,auth:bad?'sin-token':'ok'});
+var grid=root.querySelector('[data-fhir-grid]'),sending=false,
+reduced=false;
+try{reduced=matchMedia('(prefers-reduced-motion:reduce)').matches}catch(e){}
+function pop(){[res,audit].forEach(function(el){el.classList.remove('fhir-pop');void el.offsetWidth;el.classList.add('fhir-pop')})}
+function paint(r,bad){
+var R=RES[r];
 req.textContent='GET '+R.path+' HTTP/1.1\nHost: servicio-fhir.local\nAuthorization: Bearer '+(bad?'(ausente)':'••••••••')+'\nAccept: application/fhir+json';
 if(bad){
 st.textContent='401';st.classList.add('err');
@@ -236,14 +247,32 @@ res.textContent=JSON.stringify(R.body,null,2);
 audit.textContent=now()+' GET '+R.path+' 200 · usuario demo@centro.local · recurso '+r+'/'+R.body.id;
 }
 }
+function placeholder(){
+req.textContent='# Pulsa «Enviar petición» para construir la petición…';
+res.textContent='# La respuesta aparecerá aquí…';
+st.textContent='···';st.classList.remove('err');
+audit.textContent='# El log de auditoría aparecerá aquí…';
+copy.disabled=true;
+}
+function send(){
+var r=sel.value,bad=notok.checked;
+evDemo('fhir-playground',{recurso:r,auth:bad?'sin-token':'ok'});
+if(reduced){paint(r,bad);copy.disabled=false;return}
+if(sending)return;
+sending=true;go.disabled=true;go.textContent='Enviando…';grid.classList.add('is-sending');
+setTimeout(function(){
+paint(r,bad);pop();copy.disabled=false;
+go.disabled=false;go.textContent='Enviar petición';grid.classList.remove('is-sending');sending=false;
+},650);
+}
 go.addEventListener('click',send);
-sel.addEventListener('change',send);
-notok.addEventListener('change',send);
+sel.addEventListener('change',placeholder);
+notok.addEventListener('change',placeholder);
 copy.addEventListener('click',function(){var s=res.textContent;
 function done(){copy.textContent='¡Copiado!';setTimeout(function(){copy.textContent='Copiar JSON'},1500)}
 function fallback(){try{var ta=document.createElement('textarea');ta.value=s;document.body.appendChild(ta);ta.select();document.execCommand('copy');done();ta.remove()}catch(x){}}
 if(typeof navigator!=='undefined'&&navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(s).then(done,fallback)}else fallback()});
-send();
+placeholder();
 })();
 </script>
 </body>
