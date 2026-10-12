@@ -58,7 +58,7 @@
   "description":"Qué hardware necesitas para ejecutar un modelo de IA local sin que el dato salga: memoria de vídeo, cuantización y el servidor que usamos en proyectos reales, con cifras medidas.",
   "url":"https://www.ageinglabtech.com/guias/hardware-ia-local.html",
   "datePublished":"2026-09-30",
-  "dateModified":"2026-09-30",
+  "dateModified":"2026-10-12",
   "inLanguage":"es",
   "author":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},
   "isPartOf":{"@type":"WebSite","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"}
@@ -91,7 +91,7 @@
 
 <section class="s" id="por-que"><div class="w">
 <h2>Por qué esto depende del hardware</h2>
-<p class="lead">Si la IA tiene que correr en tu red —porque el dato no puede salir—, el presupuesto no es una suscripción: es un servidor. La buena noticia es que hoy un modelo grande cabe en un equipo pequeño y de presupuesto contenido. En esta guía te contamos qué mirar, con los números de un proyecto que hemos entregado.</p>
+<p class="lead">Si la IA tiene que correr en tu red porque el dato no puede salir, no pagas una suscripción: compras un equipo. La buena noticia es que hoy un modelo grande cabe en un equipo modesto. En esta guía contamos qué mirar, con lo que aprendimos en un proyecto entregado.</p>
 <p>Si primero quieres entender para qué sirve una IA privada en un entorno como el hospital, empieza por la <a href="ia-privada-en-hospitales.html">guía de IA privada en hospitales</a>. Aquí vamos directo a la parte del hardware.</p>
 </div></section>
 
@@ -99,32 +99,32 @@
 <h2>Qué mirar al comprar el servidor</h2>
 <p class="lead">Cuatro piezas deciden si el modelo cabe y a qué velocidad responde.</p>
 <div class="why">
-<div><h3>Memoria de vídeo (VRAM)</h3><p>Es la que manda. El modelo y sus pesos cargan en la GPU: si no cabe la VRAM, el modelo no funciona a la velocidad que necesitas. Para un modelo 27B en cuantización de 4 bits, 16 GB de VRAM es el punto de partida que usamos en nuestros proyectos.</p></div>
-<div><h3>El modelo y su cuantización</h3><p>Los modelos de pesos abiertos —por ejemplo Qwen 27B— se pueden cuantizar a 4 o 8 bits: se pierde una pequeña calidad a cambio de caber en menos memoria. La cuantización es la diferencia entre un equipo de gama media y uno de gama alta para el mismo trabajo.</p></div>
+<div><h3>Memoria de vídeo (VRAM)</h3><p>Es la que manda. El modelo carga en la tarjeta gráfica: si no cabe, no hay velocidad que valga. Para un modelo de unas 27B en versión comprimida, 16 GB es la referencia que usamos en un proyecto, para un usuario a la vez.</p></div>
+<div><h3>El modelo y su versión comprimida</h3><p>Los modelos de pesos abiertos se pueden comprimir para que ocupen menos memoria: se pierde un poco de calidad a cambio de caber en una tarjeta más modesta. Esa compresión es la que decide si te basta un equipo de gama media o necesitas uno mayor para el mismo trabajo.</p></div>
 <div><h3>RAM y disco</h3><p>La RAM del sistema tiene que aguantar la carga del modelo y el tráfico de trabajo; el disco, los pesos de varios modelos y los registros de uso. No son el cuello de botella, pero no los ignores.</p></div>
 <div><h3>Red segmentada</h3><p>El servidor vive en un tramo de tu red, no en la de los usuarios. La segmentación y el tráfico cifrado son parte del diseño del servidor.</p></div>
 </div>
 </div></section>
 
 <section class="s" id="caso-real"><div class="w">
-<h2>El servidor de un proyecto real, en números</h2>
-<p class="lead">En el caso de <a href="../casos-de-exito/ia-local.html">IA local para datos clínicos</a> montamos el sistema sobre un pequeño servidor con estas cifras medidas:</p>
+<h2>El equipo de un proyecto real</h2>
+<p class="lead">En el caso de <a href="../casos-de-exito/ia-local.html">IA local para datos clínicos</a> montamos el sistema sobre un equipo modesto, con estas condiciones medidas:</p>
 <ul class="plain">
-<li>Una GPU NVIDIA RTX Geforce 5060 Ti con 16 GB de VRAM, dentro de un presupuesto muy ajustado (en torno a 1.200 €).</li>
-<li>El modelo en servicio: Qwen 27B (denso), de pesos abiertos, cuantizado para caber en esos 16 GB.</li>
-<li>Velocidad de salida medida: 20–50 tokens por segundo —suficiente para transcripción, resumen y agentes en uso real.</li>
-<li>Todo dentro del edificio: el dato clínico no sale nunca del servidor.</li>
+<li>Una tarjeta gráfica de 16 GB en un equipo de gama de entrada. El coste de aquel montaje está en el caso; lo importante es el orden de magnitud, no la cifra exacta, porque los precios cambian.</li>
+<li>El modelo en servicio: uno abierto de unas 27B de parámetros, en versión comprimida para que cupiera en esos 16 GB.</li>
+<li>Ritmo de trabajo para una persona a la vez: respuestas en segundos al redactar o resumir. Las cifras exactas están en el caso.</li>
+<li>Todo dentro del edificio: nada salió de aquel equipo.</li>
 </ul>
-<p>Con ese equipo, un equipo de desarrollo consume el modelo local a través de la API del servidor: GitHub Copilot, Opencode, agentes y chatbots. Es decir, la IA local no es solo para el hospital: sirve para cualquier trabajo donde el dato no puede salir.</p>
+<p>En aquel proyecto lo usaba una persona a la vez desde sus herramientas (Copilot, Opencode, agentes, chat interno). Vale como base para probar y trabajar de uno en uno; para varios a la vez hay que dimensionar de otra forma.</p>
 </div></section>
 
 <section class="s" id="no-hagas"><div class="w">
 <h2>Lo que no hace falta</h2>
 <div class="why">
-<div><h3>No hace falta un data center</h3><p>Un servidor de sobremesa en tu red resuelve la mayoría de casos de uso. Escalar después, si el uso lo pide, es más barato que dimensionar mal al principio.</p></div>
-<div><h3>No hace falta pagar por token</h3><p>El coste es la infraestructura, fija y tuya. No hay coste de uso que crezca con el volumen de trabajo.</p></div>
-<div><h3>16 GB de VRAM cubren un 27B cuantizado</h3><p>En el caso real, una GPU RTX 5060 Ti de 16 GB de VRAM, en torno a 1.200 €, corre Qwen 27B cuantizado. La primera decisión es el caso de uso, no la tarjeta.</p></div>
-<div><h3>Cuándo sí hace falta más</h3><p>Si el caso de uso necesita un modelo mayor, se recalcula la VRAM y se escala el servidor después: es más barato que dimensionar mal al principio. En el diagnóstico te dimensionamos el equipo y formamos a tu equipo para operar y auditar el sistema.</p></div>
+<div><h3>No hace falta un centro de datos</h3><p>Un servidor en tu red resuelve la mayoría de los primeros casos. Ampliar después, si el uso lo pide, sale mejor que comprar de más al principio.</p></div>
+<div><h3>No hace falta pagar por uso</h3><p>El coste es el equipo, fijo y tuyo. No hay factura que crezca con el volumen de trabajo.</p></div>
+<div><h3>16 GB dan para unas 27B, de uno en uno</h3><p>Es nuestra referencia medida: un modelo de unas 27B en versión comprimida, para un usuario a la vez. No es una garantía para cualquier caso: la primera decisión es el caso de uso, no la tarjeta.</p></div>
+<div><h3>Cuándo sí hace falta más</h3><p>Si el caso pide un modelo mayor o varios usuarios a la vez, se recalcula la memoria y se amplía el equipo. Eso se fija en el diagnóstico, antes de comprar.</p></div>
 </div>
 </div></section>
 
@@ -132,7 +132,7 @@
 <h2>Cómo empezar</h2>
 <div class="steps">
 <div class="step"><i>1</i><h3>El caso de uso primero</h3><p>Definimos qué va a hacer la IA (transcripción, resumen, agentes, alertas) y qué datos maneja. De eso sale el tamaño de modelo que necesitas y, con él, el hardware.</p></div>
-<div class="step"><i>2</i><h3>Prueba en nuestro servidor</h3><p>Probamos tu caso en nuestro servidor de pruebas, con tus propios datos de ejemplo, sin compromiso.</p></div>
+<div class="step"><i>2</i><h3>Medir antes de comprar</h3><p>Validamos el modelo con vuestro caso usando datos de ejemplo: velocidad, errores y cuántos usuarios a la vez aguanta. Lo que no dé, se sabe antes de gastar.</p></div>
 <div class="step"><i>3</i><h3>Despliegue en tu red</h3><p>Instalamos el sistema en tu hardware, dentro de la Unión Europea, con red segmentada y registro de auditoría por equipo y cliente. Lo mantenemos mes a mes: actualizaciones, seguridad y formación.</p></div>
 </div>
 </div></section>
@@ -140,8 +140,8 @@
 <section class="s" id="faq"><div class="w">
 <h2>Preguntas frecuentes</h2>
 <div class="steps" style="grid-template-columns:1fr">
-<div class="step"><h3>¿Cuánto cuesta el hardware?</h3><p>Depende del modelo y del caso de uso, pero un punto de partida razonable para modelos 27B es un servidor con una GPU de 16 GB de VRAM: en nuestro caso real, en torno a 1.200 € de presupuesto.</p></div>
-<div class="step"><h3>¿Qué pasa si mi caso necesita un modelo más grande?</h3><p>Se mira el siguiente tamaño de modelo y se recalcula la VRAM. La lógica es la misma: caso de uso, modelo, cuantización y memoria. Lo dimensionamos en el diagnóstico.</p></div>
+<div class="step"><h3>¿Cuánto cuesta el equipo?</h3><p>Depende del modelo y de cuántos lo vayan a usar a la vez. Nuestra referencia: un equipo de entrada con gráfica de 16 GB para un modelo de unas 27B en versión comprimida y un usuario a la vez. El coste de aquel montaje está en el caso; en un hospital, con formato rack, garantía y soporte, la cifra es otra. Lo fijamos en el diagnóstico antes de que compréis nada.</p></div>
+<div class="step"><h3>¿Y si necesito un modelo mayor o más usuarios?</h3><p>Se recalcula la memoria y se amplía el equipo. La lógica es la misma: caso de uso, modelo, versión y memoria. Lo dimensionamos en el diagnóstico.</p></div>
 <div class="step"><h3>¿Puedo usar la nube para las partes no sensibles?</h3><p>Sí, y es lo que hacemos en la práctica: se migran primero los flujos con datos sensibles a tu infraestructura y el resto se deja donde esté, caso a caso.</p></div>
 <div class="step"><h3>¿Quién lo actualiza después?</h3><p>La fase de mantenimiento mensual: actualizaciones de modelos y seguridad, soporte, revisión de la normativa y formación de tu equipo.</p></div>
 </div>

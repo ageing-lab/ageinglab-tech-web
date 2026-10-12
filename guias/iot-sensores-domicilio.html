@@ -58,7 +58,7 @@
   "description":"Cómo montar un sistema de monitorización en el domicilio: qué medir, qué sensores y conectividad elegir, cómo diseñar la interfaz y llevar el prototipo a producción.",
   "url":"https://www.ageinglabtech.com/guias/iot-sensores-domicilio.html",
   "datePublished":"2026-09-30",
-  "dateModified":"2026-09-30",
+  "dateModified":"2026-10-12",
   "inLanguage":"es",
   "author":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},
   "isPartOf":{"@type":"WebSite","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"}
@@ -95,7 +95,7 @@
 <ul class="plain">
 <li><strong>Datos entre visitas:</strong> medidas repetidas en casa permiten ver la evolución, no solo un punto aislado.</li>
 <li><strong>Menos desplazamientos:</strong> la persona no tiene que desplazarse para cada control, y el equipo profesional ve a quien más lo necesita.</li>
-<li><strong>Detección temprana:</strong> indicadores como la velocidad de la marcha —uno de los más usados para valorar la fragilidad— pierden sentido solo si se miden con regularidad.</li>
+<li><strong>Detección temprana:</strong> la velocidad de la marcha —uno de los indicadores más usados para valorar la fragilidad— solo sirve si se mide con regularidad.</li>
 <li><strong>El dato es clínico:</strong> por eso la infraestructura, el cifrado y la auditoría forman parte del alcance, no son un extra.</li>
 </ul>
 </div></section>
@@ -113,7 +113,7 @@
 
 <section class="s" id="arquitectura"><div class="w">
 <h2>La arquitectura: las piezas que tienen que encajar</h2>
-<p class="lead">Un sistema de monitorización se compone de piezas que deben ser compatibles entre sí desde el primer día. Es exactamente lo primero que revisamos al diseñar un proyecto —puedes probarlo con el <a href="../servicios/iot-y-hardware.html#demo-iot">simulador de arquitectura IoT</a> del servicio—.</p>
+<p class="lead">Un sistema de monitorización son piezas que tienen que encajar desde el primer día. Es lo primero que revisamos al diseñar un proyecto. Puedes jugar con las piezas en el <a href="../servicios/iot-y-hardware.html#demo-iot">simulador de arquitectura IoT</a> del servicio.</p>
 <ul class="plain">
 <li><strong>Sensor:</strong> elige por la magnitud a medir y la precisión requerida, no por el precio. Si la medida es clínica, la precisión no se negocia.</li>
 <li><strong>Microcontrolador:</strong> Arduino, ESP8266, ESP32 o STM32 según consumo, conectividad y coste. La misma placa no sirve igual para un prototipo de mesa que para un dispositivo con batería.</li>
@@ -125,13 +125,13 @@
 
 <section class="s" id="paso-a-paso"><div class="w">
 <h2>Paso a paso, del prototipo al producto</h2>
-<p class="lead">El mismo camino que recorremos en los proyectos de IoT.</p>
+<p class="lead">Cómo lo hacemos en los proyectos de IoT, del prototipo al producto:</p>
 <div class="steps">
 <div class="step"><i>1</i><h3>Define la medida y el caso de uso</h3><p>Qué se mide, con qué frecuencia, quién decide qué a partir de ese dato y qué pasa si falta. Sin esto, el sistema genera datos que nadie usa.</p></div>
 <div class="step"><i>2</i><h3>Diseña el prototipo</h3><p>Elige la electrónica —Arduino, ESP32, STM32— y conecta los sensores por Bluetooth, Wi-Fi u otro protocolo. Prototipo funcional antes que prototipo bonito.</p></div>
 <div class="step"><i>3</i><h3>Valida en uso real, con la persona que lo va a usar</h3><p>Se prueba en el domicilio, no solo en la mesa del laboratorio, y se mide la usabilidad —incluida la de personas mayores—. Aquí es donde se descubre que la batería dura dos días o que nadie entiende el aviso.</p></div>
 <div class="step"><i>4</i><h3>Diseña la interfaz de la persona</h3><p>Una tarea por pantalla, aviso de lo que toca, vídeo o voz que guíe el paso a paso y entrega ya configurada. El mejor sensor del mundo no vale si la persona no lo usa. Hay una <a href="interfaces-para-mayores.html">guía entera sobre esto</a>.</p></div>
-<div class="step"><i>5</i><h3>Optimiza y prepara la producción</h3><p>Revisión de la lista de materiales para reducir coste, pruebas de fiabilidad y, si es producto sanitario o requiere marcado CE, la gestión a través de socios de fabricación.</p></div>
+<div class="step"><i>5</i><h3>Optimiza y prepara la producción</h3><p>Revisión de la lista de materiales para reducir coste y pruebas de fiabilidad. Si el dispositivo va a ser producto sanitario, el marcado CE se prepara desde el diseño y se fabrica a través de socios.</p></div>
 <div class="step"><i>6</i><h3>Integra con la plataforma clínica</h3><p>El dato llega a la herramienta donde el profesional lo consulta, con cifrado y registro de auditoría; si hay que hablar con otros sistemas de salud, con <a href="integrar-fhir.html">interoperabilidad FHIR</a>.</p></div>
 </div>
 </div></section>
@@ -140,7 +140,7 @@
 <h2>Errores comunes</h2>
 <ul class="plain">
 <li><strong>Empezar por el gadget:</strong> comprar el sensor antes de definir qué decisión apoya el dato. El resultado es un piloto con datos que nadie mira.</li>
-<li><strong>Ignorar la batería:</strong> la autonomía en uso real manda. Un prototipo con cable funciona siempre; en el domicilio, cambiar pilotos cada semana significa abandono.</li>
+<li><strong>Ignorar la batería:</strong> la autonomía en uso real manda. Un prototipo con cable funciona siempre; en el domicilio, cambiar pilas cada semana significa abandono.</li>
 <li><strong>Probar solo en el laboratorio:</strong> el domicilio tiene wifi inestable, manos temblorosas y nadie técnico al lado.</li>
 <li><strong>Diseñar la interfaz al final:</strong> la app de la persona es la mitad del producto. Dejarla para el último sprint garantiza que sea el eslabón débil.</li>
 <li><strong>Olvidar el caso de no uso:</strong> qué pasa cuando la medida no llega —¿una alerta para el profesional, un aviso para la persona?— define la calidad del sistema tanto como la medida correcta.</li>
@@ -150,7 +150,7 @@
 
 <section class="s" id="caso"><div class="w">
 <h2>Un caso real</h2>
-<p class="lead">Para MG Biomed convertimos un prototipo preciso pero inusable y obsoleto en un dispositivo inalámbrico de dos nodos, con batería de meses, mejor usabilidad y una lista de materiales optimizada que redujo el coste, fabricado con marcado CE a través de nuestros socios. Es el dispositivo de medida de la velocidad de la marcha que, conectado a la app de la persona mayor, formó parte del sistema con <a href="../casos-de-exito/interfaz-adherencia.html">adherencia en torno al 80% en nuestros proyectos con personas mayores</a>. <a href="../casos-de-exito/velocidad-marcha.html">El caso completo está aquí</a>.</p>
+<p class="lead">Para MG Biomed convertimos un prototipo obsoleto y poco usable en un dispositivo inalámbrico de dos nodos, con batería de meses y una lista de materiales optimizada que redujo el coste; se fabrica con marcado CE a través de nuestros socios. Es el dispositivo de medida de la velocidad de la marcha que, conectado a la app de la persona mayor, formó parte del sistema con <a href="../casos-de-exito/interfaz-adherencia.html">adherencia en torno al 80% en nuestros proyectos con personas mayores</a>. <a href="../casos-de-exito/velocidad-marcha.html">El caso completo está aquí</a>.</p>
 </div></section>
 
 <section class="s" id="relacionados"><div class="w">

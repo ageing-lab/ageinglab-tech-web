@@ -58,7 +58,7 @@
   "description":"Guía práctica para integrar tu plataforma, app o dispositivo con el estándar FHIR: qué recursos exponer, seguridad y los errores más comunes.",
   "url":"https://www.ageinglabtech.com/guias/integrar-fhir.html",
   "datePublished":"2026-09-30",
-  "dateModified":"2026-09-30",
+  "dateModified":"2026-10-12",
   "inLanguage":"es",
   "author":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},
   "isPartOf":{"@type":"WebSite","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"}
@@ -94,7 +94,7 @@
 <p class="lead">FHIR (Fast Healthcare Interoperability Resources) es el estándar de HL7 para el intercambio de datos de salud. Frente a los formatos legados, FHIR es moderno: recursos JSON, API REST y un modelo de datos pensado para la web. En la práctica, un sistema FHIR expone recursos como <em>Patient</em>, <em>Observation</em>, <em>Condition</em>, <em>Encounter</em> o <em>MedicationRequest</em>, y cualquier otro sistema que hable FHIR puede consultarlos o publicarlos con las mismas reglas.</p>
 <ul class="plain">
 <li><strong>API REST + JSON:</strong> las mismas mecánicas que cualquier API web moderna, con versionado (R4, R5) y cabeceras estándar.</li>
-<li><strong>Recursos tipados:</strong> cada dato es un recurso FHIR con semántica definida, lo que permite interoperar sin acoplarse a una plataforma concreta.</li>
+<li><strong>Recursos con significado:</strong> cada dato es un recurso FHIR con su semántica definida, lo que permite que dos sistemas se entiendan sin atarse a un proveedor concreto.</li>
 <li><strong>Acceso autorizado:</strong> SMART on FHIR define cómo conceder acceso a los recursos (OAuth 2, consentimiento del paciente, scopes por recurso).</li>
 </ul>
 </div></section>
@@ -104,7 +104,7 @@
 <p class="lead">Cuando tu sistema necesita intercambiar información clínica con otros sistemas: la historia clínica del hospital, la receta electrónica, plataformas de seguimiento o dispositivos que alimentan una plataforma.</p>
 <ul class="plain">
 <li>Si solo vas a hablar con <strong>un</strong> sistema concreto y por tiempo limitado, a veces basta una integración puntual. El problema aparece cuando son varios: sin FHIR, cada integración es un canal propio para cada par de sistemas.</li>
-<li>Si vas a hablar con <strong>varios</strong> sistemas —o a estar en un ecosistema que lo exija (historial clínico, interoperabilidad regional, proyectos europeos)—, FHIR es el mecanismo común: cualquier sistema que hable FHIR se conecta al mismo mecanismo.</li>
+<li>Si vas a hablar con <strong>varios</strong> sistemas —o a estar en un ecosistema que lo exija (historial clínico, interoperabilidad regional, proyectos europeos)—, FHIR es el idioma común: te conectas una vez y hablas con todos, en vez de levantar un canal por cada par de sistemas.</li>
 <li>Si tu proyecto está en investigación o en el sector público, FHIR suele ser la vía para participar sin construir una integración privada por cada socio.</li>
 </ul>
 </div></section>
@@ -115,11 +115,11 @@
 <div class="steps">
 <div class="step"><i>1</i><h3>Define el alcance de los datos</h3><p>Qué recursos necesitas exponer y cuáles consumir: pacientes, observaciones, diagnósticos, citas, medicación. Empezar con un subconjunto pequeño es lo que permite que la integración se apruebe.</p></div>
 <div class="step"><i>2</i><h3>Elige la arquitectura</h3><p>¿Un servidor FHIR propio (por ejemplo, HAPI FHIR o un motor open source equivalente), una capa de integración entre tus sistemas, o exponer FHIR desde tu plataforma actual? Depende de qué sistemas ya existen y de quién es dueño de cada dato.</p></div>
-<div class="step"><i>3</i><h3>Mapea tu modelo de datos a recursos FHIR</h3><p>Cada campo de tu sistema se mapea a un recurso y a sus campos definidos. Es el paso donde más vive la integración: hacerlo bien al principio ahorra meses de parches.</p></div>
-<div class="step"><i>4</i><h3>Exponde la API REST con las reglas FHIR</h3><p>Endpoints por recurso, versionado, manejo de errores estándar y búsquedas. Tu sistema pasa a ser una parte más del ecosistema FHIR.</p></div>
+<div class="step"><i>3</i><h3>Mapea tu modelo de datos a recursos FHIR</h3><p>Cada campo de tu sistema se lleva a un recurso y a sus campos definidos. Es el paso que más trabajo da: hacerlo bien al principio ahorra meses de parches.</p></div>
+<div class="step"><i>4</i><h3>Expón la API REST con las reglas FHIR</h3><p>Endpoints por recurso, versionado, errores estándar y búsquedas. Tu sistema habla el mismo idioma que el resto.</p></div>
 <div class="step"><i>5</i><h3>Resuelve la autorización</h3><p>SMART on FHIR: OAuth 2, scopes por recurso y consentimiento del paciente. Quién puede leer qué, y con qué permiso, forma parte del alcance de la integración.</p></div>
 <div class="step"><i>6</i><h3>Seguridad y privacidad</h3><p>Transporte cifrado (TLS), control de acceso por recurso, registro de auditoría de cada lectura y escritura, y pseudonimización cuando el flujo lo permita.</p></div>
-<div class="step"><i>7</i><h3>Prueba con casos reales</h3><p>Interoperabilidad con el servidor FHIR de la otra parte, casos de uso clínicos de verdad y un test de conformidad antes de producción.</p></div>
+<div class="step"><i>7</i><h3>Prueba con casos de verdad</h3><p>Se prueba contra el servidor de la otra parte con casos clínicos reales y se pasa una prueba de conformidad antes de salir a producción.</p></div>
 </div>
 </div></section>
 

@@ -58,7 +58,7 @@
   "description":"Cómo transcribir y resumir en el propio hospital con modelos de IA locales: por qué el audio no debe salir, qué infraestructura hace falta y cómo empezar.",
   "url":"https://www.ageinglabtech.com/guias/transcripcion-clinica-privada.html",
   "datePublished":"2026-09-30",
-  "dateModified":"2026-09-30",
+  "dateModified":"2026-10-12",
   "inLanguage":"es",
   "author":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},
   "isPartOf":{"@type":"WebSite","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"}
@@ -85,18 +85,18 @@
 <div class="hero dark case-hero"><div class="w">
 <nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>Transcripción clínica con IA privada</span></nav>
 <h1>Transcripción clínica con IA privada: guía práctica</h1>
-<p>El profesional habla, la IA transcribe y resume. La diferencia entre que esto sea posible o no en un hospital es dónde se ejecuta el modelo: esta guía explica cómo hacerlo sin que el audio salga del edificio.</p>
+<p>El profesional habla y la IA deja el borrador escrito. Que eso sea posible en un hospital depende de dónde corra el modelo: esta guía cuenta cómo hacerlo sin que el audio salga del centro.</p>
 <a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
 </div></div>
 
 <section class="s" id="por-que"><div class="w">
-<h2>Por qué el audio no puede salir</h2>
-<p class="lead">Una conversación clínica contiene datos de pacientes: nombres, diagnósticos, casos concretos. Enviarla a una API de transcripción en la nube de un proveedor externo es ceder el dato a un tercero, con las implicaciones de seguridad, base legal y contratos que eso conlleva. En la práctica, en muchos hospitales esa opción se descarta antes de empezar.</p>
+<h2>Por qué el audio no puede salir del centro</h2>
+<p class="lead">Una conversación clínica trae datos de pacientes: nombres, diagnósticos, casos concretos. Mandarla a un servicio de transcripción de fuera es entregar esos datos a un tercero, con todo lo que eso arrastra: contratos, base jurídica, riesgos. En muchos hospitales esa opción se descarta antes de empezar.</p>
 <ul class="plain">
-<li><strong>El dato no sale de la institución:</strong> la transcripción ocurre dentro de la red del hospital; ni el audio ni el texto se envían a ningún servicio externo.</li>
-<li><strong>Compliance más simple:</strong> al no ceder el dato a un tercero, el mapa de riesgos y la base legal del tratamiento son más fáciles de sostener.</li>
-<li><strong>Sin coste por uso:</strong> no se paga por audio ni por token a un proveedor; el coste es la infraestructura, que es fija y de la institución.</li>
-<li><strong>Trazabilidad:</strong> cada uso queda registrado por equipo y caso, con registro de auditoría independiente.</li>
+<li><strong>Lo que se dicta no sale:</strong> el audio y el texto se procesan en vuestra red, no en la de un proveedor externo.</li>
+<li><strong>Menos terceros en el circuito:</strong> si ningún proveedor recibe audio de pacientes, hay menos contratos de encargo y menos riesgos que gestionar. El trabajo con vuestro DPO sigue siendo obligatorio —registro de actividades, evaluación de impacto cuando toque—, pero en un terreno más controlable. Os entregamos la documentación técnica para que el DPO y jurídica puedan valorarlo.</li>
+<li><strong>Coste previsible:</strong> en vez de pagar por minuto transcrito o por consulta, el gasto principal es el equipo y su mantenimiento. Sabéis de antemano lo que cuesta.</li>
+<li><strong>Constancia de uso:</strong> queda registrado qué servicio lo usó y cuándo, algo que en un hospital os van a pedir tarde o temprano.</li>
 </ul>
 </div></section>
 
@@ -106,30 +106,29 @@
 <div class="steps">
 <div class="step"><i>1</i><h3>Captura del audio</h3><p>El profesional dicta desde su equipo —ordenador, tableta o móvil— dentro del entorno habitual. El audio viaja cifrado y sin salir de la red institucional.</p></div>
 <div class="step"><i>2</i><h3>Transcripción local</h3><p>Un modelo de voz open weight instalado en el servidor del hospital convierte el audio en texto. No hay llamadas a APIs externas ni colas de audio fuera del edificio.</p></div>
-<div class="step"><i>3</i><h3>Post-proceso con LLM local</h3><p>Sobre el texto, un modelo de lenguaje local estructura el resultado: resumen, informe, partes de evolución o campos para la historia clínica, según la plantilla de cada servicio.</p></div>
-<div class="step"><i>4</i><h3>Revisión y entrega</h3><p>El profesional revisa y confirma antes de que nada se guarde. La IA redacta; la responsabilidad clínica sigue siendo humana, y lo validamos contigo en la prueba para que la revisión sea rápida.</p></div>
+<div class="step"><i>3</i><h3>Del texto al borrador</h3><p>Sobre la transcripción, un modelo de lenguaje del propio centro la ordena: resumen, informe, parte de evolución o campos para la historia clínica, según la plantilla de cada servicio.</p></div>
+<div class="step"><i>4</i><h3>Revisión y entrega</h3><p>El profesional revisa y confirma antes de que nada se guarde. La IA propone y el profesional dispone y firma. El flujo se diseña para que revisar sea rápido.</p></div>
 </div>
 </div></section>
 
 <section class="s" id="infraestructura"><div class="w">
-<h2>La infraestructura, en números</h2>
-<p class="lead">No hace falta un data center. En un proyecto real basta con un servidor en tu red, dentro de la Unión Europea, corriendo modelos abiertos —por ejemplo Qwen 27B y variantes cuantizadas— con registro de uso independiente por equipo y cliente.</p>
+<h2>Qué equipo hace falta</h2>
+<p class="lead">Para algunos casos no hace falta un CPD: basta un servidor base con una buena tarjeta gráfica, instalado en vuestra sala técnica y dentro de vuestra red. La voz pide menos que el lenguaje: transcribir tira con modelos de voz pequeños, y el modelo grande solo entra cuando hay que redactar o resumir. Os ayudamos a elegir el equipo adecuado a vuestro caso antes de comprar nada.</p>
 <ul class="plain">
-<li>Un servidor con una GPU de 16 GB de VRAM llega a 20–50 tokens/s con un modelo 27B: suficiente para transcripción, resumen y agentes. Es lo que entregamos en el caso de <a href="../casos-de-exito/ia-local.html">IA local para datos clínicos</a>, con un servidor completo de en torno a 1.200 €.</li>
-<li>El reconocimiento de voz se puede añadir al mismo hardware o servirse desde un servicio interno equivalente; lo que no cambia es que el audio no salga.</li>
-<li>Red segmentada y tráfico cifrado: la IA vive en un tramo de tu red, no en la de los clínicos.</li>
-<li>Monitorización activa y registro de auditoría por equipo y cliente.</li>
-<li>Nada se aloja en servidores de terceros: la infraestructura es tuya y la elegimos contigo.</li>
+<li>Un servidor normal con una buena tarjeta gráfica. En un proyecto interno movimos un modelo abierto grande con una gráfica de 16 GB, a velocidad de trabajo y con una persona a la vez. Los detalles, con cifras, están en el caso de <a href="../casos-de-exito/ia-local.html">IA local para datos clínicos</a>.</li>
+<li>El audio no sale en ningún caso: da igual que la voz se procese en el mismo equipo o en otro dentro del centro; lo que no cambia es que nada viaja a un servicio externo.</li>
+<li>Vive en vuestra red, separado del resto: en un tramo propio, con accesos limitados y conexiones cifradas. Cómo se segmenta lo acuerda vuestro servicio de informática, no lo imponemos nosotros.</li>
+<li>El equipo es vuestro y se queda en vuestro centro. Os ayudamos a elegirlo y lo dejamos instalado allí. Nosotros no nos quedamos copia de vuestros audios ni de vuestros textos.</li>
 </ul>
 </div></section>
 
 <section class="s" id="como-empezar"><div class="w">
-<h2>Cómo empezar: tres fases</h2>
-<p class="lead">El mismo camino de todos los proyectos de IA privada.</p>
+<h2>Cómo lo planteamos</h2>
+<p class="lead">Sin atajos: primero entender el caso, luego probar en pequeño y solo después llevarlo a producción.</p>
 <div class="steps">
-<div class="step"><i>1</i><h3>Diagnóstico</h3><p>Miramos qué IA usas hoy, qué tareas de dictado y redacción consume tu equipo y qué datos maneja. Entregamos un documento de auditoría: qué usos hay hoy, qué datos tocan y en qué orden conviene migrarlos.</p></div>
-<div class="step"><i>2</i><h3>Prueba</h3><p>Probamos la transcripción con tus propios audios y plantillas en nuestro servidor de pruebas, sin compromiso.</p></div>
-<div class="step"><i>3</i><h3>Despliegue y mantenimiento</h3><p>Instalamos la infraestructura en tu hardware, dentro de la UE, con el dictado en producción. La mantenemos mes a mes: actualizaciones de modelos y seguridad, soporte, formación y revisión de la normativa.</p></div>
+<div class="step"><i>1</i><h3>Diagnóstico</h3><p>Vemos qué se dicta hoy, cuánto tiempo se va en redactar y qué plantillas usa cada servicio. Os lleváis un informe corto: si tiene sentido, con qué servicio empezar y qué haría falta. Y si no lo tiene, también os lo decimos.</p></div>
+<div class="step"><i>2</i><h3>Piloto acotado</h3><p>Un solo servicio, pocos usuarios, audios de prueba y sus plantillas. Se mide lo único que importa: cuánto tiempo ahorra, cuántos fallos aparecen y si el personal lo usa a gusto.</p></div>
+<div class="step"><i>3</i><h3>Puesta en marcha y cuidado</h3><p>Si el piloto convence y hay visto bueno de informática, DPO y responsables del servicio, se instala en vuestro equipo y se deja documentado. Después lo mantenemos: actualizaciones, vigilancia, formación y cambios cuando la normativa o los modelos se mueven.</p></div>
 </div>
 </div></section>
 
@@ -137,16 +136,16 @@
 <h2>Errores comunes</h2>
 <ul class="plain">
 <li><strong>Copiar el flujo de la nube tal cual:</strong> asumir que la transcripción privada es «lo mismo pero en local» ignora el dimensionamiento, la concurrencia y el mantenimiento de modelos. El hardware y el reparto de carga se diseñan.</li>
-<li><strong>Confundir transcribir con redactar:</strong> un texto literal de la conversación no es un informe. El valor está en el post-proceso con las plantillas de cada servicio, no en el stt solo.</li>
+<li><strong>Confundir transcribir con redactar:</strong> un texto literal de la conversación no es un informe. El valor está en dejar el borrador con las plantillas de cada servicio, no en pasar el audio a texto sin más.</li>
 <li><strong>Omitir la revisión humana:</strong> nadie debería firmar un documento clínico generado por IA sin leerlo. El flujo debe contemplar la revisión como paso obligado, no como opción.</li>
-<li><strong>Modelo genérico sin adaptación:</strong> la terminología de un servicio —siglas, medicamentos, procedimientos— no está en un modelo genérico. Afinar el vocabulario y las plantillas es lo que separa una demo de un sistema usable.</li>
-<li><strong>Dejar el mantenimiento huérfano:</strong> los modelos, la seguridad y la normativa cambian. Sin un responsable de mantenimiento, el sistema se degrada en meses.</li>
+<li><strong>Modelo genérico sin preparar:</strong> la terminología de un servicio —siglas, medicamentos, procedimientos— no la trae de casa ningún modelo genérico. Preparar las plantillas y el vocabulario de cada servicio es lo que separa una demo de algo usable.</li>
+<li><strong>Dejar el mantenimiento sin dueño:</strong> los modelos, la seguridad y la normativa cambian. Sin un responsable de mantenimiento, el sistema se degrada en meses.</li>
 </ul>
 </div></section>
 
 <section class="s" id="caso"><div class="w">
 <h2>Un caso real</h2>
-<p class="lead">Montamos un sistema de IA local para datos clínicos en un pequeño servidor con GPU de 16 GB de VRAM y modelos open weight como Qwen 27B a 20–50 tokens/s, con el 100% del dato permaneciendo dentro del edificio, red segmentada y registro de auditoría por equipo y cliente. <a href="../casos-de-exito/ia-local.html">El caso completo, con el hardware y los números, está aquí</a>.</p>
+<p class="lead">Montamos un sistema de IA local para datos clínicos en un equipo modesto con una gráfica de 16 GB y un modelo abierto grande, trabajando de uno en uno y sin que nada saliera del edificio. <a href="../casos-de-exito/ia-local.html">El caso completo, con el hardware y los números, está aquí</a>.</p>
 </div></section>
 
 <section class="s" id="relacionados"><div class="w">
