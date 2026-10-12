@@ -48,6 +48,27 @@
 <link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
 <link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="../styles.css">
+<style>
+/* Mini-juego Asociando las parejas (solo juegos-cognitivos-madrid.html) */
+.mem{margin:32px 0 0;max-width:900px;border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:22px}
+.mem-k{margin:0;font:600 13px/1 "Source Sans 3",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.mem-t{margin:10px 0 0;font:700 clamp(20px,2.2vw,26px)/1.2 "Bricolage Grotesque",sans-serif;letter-spacing:-.01em}
+.mem-sub{margin:8px 0 0;color:var(--mute);font-size:17px;max-width:40em}
+.mem-bar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:16px}
+.mem-bar .btn{border:0;cursor:pointer}
+.mem-meta{margin:0;color:var(--mute);font-size:15px;font-variant-numeric:tabular-nums}
+.mem-grid{margin:16px 0 0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.mem-card{display:grid;place-items:center;aspect-ratio:3/3.6;min-height:132px;border-radius:10px;border:2px solid var(--line);background:var(--navy);cursor:pointer;font:700 54px/1 "Bricolage Grotesque",sans-serif;transition:transform .25s,border-color .25s}
+.mem-card:hover{border-color:var(--mint,#3ee0c8)}
+.mem-card .q{color:var(--mint,#3ee0c8)}
+.mem-card.m0 .sym{color:#7dd3fc}.mem-card.m1 .sym{color:#f0abfc}.mem-card.m2 .sym{color:#6ee7b7}.mem-card.m3 .sym{color:#fdba74}
+.mem-card.done{border-color:var(--mint,#3ee0c8);cursor:default}
+.mem-win{margin:16px 0 0;padding:14px 16px;border-radius:8px;background:var(--navy);color:#fff;font-size:17px}
+.mem-win strong{color:var(--mint,#3ee0c8)}
+.mem-win a{color:var(--mint,#3ee0c8);text-underline-offset:3px}
+@media (max-width:600px){.mem-grid{gap:10px}.mem-card{min-height:100px;font-size:40px}.mem{padding:18px 16px}}
+@media (prefers-reduced-motion:reduce){.mem-card{transition:none}}
+</style>
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Casos de éxito","item":"https://www.ageinglabtech.com/casos-de-exito/"},{"@type":"ListItem","position":3,"name":"Plataforma de juegos cognitivos para el Ayuntamiento de Madrid","item":"https://www.ageinglabtech.com/casos-de-exito/juegos-cognitivos-madrid.html"}]}</script>
@@ -105,6 +126,18 @@
 <div class="txt"><p>Migramos la plataforma a HTML5, una tecnología actual y estándar de la web, y aprovechamos la migración para ampliarla.</p><p>Se implementaron los juegos cognitivos, planes personalizados de entrenamiento, un sistema de registro de personas usuarias, y medidas y marcadores para la detección del deterioro cognitivo. Así, además de jugar, el centro dispone de datos para hacer seguimiento de cada persona.</p><p>Es el tipo de trabajo que hacemos en <a href="../servicios/software-a-medida.html">software a medida</a> e <a href="../servicios/interfaces-para-mayores.html">interfaces para mayores</a>.</p></div>
 <figure class="shot"><img src="../img/casos/juegos-memoria.webp" alt="Área de memoria de la plataforma, con los ejercicios Recordando las cartas, Asociando las parejas, Visualizando escenas cotidianas y Simón" width="1190" height="564" loading="lazy" decoding="async"><figcaption>Memoria: Recordando las cartas, Asociando las parejas, Visualizando escenas cotidianas y Simón.</figcaption></figure>
 <figure class="shot"><img src="../img/casos/juegos-atencion.webp" alt="Área de atención de la plataforma, con los ejercicios Reproduzca el dibujo, A la búsqueda de las fichas I y II, y Reconozca la figura" width="1190" height="564" loading="lazy" decoding="async"><figcaption>Atención: Reproduzca el dibujo, A la búsqueda de las fichas I y II, y Reconozca la figura.</figcaption></figure>
+<div class="mem" data-mem>
+<p class="mem-k">Pruébalo aquí mismo</p>
+<p class="mem-t">Asociando las parejas, en miniatura</p>
+<p class="mem-sub">Toca las cartas para voltearlas y encuentra las 4 parejas. Una versión simplificada del ejercicio de memoria de la plataforma; corre entera en tu navegador.</p>
+<div class="mem-bar">
+<p class="mem-meta" data-mem-meta aria-live="polite">0 intentos · 0 parejas de 4 · 0,0 s</p>
+<button type="button" class="btn alt" data-mem-reset>Repartir de nuevo</button>
+</div>
+<div class="mem-grid" data-mem-grid role="group" aria-label="Cartas del juego"></div>
+<p class="mem-win" data-mem-win hidden></p>
+<noscript><p class="mem-sub">Activa JavaScript para jugar.</p></noscript>
+</div>
 </div></section>
 
 <section class="s" id="resultados"><div class="w">
@@ -162,5 +195,66 @@
 </div><div class="base">© 2026 AgeingLab Tech · Servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> – CTB – UPM · Madrid, España</div></div></footer>
 
 <script src="../js/main.js"></script>
+<script>
+/* Mini-juego Asociando las parejas (solo juegos-cognitivos-madrid.html) */
+(function(){
+var root=document.querySelector('[data-mem]');
+if(!root)return;
+function evDemo(demo,extra){try{if(typeof gtag==='function'){var p={page:location.pathname,demo:demo,via:'button'};if(extra)for(var k in extra)p[k]=extra[k];gtag('event','demo_open',p)}}catch(e){}}
+var reduced=false;
+try{reduced=matchMedia('(prefers-reduced-motion:reduce)').matches}catch(e){}
+var grid=root.querySelector('[data-mem-grid]'),meta=root.querySelector('[data-mem-meta]'),
+win=root.querySelector('[data-mem-win]'),reset=root.querySelector('[data-mem-reset]');
+var SYMS=['★','●','▲','■'];
+var deck,first,lock,intentos,aciertos,t0,started,won;
+function fmtT(ms){return (ms/1000).toFixed(1).replace('.',',')+' s'}
+function paint(){meta.textContent=intentos+(intentos===1?' intento':' intentos')+' · '+aciertos+' parejas de 4 · '+(started?fmtT(performance.now()-t0):'0,0 s')}
+function build(){
+deck=[];
+SYMS.forEach(function(s,i){deck.push({k:i,s:s});deck.push({k:i,s:s})});
+for(var i=deck.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=deck[i];deck[i]=deck[j];deck[j]=t}
+grid.innerHTML='';first=null;lock=false;intentos=0;aciertos=0;started=false;won=false;win.hidden=true;
+deck.forEach(function(card,idx){
+card.lbl='Carta '+(idx+1)+', sin voltear';card.hit=false;
+var b=document.createElement('button');b.type='button';b.className='mem-card m'+card.k;
+b.setAttribute('aria-label',card.lbl);
+var q=document.createElement('span');q.className='q';q.setAttribute('aria-hidden','true');q.textContent='?';b.appendChild(q);
+b.addEventListener('click',function(){flip(b,card)});
+grid.appendChild(b);card.el=b;
+});
+paint();
+}
+function flip(b,card){
+if(lock||card.hit||b.classList.contains('open'))return;
+if(!started){started=true;t0=performance.now();evDemo('juego-parejas')}
+b.classList.add('open');
+var s=b.firstChild;s.textContent=card.s;s.className='sym';
+b.setAttribute('aria-label',card.lbl.replace('sin voltear','volteada'));
+if(!first){first={b:b,card:card};paint();return}
+intentos++;lock=true;paint();
+if(first.card.k===card.k){
+var f=first;first=null;
+setTimeout(function(){
+f.b.classList.add('done');b.classList.add('done');
+f.card.hit=card.hit=true;lock=false;aciertos++;paint();
+if(aciertos===4&&!won){won=true;
+win.hidden=false;
+win.innerHTML='¡Completado en <strong>'+intentos+' intentos</strong>! <a href="https://www.mejoralamemoria.es" target="_blank" rel="noopener">Sigue jugando en mejoralamemoria.es</a>';
+evDemo('juego-parejas-fin',{intentos:intentos});
+}
+},reduced?0:550);
+}else{
+var g=first;first=null;
+setTimeout(function(){
+var s1=g.b.firstChild;s1.textContent='?';s1.className='q';g.b.classList.remove('open');g.b.setAttribute('aria-label',g.card.lbl);
+var s2=b.firstChild;s2.textContent='?';s2.className='q';b.classList.remove('open');b.setAttribute('aria-label',card.lbl);
+lock=false;paint();
+},reduced?0:800);
+}
+}
+reset.addEventListener('click',build);
+build();
+})();
+</script>
 </body>
 </html>

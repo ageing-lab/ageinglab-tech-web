@@ -48,6 +48,29 @@
 <link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
 <link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="../styles.css">
+<style>
+/* Playground FHIR (solo integracion-fhir.html) */
+.fhir{margin:32px 0 0;max-width:960px;border-radius:12px;color:#fff;background:radial-gradient(130% 160% at 90% -40%,rgba(62,224,200,.22),transparent 55%),radial-gradient(100% 130% at 10% 140%,rgba(120,110,255,.24),transparent 60%),#0b1f4b;padding:22px}
+.fhir-k{margin:0;font:600 12px/1 "Source Sans 3",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--mint,#3ee0c8)}
+.fhir-t{margin:10px 0 0;font:700 clamp(20px,2.2vw,26px)/1.2 "Bricolage Grotesque",sans-serif;letter-spacing:-.01em}
+.fhir-sub{margin:8px 0 0;color:#c9d4ec;font-size:17px;max-width:42em}
+.fhir-bar{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-top:16px}
+.fhir-bar label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:#c9d4ec}
+.fhir-bar select{font:inherit;font-size:15px;padding:10px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff}
+.fhir-bar select option{color:#0f1a2b}
+.fhir-notok{flex-direction:row!important;align-items:center;gap:8px;padding-bottom:10px;cursor:pointer}
+.fhir-notok input{width:18px;height:18px;accent-color:#ff6b6b}
+.fhir-bar .btn{border:0;cursor:pointer}
+.fhir-copy{background:transparent!important;border:2px solid rgba(255,255,255,.4)!important;color:#fff!important;padding:11px 22px;border-radius:2px;font-weight:600}
+.fhir-copy:hover{border-color:var(--mint,#3ee0c8)!important}
+.fhir-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:12px;margin-top:16px}
+.fhir-h{margin:0;font:600 12px/1 "Source Sans 3",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#9fb0d6;display:flex;align-items:center;gap:8px}
+.fhir-st{font:600 11px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em;padding:5px 9px;border-radius:99px;background:rgba(62,224,200,.15);border:1px solid rgba(62,224,200,.5);color:#7df0d9}
+.fhir-st.err{background:rgba(255,107,107,.15);border-color:rgba(255,107,107,.5);color:#ff9b9b}
+.fhir pre{margin:8px 0 0;padding:14px;background:#050b1e;border:1px solid rgba(255,255,255,.16);border-radius:8px;font:400 13px/1.65 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;min-height:170px;color:#c8fff4}
+.fhir-audit{margin:12px 0 0;padding:10px 12px;border-radius:8px;background:rgba(255,210,139,.08);border:1px solid rgba(255,210,139,.4);font:400 12.5px/1.6 ui-monospace,Menlo,Consolas,monospace;color:#ffd28b;white-space:pre-wrap;word-break:break-word}
+@media (max-width:900px){.fhir-grid{grid-template-columns:1fr}}
+</style>
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Casos de éxito","item":"https://www.ageinglabtech.com/casos-de-exito/"},{"@type":"ListItem","position":3,"name":"Integración de sistemas de salud con FHIR","item":"https://www.ageinglabtech.com/casos-de-exito/integracion-fhir.html"}]}</script>
@@ -102,7 +125,31 @@
 
 <section class="s" id="solucion"><div class="w">
 <h2>Solución</h2>
-<div class="txt"><p>Desarrollamos un servicio FHIR: una API REST+JSON sobre los recursos del historial clínico (Patient, Observation, Condition, entre otros), con acceso por SMART on FHIR (OAuth 2), cifrado en tránsito (TLS) y registro de auditoría por usuario y recurso.</p><ul class="plain"><li>Exposición del historial clínico: los sistemas conectan al mismo servicio, sin un canal por cada par.</li><li>Acceso y auditoría: cada lectura o escritura queda registrada por usuario y recurso.</li><li>Interoperabilidad: cualquier sistema que hable FHIR puede conectarse al servicio.</li></ul><p>Es el tipo de trabajo que hacemos en <a href="../servicios/software-a-medida.html">software a medida</a>.</p><p class="rel"><a href="../guias/integrar-fhir.html">Y para ver cómo se integra un sistema con FHIR paso a paso, hay una guía: Cómo integrar tu sistema de salud con FHIR</a></p></div>
+<div class="txt"><p>Desarrollamos un servicio FHIR: una API REST+JSON sobre los recursos del historial clínico (Patient, Observation, Condition, entre otros), con acceso por SMART on FHIR (OAuth 2), cifrado en tránsito (TLS) y registro de auditoría por usuario y recurso.</p><ul class="plain"><li>Exposición del historial clínico: los sistemas conectan al mismo servicio, sin un canal por cada par.</li><li>Acceso y auditoría: cada lectura o escritura queda registrada por usuario y recurso.</li><li>Interoperabilidad: cualquier sistema que hable FHIR puede conectarse al servicio.</li></ul><p>Es el tipo de trabajo que hacemos en <a href="../servicios/software-a-medida.html">software a medida</a>.</p><p class="rel"><a href="../guias/integrar-fhir.html">Y para ver cómo se integra un sistema con FHIR paso a paso, hay una guía: Cómo integrar tu sistema de salud con FHIR</a></p>
+<div class="fhir" data-fhir>
+<p class="fhir-k">Pruébalo aquí mismo</p>
+<p class="fhir-t">Pide un recurso FHIR al servicio</p>
+<p class="fhir-sub">Elige un recurso y pulsa «Enviar petición». Verás la petición, la respuesta JSON (datos ficticios) y la línea que quedaría en el log de auditoría. Todo corre en tu navegador.</p>
+<div class="fhir-bar">
+<label>Recurso
+<select data-fhir-res>
+<option value="Patient">Patient</option>
+<option value="Observation">Observation</option>
+<option value="Condition">Condition</option>
+</select>
+</label>
+<label class="fhir-notok"><input type="checkbox" data-fhir-notok> Sin token válido</label>
+<button type="button" class="btn alt" data-fhir-go>Enviar petición</button>
+<button type="button" class="fhir-copy" data-fhir-copy>Copiar JSON</button>
+</div>
+<div class="fhir-grid">
+<div><p class="fhir-h">Petición</p><pre data-fhir-req></pre></div>
+<div><p class="fhir-h">Respuesta <span class="fhir-st" data-fhir-status>200 OK</span></p><pre data-fhir-resp></pre></div>
+</div>
+<p class="fhir-audit" data-fhir-audit aria-live="polite"></p>
+<noscript><p class="fhir-sub">Activa JavaScript para usar el playground.</p></noscript>
+</div>
+</div>
 </div></section>
 
 <section class="s" id="resultados"><div class="w">
@@ -159,5 +206,45 @@
 </div><div class="base">© 2026 AgeingLab Tech · Servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> – CTB – UPM · Madrid, España</div></div></footer>
 
 <script src="../js/main.js"></script>
+<script>
+/* Playground FHIR (solo integracion-fhir.html): petición, respuesta y auditoría, todo ficticio y en local */
+(function(){
+var root=document.querySelector('[data-fhir]');
+if(!root)return;
+function evDemo(demo,extra){try{if(typeof gtag==='function'){var p={page:location.pathname,demo:demo,via:'button'};if(extra)for(var k in extra)p[k]=extra[k];gtag('event','demo_open',p)}}catch(e){}}
+var sel=root.querySelector('[data-fhir-res]'),notok=root.querySelector('[data-fhir-notok]'),
+go=root.querySelector('[data-fhir-go]'),copy=root.querySelector('[data-fhir-copy]'),
+req=root.querySelector('[data-fhir-req]'),res=root.querySelector('[data-fhir-resp]'),
+st=root.querySelector('[data-fhir-status]'),audit=root.querySelector('[data-fhir-audit]');
+var RES={
+Patient:{path:'/fhir/Patient/ejemplo-1',body:{resourceType:'Patient',id:'ejemplo-1',name:[{family:'García',given:['María']}],gender:'female',birthDate:'1948-05-12'}},
+Observation:{path:'/fhir/Observation/ejemplo-2',body:{resourceType:'Observation',id:'ejemplo-2',status:'final',code:{text:'Velocidad de la marcha'},valueQuantity:{value:0.9,unit:'m/s'}}},
+Condition:{path:'/fhir/Condition/ejemplo-3',body:{resourceType:'Condition',id:'ejemplo-3',clinicalStatus:{text:'active'},code:{text:'Fragilidad'},subject:{reference:'Patient/ejemplo-1'}}}
+};
+function now(){var d=new Date();function p(x){return (x<10?'0':'')+x}return p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds())}
+function send(){
+var r=sel.value,bad=notok.checked,R=RES[r];
+evDemo('fhir-playground',{recurso:r,auth:bad?'sin-token':'ok'});
+req.textContent='GET '+R.path+' HTTP/1.1\nHost: servicio-fhir.local\nAuthorization: Bearer '+(bad?'(ausente)':'••••••••')+'\nAccept: application/fhir+json';
+if(bad){
+st.textContent='401';st.classList.add('err');
+res.textContent=JSON.stringify({resourceType:'OperationOutcome',issue:[{severity:'error',code:'login',diagnostics:'Token ausente o inválido (SMART on FHIR)'}]},null,2);
+audit.textContent=now()+' GET '+R.path+' 401 · DENY · sin token válido · queda registrado en auditoría';
+}else{
+st.textContent='200 OK';st.classList.remove('err');
+res.textContent=JSON.stringify(R.body,null,2);
+audit.textContent=now()+' GET '+R.path+' 200 · usuario demo@centro.local · recurso '+r+'/'+R.body.id;
+}
+}
+go.addEventListener('click',send);
+sel.addEventListener('change',send);
+notok.addEventListener('change',send);
+copy.addEventListener('click',function(){var s=res.textContent;
+function done(){copy.textContent='¡Copiado!';setTimeout(function(){copy.textContent='Copiar JSON'},1500)}
+function fallback(){try{var ta=document.createElement('textarea');ta.value=s;document.body.appendChild(ta);ta.select();document.execCommand('copy');done();ta.remove()}catch(x){}}
+if(typeof navigator!=='undefined'&&navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(s).then(done,fallback)}else fallback()});
+send();
+})();
+</script>
 </body>
 </html>

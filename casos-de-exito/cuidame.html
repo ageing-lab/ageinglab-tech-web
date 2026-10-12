@@ -48,6 +48,24 @@
 <link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
 <link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="../styles.css">
+<style>
+/* Esquema clickable de la sala (solo cuidame.html) */
+.sala{margin:32px 0 0;max-width:900px;border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:22px}
+.sala-k{margin:0;font:600 13px/1 "Source Sans 3",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.sala-t{margin:10px 0 0;font:700 clamp(20px,2.2vw,26px)/1.2 "Bricolage Grotesque",sans-serif;letter-spacing:-.01em}
+.sala-sub{margin:8px 0 0;color:var(--mute);font-size:17px;max-width:40em}
+.sala-grid{margin:16px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.sala-node{width:100%;text-align:left;padding:16px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;min-height:44px}
+.sala-node:hover{border-color:var(--accent)}
+.sala-node.sel{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.sala-node strong{display:block;font:700 18px "Bricolage Grotesque",sans-serif}
+.sala-node small{color:var(--mute);font-size:14px}
+.sala-detail{margin:12px 0 0;padding:16px 18px;border-radius:10px;background:var(--bg);border:1px solid var(--line)}
+.sala-detail h4{margin:0;font-size:19px}
+.sala-detail p{margin:8px 0 0;color:var(--mute);font-size:16.5px;max-width:44em}
+.sala-fail{margin-top:10px!important;padding:10px 12px;border-left:3px solid var(--accent);background:var(--soft);border-radius:0 8px 8px 0}
+@media (max-width:700px){.sala-grid{grid-template-columns:1fr}}
+</style>
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Casos de éxito","item":"https://www.ageinglabtech.com/casos-de-exito/"},{"@type":"ListItem","position":3,"name":"Cuídame: comunicación por televisión para personas mayores","item":"https://www.ageinglabtech.com/casos-de-exito/cuidame.html"}]}</script>
@@ -98,7 +116,21 @@
 <section class="s" id="construimos"><div class="w">
 <h2>Qué construimos</h2>
 <div class="txt"><p>El proyecto combina hardware, software embebido y aplicaciones móviles en un solo sistema. Estas son las piezas en las que trabajamos:</p>
-<ul class="plain"><li>Comunicación por salas entre personas mayores y médicos</li><li>Uso de la televisión como pantalla de la persona mayor</li><li>Aplicaciones para Android e iOS</li><li>Desarrollo de software embebido</li><li>Interfaces de vídeo con Jitsi, una solución de videoconferencia de código abierto</li></ul></div>
+<ul class="plain"><li>Comunicación por salas entre personas mayores y médicos</li><li>Uso de la televisión como pantalla de la persona mayor</li><li>Aplicaciones para Android e iOS</li><li>Desarrollo de software embebido</li><li>Interfaces de vídeo con Jitsi, una solución de videoconferencia de código abierto</li></ul>
+<div class="sala" data-sala>
+<p class="sala-k">Cómo funciona</p>
+<p class="sala-t">Una tarde en Cuídame, pieza a pieza</p>
+<p class="sala-sub">Toca cada pieza para ver qué hace y qué pasa si falla.</p>
+<ul class="sala-grid">
+<li><button type="button" class="sala-node sel" data-sala-n="tv" aria-current="true"><strong>TV + set-top box</strong><small>La pantalla de la persona mayor</small></button></li>
+<li><button type="button" class="sala-node" data-sala-n="cam" aria-current="false"><strong>Webcam</strong><small>Ojos y oídos de la sala</small></button></li>
+<li><button type="button" class="sala-node" data-sala-n="mov" aria-current="false"><strong>Móvil Android / iOS</strong><small>El mando y la agenda</small></button></li>
+<li><button type="button" class="sala-node" data-sala-n="jit" aria-current="false"><strong>Sala Jitsi</strong><small>Donde se encuentran</small></button></li>
+</ul>
+<div class="sala-detail" data-sala-detail aria-live="polite"></div>
+<noscript><p class="sala-sub">La sala une la TV (con set-top box y webcam), el móvil y el servidor Jitsi.</p></noscript>
+</div>
+</div>
 </div></section>
 
 <section class="s" id="otros"><div class="w">
@@ -150,5 +182,31 @@
 </div><div class="base">© 2026 AgeingLab Tech · Servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> – CTB – UPM · Madrid, España</div></div></footer>
 
 <script src="../js/main.js"></script>
+<script>
+/* Esquema clickable de la sala (solo cuidame.html) */
+(function(){
+var root=document.querySelector('[data-sala]');
+if(!root)return;
+function evDemo(demo,extra){try{if(typeof gtag==='function'){var p={page:location.pathname,demo:demo,via:'button'};if(extra)for(var k in extra)p[k]=extra[k];gtag('event','demo_open',p)}}catch(e){}}
+var det=root.querySelector('[data-sala-detail]'),
+nodes=[].slice.call(root.querySelectorAll('[data-sala-n]'));
+var INFO={
+tv:{t:'TV + set-top box: la pantalla de la persona mayor',d:'Muestra la sala con botones enormes y se maneja con el mando a distancia: entrar, activar la cámara y colgar, sin menús.',f:'Si falla, la pantalla se queda en negro: la cita sigue avisando en el móvil como respaldo.'},
+cam:{t:'Webcam: ojos y oídos de la sala',d:'Envía el vídeo y la voz de la persona mayor a la sala, con encuadre fijo para que no tenga que colocarla.',f:'Si falla, la persona mayor sigue viendo y escuchando al médico aunque no se la vea.'},
+mov:{t:'Móvil Android / iOS: el mando y la agenda',d:'La app permite entrar a las salas, avisa de las citas y deja invitar al médico. Es el complemento de la TV, no un requisito.',f:'Si falla, se puede entrar a la sala directamente desde la TV.'},
+jit:{t:'Sala Jitsi: donde se encuentran',d:'Servidor de videoconferencia de código abierto que mezcla el audio y el vídeo de cada sala. Al terminar, no queda nada guardado.',f:'Si falla, nadie puede entrar: la app lo indica y reintenta sola.'}
+};
+function paint(k){
+var f=INFO[k];if(!f)return;
+nodes.forEach(function(n){var on=n.getAttribute('data-sala-n')===k;n.classList.toggle('sel',on);n.setAttribute('aria-current',on?'true':'false')});
+det.innerHTML='';
+var h=document.createElement('h4');h.textContent=f.t;det.appendChild(h);
+var p=document.createElement('p');p.textContent=f.d;det.appendChild(p);
+var fl=document.createElement('p');fl.className='sala-fail';fl.textContent=f.f;det.appendChild(fl);
+}
+nodes.forEach(function(n){n.addEventListener('click',function(){var k=n.getAttribute('data-sala-n');paint(k);evDemo('diagrama-sala',{pieza:k})})});
+paint('tv');
+})();
+</script>
 </body>
 </html>

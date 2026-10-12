@@ -64,6 +64,21 @@
 .fig figcaption strong{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-size:1.05rem}
 .fig figcaption span{opacity:.75}
 @media (max-width:720px){.figs{--h:auto}.fig-schema,.fig-photo{flex:1 1 100%}.fig-schema .media{height:auto;aspect-ratio:586/295}.fig-photo{align-items:center}.fig-photo .media{width:min(100%,300px);height:auto}.fig-photo figcaption{align-self:stretch}}
+/* Calculadora de velocidad de marcha (solo velocidad-marcha.html) */
+.gm{margin:40px 0 8px;max-width:900px;border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:22px}
+.gm-k{margin:0;font:600 13px/1 "Source Sans 3",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.gm-t{margin:10px 0 0;font:700 clamp(20px,2.2vw,26px)/1.2 "Bricolage Grotesque",sans-serif;letter-spacing:-.01em}
+.gm-sub{margin:8px 0 0;color:var(--mute);font-size:17px;max-width:40em}
+.gm-row{display:grid;gap:6px;margin-top:14px;max-width:560px}
+.gm-row label{font-size:16px}
+.gm-row input[type="range"]{width:100%;min-height:32px;accent-color:var(--accent)}
+.gm-out{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:18px 0 0}
+.gm-out strong{font:700 clamp(34px,4vw,48px)/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.gm-badge{padding:8px 14px;border-radius:99px;font-weight:600;font-size:15px;border:1px solid}
+.gm-badge.ok{color:#0a7d5c;border-color:#0a7d5c;background:rgba(10,125,92,.1)}
+.gm-badge.mid{color:#9a6a00;border-color:#9a6a00;background:rgba(154,106,0,.12)}
+.gm-badge.bad{color:#c2410c;border-color:#c2410c;background:rgba(194,65,12,.1)}
+.gm-note{margin:12px 0 0;font-size:15px;color:var(--mute);max-width:44em}
 </style>
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
@@ -130,6 +145,16 @@
 <figcaption><strong>Dispositivo fabricado</strong><span>Los dos nodos, con marcado CE.</span></figcaption>
 </figure>
 </div>
+<div class="gm" data-gm>
+<p class="gm-k">Pruébalo aquí mismo</p>
+<p class="gm-t">Calcula una velocidad de marcha</p>
+<p class="gm-sub">Mueve los deslizadores como si hubieras medido un tramo con el dispositivo: verás la velocidad y su lectura orientativa.</p>
+<div class="gm-row"><label for="gm-d">Distancia del tramo: <b data-gm-dv>4 m</b></label><input id="gm-d" type="range" min="2" max="10" step="1" value="4" data-gm-d></div>
+<div class="gm-row"><label for="gm-t">Tiempo medido: <b data-gm-tv>5,0 s</b></label><input id="gm-t" type="range" min="1" max="15" step="0.1" value="5" data-gm-t></div>
+<p class="gm-out" data-gm-out aria-live="polite"><strong data-gm-v>0,80 m/s</strong> <span class="gm-badge mid" data-gm-c>Vigilancia</span></p>
+<p class="gm-note">Lectura orientativa con los umbrales habituales en valoración de fragilidad (≥1,0 m/s normal; 0,8–1,0 vigilancia; &lt;0,8 posible riesgo). No es un diagnóstico.</p>
+<noscript><p class="gm-note">Activa JavaScript para usar la calculadora.</p></noscript>
+</div>
 </div></section>
 
 <section class="s" id="resultados"><div class="w">
@@ -186,5 +211,31 @@
 </div><div class="base">© 2026 AgeingLab Tech · Servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> – CTB – UPM · Madrid, España</div></div></footer>
 
 <script src="../js/main.js"></script>
+<script>
+/* Calculadora de velocidad de marcha (solo velocidad-marcha.html) */
+(function(){
+var root=document.querySelector('[data-gm]');
+if(!root)return;
+function evDemo(demo,extra){try{if(typeof gtag==='function'){var p={page:location.pathname,demo:demo,via:'button'};if(extra)for(var k in extra)p[k]=extra[k];gtag('event','demo_open',p)}}catch(e){}}
+var d=root.querySelector('[data-gm-d]'),t=root.querySelector('[data-gm-t]'),
+dv=root.querySelector('[data-gm-dv]'),tv=root.querySelector('[data-gm-tv]'),
+v=root.querySelector('[data-gm-v]'),c=root.querySelector('[data-gm-c]');
+var sent=false;
+function fmt(x,n){return x.toFixed(n).replace('.',',')}
+function paint(){
+var dd=+d.value,tt=+t.value;
+dv.textContent=dd+' m';tv.textContent=fmt(tt,1)+' s';
+var vel=dd/tt;v.textContent=fmt(vel,2)+' m/s';
+var cls,txt;
+if(vel>=1){cls='ok';txt='Normal'}
+else if(vel>=0.8){cls='mid';txt='Vigilancia'}
+else{cls='bad';txt='Posible riesgo'}
+c.className='gm-badge '+cls;c.textContent=txt;
+}
+function kick(){paint();if(!sent){sent=true;evDemo('calculadora-marcha')}}
+d.addEventListener('input',kick);t.addEventListener('input',kick);
+paint();
+})();
+</script>
 </body>
 </html>
