@@ -48,6 +48,122 @@
 <link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
 <link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="../styles.css">
+<style>
+/* Esquema interactivo del stack (solo casos-de-exito/ia-local.html) */
+.stk{margin:32px 0 0;max-width:1000px;border-radius:18px;color:#fff;background:radial-gradient(130% 160% at 90% -40%,rgba(62,224,200,.28),transparent 55%),radial-gradient(100% 130% at 10% 140%,rgba(120,110,255,.28),transparent 60%),#0b1f4b;box-shadow:0 20px 55px -20px rgba(11,31,75,.5);overflow:hidden}
+.stk-head{padding:26px 28px 0}
+.stk-k{margin:0;font:600 12px/1 "Source Sans 3",system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--mint,#3ee0c8)}
+.stk-t{margin:10px 0 0;font:700 clamp(22px,2.6vw,32px)/1.1 "Bricolage Grotesque",sans-serif;letter-spacing:-.02em}
+.stk-sub{margin:8px 0 0;color:#c9d4ec;font-size:17px;max-width:44em}
+.stk-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}
+.stk-go{border:0;cursor:pointer}
+.stk-go:disabled{opacity:.6;cursor:default}
+.stk-reset{background:transparent;border:2px solid rgba(255,255,255,.4);color:#fff;padding:11px 22px;border-radius:2px;font-weight:600}
+.stk-reset:hover{border-color:var(--mint,#3ee0c8)}
+.stk-deny{display:inline-flex;align-items:center;gap:9px;margin-left:auto;padding:9px 14px;border:1px dashed rgba(255,255,255,.4);border-radius:999px;font-size:15px;color:#c9d4ec;cursor:pointer;user-select:none}
+.stk-deny input{width:18px;height:18px;accent-color:#ff6b6b}
+.stk-status{margin:12px 0 0;min-height:1.6em;font-size:15px;color:#c9d4ec;font-variant-numeric:tabular-nums}
+.stk-prog{height:6px;margin:12px 28px 0;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden}
+.stk-prog i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#3ee0c8,#8b5cf0);transition:width .5s ease}
+.stk-zones{display:flex;margin:18px 28px 0;border:1px solid rgba(255,255,255,.16);border-radius:10px;overflow:hidden;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.stk-zones span{padding:8px 14px}
+.stk-zones span:first-child{background:rgba(255,107,107,.16);color:#ffb3b3;flex:0 0 auto}
+.stk-zones span:last-child{flex:1;background:rgba(62,224,200,.12);color:#9ef0df}
+.stk-stage{position:relative;padding:26px 28px 8px}
+.stk-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 56px 1fr 56px 1fr 56px 1fr;align-items:stretch}
+.stk-node{width:100%;height:100%;display:flex;flex-direction:column;gap:8px;align-items:flex-start;text-align:left;padding:18px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#fff;cursor:pointer;transition:border-color .3s,box-shadow .3s,background .3s,transform .3s}
+.stk-node:hover{background:rgba(255,255,255,.1)}
+.stk-node .n-ico{width:42px;height:42px;display:grid;place-items:center;border-radius:10px;background:rgba(62,224,200,.16);border:1px solid rgba(62,224,200,.4)}
+.stk-node .n-ico svg{width:22px;height:22px;fill:none;stroke:#3ee0c8;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.stk-node strong{font:700 17px/1.2 "Bricolage Grotesque",sans-serif}
+.stk-node small{font-size:13.5px;color:#c9d4ec;line-height:1.45}
+.stk-node .n-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.stk-node .n-tags b{font:600 11px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.04em;padding:5px 8px;border-radius:99px;border:1px solid rgba(255,255,255,.25);color:#e3ebff;font-weight:600}
+.stk-node .n-st{font:600 11px/1 "Source Sans 3",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#9fb0d6}
+.stk-node.is-active{border-color:#3ee0c8;box-shadow:0 0 0 1px #3ee0c8,0 0 26px rgba(62,224,200,.45);background:rgba(62,224,200,.1)}
+.stk-node.is-active .n-st{color:#3ee0c8}
+.stk-node.is-done{border-color:rgba(62,224,200,.6)}
+.stk-node.is-done .n-st{color:#3ee0c8}
+.stk-node.is-deny{border-color:#ff6b6b;box-shadow:0 0 0 1px #ff6b6b,0 0 26px rgba(255,107,107,.5)}
+.stk-node.is-deny .n-st{color:#ff9b9b}
+.stk-conn{position:relative;min-height:100%}
+.stk-conn::before{content:"";position:absolute;left:6px;right:6px;top:50%;height:2px;background-image:linear-gradient(90deg,rgba(255,255,255,.55) 55%,transparent 45%);background-size:12px 2px;opacity:.7}
+.stk-conn::after{content:"›";position:absolute;right:-2px;top:50%;transform:translateY(-54%);color:#3ee0c8;font-size:22px;font-weight:700}
+.stk-conn.is-live::before{background-image:linear-gradient(90deg,#3ee0c8 55%,transparent 45%);animation:stk-dash .5s linear infinite;opacity:1}
+@keyframes stk-dash{to{background-position:12px 0}}
+.stk-packet{position:absolute;z-index:3;width:16px;height:16px;border-radius:50%;background:#3ee0c8;box-shadow:0 0 12px 3px rgba(62,224,200,.8);opacity:0;pointer-events:none;transition:opacity .25s}
+.stk-packet::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid rgba(62,224,200,.5);animation:stk-ping 1s ease-out infinite}
+@keyframes stk-ping{from{transform:scale(.5);opacity:1}to{transform:scale(1.25);opacity:0}}
+.stk-packet.is-back{background:#8b5cf0;box-shadow:0 0 12px 3px rgba(139,92,246,.8)}
+.stk-packet.is-deny{background:#ff6b6b;box-shadow:0 0 12px 3px rgba(255,107,107,.8)}
+.stk-detail{margin:18px 28px 0;border:1px solid rgba(255,255,255,.16);border-radius:12px;background:rgba(0,0,0,.28);padding:18px 20px;display:grid;gap:8px}
+.stk-detail h3{margin:0;font-size:20px}
+.stk-detail h3 .d-n{color:#3ee0c8;margin-right:8px;font-variant-numeric:tabular-nums}
+.stk-detail p{margin:0;color:#dbe4f7;font-size:16.5px;max-width:52em}
+.stk-detail ul{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.stk-detail li{font:600 12px/1 ui-monospace,Menlo,Consolas,monospace;padding:7px 11px;border-radius:99px;background:rgba(62,224,200,.14);border:1px solid rgba(62,224,200,.45);color:#c8fff4}
+.stk-logwrap{margin:18px 28px 28px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.16)}
+.stk-loghead{display:flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(0,0,0,.45);font:600 12px/1 "Source Sans 3",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#9fb0d6}
+.stk-loghead i{width:9px;height:9px;border-radius:50%;background:#3ee0c8;box-shadow:0 0 10px 2px rgba(62,224,200,.6);animation:pr-pulse 2.2s ease-in-out infinite}
+.stk-log{margin:0;padding:14px 16px 16px;list-style:none;background:#050b1e;min-height:150px;max-height:260px;overflow:auto;font:400 13.5px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.stk-log li{white-space:pre-wrap;word-break:break-word;color:#c8fff4}
+.stk-log li .lt{color:#5b6b8c;margin-right:10px}
+.stk-log li.ok{color:#7df0d9}
+.stk-log li.warn{color:#ffd28b}
+.stk-log li.err{color:#ff9b9b}
+.stk-log li.dim{color:#8ea0c2}
+@media (max-width:900px){
+.stk-flow{grid-template-columns:1fr;gap:0}
+.stk-conn{min-height:46px}
+.stk-conn::before{left:50%;right:auto;top:6px;bottom:6px;width:2px;height:auto;background-image:linear-gradient(180deg,rgba(255,255,255,.55) 55%,transparent 45%);background-size:2px 12px}
+.stk-conn::after{content:"›";right:auto;left:50%;top:auto;bottom:-9px;transform:translateX(-50%) rotate(90deg)}
+.stk-conn.is-live::before{background-image:linear-gradient(180deg,#3ee0c8 55%,transparent 45%)}
+@keyframes stk-dash{to{background-position:0 12px}}
+.stk-deny{margin-left:0}
+.stk-head,.stk-stage{padding-inline:18px}
+.stk-prog,.stk-zones,.stk-detail,.stk-logwrap{margin-inline:18px}
+}
+@media (prefers-reduced-motion:reduce){.stk-conn.is-live::before,.stk-packet::after,.stk-loghead i{animation:none}}
+/* Visor de ejemplos de logs guardados (formato real del proxy) */
+.stkl{margin:0 28px 28px;border:1px solid rgba(255,255,255,.16);border-radius:12px;overflow:hidden;background:rgba(0,0,0,.28)}
+.stkl-top{padding:6px}
+.stkl-toggle{width:100%;display:flex;align-items:center;gap:12px;padding:12px 14px;background:transparent;border:0;color:#fff;font:700 17px "Bricolage Grotesque",sans-serif;text-align:left;border-radius:8px}
+.stkl-toggle:hover{background:rgba(255,255,255,.07)}
+.stkl-caret{display:grid;place-items:center;width:26px;height:26px;flex:none;border-radius:50%;border:1px solid rgba(255,255,255,.4);color:#3ee0c8;transition:transform .3s;font-size:18px;line-height:1}
+.stkl-toggle[aria-expanded="true"] .stkl-caret{transform:rotate(90deg)}
+.stkl-count{margin-left:auto;font:600 12px/1 ui-monospace,Menlo,Consolas,monospace;color:#9fb0d6;border:1px solid rgba(255,255,255,.25);padding:6px 10px;border-radius:99px;white-space:nowrap}
+.stkl-body{border-top:1px solid rgba(255,255,255,.14);padding:16px}
+.stkl-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:12px}
+.stkl-filters{display:flex;gap:8px;flex-wrap:wrap}
+.stkl-filters button{padding:8px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#c9d4ec;font-size:14px;font-weight:600}
+.stkl-filters button[aria-pressed="true"]{background:#3ee0c8;border-color:#3ee0c8;color:#06202a}
+.stkl-actions{display:flex;gap:8px}
+.stkl-actions button{padding:8px 14px;border-radius:6px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.07);color:#fff;font-size:14px;font-weight:600}
+.stkl-actions button:hover{border-color:#3ee0c8}
+.stkl-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:12px}
+.stkl-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;max-height:320px;overflow:auto}
+.stkl-item{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;text-align:left;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:#fff;cursor:pointer}
+.stkl-item:hover{border-color:rgba(62,224,200,.6)}
+.stkl-item.sel{border-color:#3ee0c8;background:rgba(62,224,200,.1)}
+.stkl-dot{width:9px;height:9px;border-radius:50%;background:#3ee0c8;box-shadow:0 0 8px 1px rgba(62,224,200,.7)}
+.stkl-item.err .stkl-dot{background:#ff6b6b;box-shadow:0 0 8px 1px rgba(255,107,107,.7)}
+.stkl-item code{font:600 12.5px ui-monospace,Menlo,Consolas,monospace;color:#e3ebff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stkl-item small{grid-column:2;font-size:12px;color:#9fb0d6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stkl-item .stkl-dur{grid-row:1/3;grid-column:3;font:600 12px ui-monospace,Menlo,Consolas,monospace;color:#c9d4ec;text-align:right;white-space:nowrap}
+.stkl-detail{border:1px solid rgba(255,255,255,.14);border-radius:10px;background:#050b1e;padding:16px;font-size:14px;min-width:0}
+.stkl-detail h4{margin:0 0 4px;font-size:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stkl-badge{font:600 11px/1 "Source Sans 3",sans-serif;letter-spacing:.1em;padding:5px 9px;border-radius:99px;background:rgba(62,224,200,.15);border:1px solid rgba(62,224,200,.5);color:#7df0d9}
+.stkl-badge.err{background:rgba(255,107,107,.15);border-color:rgba(255,107,107,.5);color:#ff9b9b}
+.stkl-kv{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.stkl-kv li{display:flex;justify-content:space-between;gap:12px;font-size:13.5px}
+.stkl-kv span{color:#8ea0c2}
+.stkl-kv b{font-weight:600;color:#e3ebff;text-align:right;font-variant-numeric:tabular-nums}
+.stkl-line{margin:12px 0 0;padding:10px 12px;border-radius:8px;background:rgba(62,224,200,.07);border:1px solid rgba(62,224,200,.3);font:400 12.5px/1.6 ui-monospace,Menlo,Consolas,monospace;color:#c8fff4;white-space:pre-wrap;word-break:break-word}
+.stkl-note{margin:12px 0 0;font-size:13.5px;color:#8ea0c2}
+.stkl-task{margin:12px 0 0;padding:10px 12px;border-left:3px solid #3ee0c8;background:rgba(255,255,255,.04);border-radius:0 8px 8px 0;font-size:14.5px;color:#dbe4f7;font-style:italic}
+.stkl-task span{display:block;margin-bottom:2px;font-style:normal;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7df0d9}
+@media (max-width:900px){.stkl{margin-inline:18px}.stkl-grid{grid-template-columns:1fr}.stkl-list{max-height:240px}}
+</style>
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Casos de éxito","item":"https://www.ageinglabtech.com/casos-de-exito/"},{"@type":"ListItem","position":3,"name":"IA local para datos clínicos en un servidor de bajo presupuesto","item":"https://www.ageinglabtech.com/casos-de-exito/ia-local.html"}]}</script>
@@ -119,6 +235,69 @@
 <p>Es el tipo de trabajo que hacemos en <a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a>.</p><p class="rel"><a href="../guias/ia-privada-en-hospitales.html">Si llevas esto al hospital, hay una guía práctica: IA privada en hospitales</a></p></div>
 </div></section>
 
+<section class="s" id="arquitectura"><div class="w">
+<h2>Cómo viaja una petición</h2>
+<p class="lead">Del clic al token, sin que el dato salga del edificio: pulsa «Enviar petición» y mira cómo la solicitud atraviesa cada capa del stack. Toca cualquier nodo para ver qué hace.</p>
+<div class="stk" data-stk>
+<div class="stk-head">
+<p class="stk-k">Esquema interactivo del stack</p>
+<p class="stk-t">Exterior → proxy SSL → proxy de control → IA local</p>
+<p class="stk-sub">Una petición HTTPS entra por el proxy SSL, el segundo proxy comprueba la lista de acceso, guarda el log y enruta al servidor de IA local.</p>
+<div class="stk-bar">
+<button type="button" class="btn alt stk-go" data-stk-go>Enviar petición</button>
+<button type="button" class="stk-reset" data-stk-reset>Reiniciar</button>
+<label class="stk-deny"><input type="checkbox" data-stk-deny> Simular IP no autorizada</label>
+</div>
+<p class="stk-status" data-stk-status aria-live="polite">Listo: pulsa «Enviar petición» o toca cualquier nodo del esquema.</p>
+</div>
+<div class="stk-prog" aria-hidden="true"><i data-stk-prog></i></div>
+<div class="stk-zones" aria-hidden="true"><span>◎ Exterior</span><span>Red interna · dentro del edificio</span></div>
+<div class="stk-stage">
+<ol class="stk-flow" data-stk-flow>
+<li><button type="button" class="stk-node" data-node="0" aria-expanded="false"><span class="n-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.4 3.8 5.3 3.8 8.5s-1.3 6.1-3.8 8.5c-2.5-2.4-3.8-5.3-3.8-8.5S9.5 5.9 12 3.5z"/></svg></span><strong>1 · Exterior</strong><small>Tu herramienta: Copilot, Opencode o el chat interno. Envía la petición HTTPS.</small><span class="n-tags"><b>HTTPS</b><b>POST /v1/chat</b></span><span class="n-st" data-nst>En espera</span></button></li>
+<li class="stk-conn" data-conn="0" aria-hidden="true"></li>
+<li><button type="button" class="stk-node" data-node="1" aria-expanded="false"><span class="n-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14.5v2.5"/></svg></span><strong>2 · Proxy SSL</strong><small>La puerta de entrada: termina el cifrado TLS y valida el certificado.</small><span class="n-tags"><b>TLS 1.3</b><b>:443 → interno</b></span><span class="n-st" data-nst>En espera</span></button></li>
+<li class="stk-conn" data-conn="1" aria-hidden="true"></li>
+<li><button type="button" class="stk-node" data-node="2" aria-expanded="false"><span class="n-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="18.5" cy="18" r="2.5"/><path d="M16.8 18l1.2 1.2 2-2.2"/></svg></span><strong>3 · Proxy de control</strong><small>Comprueba la lista de acceso, guarda el log y enruta al servidor.</small><span class="n-tags"><b>Access list</b><b>Logs</b><b>Routing</b></span><span class="n-st" data-nst>En espera</span></button></li>
+<li class="stk-conn" data-conn="2" aria-hidden="true"></li>
+<li><button type="button" class="stk-node" data-node="3" aria-expanded="false"><span class="n-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="7" rx="1.5"/><rect x="4" y="13" width="16" height="7" rx="1.5"/><path d="M7.5 7.5h.01M7.5 16.5h.01M12 7.5h5M12 16.5h5"/></svg></span><strong>4 · IA local</strong><small>RTX 5060 Ti 16 GB · Qwen 27B a 30 tokens/s. Responde por el mismo camino.</small><span class="n-tags"><b>Qwen 27B</b><b>30 tok/s</b></span><span class="n-st" data-nst>En espera</span></button></li>
+</ol>
+<div class="stk-packet" data-stk-packet aria-hidden="true"></div>
+</div>
+<div class="stk-detail" data-stk-detail aria-live="polite">
+<h3><span class="d-n" data-d-n>3</span><span data-d-t>Proxy de control: access list, logs y enrutado</span></h3>
+<p data-d-d>El cerebro del stack. Comprueba si tu IP o token está en la lista de acceso, escribe una línea de log con fecha, origen, modelo y tokens, y solo entonces reenvía al servidor de IA. Si no estás en la lista, responde 403 y lo deja registrado.</p>
+<ul data-d-tags><li>allowlist IP / token</li><li>log de cada petición</li><li>routing a servidor-ia:8000</li></ul>
+</div>
+<div class="stk-logwrap">
+<div class="stk-loghead"><i aria-hidden="true"></i><span>Registro en vivo del proxy</span></div>
+<ol class="stk-log" data-stk-log aria-live="polite"><li class="dim"><span class="lt">--:--:--</span>proxy listo · esperando peticiones…</li></ol>
+</div>
+<div class="stkl" data-stkl>
+<div class="stkl-top"><button type="button" class="stkl-toggle" data-stkl-toggle aria-expanded="false" aria-controls="stkl-body"><span class="stkl-caret" aria-hidden="true">›</span> Ver ejemplos de logs guardados <span class="stkl-count" data-stkl-count></span></button></div>
+<div class="stkl-body" id="stkl-body" data-stkl-body hidden>
+<div class="stkl-tools">
+<div class="stkl-filters" role="group" aria-label="Filtrar peticiones por estado">
+<button type="button" data-stkl-f="all" aria-pressed="true">Todas</button>
+<button type="button" data-stkl-f="200" aria-pressed="false">200 OK</button>
+<button type="button" data-stkl-f="403" aria-pressed="false">Denegadas</button>
+</div>
+<div class="stkl-actions">
+<button type="button" data-stkl-copy>Copiar línea</button>
+<button type="button" data-stkl-dl>Descargar .log</button>
+</div>
+</div>
+<div class="stkl-grid">
+<ol class="stkl-list" data-stkl-list aria-label="Peticiones registradas"></ol>
+<div class="stkl-detail" data-stkl-detail aria-live="polite"></div>
+</div>
+<p class="stkl-note">Ejemplos ficticios con el formato real que guarda el proxy: hora, origen, modelo y tokens de cada petición. El coste siempre es 0&nbsp;€: todo corre en local.</p>
+</div>
+</div>
+</div>
+<noscript><div class="txt"><p>Sin JavaScript, el recorrido es: 1) tu herramienta envía un POST HTTPS; 2) el proxy SSL termina el TLS; 3) el proxy de control comprueba la lista de acceso, guarda el log y enruta; 4) el servidor IA local (Qwen 27B) responde por el mismo camino.</p><p>Cada línea del registro guarda hora, origen, modelo y tokens, por ejemplo: <code>09:12:44 POST /v1/chat 200 · ip 10.0.0.15 · qwen-27b · in 1240 / out 86 · 2,9 s · 30 tok/s</code>.</p></div></noscript>
+</div></section>
+
 <section class="s" id="resultados"><div class="w">
 <h2>Resultados</h2>
 <div class="txt"><p>Trabajamos en tareas de desarrollo con datos clínicos que no salen nunca del edificio: la IA corre en un servidor propio, con Qwen 27B que responde a 30 tokens por segundo de media.</p><p>Cada petición queda registrada, el acceso queda limitado a la red interna y todo el hardware cuesta ≈1.200 €.</p></div>
@@ -172,5 +351,176 @@
 </div><div class="base">© 2026 AgeingLab Tech · Servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> – CTB – UPM · Madrid, España</div></div></footer>
 
 <script src="../js/main.js"></script>
+<script>
+/* Esquema interactivo del stack (solo ia-local.html): anima una petición
+   Exterior -> Proxy SSL -> Proxy de control -> IA local, con modo denegado. */
+(function(){
+var root=document.querySelector('[data-stk]');
+if(!root)return;
+var go=root.querySelector('[data-stk-go]'),reset=root.querySelector('[data-stk-reset]'),
+deny=root.querySelector('[data-stk-deny]'),status=root.querySelector('[data-stk-status]'),
+prog=root.querySelector('[data-stk-prog]'),packet=root.querySelector('[data-stk-packet]'),
+log=root.querySelector('[data-stk-log]'),flow=root.querySelector('[data-stk-flow]'),
+nodes=[].slice.call(root.querySelectorAll('[data-node]')),
+conns=[].slice.call(root.querySelectorAll('[data-conn]')),
+dN=root.querySelector('[data-d-n]'),dT=root.querySelector('[data-d-t]'),
+dD=root.querySelector('[data-d-d]'),dTags=root.querySelector('[data-d-tags]');
+var reduced=false;
+try{reduced=matchMedia('(prefers-reduced-motion:reduce)').matches}catch(e){}
+var INFO=[
+{n:'1',t:'Exterior: tu herramienta hace la petición',d:'Copilot, Opencode, un agente o el chat interno envían un POST HTTPS con el prompt. El dato viaja cifrado y nunca toca una nube pública: va directo a nuestra puerta de entrada.',tags:['POST https://ia:443/v1/chat','API key + TLS','~1.200 tokens de contexto']},
+{n:'2',t:'Proxy SSL: la puerta de entrada',d:'Termina el cifrado TLS 1.3, valida el certificado y descifra la petición. A partir de aquí, todo circula en HTTP solo dentro de la red interna. Sin certificado válido, nada entra.',tags:['TLS 1.3 · cert válido','445 → http interno','descifrado OK']},
+{n:'3',t:'Proxy de control: access list, logs y enrutado',d:'El cerebro del stack. Comprueba si tu IP o token está en la lista de acceso, escribe una línea de log con fecha, origen, modelo y tokens, y solo entonces reenvía al servidor de IA. Si no estás en la lista, responde 403 y lo deja registrado.',tags:['allowlist IP / token','log de cada petición','routing a servidor-ia:8000']},
+{n:'4',t:'IA local: Qwen 27B a 30 tokens/s',d:'El servidor con la RTX 5060 Ti (16 GB) ejecuta Qwen 27B y genera la respuesta a 30 tokens/s de media. La respuesta vuelve cifrada por el mismo camino. El dato clínico nunca sale del edificio.',tags:['RTX 5060 Ti · 16 GB','Qwen 27B denso','30 tokens/s de media']}
+];
+function now(){var d=new Date();function p(x){return (x<10?'0':'')+x}return p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds())}
+function say(t){status.textContent=t}
+function addLog(cls,msg){var li=document.createElement('li');if(cls)li.className=cls;var s=document.createElement('span');s.className='lt';s.textContent=now();li.appendChild(s);li.appendChild(document.createTextNode(msg));log.appendChild(li);log.scrollTop=log.scrollHeight}
+function setDetail(i){var f=INFO[i];if(!f)return;dN.textContent=f.n;dT.textContent=f.t;dD.textContent=f.d;dTags.innerHTML='';f.tags.forEach(function(x){var li=document.createElement('li');li.textContent=x;dTags.appendChild(li)})}
+function setState(i,st,label){var n=nodes[i];if(!n)return;n.classList.remove('is-active','is-done','is-deny');if(st)n.classList.add(st);var b=n.querySelector('[data-nst]');if(b)b.textContent=label||(st==='is-active'?'Procesando…':st==='is-done'?'Completado ✓':st==='is-deny'?'Bloqueado ✕':'En espera')}
+function clearAll(){nodes.forEach(function(_,i){setState(i,null,'En espera')});conns.forEach(function(c){c.classList.remove('is-live')});prog.style.width='0';packet.style.opacity='0'}
+function center(el){var a=root.querySelector('.stk-stage').getBoundingClientRect(),r=el.getBoundingClientRect();return {x:r.left-a.left+r.width/2,y:r.top-a.top+r.height/2}}
+function moveTo(el,back,denyM){var p=center(el);packet.style.opacity='1';packet.classList.toggle('is-back',!!back);packet.classList.toggle('is-deny',!!denyM);packet.style.left=(p.x-8)+'px';packet.style.top=(p.y-8)+'px'}
+function paint(i,total){prog.style.width=Math.round((i+1)/(total+1)*100)+'%'}
+var running=false,timers=[];
+function later(fn,ms){if(reduced){fn();return}var t=setTimeout(fn,ms);timers.push(t)}
+function stop(){timers.forEach(clearTimeout);timers=[];running=false;go.disabled=false;go.textContent='Repetir petición'}
+function run(){
+if(running)return;
+running=true;timers.forEach(clearTimeout);timers=[];
+go.disabled=true;go.textContent='Enviando…';
+log.innerHTML='';clearAll();
+var isDeny=deny.checked;
+var steps=isDeny?[
+{n:0,log:['→ POST https://ia:443/v1/chat · 1.240 tokens'],st:'Origen: tu herramienta envía la petición HTTPS.'},
+{n:1,log:['✓ TLS 1.3 · certificado válido · descifrado OK → red interna'],st:'Proxy SSL: TLS terminado, petición dentro.'},
+{n:2,log:['✕ access list: IP 203.0.113.9 NO autorizada → 403 Forbidden','err'],log2:['◉ log guardado: DENY · 203.0.113.9 · /v1/chat'],st:'Proxy de control: acceso DENEGADO. Mira el registro.'}
+]:[
+{n:0,log:['→ POST https://ia:443/v1/chat · 1.240 tokens de contexto'],st:'Paso 1 de 6 · La herramienta envía la petición HTTPS.'},
+{n:1,log:['✓ TLS 1.3 · certificado válido · descifrado OK → http://proxy-interno:80'],st:'Paso 2 de 6 · El proxy SSL termina el cifrado y deja pasar.'},
+{n:2,log:['✓ access list: IP 10.0.0.15 autorizada (regla 3/12)'],log2:['◉ log guardado: POST /v1/chat · qwen-27b · origen interno'],st:'Paso 3 de 6 · El proxy comprueba la lista y registra.'},
+{n:2,log:['→ routing: /v1/chat → servidor-ia:8000 (único backend)'],st:'Paso 4 de 6 · Enruta al servidor de IA local.'},
+{n:3,log:['✓ Qwen 27B · 86 tokens en 2,9 s · 30 tok/s de media'],st:'Paso 5 de 6 · La GPU genera la respuesta.'},
+{n:3,log:['← 200 OK · respuesta cifrada de vuelta por el mismo camino','ok'],st:'Paso 6 de 6 · Respuesta entregada. Dato siempre dentro del edificio.'}
+];
+setDetail(0);
+var i=0;
+function step(){
+if(i>=steps.length){
+nodes.forEach(function(_,k){if(!(isDeny&&k===2))setState(k,'is-done','Completado ✓')});
+if(isDeny){setState(2,'is-deny','Bloqueado ✕');say('Petición bloqueada con 403: la IP no está en la lista, pero ha quedado registrada. Desmarca la casilla y repite para ver el camino feliz.');addLog('err','✕ 403 Forbidden · fin del recorrido (desmarca «IP no autorizada» para el caso OK)')}
+else{moveTo(nodes[0],true,false);addLog('ok','✓ fin del recorrido · 100 % del dato dentro del edificio');say('Recorrido completo: respuesta 200 OK a 30 tokens/s. Toca cualquier nodo para repasar qué hizo.')}
+prog.style.width='100%';
+stop();return;
+}
+var s=steps[i];
+setDetail(s.n);
+steps.slice(0,i).forEach(function(p){setState(p.n,'is-done','Completado ✓')});
+setState(s.n,'is-active','Procesando…');
+moveTo(s.n===0?nodes[0]:conns[s.n-1],false,isDeny&&i===2);
+if(s.n>0)conns[s.n-1].classList.add('is-live');
+say(s.st);
+(function(lines,idx){
+var k=0;
+function nextLine(){
+if(k>=lines.length){
+paint(i,steps.length);
+i++;
+later(step,isDeny?900:800);
+return;
+}
+var L=lines[k];
+addLog(L[1]||(L[0].charAt(0)==='✕'?'err':L[0].charAt(0)==='◉'?'warn':L[0].charAt(0)==='✓'||L[0].charAt(0)==='←'?'ok':''),L[0]);
+k++;
+setTimeout(nextLine,340);
+}
+nextLine();
+})(s.log2?[[s.log[0],s.log[1]],[s.log2[0],s.log2[1]]]:[[s.log[0],s.log[1]]]);
+}
+if(reduced){while(i<steps.length){var s=steps[i];setDetail(s.n);setState(s.n,'is-done','Completado ✓');addLog(s.log[1]||'',s.log[0]);if(s.log2)addLog(s.log2[1]||'',s.log2[0]);say(s.st);paint(i,steps.length);i++}
+nodes.forEach(function(_,k){setState(k,isDeny&&k===2?'is-deny':'is-done',isDeny&&k===2?'Bloqueado ✕':'Completado ✓')});
+prog.style.width='100%';
+if(isDeny)say('Petición bloqueada con 403 (modo instantáneo, sin animación).');else say('Recorrido completo (modo instantáneo, sin animación).');
+stop();return}
+step();
+}
+go.addEventListener('click',run);
+root.querySelector('[data-stk-reset]').addEventListener('click',function(){timers.forEach(clearTimeout);timers=[];running=false;go.disabled=false;go.textContent='Enviar petición';log.innerHTML='';var li=document.createElement('li');li.className='dim';li.textContent='proxy listo · esperando peticiones…';log.appendChild(li);clearAll();setDetail(2);say('Listo: pulsa «Enviar petición» o toca cualquier nodo del esquema.')});
+nodes.forEach(function(n){n.addEventListener('click',function(){var i=+n.getAttribute('data-node');setDetail(i);nodes.forEach(function(m,j){m.setAttribute('aria-expanded',j===i?'true':'false')});if(!running)say('Nodo '+(i+1)+' de 4: '+INFO[i].t+'. Pulsa «Enviar petición» para verlo en movimiento.')})});
+/* Visor de ejemplos de logs guardados (formato real del proxy) */
+var stklBox=root.querySelector('[data-stkl]');
+if(stklBox){
+var stklTog=stklBox.querySelector('[data-stkl-toggle]'),
+stklBody=stklBox.querySelector('[data-stkl-body]'),
+stklList=stklBox.querySelector('[data-stkl-list]'),
+stklDet=stklBox.querySelector('[data-stkl-detail]'),
+stklCount=stklBox.querySelector('[data-stkl-count]'),
+stklCopy=stklBox.querySelector('[data-stkl-copy]'),
+stklDl=stklBox.querySelector('[data-stkl-dl]'),
+stklFs=[].slice.call(stklBox.querySelectorAll('[data-stkl-f]'));
+var LOGS=[
+{id:'req_8f2c',t:'09:12:44',src:'Opencode',ip:'10.0.0.15',m:'POST',p:'/v1/chat',st:200,mo:'qwen-27b',tin:1240,tout:86,dur:'2,9 s',rate:'30 tok/s',task:'Autocompletar una función que valida recursos FHIR de pacientes (datos ficticios).'},
+{id:'req_8f31',t:'09:14:02',src:'Chat interno',ip:'10.0.0.22',m:'POST',p:'/v1/chat',st:200,mo:'qwen-27b',tin:2140,tout:312,dur:'10,6 s',rate:'29 tok/s',task:'Resumir un informe de marcha de 3 páginas en 5 puntos clave (datos ficticios).'},
+{id:'req_8f35',t:'09:15:37',src:'Copilot',ip:'10.0.0.15',m:'POST',p:'/v1/completions',st:200,mo:'qwen-27b',tin:860,tout:44,dur:'1,6 s',rate:'28 tok/s',task:'Sugerir el siguiente bloque al parsear un CSV de adherencia (datos ficticios).'},
+{id:'req_8f3a',t:'09:18:11',src:'Exterior',ip:'203.0.113.9',m:'POST',p:'/v1/chat',st:403,mo:'—',tin:0,tout:0,dur:'0,0 s',rate:'—',why:'IP fuera de la lista de acceso (regla 0/12)'},
+{id:'req_8f3e',t:'09:21:53',src:'Agente triaje',ip:'10.0.0.31',m:'POST',p:'/v1/chat',st:200,mo:'qwen-27b',tin:1930,tout:205,dur:'7,0 s',rate:'29 tok/s',task:'Clasificar una nota de triaje por prioridad y motivo (datos ficticios).'},
+{id:'req_8f42',t:'09:26:08',src:'Opencode',ip:'10.0.0.15',m:'POST',p:'/v1/chat',st:200,mo:'qwen-27b',tin:1120,tout:98,dur:'3,4 s',rate:'29 tok/s',task:'Explicar un error de validación en el formulario de visitas.'},
+{id:'req_8f47',t:'09:29:40',src:'Chat interno',ip:'10.0.0.22',m:'POST',p:'/v1/embeddings',st:200,mo:'qwen-27b',tin:940,tout:0,dur:'0,4 s',rate:'—',task:'Generar embeddings para buscar en la guía de IA privada.'},
+{id:'req_8f4b',t:'09:33:15',src:'Copilot',ip:'10.0.0.18',m:'POST',p:'/v1/completions',st:200,mo:'qwen-27b',tin:1480,tout:61,dur:'2,2 s',rate:'28 tok/s',task:'Completar un test unitario del cálculo de velocidad de marcha.'},
+{id:'req_8f50',t:'09:37:02',src:'Opencode',ip:'10.0.0.15',m:'POST',p:'/v1/chat',st:200,mo:'qwen-27b',tin:2310,tout:284,dur:'9,7 s',rate:'29 tok/s',task:'Redactar un borrador de informe de evolución (datos ficticios).'}
+];
+function stklLine(e){
+if(e.st!==200)return e.t+' '+e.m+' '+e.p+' '+e.st+' · ip '+e.ip+' · DENY · '+(e.why||'no autorizado');
+return e.t+' '+e.m+' '+e.p+' '+e.st+' · ip '+e.ip+' · '+e.mo+' · in '+e.tin+' / out '+e.tout+' · '+e.dur+' · '+e.rate;
+}
+var stklF='all',stklSel=null;
+function stklVis(){return LOGS.filter(function(e){return stklF==='all'||e.st===+stklF})}
+function stklPaint(){
+var vis=stklVis();
+if(vis.indexOf(stklSel)<0)stklSel=vis[0]||null;
+stklList.innerHTML='';
+vis.forEach(function(e){
+var li=document.createElement('li');
+var b=document.createElement('button');
+b.type='button';
+b.className='stkl-item'+(e.st!==200?' err':'')+(e===stklSel?' sel':'');
+var dot=document.createElement('span');dot.className='stkl-dot';dot.setAttribute('aria-hidden','true');
+var cd=document.createElement('code');cd.textContent=e.t+' · '+e.m+' '+e.p;
+var sm=document.createElement('small');sm.textContent=e.id+' · '+e.src+' · '+(e.tout?e.tout+' tokens':'—');
+var du=document.createElement('span');du.className='stkl-dur';du.textContent=(e.st!==200?'403':e.dur);
+b.appendChild(dot);b.appendChild(cd);b.appendChild(sm);b.appendChild(du);
+b.setAttribute('aria-current',e===stklSel?'true':'false');
+b.addEventListener('click',function(){stklSel=e;stklPaint()});
+li.appendChild(b);stklList.appendChild(li);
+});
+stklCount.textContent=vis.length+' de '+LOGS.length;
+if(!stklSel){stklDet.innerHTML='<p class="stkl-note">Sin peticiones para este filtro.</p>';return}
+var e=stklSel,ok=e.st===200;
+stklDet.innerHTML='';
+var h=document.createElement('h4');h.textContent=e.id+' · '+e.t+' ';
+var bd=document.createElement('span');bd.className='stkl-badge'+(ok?'':' err');bd.textContent=ok?'200 OK':'403 DENEGADA';h.appendChild(bd);stklDet.appendChild(h);
+if(e.task){var tk=document.createElement('p');tk.className='stkl-task';var lb=document.createElement('span');lb.textContent='Qué estaba haciendo';tk.appendChild(lb);tk.appendChild(document.createTextNode('«'+e.task+'»'));stklDet.appendChild(tk)}
+var kv=[['Origen',e.src+' ('+e.ip+')'],['Modelo',ok?e.mo+' · denso 27B':'—'],['Tokens entrada / salida',ok?e.tin+' / '+e.tout:'—'],['Velocidad',ok?e.rate:'—'],['Duración',e.dur],['Coste','0,00 € · servidor local']];
+var ul=document.createElement('ul');ul.className='stkl-kv';
+kv.forEach(function(r){var li=document.createElement('li');var s=document.createElement('span');s.textContent=r[0];var b=document.createElement('b');b.textContent=r[1];li.appendChild(s);li.appendChild(b);ul.appendChild(li)});
+stklDet.appendChild(ul);
+if(!ok&&e.why){var w=document.createElement('p');w.className='stkl-note';w.textContent='Motivo: '+e.why+'. Ha quedado registrado igualmente.';stklDet.appendChild(w)}
+var pre=document.createElement('p');pre.className='stkl-line';pre.textContent=stklLine(e);stklDet.appendChild(pre);
+}
+stklFs.forEach(function(b){b.addEventListener('click',function(){stklF=b.getAttribute('data-stkl-f');stklFs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});stklPaint()})});
+stklTog.addEventListener('click',function(){var open=stklTog.getAttribute('aria-expanded')==='true';stklTog.setAttribute('aria-expanded',open?'false':'true');if(open)stklBody.setAttribute('hidden','');else stklBody.removeAttribute('hidden')});
+stklCopy.addEventListener('click',function(){if(!stklSel)return;var s=stklLine(stklSel);
+function done(){stklCopy.textContent='¡Copiada!';setTimeout(function(){stklCopy.textContent='Copiar línea'},1500)}
+function fallback(){try{var ta=document.createElement('textarea');ta.value=s;document.body.appendChild(ta);ta.select();document.execCommand('copy');done();ta.remove()}catch(x){}}
+if(typeof navigator!=='undefined'&&navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(s).then(done,fallback)}else fallback()});
+stklDl.addEventListener('click',function(){try{
+var txt='# Ejemplo de registro del proxy de control (servidor IA local)\n# Formato: hora METODO ruta estado · ip origen · modelo · tokens in/out · duracion · velocidad\n'+LOGS.map(function(e){return (e.task?'# tarea: '+e.task+'\n':'')+stklLine(e)}).join('\n')+'\n';
+var blob=new Blob([txt],{type:'text/plain;charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='proxy-ia-local-ejemplo.log';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},400);
+}catch(x){}});
+stklPaint();
+}
+setDetail(2);
+})();
+</script>
 </body>
 </html>
