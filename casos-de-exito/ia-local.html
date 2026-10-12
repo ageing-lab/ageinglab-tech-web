@@ -375,6 +375,7 @@ var INFO=[
 ];
 function now(){var d=new Date();function p(x){return (x<10?'0':'')+x}return p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds())}
 function say(t){status.textContent=t}
+function evDemo(demo,extra){try{if(typeof gtag==='function'){var p={page:location.pathname,demo:demo,via:'button'};if(extra)for(var k in extra)p[k]=extra[k];gtag('event','demo_open',p)}}catch(e){}}
 function addLog(cls,msg){var li=document.createElement('li');if(cls)li.className=cls;var s=document.createElement('span');s.className='lt';s.textContent=now();li.appendChild(s);li.appendChild(document.createTextNode(msg));log.appendChild(li);log.scrollTop=log.scrollHeight}
 function setDetail(i){var f=INFO[i];if(!f)return;dN.textContent=f.n;dT.textContent=f.t;dD.textContent=f.d;dTags.innerHTML='';f.tags.forEach(function(x){var li=document.createElement('li');li.textContent=x;dTags.appendChild(li)})}
 function setState(i,st,label){var n=nodes[i];if(!n)return;n.classList.remove('is-active','is-done','is-deny');if(st)n.classList.add(st);var b=n.querySelector('[data-nst]');if(b)b.textContent=label||(st==='is-active'?'Procesando…':st==='is-done'?'Completado ✓':st==='is-deny'?'Bloqueado ✕':'En espera')}
@@ -389,6 +390,7 @@ function run(){
 if(running)return;
 running=true;timers.forEach(clearTimeout);timers=[];
 go.disabled=true;go.textContent='Enviando…';
+evDemo('esquema-stack',{modo:deny.checked?'denegado':'ok'});
 log.innerHTML='';clearAll();
 var isDeny=deny.checked;
 var steps=isDeny?[
@@ -508,12 +510,12 @@ if(!ok&&e.why){var w=document.createElement('p');w.className='stkl-note';w.textC
 var pre=document.createElement('p');pre.className='stkl-line';pre.textContent=stklLine(e);stklDet.appendChild(pre);
 }
 stklFs.forEach(function(b){b.addEventListener('click',function(){stklF=b.getAttribute('data-stkl-f');stklFs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});stklPaint()})});
-stklTog.addEventListener('click',function(){var open=stklTog.getAttribute('aria-expanded')==='true';stklTog.setAttribute('aria-expanded',open?'false':'true');if(open)stklBody.setAttribute('hidden','');else stklBody.removeAttribute('hidden')});
+stklTog.addEventListener('click',function(){var open=stklTog.getAttribute('aria-expanded')==='true';stklTog.setAttribute('aria-expanded',open?'false':'true');if(open)stklBody.setAttribute('hidden','');else{stklBody.removeAttribute('hidden');evDemo('visor-logs')}});
 stklCopy.addEventListener('click',function(){if(!stklSel)return;var s=stklLine(stklSel);
 function done(){stklCopy.textContent='¡Copiada!';setTimeout(function(){stklCopy.textContent='Copiar línea'},1500)}
 function fallback(){try{var ta=document.createElement('textarea');ta.value=s;document.body.appendChild(ta);ta.select();document.execCommand('copy');done();ta.remove()}catch(x){}}
 if(typeof navigator!=='undefined'&&navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(s).then(done,fallback)}else fallback()});
-stklDl.addEventListener('click',function(){try{
+stklDl.addEventListener('click',function(){try{evDemo('visor-logs-descarga');
 var txt='# Ejemplo de registro del proxy de control (servidor IA local)\n# Formato: hora METODO ruta estado · ip origen · modelo · tokens in/out · duracion · velocidad\n'+LOGS.map(function(e){return (e.task?'# tarea: '+e.task+'\n':'')+stklLine(e)}).join('\n')+'\n';
 var blob=new Blob([txt],{type:'text/plain;charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='proxy-ia-local-ejemplo.log';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},400);
 }catch(x){}});
