@@ -191,7 +191,7 @@
 <nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../casos-de-exito/" style="color:var(--mu)">Casos de éxito</a> <span aria-hidden="true">/</span> <span>IA local</span></nav>
 <h1>IA local para datos clínicos en un servidor de bajo presupuesto</h1>
 <p>Montamos un sistema de IA local para nuestro propio equipo, que usamos a diario para trabajar con datos clínicos sin que salgan del edificio: un servidor de ≈1.200 € con GPU RTX 5060 Ti de 16 GB, modelo Qwen 27B a 30 tokens/s de media, con registro de peticiones y acceso por API desde nuestras herramientas.</p>
-<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a> <a class="btn fantasma" href="#solucion" data-prueba>Probar demos</a>
 </div></div>
 
 <section class="s ba-s" id="resumen"><div class="w">
@@ -221,6 +221,13 @@
 <div class="txt"><p>Montamos el sistema en un servidor propio. El trabajo incluyó:</p><ul class="plain"><li>Montaje de un servidor con GPU NVIDIA RTX Geforce 5060 Ti de 16 GB de VRAM, por ≈1.200 € en total.</li><li>Despliegue de Qwen 27B (denso, open weight) a 30 tokens por segundo de media.</li><li>Registro de peticiones y control de acceso en la red interna, con el modelo expuesto por API.</li><li>Conexión a nuestras herramientas de trabajo: GitHub Copilot, Opencode, agentes y chatbots, que consumen el modelo local a través de la API del servidor.</li><li>Puesta en servicio para tareas de desarrollo donde el dato no puede salir del edificio.</li></ul>
 <figure class="shot"><img src="../img/casos/ia_local_nvidia.webp" alt="Pequeño servidor del sistema de IA local, con la placa de vídeo NVIDIA RTX Geforce 5060 Ti de 16 GB montada en su interior" width="1011" height="417" loading="lazy" decoding="async"><figcaption>El pequeño servidor con la GPU NVIDIA RTX Geforce 5060 Ti (16 GB de VRAM).</figcaption></figure>
 <figure class="shot"><img src="../img/casos/ia_local_velocidad_tokens.webp" alt="Medición de la velocidad de generación del modelo local: velocidad de salida de tokens por segundo" width="841" height="154" loading="lazy" decoding="async"><figcaption>Velocidad medida del sistema: 30 tokens/s de media con el modelo open weight de 27B.</figcaption></figure>
+<details class="prueba" id="demo-tokens">
+<summary>
+<span class="pr-dot" aria-hidden="true"></span>
+<span class="pr-l"><span class="pr-et">Demo interactiva</span><span class="pr-t">Prueba tú mismo</span></span>
+<span class="pr-ar" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+</summary>
+<div class="pr-c">
 <div class="tok-sim" data-tok-sim data-rate="30">
 <p class="tok-k">Pruébalo aquí mismo</p>
 <p class="tok-t">Así escribe el servidor: 30 tokens por segundo de media</p>
@@ -232,12 +239,21 @@
 </div>
 <noscript><p class="tok-sub">Activa JavaScript para ver la simulación de velocidad.</p></noscript>
 </div>
+</div>
+</details>
 <p>Es el tipo de trabajo que hacemos en <a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a>.</p><p class="rel"><a href="../guias/ia-privada-en-hospitales.html">Si llevas esto al hospital, hay una guía práctica: IA privada en hospitales</a></p></div>
 </div></section>
 
 <section class="s" id="arquitectura"><div class="w">
 <h2>Cómo viaja una petición</h2>
 <p class="lead">Del clic al token, sin que el dato salga del edificio: pulsa «Enviar petición» y mira cómo la solicitud atraviesa cada capa del stack. Toca cualquier nodo para ver qué hace.</p>
+<details class="prueba" id="demo-stack">
+<summary>
+<span class="pr-dot" aria-hidden="true"></span>
+<span class="pr-l"><span class="pr-et">Demo interactiva</span><span class="pr-t">Prueba tú mismo</span></span>
+<span class="pr-ar" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+</summary>
+<div class="pr-c">
 <div class="stk" data-stk>
 <div class="stk-head">
 <p class="stk-k">Esquema interactivo del stack</p>
@@ -295,6 +311,9 @@
 </div>
 </div>
 </div>
+</div>
+</div>
+</details>
 <noscript><div class="txt"><p>Sin JavaScript, el recorrido es: 1) tu herramienta envía un POST HTTPS; 2) el proxy SSL termina el TLS; 3) el proxy de control comprueba la lista de acceso, guarda el log y enruta; 4) el servidor IA local (Qwen 27B) responde por el mismo camino.</p><p>Cada línea del registro guarda hora, origen, modelo y tokens, por ejemplo: <code>09:12:44 POST /v1/chat 200 · ip 10.0.0.15 · qwen-27b · in 1240 / out 86 · 2,9 s · 30 tok/s</code>.</p></div></noscript>
 </div></section>
 

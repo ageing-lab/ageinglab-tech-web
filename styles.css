@@ -124,6 +124,7 @@ section.s{padding:84px 0;border-top:1px solid var(--line)}
 .prueba summary:hover .pr-ar{border-color:var(--mint);transform:translateY(3px)}
 .prueba[open] .pr-ar{transform:rotate(180deg);border-color:var(--mint)}
 .pr-c{padding:30px 30px 38px;background:var(--bg);color:var(--ink);border-radius:0 0 18px 18px}
+.pr-c>.gm,.pr-c>.mem,.pr-c>.sala,.pr-c>.fhir,.pr-c>.tok-sim,.pr-c>.stk{margin:0;max-width:none}
 .prueba[open] .pr-c{animation:pr-in .5s cubic-bezier(.2,.75,.3,1) both}
 @keyframes pr-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.pr-dot{animation:none}.prueba[open] .pr-c{animation:none}}

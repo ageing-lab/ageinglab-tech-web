@@ -106,7 +106,7 @@
 <nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../casos-de-exito/" style="color:var(--mu)">Casos de éxito</a> <span aria-hidden="true">/</span> <span>Integración con FHIR</span></nav>
 <h1>Integración de sistemas de salud con FHIR</h1>
 <p>En un proyecto con GMV, desarrollamos un servicio FHIR para exponer y consumir historial clínico entre sistemas de salud con las mismas reglas, sin un canal propio por cada par de sistemas.</p>
-<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a> <a class="btn fantasma" href="#solucion" data-prueba>Prueba tú mismo</a>
 </div></div>
 
 <section class="s ba-s" id="resumen"><div class="w">
@@ -134,6 +134,13 @@
 <section class="s" id="solucion"><div class="w">
 <h2>Solución</h2>
 <div class="txt"><p>Desarrollamos un servicio FHIR: una API REST+JSON sobre los recursos del historial clínico (Patient, Observation, Condition, entre otros), con acceso por SMART on FHIR (OAuth 2), cifrado en tránsito (TLS) y registro de auditoría por usuario y recurso.</p><ul class="plain"><li>Exposición del historial clínico: los sistemas conectan al mismo servicio, sin un canal por cada par.</li><li>Acceso y auditoría: cada lectura o escritura queda registrada por usuario y recurso.</li><li>Interoperabilidad: cualquier sistema que hable FHIR puede conectarse al servicio.</li></ul><p>Es el tipo de trabajo que hacemos en <a href="../servicios/software-a-medida.html">software a medida</a>.</p><p class="rel"><a href="../guias/integrar-fhir.html">Y para ver cómo se integra un sistema con FHIR paso a paso, hay una guía: Cómo integrar tu sistema de salud con FHIR</a></p>
+<details class="prueba" id="demo-fhir">
+<summary>
+<span class="pr-dot" aria-hidden="true"></span>
+<span class="pr-l"><span class="pr-et">Demo interactiva</span><span class="pr-t">Prueba tú mismo</span></span>
+<span class="pr-ar" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+</summary>
+<div class="pr-c">
 <div class="fhir" data-fhir>
 <p class="fhir-k">Pruébalo aquí mismo</p>
 <p class="fhir-t">Pide un recurso FHIR al servicio</p>
@@ -157,6 +164,8 @@
 <p class="fhir-audit" data-fhir-audit aria-live="polite"># El log de auditoría aparecerá aquí…</p>
 <noscript><p class="fhir-sub">Activa JavaScript para usar el playground.</p></noscript>
 </div>
+</div>
+</details>
 </div>
 </div></section>
 
