@@ -420,3 +420,36 @@ if(typeof gtag==='function'){try{gtag('event','demo_open',{page:location.pathnam
 });
 });
 })();
+
+/* ===== Transiciones entre páginas =====
+   El CSS (@view-transition) hace el fundido. Aquí se nombra el título pulsado en la página
+   de origen y el h1 en la de destino para que se transformen uno en otro. */
+(function(){
+var NAME='vt-title',KEY='al-vt',last=null;
+document.addEventListener('click',function(e){var a=e.target&&e.target.closest?e.target.closest('a[href]'):null;last=a||null},true);
+function path(u){try{var x=new URL(u,location.href);return x.origin===location.origin?x.pathname.replace(/index\.html$/,''):null}catch(e){return null}}
+function heading(a){
+var h=a.closest('h1,h2,h3')||a.querySelector('h2,h3');
+if(h)return h;
+var box=a.closest('article,li,.card');
+return box?box.querySelector('h2,h3'):null}
+window.addEventListener('pageswap',function(e){
+if(!e.viewTransition||!e.activation||!e.activation.entry||!last)return;
+var to=path(e.activation.entry.url);
+if(!to||to!==path(last.href)||to===path(location.href))return;
+var h=heading(last);
+if(!h)return;
+h.style.viewTransitionName=NAME;
+try{sessionStorage.setItem(KEY,'1')}catch(x){}});
+window.addEventListener('pagereveal',function(e){
+var on=false;
+try{on=sessionStorage.getItem(KEY)==='1';sessionStorage.removeItem(KEY)}catch(x){}
+if(!on||!e.viewTransition)return;
+var h=document.querySelector('main h1');
+if(h)h.style.viewTransitionName=NAME});
+/* Precarga la página al acercar el cursor o al empezar a pulsar: la transición se siente inmediata */
+if(window.HTMLScriptElement&&HTMLScriptElement.supports&&HTMLScriptElement.supports('speculationrules')){
+var s=document.createElement('script');s.type='speculationrules';
+s.textContent=JSON.stringify({prefetch:[{where:{href_matches:'/*'},eagerness:'moderate'}]});
+document.head.appendChild(s)}
+})();

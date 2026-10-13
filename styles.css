@@ -608,3 +608,18 @@ section.s.staff{padding:72px 0 80px}
 .tok-fill-bar .btn:disabled{opacity:.6;cursor:default}
 .tok-fill-meta{margin:0;color:#c9d4ec;font-size:15px;font-variant-numeric:tabular-nums}
 
+
+/* ===== Transiciones entre páginas (View Transitions, navegación entre documentos) =====
+   Chrome/Edge 126+ y Safari 18.2+. En el resto de navegadores se ignora y se navega como siempre. */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:vt-out .2s ease-in both}
+::view-transition-new(root){animation:vt-in .38s ease-out .06s both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0}}
+/* Título que se transforma de la tarjeta pulsada al h1 de la página destino (lo nombra js/main.js) */
+::view-transition-group(vt-title){animation-duration:.55s;animation-timing-function:cubic-bezier(.2,.85,.2,1);z-index:1}
+::view-transition-old(vt-title){animation:vt-out .3s ease-in both}
+::view-transition-new(vt-title){animation:vt-in .3s ease-out .12s both}
+@media (prefers-reduced-motion:reduce){
+@view-transition{navigation:none}
+}
