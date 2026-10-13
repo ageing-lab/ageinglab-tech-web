@@ -348,33 +348,37 @@ nav>a,.mi>button,.logo{white-space:nowrap}
 .theme .t:focus-visible{outline:3px solid var(--mint);outline-offset:4px;box-shadow:0 0 0 3px var(--ink);border-radius:999px}
 @media (max-width:1180px){.theme{width:max-content;margin:14px auto 4px}}
 
-/* Aviso de cookies: tarjeta centrada y protagonista */
-.cookies{position:fixed;left:50%;bottom:22px;z-index:2147483000;width:min(620px,calc(100% - 32px));display:flex;gap:18px;align-items:center;padding:24px 26px;border:1px solid var(--line);border-radius:22px;background:var(--soft);box-shadow:0 24px 60px rgba(6,15,40,.35);opacity:0;transform:translate(-50%,48px) scale(.94);transition:opacity .35s,transform .55s cubic-bezier(.2,1.25,.35,1);animation:ck-glow 3s ease-in-out 1s infinite}
+/* Aviso de cookies: modal centrado */
+.cookies{position:fixed;left:50%;top:50%;z-index:2147483000;width:min(440px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflow:auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:38px 34px 30px;border:1px solid var(--line);border-radius:26px;background:var(--soft);box-shadow:0 32px 90px rgba(6,15,40,.45);opacity:0;pointer-events:none;transform:translate(-50%,-46%) scale(.7)}
 @supports (background:color-mix(in srgb,red,blue)){.cookies{background:color-mix(in srgb,var(--ink) 6%,var(--bg))}}
-.cookies.in{opacity:1;transform:translate(-50%,0) scale(1)}
-.cookies.out{opacity:0;pointer-events:none;transform:translate(-50%,32px) scale(.95);transition:opacity .3s,transform .3s ease-in;animation:none}
-.cookies .ck-ico{flex:0 0 auto;width:58px;height:58px;animation:ck-wiggle 2.6s ease-in-out infinite;filter:drop-shadow(0 6px 10px rgba(6,15,40,.3))}
+.cookies.in{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1);animation:ck-modal-in .7s cubic-bezier(.2,1.3,.35,1) both,ck-glow 3s ease-in-out 1.4s infinite}
+.cookies.out{opacity:0;pointer-events:none;transform:translate(-50%,-46%) scale(.85);transition:opacity .3s,transform .3s ease-in;animation:none}
+.cookies::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.16) 47%,rgba(255,255,255,.16) 53%,transparent 70%);transform:translateX(-130%);animation:ck-shine 4.5s ease-in-out 1.6s infinite;pointer-events:none}
+.cookies .ck-ico{flex:0 0 auto;width:88px;height:88px;background:var(--bg);border:1px solid var(--line);border-radius:50%;padding:10px;box-shadow:0 14px 30px rgba(6,15,40,.3);animation:ck-cookie-spin .8s cubic-bezier(.3,1.4,.4,1) both,ck-float 3.2s ease-in-out .9s infinite}
 .cookies .ck-txt{flex:1 1 auto;min-width:0}
-.cookies .ck-txt strong{font-weight:700;font-size:18px}
-.cookies .ck-txt p{margin:6px 0 0;font-size:14px;color:var(--mute);line-height:1.5}
-.cookies .ck-acc{flex:0 0 auto;display:flex;gap:10px}
-.cookies .ck-ok,.cookies .ck-no{padding:12px 22px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s,filter .2s,border-color .2s}
+.cookies .ck-txt strong{font-weight:700;font-size:21px}
+.cookies .ck-txt p{margin:8px 0 0;font-size:14.5px;color:var(--mute);line-height:1.55}
+.cookies .ck-acc{flex:0 0 auto;display:flex;flex-direction:column;gap:10px;width:100%;margin-top:6px}
+.cookies .ck-ok,.cookies .ck-no{width:100%;padding:14px 22px;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s,filter .2s,border-color .2s}
 .cookies .ck-ok{border:1px solid var(--accent);background:var(--accent);color:var(--ck-ink)}
-.cookies .ck-ok:hover{filter:brightness(1.12);transform:translateY(-2px);box-shadow:0 8px 20px rgba(6,15,40,.3)}
+.cookies .ck-ok:hover{filter:brightness(1.12);transform:translateY(-2px);box-shadow:0 10px 24px rgba(6,15,40,.3)}
 .cookies .ck-ok:active{transform:translateY(0) scale(.97)}
 .cookies .ck-no{border:1px solid var(--line);background:transparent;color:var(--ink)}
 .cookies .ck-no:hover{border-color:var(--ink);transform:translateY(-2px)}
 .cookies .ck-no:active{transform:translateY(0) scale(.97)}
 .cookies button:focus-visible{outline:3px solid var(--mint);outline-offset:4px;box-shadow:0 0 0 3px var(--ink)}
-@keyframes ck-wiggle{0%,100%{transform:rotate(-10deg) scale(1)}25%{transform:rotate(8deg) scale(1.08)}50%{transform:rotate(-6deg) scale(1.05)}75%{transform:rotate(6deg) scale(1.08)}}
-@keyframes ck-glow{0%,100%{box-shadow:0 24px 60px rgba(6,15,40,.35)}50%{box-shadow:0 24px 60px rgba(6,15,40,.35),0 0 0 6px color-mix(in srgb,var(--accent) 22%,transparent)}}
+@keyframes ck-modal-in{0%{opacity:0;transform:translate(-50%,-38%) scale(.6) rotate(-3deg)}60%{opacity:1;transform:translate(-50%,-52%) scale(1.04) rotate(1deg)}100%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}}
+@keyframes ck-cookie-spin{0%{transform:rotate(-200deg) scale(0)}70%{transform:rotate(14deg) scale(1.15)}100%{transform:rotate(0) scale(1)}}
+@keyframes ck-float{0%,100%{translate:0 0;rotate:-6deg}50%{translate:0 -8px;rotate:6deg}}
+@keyframes ck-shine{0%{transform:translateX(-130%)}45%,100%{transform:translateX(130%)}}
+@keyframes ck-glow{0%,100%{box-shadow:0 32px 90px rgba(6,15,40,.45)}50%{box-shadow:0 32px 90px rgba(6,15,40,.45),0 0 0 8px color-mix(in srgb,var(--accent) 22%,transparent)}}
 @media (max-width:600px){
-.cookies{flex-direction:column;gap:12px;align-items:center;text-align:center;padding:22px 18px}
-.cookies .ck-ico{width:52px;height:52px}
-.cookies .ck-acc{width:100%;gap:8px}
-.cookies .ck-acc button{flex:1}
+.cookies{padding:32px 22px 24px}
+.cookies .ck-ico{width:76px;height:76px}
 }
-@media (prefers-reduced-motion:reduce){.cookies,.cookies .ck-ico{animation:none}}
+@media (prefers-reduced-motion:reduce){.cookies,.cookies::before,.cookies .ck-ico{animation:none}}
+
+/* ===== Modo simulación "persona mayor" (solo servicios/interfaces-para-mayores.html) ===== */
 
 /* ===== Modo simulación "persona mayor" (solo servicios/interfaces-para-mayores.html) ===== */
 .simnav{display:none}
@@ -457,8 +461,8 @@ html[data-sim="mayor"][data-contrast="alto"] .step i{background:#fff;color:#000}
 html[data-sim="mayor"][data-contrast="alto"] .simnav .sim-read,html[data-sim="mayor"][data-contrast="alto"] .simnav .sim-con{background:#000;color:#fff;border-color:#fff}
 html[data-sim="mayor"][data-contrast="alto"] .simnav .sim-read[aria-pressed="true"],html[data-sim="mayor"][data-contrast="alto"] .simnav .sim-con[aria-pressed="true"]{background:#fff;color:#000;border-color:#fff}
 
-/* Aviso de cookies reubicado arriba para no tapar la navegación */
-html[data-sim="mayor"] .cookies{top:76px;bottom:auto}
+/* Aviso de cookies: en simulación sigue centrado pero sin tapar la barra */
+html[data-sim="mayor"] .cookies{max-height:calc(100dvh - 110px)}
 html[data-sim="mayor"] .cookies .ck-txt p{font-size:15px}
 html[data-sim="mayor"] .cookies .ck-ok,html[data-sim="mayor"] .cookies .ck-no{min-height:44px;font-size:16px}
 
