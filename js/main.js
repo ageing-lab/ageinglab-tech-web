@@ -51,14 +51,30 @@ function updG(a){try{if(typeof gtag==='function')gtag('consent','update',a)}catc
 var c=val();
 if(c==='granted')updG({'analytics_storage':'granted','ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'});
 if(c)return;
+var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var sc=document.createElement('div');sc.className='ck-scrim';sc.setAttribute('aria-hidden','true');
 var b=document.createElement('div');
 b.className='cookies';b.setAttribute('role','region');b.setAttribute('aria-label','Aviso de cookies');
-b.innerHTML='<img class="ck-ico" src="/img/cookie.svg" alt="" width="36" height="36" loading="lazy"><div class="ck-txt"><strong>Cookies</strong><p>Usamos cookies propias y de Google Analytics para entender cómo usas la web. Puedes aceptar o rechazar su uso; si lo rechazas, no se guardarán cookies de seguimiento. <a href="/cookies.html">Política de cookies</a>.</p></div><div class="ck-acc"><button type="button" class="ck-ok">Aceptar</button><button type="button" class="ck-no">Rechazar</button></div>';
-document.body.appendChild(b);
-function close(){b.classList.add('out');setTimeout(function(){b.remove()},300)}
-b.querySelector('.ck-ok').addEventListener('click',function(){try{localStorage.setItem(CK,'granted')}catch(e){}updG({'analytics_storage':'granted','ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'});close()});
-b.querySelector('.ck-no').addEventListener('click',function(){try{localStorage.setItem(CK,'denied')}catch(e){}close()});
-setTimeout(function(){b.classList.add('in')},400);
+b.innerHTML='<div class="ck-cookie" aria-hidden="true"><img src="/img/cookie.svg" alt="" width="132" height="132" decoding="async"></div><div class="ck-crumbs" aria-hidden="true"></div><div class="ck-card"><div class="ck-txt"><strong>Tú decides qué cookies guardamos</strong><p>Usamos cookies propias y de Google Analytics para saber qué partes de la web te resultan útiles. Si las rechazas, no se guardará ninguna cookie de seguimiento. <a href="/cookies.html">Política de cookies</a></p></div><div class="ck-acc"><button type="button" class="ck-ok">Aceptar</button><button type="button" class="ck-no">Rechazar</button></div></div>';
+document.body.appendChild(sc);document.body.appendChild(b);
+var busy=false;
+function close(){b.classList.remove('in');b.classList.add('out');sc.classList.remove('in');sc.classList.add('out');setTimeout(function(){b.remove();sc.remove()},350)}
+function crumbs(){
+var w=b.querySelector('.ck-crumbs'),cl=['#8a4b38','#da9f83','#3ee0c8','#ffffff'],h='',n=16;
+for(var i=0;i<n;i++){var a=Math.PI*2*i/n+Math.random()*.4,d=80+Math.random()*100,z=7+Math.random()*8;
+h+='<i style="--dx:'+Math.round(Math.cos(a)*d)+'px;--dy:'+Math.round(Math.sin(a)*d-24)+'px;--r:'+Math.round(Math.random()*360)+'deg;--s:'+z.toFixed(1)+'px;--c:'+cl[i%cl.length]+'"></i>'}
+w.innerHTML=h}
+function pick(v){
+if(busy)return;busy=true;
+[].forEach.call(b.querySelectorAll('button'),function(x){x.disabled=true});
+try{localStorage.setItem(CK,v)}catch(e){}
+if(v==='granted')updG({'analytics_storage':'granted','ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'});
+if(rm){close();return}
+if(v==='granted'){crumbs();b.classList.add('munch');setTimeout(close,780)}
+else{b.classList.add('nope');setTimeout(close,520)}}
+b.querySelector('.ck-ok').addEventListener('click',function(){pick('granted')});
+b.querySelector('.ck-no').addEventListener('click',function(){pick('denied')});
+setTimeout(function(){b.classList.add('in');sc.classList.add('in')},400);
 })();
 
 /* Modo simulación "persona mayor" (solo en servicios/interfaces-para-mayores.html) */
