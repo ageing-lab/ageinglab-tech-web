@@ -17,6 +17,7 @@ const EJEMPLOS = [
   'Ejemplo 1 (ficticio) — Nota de consulta: paciente ficticio de 76 años que acude a revisión. Refiere caminar a diario unos veinte minutos con un bastón, dormir unas seis horas y tomar la medicación con algún olvido ocasional. La tensión registrada es 142/86. Marcha estable con apoyo puntual. Plan: revisar la medicación, mantener los paseos y citar en dos semanas para control.',
   'Ejemplo 2 (ficticio) — Informe de alta: paciente ficticio de 82 años ingresado por una prótesis de cadera. Evolución favorable, sin fiebre en las últimas 48 horas. Camina con andador por el pasillo con ayuda. Herida con buen aspecto. Al alta: analgesia pautada, ejercicios respiratorios, curas cada dos días y revisión en consulta en diez días. Se entrega hoja de ejercicios.',
   'Ejemplo 3 (ficticio) — Parte de enfermería a domicilio: visita de control. El paciente ficticio dice encontrarse bien, con apetito normal. Adherencia a la medicación en torno al 80 %. Se recuerda el pastillero semanal. Constantes estables. La vivienda está ordenada y hay un familiar que pasa cada tarde. Próxima visita en una semana.',
+  'Example 4 (fictional) — Home nursing visit note: routine check-up. The fictional patient reports feeling well, with normal appetite. Medication adherence around 80%. The weekly pill box was reviewed. Stable vital signs. The home is tidy and a relative stops by every afternoon. Next visit in one week.',
 ];
 
 txt.value = EJEMPLOS[0];
