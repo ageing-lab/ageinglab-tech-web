@@ -187,8 +187,8 @@ if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
       btnCargar.hidden = true;
       prog.hidden = true;
       panelRec.hidden = false;
-      hint.textContent = 'Pulsa el micrófono y habla en español. Máximo ' + MAX_SEG + ' segundos.';
-      msg('Listo. Pulsa el micrófono y habla en español.', 'ok');
+      hint.textContent = 'Pulsa el micrófono y habla en español. Máximo ' + MAX_SEG + ' segundos. Puedes desconectar el wifi y probar: sigue funcionando sin internet.';
+      msg('Listo. Puedes desconectar el wifi y probar: sigue transcribiendo sin salir a internet.', 'ok');
       btnGrabar.focus();
     } catch (err) {
       console.error(err);
