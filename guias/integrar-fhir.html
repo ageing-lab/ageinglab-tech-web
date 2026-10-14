@@ -84,16 +84,16 @@
 <main id="main">
 <div class="hero dark case-hero"><div class="w">
 <nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>Cómo integrar FHIR</span></nav>
-<h1>Cómo integrar tu sistema de salud con FHIR</h1>
-<p>FHIR es el estándar de intercambio de datos de salud. Esta guía explica qué es, cuándo conviene integrarse con él y cómo hacerlo paso a paso, con los errores más comunes.</p>
-<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+<h1>Cómo integrar vuestro sistema de salud con FHIR</h1>
+<p>Fast Healthcare Interoperability Resources (FHIR) como estándar de intercambio de datos de salud: esta guía explica qué es, cuándo conviene integrarse con él y cómo hacerlo paso a paso, con los errores más comunes.</p>
+<a class="btn alt" href="#contacto">Hablemos de vuestro proyecto</a>
 </div></div>
 
 <section class="s" id="que-es"><div class="w">
 <h2>Qué es FHIR</h2>
-<p class="lead">FHIR (Fast Healthcare Interoperability Resources) es el estándar de HL7 para el intercambio de datos de salud. Frente a los formatos legados, FHIR es moderno: recursos JSON, API REST y un modelo de datos pensado para la web. En la práctica, un sistema FHIR expone recursos como <em>Patient</em>, <em>Observation</em>, <em>Condition</em>, <em>Encounter</em> o <em>MedicationRequest</em>, y cualquier otro sistema que hable FHIR puede consultarlos o publicarlos con las mismas reglas.</p>
+<p class="lead">FHIR es el estándar de HL7 para el intercambio de datos de salud. Frente a los formatos legados, FHIR es moderno: recursos JSON, interfaz de programación de aplicaciones (API) REST y un modelo de datos pensado para la web. En la práctica, un sistema FHIR expone recursos como <em>Patient</em>, <em>Observation</em>, <em>Condition</em>, <em>Encounter</em> o <em>MedicationRequest</em>, y cualquier otro sistema que hable FHIR puede consultarlos o publicarlos con las mismas reglas.</p>
 <ul class="plain">
-<li><strong>API REST + JSON:</strong> las mismas mecánicas que cualquier API web moderna, con versionado (R4, R5) y cabeceras estándar.</li>
+<li><strong>API REST + JSON:</strong> las mismas mecánicas que cualquier interfaz web moderna, con versionado (R4, R5) y cabeceras estándar.</li>
 <li><strong>Recursos con significado:</strong> cada dato es un recurso FHIR con su semántica definida, lo que permite que dos sistemas se entiendan sin atarse a un proveedor concreto.</li>
 <li><strong>Acceso autorizado:</strong> SMART on FHIR define cómo conceder acceso a los recursos (OAuth 2, consentimiento del paciente, scopes por recurso).</li>
 </ul>
@@ -101,10 +101,10 @@
 
 <section class="s" id="cuando"><div class="w">
 <h2>¿Cuándo tiene sentido integrar con FHIR?</h2>
-<p class="lead">Cuando tu sistema necesita intercambiar información clínica con otros sistemas: la historia clínica del hospital, la receta electrónica, plataformas de seguimiento o dispositivos que alimentan una plataforma.</p>
+<p class="lead">Cuando vuestro sistema necesita intercambiar información clínica con otros sistemas: la historia clínica del hospital, la receta electrónica, plataformas de seguimiento o dispositivos que alimentan una plataforma.</p>
 <ul class="plain">
-<li>Si solo vas a hablar con <strong>un</strong> sistema concreto y por tiempo limitado, a veces basta una integración puntual. El problema aparece cuando son varios: sin FHIR, cada integración es un canal propio para cada par de sistemas.</li>
-<li>Si vas a hablar con <strong>varios</strong> sistemas —o a estar en un ecosistema que lo exija (historial clínico, interoperabilidad regional, proyectos europeos)—, FHIR es el idioma común: te conectas una vez y hablas con todos, en vez de levantar un canal por cada par de sistemas.</li>
+<li>Si solo vais a hablar con <strong>un</strong> sistema concreto y por tiempo limitado, a veces basta una integración puntual. El problema aparece cuando son varios: sin FHIR, cada integración es un canal propio para cada par de sistemas.</li>
+<li>Si vais a hablar con <strong>varios</strong> sistemas —o a estar en un ecosistema que lo exija (historial clínico, interoperabilidad regional, proyectos europeos)—, FHIR es el idioma común: os conectáis una vez y habláis con todos, en vez de levantar un canal por cada par de sistemas.</li>
 <li>Si tu proyecto está en investigación o en el sector público, FHIR suele ser la vía para participar sin construir una integración privada por cada socio.</li>
 </ul>
 </div></section>
@@ -113,13 +113,13 @@
 <h2>Paso a paso: cómo integrar</h2>
 <p class="lead">Así lo llevamos en un proyecto real, del alcance a la puesta en producción.</p>
 <div class="steps">
-<div class="step"><i>1</i><h3>Define el alcance de los datos</h3><p>Qué recursos necesitas exponer y cuáles consumir: pacientes, observaciones, diagnósticos, citas, medicación. Empezar con un subconjunto pequeño es lo que permite que la integración se apruebe.</p></div>
-<div class="step"><i>2</i><h3>Elige la arquitectura</h3><p>¿Un servidor FHIR propio (por ejemplo, HAPI FHIR o un motor open source equivalente), una capa de integración entre tus sistemas, o exponer FHIR desde tu plataforma actual? Depende de qué sistemas ya existen y de quién es dueño de cada dato.</p></div>
-<div class="step"><i>3</i><h3>Mapea tu modelo de datos a recursos FHIR</h3><p>Cada campo de tu sistema se lleva a un recurso y a sus campos definidos. Es el paso que más trabajo da: hacerlo bien al principio ahorra meses de parches.</p></div>
-<div class="step"><i>4</i><h3>Expón la API REST con las reglas FHIR</h3><p>Endpoints por recurso, versionado, errores estándar y búsquedas. Tu sistema habla el mismo idioma que el resto.</p></div>
-<div class="step"><i>5</i><h3>Resuelve la autorización</h3><p>SMART on FHIR: OAuth 2, scopes por recurso y consentimiento del paciente. Quién puede leer qué, y con qué permiso, forma parte del alcance de la integración.</p></div>
+<div class="step"><i>1</i><h3>Definid el alcance de los datos</h3><p>Qué recursos necesitáis exponer y cuáles consumir: pacientes, observaciones, diagnósticos, citas, medicación. Empezar con un subconjunto pequeño es lo que permite que la integración se apruebe.</p></div>
+<div class="step"><i>2</i><h3>Elegid la arquitectura</h3><p>¿Un servidor FHIR propio (por ejemplo, HAPI FHIR o un motor open source equivalente), una capa de integración entre vuestros sistemas, o exponer FHIR desde vuestra plataforma actual? Depende de qué sistemas ya existen y de quién es dueño de cada dato.</p></div>
+<div class="step"><i>3</i><h3>Adaptad vuestro modelo de datos a recursos FHIR</h3><p>Cada campo de vuestro sistema se lleva a un recurso y a sus campos definidos. Es el paso que más trabajo requiere: hacerlo bien al principio ahorra meses de parches.</p></div>
+<div class="step"><i>4</i><h3>Exponed la API REST con las reglas FHIR</h3><p>Endpoints por recurso, versionado, errores estándar y búsquedas. Vuestro sistema habla el mismo idioma que el resto.</p></div>
+<div class="step"><i>5</i><h3>Resolved la autorización</h3><p>SMART on FHIR: OAuth 2, scopes por recurso y consentimiento del paciente. Quién puede leer qué, y con qué permiso, forma parte del alcance de la integración.</p></div>
 <div class="step"><i>6</i><h3>Seguridad y privacidad</h3><p>Transporte cifrado (TLS), control de acceso por recurso, registro de auditoría de cada lectura y escritura, y pseudonimización cuando el flujo lo permita.</p></div>
-<div class="step"><i>7</i><h3>Prueba con casos de verdad</h3><p>Se prueba contra el servidor de la otra parte con casos clínicos reales y se pasa una prueba de conformidad antes de salir a producción.</p></div>
+<div class="step"><i>7</i><h3>Prueba con casos en condiciones reales</h3><p>Se prueba contra el servidor de la otra parte con casos clínicos reales y se pasa una prueba de conformidad antes de salir a producción.</p></div>
 </div>
 </div></section>
 
@@ -150,18 +150,18 @@
 
 <section class="cta dark" id="contacto"><div class="w">
 <h2>Empieza por una conversación de treinta minutos</h2>
-<p>Cuéntanos qué necesitas y te decimos honestamente si podemos ayudarte.</p>
+<p>Contadnos qué necesitáis y os diremos con claridad si podemos ayudaros.</p>
 <form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
 <input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
 <input type="hidden" name="_gotcha">
 <input type="hidden" name="_next" value="https://www.ageinglabtech.com/gracias.html">
 <div class="cf-grid">
 <label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
-<label>Tu correo<input type="email" name="email" autocomplete="email" required></label>
+<label>Vuestro correo<input type="email" name="email" autocomplete="email" required></label>
 <label>Empresa (opcional)<input type="text" name="empresa"></label>
 <label>¿Qué os interesa?
 <select name="interes" required>
-<option value="" disabled>Elige una opción</option>
+<option value="" disabled>Elegid una opción</option>
 <option value="IA privada y automatización">IA privada y automatización</option>
 <option value="Decisiones con IA">Decisiones con IA</option>
 <option value="Software a medida">Software a medida</option>
@@ -172,7 +172,7 @@
 <option value="Aún no lo sé" selected>Aún no lo sé</option>
 </select>
 </label>
-<label class="cf-full">Cuéntanos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+<label class="cf-full">Contadnos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
 </div>
 <div class="cf-actions">
 <button type="submit" class="btn btn-primary">Contactar</button>
@@ -182,7 +182,7 @@
 </main>
 
 <footer><div class="w"><div class="cols">
-<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> en el Centro de Tecnología Biomédica de la UPM. Te acercamos al futuro desde la ciencia.</p></div>
+<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> en el Centro de Tecnología Biomédica de la UPM. Os acercamos al futuro desde la ciencia.</p></div>
 <div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a><a href="/#metodo">Cómo trabajamos</a></div>
 <div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
 <div><h3>Nosotros</h3><a href="/#nosotros">Quiénes somos</a><a href="/#equipo">Equipo</a><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>

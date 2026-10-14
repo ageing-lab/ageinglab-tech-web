@@ -85,14 +85,14 @@
 <main id="main">
 <div class="hero dark case-hero"><div class="w">
 <nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>MoE frente a denso</span></nav>
-<h1>MoE frente a denso: qué modelo usar en tu equipo</h1>
-<p>Los modelos abiertos vienen en dos arquitecturas: densos y de expertos (MoE). La diferencia que importa en local es cuánta memoria piden y cuántos parámetros trabajan por palabra. Esta guía lo explica con ejemplos.</p>
-<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+<h1>MoE frente a denso: qué modelo usar en vuestro equipo</h1>
+<p>Los modelos abiertos de inteligencia artificial (IA) vienen en dos arquitecturas: densos y de mezcla de expertos (MoE, Mixture of Experts). La diferencia que importa en local es cuánta memoria piden y cuántos parámetros trabajan por palabra. Esta guía lo explica con ejemplos.</p>
+<a class="btn alt" href="#contacto">Hablemos de vuestro proyecto</a>
 </div></div>
 
 <section class="s" id="dos-tipos"><div class="w">
 <h2>Densos y de expertos: la diferencia</h2>
-<p class="lead">Un denso usa todo el modelo para cada palabra. Uno de expertos (MoE) tiene muchos especialistas y solo llama a unos pocos cada vez. De ahí las dos cifras de cada ficha: parámetros totales y parámetros activos.</p>
+<p class="lead">Un denso usa todo el modelo para cada palabra. Uno de mezcla de expertos (MoE, Mixture of Experts) tiene muchos especialistas y solo llama a unos pocos cada vez. De ahí las dos cifras de cada ficha: parámetros totales y parámetros activos.</p>
 <div class="why">
 <div><h3>Denso</h3><p>Cada palabra pasa por el modelo entero. 27B densos son 27B trabajando. Ejemplos: Gemma 3 27B o Qwen3-32B.</p></div>
 <div><h3>De expertos (MoE)</h3><p>Cada palabra la atienden unos pocos expertos que elige un distribuidor. El nombre ya trae las dos cifras: Qwen3-30B-A3B son unos 30B en total y unos 3B activos por palabra.</p></div>
@@ -104,7 +104,7 @@
 <p class="cap">Todos los parámetros participan en cada palabra. Más capacidad = más cómputo por respuesta.</p>
 </div>
 <div class="mx-panel hot">
-<p class="mx-lab">Mixture of experts (MoE)</p>
+<p class="mx-lab">mezcla de expertos (MoE, Mixture of Experts)</p>
 <div class="mx-grid" id="moe-grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <p class="mx-tok" id="moe-tok">Cada palabra activa unos pocos expertos.</p>
 <p class="cap">Un router activa solo unos pocos «expertos» por palabra. Mucha capacidad total, poco cómputo real.</p>
@@ -134,19 +134,19 @@
 <li><strong>Qwen3-235B-A22B:</strong> 235B en total, 22B activos. Solo para equipo grande.</li>
 <li><strong>DeepSeek V3 (y R1, del mismo tamaño):</strong> 671B en total, 37B activos. El archivo comprimido pesa unos 400 GB: no es para un equipo modesto.</li>
 <li><strong>Mixtral 8x7B:</strong> 47B en total, unos 13B activos. El MoE abierto clásico, con licencia Apache 2.0.</li>
-<li><strong>gpt-oss 20B:</strong> 21B en total, 3,6B activos; de serie ocupa 13 GB y cabe en 16 GB. Su hermano mayor, gpt-oss 120B: 117B en total, 5B activos; pide una gráfica de 80 GB. Ambos con licencia Apache 2.0.</li>
+<li><strong>gpt-oss 20B:</strong> 21B en total, 3,6B activos; de serie ocupa 13 GB y cabe en 16 GB. Su hermano mayor, gpt-oss 120B: 117B en total, 5B activos; requiere una unidad de procesamiento gráfico (GPU) de 80 GB. Ambos con licencia Apache 2.0.</li>
 <li><strong>Densos Qwen3-32B y Gemma 3 27B:</strong> aquí lo que ves es lo que hay; todo el modelo trabaja.</li>
 </ul>
 <p>DeepSeek trae licencia propia: como con todo, léela antes de ponerlo en producción.</p>
 </div></section>
 
 <section class="s" id="matiz"><div class="w">
-<h2>Lo que importa cuando corre en tu equipo</h2>
-<p class="lead">La tarjeta tiene que cargar el modelo entero: los totales mandan en memoria. Los activos mandan en velocidad.</p>
+<h2>Lo que importa cuando se ejecuta en vuestro equipo</h2>
+<p class="lead">La tarjeta gráfica tiene que cargar el modelo entero: los parámetros totales son el criterio para la memoria. Los activos mandan en velocidad.</p>
 <ul class="plain">
-<li>Un MoE grande no cabe en una gráfica modesta aunque use pocos parámetros por palabra: los 671B de DeepSeek ocupan cientos de GB sí o sí.</li>
+<li>Un MoE grande no cabe en una tarjeta gráfica modesta aunque use pocos parámetros por palabra: los 671B de DeepSeek ocupan cientos de GB sí o sí.</li>
 <li>Con poco equipo, el denso mediano suele ser la opción sensata: unas 27–32B comprimidas caben en 16 GB para un usuario a la vez.</li>
-<li>El MoE compensa cuando hay memoria de sobra: más calidad por palabra, porque cada una la atiende el experto que toca.</li>
+<li>El MoE compensa cuando hay memoria de sobra: más calidad por palabra, porque cada una la atiende el experto que corresponde.</li>
 <li>Para voz, ni uno ni otro: la transcripción usa modelos de voz pequeños.</li>
 </ul>
 </div></section>
@@ -164,9 +164,9 @@
 <section class="s" id="faq"><div class="w">
 <h2>Preguntas que nos hacen</h2>
 <div class="steps" style="grid-template-columns:1fr">
-<div class="step"><h3>¿Un MoE es mejor que un denso?</h3><p>Por palabra generada, un MoE rinde como un denso mayor con menos cálculo. Pero pide la memoria del modelo entero. En local manda lo que quepa en tu tarjeta.</p></div>
-<div class="step"><h3>¿Cabe DeepSeek en mi servidor?</h3><p>No, salvo que tengas cientos de GB de memoria. Para equipos normales, mira Qwen3, gpt-oss o Mixtral.</p></div>
-<div class="step"><h3>¿Y esto qué tiene que ver con el hospital?</h3><p>Lo mismo que el hardware: si la IA corre en tu centro, alguien elige modelo y equipo. La <a href="hardware-ia-local.html">guía de hardware lo baja a tierra</a>.</p></div>
+<div class="step"><h3>¿Un MoE es mejor que un denso?</h3><p>Por palabra generada, un MoE rinde como un denso mayor con menos cálculo. Pero pide la memoria del modelo entero. En local, el criterio es lo que quepa en vuestra tarjeta gráfica.</p></div>
+<div class="step"><h3>¿Cabe DeepSeek en mi servidor?</h3><p>No, salvo que tengáis cientos de GB de memoria. Para equipos normales, consultad Qwen3, gpt-oss o Mixtral.</p></div>
+<div class="step"><h3>¿Y esto qué tiene que ver con el hospital?</h3><p>Lo mismo que el hardware: si la IA se ejecuta en vuestro centro, alguien elige modelo y equipo. La <a href="hardware-ia-local.html">guía de hardware lo concreta con cifras</a>.</p></div>
 <div class="step"><h3>¿Puedo usar estos modelos en producción?</h3><p>Qwen3, Mixtral y gpt-oss salieron con Apache 2.0, que permite uso comercial. Cada modelo trae su licencia: léela antes de ponerlo en marcha.</p></div>
 </div>
 </div></section>
@@ -175,7 +175,7 @@
 <h2>Casos y servicios relacionados</h2>
 <div class="ind two">
 <a href="cuantizacion-modelos-ia.html">Guía: cuantizar modelos de IA<span>›</span></a>
-<a href="hardware-ia-local.html">Guía: qué hardware necesitas para un modelo de IA local<span>›</span></a>
+<a href="hardware-ia-local.html">Guía: qué hardware necesitáis para un modelo de IA local<span>›</span></a>
 <a href="ia-privada-en-hospitales.html">Guía: IA privada en hospitales<span>›</span></a>
 <a href="../servicios/ia-privada-automatizacion.html">Servicio: IA privada y automatización<span>›</span></a>
 <a href="../casos-de-exito/ia-local.html">Caso de éxito: IA local para datos clínicos<span>›</span></a>
@@ -184,18 +184,18 @@
 
 <section class="cta dark" id="contacto"><div class="w">
 <h2>Empieza por una conversación de treinta minutos</h2>
-<p>Cuéntanos qué necesitas y te decimos honestamente si podemos ayudarte.</p>
+<p>Contadnos qué necesitáis y os diremos con claridad si podemos ayudaros.</p>
 <form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
 <input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
 <input type="hidden" name="_gotcha">
 <input type="hidden" name="_next" value="https://www.ageinglabtech.com/gracias.html">
 <div class="cf-grid">
 <label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
-<label>Tu correo<input type="email" name="email" autocomplete="email" required></label>
+<label>Vuestro correo<input type="email" name="email" autocomplete="email" required></label>
 <label>Empresa (opcional)<input type="text" name="empresa"></label>
 <label>¿Qué os interesa?
 <select name="interes" required>
-<option value="" disabled>Elige una opción</option>
+<option value="" disabled>Elegid una opción</option>
 <option value="IA privada y automatización" selected>IA privada y automatización</option>
 <option value="Decisiones con IA">Decisiones con IA</option>
 <option value="Software a medida">Software a medida</option>
@@ -206,7 +206,7 @@
 <option value="Aún no lo sé">Aún no lo sé</option>
 </select>
 </label>
-<label class="cf-full">Cuéntanos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+<label class="cf-full">Contadnos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
 </div>
 <div class="cf-actions">
 <button type="submit" class="btn btn-primary">Contactar</button>
@@ -216,7 +216,7 @@
 </main>
 
 <footer><div class="w"><div class="cols">
-<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> en el Centro de Tecnología Biomédica de la UPM. Te acercamos al futuro desde la ciencia.</p></div>
+<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> en el Centro de Tecnología Biomédica de la UPM. Os acercamos al futuro desde la ciencia.</p></div>
 <div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a><a href="/#metodo">Cómo trabajamos</a></div>
 <div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
 <div><h3>Nosotros</h3><a href="/#nosotros">Quiénes somos</a><a href="/#equipo">Equipo</a><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>

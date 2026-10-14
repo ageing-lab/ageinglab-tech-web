@@ -85,8 +85,8 @@
 <div class="hero dark case-hero"><div class="w">
 <nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>Sensores IoT en domicilio</span></nav>
 <h1>Sensores IoT para el seguimiento en domicilio: guía práctica</h1>
-<p>Cómo se monta un sistema de monitorización remota que funcione de verdad: qué medir, cómo elegir sensores y conectividad, y qué falla cuando el prototipo llega al domicilio.</p>
-<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+<p>Cómo se implanta un sistema de monitorización remota con internet de las cosas (IoT) que funcione en condiciones reales: qué medir, cómo elegir sensores y conectividad, y qué falla cuando el prototipo llega al domicilio.</p>
+<a class="btn alt" href="#contacto">Hablemos de vuestro proyecto</a>
 </div></div>
 
 <section class="s" id="por-que"><div class="w">
@@ -112,8 +112,8 @@
 </div></section>
 
 <section class="s" id="arquitectura"><div class="w">
-<h2>La arquitectura: las piezas que tienen que encajar</h2>
-<p class="lead">Un sistema de monitorización son piezas que tienen que encajar desde el primer día. Es lo primero que revisamos al diseñar un proyecto. Puedes jugar con las piezas en el <a href="../servicios/iot-y-hardware.html#demo-iot">simulador de arquitectura IoT</a> del servicio.</p>
+<h2>La arquitectura: las piezas que deben funcionar juntas</h2>
+<p class="lead">Un sistema de monitorización son piezas que deben funcionar juntas desde el primer día. Es lo primero que revisamos al diseñar un proyecto. Podéis explorar las piezas en el <a href="../servicios/iot-y-hardware.html#demo-iot">simulador de arquitectura IoT</a> del servicio.</p>
 <ul class="plain">
 <li><strong>Sensor:</strong> elige por la magnitud a medir y la precisión requerida, no por el precio. Si la medida es clínica, la precisión no se negocia.</li>
 <li><strong>Microcontrolador:</strong> Arduino, ESP8266, ESP32 o STM32 según consumo, conectividad y coste. La misma placa no sirve igual para un prototipo de mesa que para un dispositivo con batería.</li>
@@ -127,21 +127,21 @@
 <h2>Paso a paso, del prototipo al producto</h2>
 <p class="lead">Cómo lo hacemos en los proyectos de IoT, del prototipo al producto:</p>
 <div class="steps">
-<div class="step"><i>1</i><h3>Define la medida y el caso de uso</h3><p>Qué se mide, con qué frecuencia, quién decide qué a partir de ese dato y qué pasa si falta. Sin esto, el sistema genera datos que nadie usa.</p></div>
-<div class="step"><i>2</i><h3>Diseña el prototipo</h3><p>Elige la electrónica —Arduino, ESP32, STM32— y conecta los sensores por Bluetooth, Wi-Fi u otro protocolo. Prototipo funcional antes que prototipo bonito.</p></div>
-<div class="step"><i>3</i><h3>Valida en uso real, con la persona que lo va a usar</h3><p>Se prueba en el domicilio, no solo en la mesa del laboratorio, y se mide la usabilidad —incluida la de personas mayores—. Aquí es donde se descubre que la batería dura dos días o que nadie entiende el aviso.</p></div>
-<div class="step"><i>4</i><h3>Diseña la interfaz de la persona</h3><p>Una tarea por pantalla, aviso de lo que toca, vídeo o voz que guíe el paso a paso y entrega ya configurada. El mejor sensor del mundo no vale si la persona no lo usa. Hay una <a href="interfaces-para-mayores.html">guía entera sobre esto</a>.</p></div>
-<div class="step"><i>5</i><h3>Optimiza y prepara la producción</h3><p>Revisión de la lista de materiales para reducir coste y pruebas de fiabilidad. Si el dispositivo va a ser producto sanitario, el marcado CE se prepara desde el diseño y se fabrica a través de socios.</p></div>
-<div class="step"><i>6</i><h3>Integra con la plataforma clínica</h3><p>El dato llega a la herramienta donde el profesional lo consulta, con cifrado y registro de auditoría; si hay que hablar con otros sistemas de salud, con <a href="integrar-fhir.html">interoperabilidad FHIR</a>.</p></div>
+<div class="step"><i>1</i><h3>Definid la medida y el caso de uso</h3><p>Qué se mide, con qué frecuencia, quién decide qué a partir de ese dato y qué pasa si falta. Sin esto, el sistema genera datos que nadie usa.</p></div>
+<div class="step"><i>2</i><h3>Diseñad el prototipo</h3><p>Elegid la electrónica —Arduino, ESP32, STM32— y conectad los sensores por Bluetooth, Wi-Fi u otro protocolo. Prototipo funcional antes que prototipo bonito.</p></div>
+<div class="step"><i>3</i><h3>Validad en uso real, con la persona que lo va a usar</h3><p>Se prueba en el domicilio, no solo en la mesa del laboratorio, y se mide la usabilidad —incluida la de personas mayores—. Aquí es donde se descubre que la batería dura dos días o que nadie entiende el aviso.</p></div>
+<div class="step"><i>4</i><h3>Diseñad la interfaz de la persona</h3><p>Una tarea por pantalla, aviso de lo que corresponde, vídeo o voz que guíe el paso a paso y entrega ya configurada. El mejor sensor del mundo no vale si la persona no lo usa. Hay una <a href="interfaces-para-mayores.html">guía entera sobre esto</a>.</p></div>
+<div class="step"><i>5</i><h3>Optimizad y preparad la producción</h3><p>Revisión de la lista de materiales para reducir coste y pruebas de fiabilidad. Si el dispositivo va a ser producto sanitario, el marcado CE se prepara desde el diseño y se fabrica a través de socios.</p></div>
+<div class="step"><i>6</i><h3>Integrad con la plataforma clínica</h3><p>El dato llega a la herramienta donde el profesional lo consulta, con cifrado y registro de auditoría; si hay que hablar con otros sistemas de salud, con <a href="integrar-fhir.html">interoperabilidad con Fast Healthcare Interoperability Resources (FHIR) como estándar de intercambio de datos de salud</a>.</p></div>
 </div>
 </div></section>
 
 <section class="s" id="errores"><div class="w">
 <h2>Errores comunes</h2>
 <ul class="plain">
-<li><strong>Empezar por el gadget:</strong> comprar el sensor antes de definir qué decisión apoya el dato. El resultado es un piloto con datos que nadie mira.</li>
-<li><strong>Ignorar la batería:</strong> la autonomía en uso real manda. Un prototipo con cable funciona siempre; en el domicilio, cambiar pilas cada semana significa abandono.</li>
-<li><strong>Probar solo en el laboratorio:</strong> el domicilio tiene wifi inestable, manos temblorosas y nadie técnico al lado.</li>
+<li><strong>Empezar por el dispositivo:</strong> comprar el sensor antes de definir qué decisión apoya el dato. El resultado es un piloto con datos que nadie mira.</li>
+<li><strong>Ignorar la batería:</strong> la autonomía en uso real es el criterio decisivo. Un prototipo con cable funciona siempre; en el domicilio, cambiar pilas cada semana significa abandono.</li>
+<li><strong>Probar solo en el laboratorio:</strong> el domicilio tiene una red Wi-Fi inestable, manos temblorosas y nadie técnico al lado.</li>
 <li><strong>Diseñar la interfaz al final:</strong> la app de la persona es la mitad del producto. Dejarla para el último sprint garantiza que sea el eslabón débil.</li>
 <li><strong>Olvidar el caso de no uso:</strong> qué pasa cuando la medida no llega —¿una alerta para el profesional, un aviso para la persona?— define la calidad del sistema tanto como la medida correcta.</li>
 <li><strong>Subestimar el camino a producción:</strong> lista de materiales, fiabilidad y marcado CE tardan meses. Si el producto se va a fabricar, hay que tenerlo en cuenta desde el diseño.</li>
@@ -165,18 +165,18 @@
 
 <section class="cta dark" id="contacto"><div class="w">
 <h2>Empieza por una conversación de treinta minutos</h2>
-<p>Cuéntanos qué necesitas y te decimos honestamente si podemos ayudarte.</p>
+<p>Contadnos qué necesitáis y os diremos con claridad si podemos ayudaros.</p>
 <form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
 <input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
 <input type="hidden" name="_gotcha">
 <input type="hidden" name="_next" value="https://www.ageinglabtech.com/gracias.html">
 <div class="cf-grid">
 <label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
-<label>Tu correo<input type="email" name="email" autocomplete="email" required></label>
+<label>Vuestro correo<input type="email" name="email" autocomplete="email" required></label>
 <label>Empresa (opcional)<input type="text" name="empresa"></label>
 <label>¿Qué os interesa?
 <select name="interes" required>
-<option value="" disabled>Elige una opción</option>
+<option value="" disabled>Elegid una opción</option>
 <option value="IA privada y automatización">IA privada y automatización</option>
 <option value="Decisiones con IA">Decisiones con IA</option>
 <option value="Software a medida">Software a medida</option>
@@ -187,7 +187,7 @@
 <option value="Aún no lo sé">Aún no lo sé</option>
 </select>
 </label>
-<label class="cf-full">Cuéntanos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+<label class="cf-full">Contadnos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
 </div>
 <div class="cf-actions">
 <button type="submit" class="btn btn-primary">Contactar</button>
@@ -197,7 +197,7 @@
 </main>
 
 <footer><div class="w"><div class="cols">
-<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> en el Centro de Tecnología Biomédica de la UPM. Te acercamos al futuro desde la ciencia.</p></div>
+<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> en el Centro de Tecnología Biomédica de la UPM. Os acercamos al futuro desde la ciencia.</p></div>
 <div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a><a href="/#metodo">Cómo trabajamos</a></div>
 <div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
 <div><h3>Nosotros</h3><a href="/#nosotros">Quiénes somos</a><a href="/#equipo">Equipo</a><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>

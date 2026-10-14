@@ -85,16 +85,16 @@
 <main id="main">
 <div class="hero dark case-hero"><div class="w">
 <nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>Cuantizar modelos de IA</span></nav>
-<h1>Cuantizar modelos de IA: que quepan en tu equipo</h1>
-<p>Un modelo ocupa lo que ocupan sus parámetros por los bits de cada uno. Cuantizar es guardarlos con menos bits para que quepan en tu tarjeta, perdiendo un poco de calidad. Niveles, formatos y ejemplos con Qwen3.</p>
-<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+<h1>Cuantizar modelos de IA: que quepan en vuestro equipo</h1>
+<p>Un modelo de inteligencia artificial (IA) ocupa lo que ocupan sus parámetros por los bits de cada uno. Cuantizar es guardarlos con menos bits para que quepan en vuestra tarjeta gráfica, perdiendo un poco de calidad. Niveles, formatos y ejemplos con Qwen3.</p>
+<a class="btn alt" href="#contacto">Hablemos de vuestro proyecto</a>
 </div></div>
 
 <section class="s" id="cuenta"><div class="w">
 <h2>La cuenta</h2>
 <p class="lead">Parámetros por bytes por parámetro. Eso es todo.</p>
 <ul class="plain">
-<li><strong>Original (16 bits):</strong> 2 bytes por parámetro. Un 32B ocupa unos 64 GB: no cabe en una gráfica normal.</li>
+<li><strong>Original (16 bits):</strong> 2 bytes por parámetro. Un 32B ocupa unos 64 GB: no cabe en una tarjeta gráfica convencional.</li>
 <li><strong>Q8:</strong> ~1 byte por parámetro. El mismo 32B baja a unos 34 GB, casi sin pérdida apreciable.</li>
 <li><strong>Q4:</strong> ~0,6 bytes por parámetro. El 32B se queda en unos 20 GB: el equilibrio típico, con algo de pérdida.</li>
 <li><strong>Q2–Q3:</strong> menos de la mitad que Q4, y ahí la pérdida ya se nota.</li>
@@ -103,11 +103,11 @@
 </div></section>
 
 <section class="s" id="formatos"><div class="w">
-<h2>Los formatos sin lío</h2>
+<h2>Los formatos sin complicaciones</h2>
 <p class="lead">El nivel dice cuánto ocupa; el formato dice con qué programa se usa.</p>
 <div class="why">
 <div><h3>GGUF</h3><p>El de llama.cpp y Ollama. El que usarás en local casi seguro. El nombre dice el nivel: Q8_0, Q6_K, Q4_K_M… la M es el punto de partida recomendado.</p></div>
-<div><h3>AWQ y GPTQ</h3><p>Compresión de 4 bits pensada para servir en GPU con programas como vLLM. Si el modelo va a un servidor, mira estos.</p></div>
+<div><h3>AWQ y GPTQ</h3><p>Compresión de 4 bits pensada para servir en unidad de procesamiento gráfico (GPU) con programas como vLLM. Si el modelo se ejecuta en un servidor, consultad estos formatos.</p></div>
 <div><h3>FP8</h3><p>A medio camino entre el original y los 4 bits. DeepSeek V3 salió directamente así. Para equipo serio.</p></div>
 <div><h3>NF4</h3><p>Para programar y ajustar modelos en Python, no para servirlos.</p></div>
 </div>
@@ -118,20 +118,20 @@
 <p class="lead">La familia Qwen3 vale para verlo porque tiene todos los tamaños, con licencia Apache 2.0.</p>
 <ul class="plain">
 <li><strong>Qwen3-32B en Q4 ≈ 20 GB:</strong> no cabe en 16 GB; pide tarjeta de 24 GB o más.</li>
-<li><strong>Qwen3-30B-A3B (de expertos) en Q4 ≈ 19 GB:</strong> tampoco entra en 16 GB, aunque use 3B por palabra. La memoria la mandan los totales.</li>
+<li><strong>Qwen3-30B-A3B (de expertos) en Q4 ≈ 19 GB:</strong> tampoco entra en 16 GB, aunque use 3B por palabra. La memoria la determinan los parámetros totales.</li>
 <li><strong>Qwen3-14B en Q4 ≈ 9 GB:</strong> cabe holgado en 16 GB y deja sitio para el contexto.</li>
-<li><strong>Qwen3-8B en Q4 ≈ 5 GB:</strong> tira hasta en un portátil apañado.</li>
+<li><strong>Qwen3-8B en Q4 ≈ 5 GB:</strong> funciona incluso en un portátil modesto.</li>
 </ul>
-<p>Regla práctica: el modelo mayor que quepa en Q4 suele dar más que uno menor en Q8, hasta que bajas de 3 bits: ahí compensa más un modelo menor en Q4. Y ante la duda, se prueba con tu caso.</p>
+<p>Regla práctica: el modelo mayor que quepa en Q4 suele dar más que uno menor en Q8, hasta que bajas de 3 bits: ahí compensa más un modelo menor en Q4. Y ante la duda, se prueba con vuestro caso.</p>
 </div></section>
 
 <section class="s" id="faq"><div class="w">
 <h2>Preguntas que nos hacen</h2>
 <div class="steps" style="grid-template-columns:1fr">
-<div class="step"><h3>¿Se nota la pérdida?</h3><p>En Q8 casi no; en Q4 un poco, y depende de la tarea: para redactar y resumir se nota menos que para mates o código. Se prueba con tu caso.</p></div>
+<div class="step"><h3>¿Se nota la pérdida?</h3><p>En Q8 casi no; en Q4 un poco, y depende de la tarea: para redactar y resumir se nota menos que para mates o código. Se prueba con vuestro caso.</p></div>
 <div class="step"><h3>¿Qué formato uso?</h3><p>En local con Ollama o llama.cpp: GGUF Q4_K_M para empezar. En servidor con vLLM: AWQ o FP8.</p></div>
-<div class="step"><h3>¿Comprimo yo o descargo?</h3><p>Descarga: casi todos los modelos abiertos traen versiones ya comprimidas. Comprimir tú solo compensa en casos raros.</p></div>
-<div class="step"><h3>¿La compresión vale para MoE?</h3><p>Sí, con la misma regla: se comprimen los totales. Por eso un MoE grande sigue sin caber en poco equipo. Lo explicamos en la <a href="modelos-moe-vs-densos.html">guía de MoE frente a denso</a>.</p></div>
+<div class="step"><h3>¿Comprimo yo o descargo?</h3><p>Descargad: casi todos los modelos abiertos traen versiones ya comprimidas. Comprimir por vuestra cuenta solo compensa en casos raros.</p></div>
+<div class="step"><h3>¿La compresión vale para mezcla de expertos (MoE, Mixture of Experts)?</h3><p>Sí, con la misma regla: se comprimen los totales. Por eso un MoE grande sigue sin caber en poco equipo. Lo explicamos en la <a href="modelos-moe-vs-densos.html">guía de MoE frente a denso</a>.</p></div>
 </div>
 </div></section>
 
@@ -139,7 +139,7 @@
 <h2>Casos y servicios relacionados</h2>
 <div class="ind two">
 <a href="modelos-moe-vs-densos.html">Guía: MoE frente a denso<span>›</span></a>
-<a href="hardware-ia-local.html">Guía: qué hardware necesitas para un modelo de IA local<span>›</span></a>
+<a href="hardware-ia-local.html">Guía: qué hardware necesitáis para un modelo de IA local<span>›</span></a>
 <a href="../casos-de-exito/ia-local.html">Caso de éxito: IA local para datos clínicos<span>›</span></a>
 <a href="../servicios/ia-privada-automatizacion.html">Servicio: IA privada y automatización<span>›</span></a>
 </div>
@@ -147,18 +147,18 @@
 
 <section class="cta dark" id="contacto"><div class="w">
 <h2>Empieza por una conversación de treinta minutos</h2>
-<p>Cuéntanos qué necesitas y te decimos honestamente si podemos ayudarte.</p>
+<p>Contadnos qué necesitáis y os diremos con claridad si podemos ayudaros.</p>
 <form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
 <input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
 <input type="hidden" name="_gotcha">
 <input type="hidden" name="_next" value="https://www.ageinglabtech.com/gracias.html">
 <div class="cf-grid">
 <label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
-<label>Tu correo<input type="email" name="email" autocomplete="email" required></label>
+<label>Vuestro correo<input type="email" name="email" autocomplete="email" required></label>
 <label>Empresa (opcional)<input type="text" name="empresa"></label>
 <label>¿Qué os interesa?
 <select name="interes" required>
-<option value="" disabled>Elige una opción</option>
+<option value="" disabled>Elegid una opción</option>
 <option value="IA privada y automatización" selected>IA privada y automatización</option>
 <option value="Decisiones con IA">Decisiones con IA</option>
 <option value="Software a medida">Software a medida</option>
@@ -169,7 +169,7 @@
 <option value="Aún no lo sé">Aún no lo sé</option>
 </select>
 </label>
-<label class="cf-full">Cuéntanos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+<label class="cf-full">Contadnos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
 </div>
 <div class="cf-actions">
 <button type="submit" class="btn btn-primary">Contactar</button>
@@ -179,7 +179,7 @@
 </main>
 
 <footer><div class="w"><div class="cols">
-<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> en el Centro de Tecnología Biomédica de la UPM. Te acercamos al futuro desde la ciencia.</p></div>
+<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> en el Centro de Tecnología Biomédica de la UPM. Os acercamos al futuro desde la ciencia.</p></div>
 <div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a><a href="/#metodo">Cómo trabajamos</a></div>
 <div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
 <div><h3>Nosotros</h3><a href="/#nosotros">Quiénes somos</a><a href="/#equipo">Equipo</a><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>

@@ -85,18 +85,18 @@
 <div class="hero dark case-hero"><div class="w">
 <nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>IA privada en hospitales</span></nav>
 <h1>IA privada en hospitales: guía práctica</h1>
-<p>Si trabajas en un hospital y te planteas usar IA con datos de pacientes, esta guía es para ti: qué se puede hacer hoy con modelos que corren dentro del propio centro, qué equipo necesitas y cómo lo planteamos nosotros.</p>
-<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+<p>Si trabajáis en un hospital y os planteáis usar inteligencia artificial (IA) con datos de pacientes, esta guía os servirá de referencia: qué se puede hacer hoy con modelos que se ejecutan dentro del propio centro, qué equipo necesitáis y cómo lo planteamos.</p>
+<a class="btn alt" href="#contacto">Hablemos de vuestro proyecto</a>
 </div></div>
 
 <section class="s" id="por-que"><div class="w">
 <h2>Por qué la IA tiene que correr dentro del hospital</h2>
-<p class="lead">En un hospital casi todo lo que toca la IA son datos de salud, y esos datos tienen una protección reforzada: RGPD de categoría especial, secreto profesional y, en centros públicos, el Esquema Nacional de Seguridad. Pegar un informe en un chatbot de fuera no es una opción. Por eso planteamos la IA al revés: los modelos corren en máquinas del propio centro y los datos no tienen por qué salir.</p>
+<p class="lead">En un hospital, casi todo lo que procesa la IA son datos de salud, con protección reforzada: Reglamento General de Protección de Datos (RGPD) de categoría especial, secreto profesional y, en centros públicos, Esquema Nacional de Seguridad (ENS). Introducir un informe en un chatbot externo no es una opción. Por eso invertimos el planteamiento: los modelos se ejecutan en equipos del propio centro y los datos no necesitan salir.</p>
 <ul class="plain">
 <li><strong>Lo que entra no sale:</strong> la transcripción, los resúmenes o las búsquedas se procesan en vuestra red, no en la de un proveedor externo.</li>
-<li><strong>Menos terceros en el circuito:</strong> si ningún proveedor recibe datos de pacientes, hay menos contratos de encargo y menos riesgos que gestionar. Eso no os libra del trabajo con vuestro DPO —registro de actividades, evaluación de impacto cuando toque, revisar si el uso es de alto riesgo según la AI Act—, pero lo deja en un terreno más controlable. Os entregamos la documentación técnica para que el DPO y jurídica puedan valorarlo.</li>
+<li><strong>Menos terceros en el circuito:</strong> si ningún proveedor recibe datos de pacientes, hay menos contratos de encargo y menos riesgos que gestionar. Esto no sustituye el trabajo con vuestro delegado de protección de datos (DPO) —registro de actividades, evaluación de impacto cuando proceda, revisión de si el uso es de alto riesgo según el Reglamento de Inteligencia Artificial de la UE (AI Act)—, pero lo deja en un marco más controlable. Entregamos la documentación técnica para que el DPO y la asesoría jurídica puedan evaluarlo.</li>
 <li><strong>Coste previsible:</strong> en vez de pagar por cada consulta a un proveedor, el gasto principal es el equipo y su mantenimiento. Sabéis de antemano lo que cuesta.</li>
-<li><strong>Constancia de uso:</strong> queda registrado qué servicio lo usó y cuándo, algo que en un hospital os van a pedir tarde o temprano.</li>
+<li><strong>Constancia de uso:</strong> queda registrado qué servicio lo usó y cuándo, algo que en un hospital os solicitarán en auditorías.</li>
 </ul>
 </div></section>
 
@@ -115,33 +115,33 @@
 
 <section class="s" id="infraestructura"><div class="w">
 <h2>Qué equipo hace falta</h2>
-<p class="lead">Para algunos casos no hace falta un CPD: basta un servidor base con una buena tarjeta gráfica, instalado en vuestra sala técnica y dentro de vuestra red. Cuando el uso crece, se amplía. Os ayudamos a elegir el equipo adecuado a vuestro caso antes de comprar nada. Esto es lo que montamos en un proyecto real:</p>
+<p class="lead">Para algunos casos no hace falta un centro de proceso de datos (CPD): basta un servidor estándar con una tarjeta gráfica adecuada, instalado en vuestra sala técnica y dentro de vuestra red. Cuando el uso crece, se amplía. Os ayudamos a elegir el equipo adecuado a vuestro caso antes de cualquier compra. Esto es lo que desplegamos en un proyecto real:</p>
 <ul class="plain">
-<li>Un servidor normal con una tarjeta gráfica de 16 GB. En un proyecto interno, con eso movimos un modelo abierto grande (unas 27B de parámetros, en versión comprimida para que cupiera en la tarjeta) a velocidad de trabajo: respuestas en segundos para redactar o resumir, con una persona usándolo a la vez. Da para probar y para trabajar de uno en uno, no para un servicio entero a la vez. Los detalles, con cifras, están en el caso de <a href="../casos-de-exito/ia-local.html">IA local para datos clínicos</a>.</li>
-<li>Vive en vuestra red, separado del resto: en un tramo propio, con accesos limitados y conexiones cifradas. Cómo se segmenta lo acuerda vuestro servicio de informática, no lo imponemos nosotros.</li>
-<li>Con el mismo cuidado que el resto de vuestros sistemas: quién lo usó y cuándo, y copias de seguridad con vuestra política habitual.</li>
-<li>El equipo es vuestro y se queda en vuestro centro. Os ayudamos a elegirlo y lo dejamos instalado allí. Nosotros no nos quedamos copia de vuestros datos.</li>
+<li>Un servidor convencional con una unidad de procesamiento gráfico (GPU) de 16 GB. En un proyecto interno, con esta configuración ejecutamos un modelo abierto grande (unos 27.000 millones de parámetros —27B—, en versión comprimida para ajustarse a la memoria disponible) a ritmo de trabajo: respuestas en segundos para redactar o resumir, con un usuario cada vez. Permite probar y trabajar de forma individual, no dar servicio a una unidad completa a la vez. Los detalles, con cifras, están en el caso de <a href="../casos-de-exito/ia-local.html">IA local para datos clínicos</a>.</li>
+<li>Se ubica en vuestra red, separado del resto: en un tramo propio, con accesos limitados y conexiones cifradas. La segmentación la acuerda vuestro servicio de informática, no la imponemos nosotros.</li>
+<li>Con el mismo cuidado que el resto de vuestros sistemas: registro de quién lo usó y cuándo, y copias de seguridad con vuestra política habitual.</li>
+<li>El equipo es vuestro y permanece en vuestro centro. Os ayudamos a elegirlo y lo dejamos instalado allí. No conservamos copia de vuestros datos.</li>
 </ul>
 </div></section>
 
 <section class="s" id="como-empezar"><div class="w">
 <h2>Cómo lo planteamos</h2>
-<p class="lead">Sin atajos: primero entender el caso, luego probar en pequeño y solo después llevarlo a producción.</p>
+<p class="lead">Con método: primero entender el caso, luego probar en pequeño y solo después llevarlo a producción.</p>
 <div class="steps">
-<div class="step"><i>1</i><h3>Diagnóstico</h3><p>Nos sentamos con informática, el DPO y el servicio que lo va a usar. Vemos qué tarea duele, qué datos toca y con qué sistemas habla. Os lleváis un informe corto: si tiene sentido, con qué piloto empezar y qué haría falta. Y si no lo tiene, también os lo decimos.</p></div>
-<div class="step"><i>2</i><h3>Piloto acotado</h3><p>Un solo caso, pocos usuarios y datos controlados: al principio sintéticos o históricos ya tratados, no la historia viva. Se mide lo único que importa: cuánto tiempo ahorra, cuántos fallos aparecen y si el personal lo usa a gusto.</p></div>
-<div class="step"><i>3</i><h3>Puesta en marcha y cuidado</h3><p>Si el piloto convence y hay visto bueno de informática, DPO y responsables clínicos, se instala en vuestro equipo y se deja documentado. Después lo mantenemos: actualizaciones, vigilancia, formación y cambios cuando la normativa o los modelos se mueven.</p></div>
+<div class="step"><i>1</i><h3>Diagnóstico</h3><p>Nos reunimos con el servicio de informática, el DPO y el servicio clínico implicado. Analizamos qué tarea genera más carga, qué datos trata y con qué sistemas se integra. Recibiréis un informe breve: si tiene sentido, con qué piloto empezar y qué recursos requiere. Y si no lo tiene, también os lo indicaremos.</p></div>
+<div class="step"><i>2</i><h3>Piloto acotado</h3><p>Un solo caso, pocos usuarios y datos controlados: al inicio, datos sintéticos o históricos anonimizados, no datos reales en producción. Se mide lo esencial: tiempo ahorrado, errores detectados y adopción por parte del personal en su trabajo diario.</p></div>
+<div class="step"><i>3</i><h3>Puesta en marcha y cuidado</h3><p>Si el piloto convence y cuenta con el visto bueno de informática, del DPO y de los responsables clínicos, se instala en vuestro equipo y se documenta. Después lo mantenemos: actualizaciones, seguimiento, formación y adaptación cuando cambian la normativa o los modelos.</p></div>
 </div>
 </div></section>
 
 <section class="s" id="faq"><div class="w">
 <h2>Preguntas que nos hacen</h2>
 <div class="steps" style="grid-template-columns:1fr">
-<div class="step"><h3>¿Podemos seguir usando ChatGPT o Copilot?</h3><p>Para redactar un correo o buscar información general, con cuenta profesional, no hay problema. Para cualquier cosa con datos de pacientes, no: nada de pegar informes, nombres, historiales o audios. Es la regla que más disgustos evita. Ante la duda, vuestro DPO manda.</p></div>
-<div class="step"><h3>¿Cuánto equipo hay que comprar?</h3><p>Depende de cuántos lo vayan a usar a la vez y con qué modelo. Nuestra referencia es modesta: un equipo con GPU de 16 GB nos movió un modelo de unas 27B en versión comprimida para un usuario a la vez —sirvió como base, no como sistema para varias personas simultáneas. La transcripción de voz, por su parte, tira con mucho menos. Antes de comprar nada, en el diagnóstico fijamos qué modelo pide vuestro caso y cuántos usuarios simultáneos tiene que aguantar. El desglose está en la <a href="hardware-ia-local.html">guía de hardware</a>.</p></div>
-<div class="step"><h3>¿Y si no tenemos gente de IA en el hospital?</h3><p>Es lo normal. Nos basta con tres interlocutores: alguien de informática, el DPO y un clínico que conozca el proceso. Formamos a vuestra gente para el día a día y lo dejamos todo documentado.</p></div>
-<div class="step"><h3>¿Esto ya cumple el RGPD y la AI Act?</h3><p>La infraestructura ayuda —si los datos no salen, hay menos que gestionar—, pero ningún equipo cumple la ley por sí solo. Cada uso hay que encajarlo: base jurídica, evaluación de impacto si toca, ver si es de alto riesgo según la AI Act y, si orienta diagnóstico o tratamiento, si entra en normativa de producto sanitario. Preparamos la parte técnica para que vuestro DPO y jurídica lo evalúen.</p></div>
-<div class="step"><h3>¿Quién lo actualiza después?</h3><p>Nosotros, en el mantenimiento: actualizaciones de seguridad y de modelos, revisión de cambios normativos y formación. No instalamos y desaparecemos.</p></div>
+<div class="step"><h3>¿Podemos seguir usando ChatGPT o Copilot?</h3><p>Para redactar un correo o buscar información general, con cuenta profesional, es válido. Con datos de pacientes, no: evitad introducir informes, nombres, historiales o audios. Es la norma que evita más incidencias. Ante la duda, seguid el criterio de vuestro DPO.</p></div>
+<div class="step"><h3>¿Cuánto equipo hay que comprar?</h3><p>Depende del número de usuarios simultáneos y del modelo empleado. Nuestra referencia es modesta: un equipo con GPU de 16 GB ejecutó un modelo de unos 27B en versión comprimida para un usuario cada vez —válido como base, no como sistema para uso concurrente. La transcripción de voz, por su parte, requiere muchos menos recursos. Antes de cualquier compra, en el diagnóstico definimos qué modelo requiere vuestro caso y cuántos usuarios simultáneos debe soportar. El desglose está en la <a href="hardware-ia-local.html">guía de hardware</a>.</p></div>
+<div class="step"><h3>¿Y si no tenemos gente de IA en el hospital?</h3><p>Es lo habitual. Nos basta con tres interlocutores: alguien de informática, el DPO y un clínico que conozca el proceso. Formamos a vuestro equipo para el día a día y lo dejamos todo documentado.</p></div>
+<div class="step"><h3>¿Esto ya cumple el RGPD y la AI Act?</h3><p>La infraestructura ayuda —si los datos no salen, hay menos que gestionar—, pero ningún equipo cumple la normativa por sí solo. Cada uso debe analizarse jurídicamente: base jurídica, evaluación de impacto cuando proceda, valoración de si es de alto riesgo según la AI Act y, si orienta diagnóstico o tratamiento, si está sujeto a normativa de producto sanitario. Preparamos la parte técnica para que vuestro DPO y la asesoría jurídica lo evalúen.</p></div>
+<div class="step"><h3>¿Quién lo actualiza después?</h3><p>Nosotros, en el mantenimiento: actualizaciones de seguridad y de modelos, revisión de cambios normativos y formación. No nos limitamos a instalar el sistema: lo mantenemos y acompañamos su evolución.</p></div>
 </div>
 </div></section>
 
@@ -157,18 +157,18 @@
 
 <section class="cta dark" id="contacto"><div class="w">
 <h2>Empieza por una conversación de treinta minutos</h2>
-<p>Cuéntanos qué necesitas y te decimos honestamente si podemos ayudarte.</p>
+<p>Contadnos qué necesitáis y os diremos con claridad si podemos ayudaros.</p>
 <form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
 <input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
 <input type="hidden" name="_gotcha">
 <input type="hidden" name="_next" value="https://www.ageinglabtech.com/gracias.html">
 <div class="cf-grid">
 <label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
-<label>Tu correo<input type="email" name="email" autocomplete="email" required></label>
+<label>Vuestro correo<input type="email" name="email" autocomplete="email" required></label>
 <label>Empresa (opcional)<input type="text" name="empresa"></label>
 <label>¿Qué os interesa?
 <select name="interes" required>
-<option value="" disabled>Elige una opción</option>
+<option value="" disabled>Elegid una opción</option>
 <option value="IA privada y automatización">IA privada y automatización</option>
 <option value="Decisiones con IA">Decisiones con IA</option>
 <option value="Software a medida">Software a medida</option>
@@ -179,7 +179,7 @@
 <option value="Aún no lo sé" selected>Aún no lo sé</option>
 </select>
 </label>
-<label class="cf-full">Cuéntanos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+<label class="cf-full">Contadnos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
 </div>
 <div class="cf-actions">
 <button type="submit" class="btn btn-primary">Contactar</button>
@@ -189,7 +189,7 @@
 </main>
 
 <footer><div class="w"><div class="cols">
-<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> en el Centro de Tecnología Biomédica de la UPM. Te acercamos al futuro desde la ciencia.</p></div>
+<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> en el Centro de Tecnología Biomédica de la UPM. Os acercamos al futuro desde la ciencia.</p></div>
 <div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a><a href="/#metodo">Cómo trabajamos</a></div>
 <div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
 <div><h3>Nosotros</h3><a href="/#nosotros">Quiénes somos</a><a href="/#equipo">Equipo</a><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>

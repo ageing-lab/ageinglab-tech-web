@@ -85,8 +85,8 @@
 <div class="hero dark case-hero"><div class="w">
 <nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>Transcripción clínica con IA privada</span></nav>
 <h1>Transcripción clínica con IA privada: guía práctica</h1>
-<p>El profesional habla y la IA deja el borrador escrito. Que eso sea posible en un hospital depende de dónde corra el modelo: esta guía cuenta cómo hacerlo sin que el audio salga del centro.</p>
-<a class="btn alt" href="#contacto">Hablemos de tu proyecto</a>
+<p>El profesional habla y la inteligencia artificial (IA) deja el borrador escrito. Que eso sea posible en un hospital depende de dónde se ejecute el modelo: esta guía cuenta cómo hacerlo sin que el audio salga del centro.</p>
+<a class="btn alt" href="#contacto">Hablemos de vuestro proyecto</a>
 </div></div>
 
 <section class="s" id="por-que"><div class="w">
@@ -94,18 +94,18 @@
 <p class="lead">Una conversación clínica trae datos de pacientes: nombres, diagnósticos, casos concretos. Mandarla a un servicio de transcripción de fuera es entregar esos datos a un tercero, con todo lo que eso arrastra: contratos, base jurídica, riesgos. En muchos hospitales esa opción se descarta antes de empezar.</p>
 <ul class="plain">
 <li><strong>Lo que se dicta no sale:</strong> el audio y el texto se procesan en vuestra red, no en la de un proveedor externo.</li>
-<li><strong>Menos terceros en el circuito:</strong> si ningún proveedor recibe audio de pacientes, hay menos contratos de encargo y menos riesgos que gestionar. El trabajo con vuestro DPO sigue siendo obligatorio —registro de actividades, evaluación de impacto cuando toque—, pero en un terreno más controlable. Os entregamos la documentación técnica para que el DPO y jurídica puedan valorarlo.</li>
+<li><strong>Menos terceros en el circuito:</strong> si ningún proveedor recibe audio de pacientes, hay menos contratos de encargo y menos riesgos que gestionar. El trabajo con vuestro delegado de protección de datos (DPO) sigue siendo obligatorio —registro de actividades, evaluación de impacto cuando proceda—, pero en un marco más controlable. Entregamos la documentación técnica para que el DPO y la asesoría jurídica puedan evaluarlo.</li>
 <li><strong>Coste previsible:</strong> en vez de pagar por minuto transcrito o por consulta, el gasto principal es el equipo y su mantenimiento. Sabéis de antemano lo que cuesta.</li>
-<li><strong>Constancia de uso:</strong> queda registrado qué servicio lo usó y cuándo, algo que en un hospital os van a pedir tarde o temprano.</li>
+<li><strong>Constancia de uso:</strong> queda registrado qué servicio lo usó y cuándo, algo que en un hospital os solicitarán en auditorías.</li>
 </ul>
 </div></section>
 
 <section class="s" id="como-funciona"><div class="w">
 <h2>Cómo funciona</h2>
-<p class="lead">El mismo principio que puedes probar ahora mismo: <a href="../soluciones/#voz">un reconocedor de voz con IA privado que transcribe en tu navegador</a> —el audio se procesa en tu dispositivo y no se envía a ningún servidor—. En un entorno clínico el esquema es el mismo, pero con el modelo corriendo en el hardware del hospital.</p>
+<p class="lead">El mismo principio que podéis probar ahora mismo: <a href="../soluciones/#voz">un reconocedor de voz con IA privado que transcribe en vuestro navegador</a> —el audio se procesa en vuestro dispositivo y no se envía a ningún servidor—. En un entorno clínico el esquema es el mismo, pero con el modelo ejecutándose en el hardware del hospital.</p>
 <div class="steps">
 <div class="step"><i>1</i><h3>Captura del audio</h3><p>El profesional dicta desde su equipo —ordenador, tableta o móvil— dentro del entorno habitual. El audio viaja cifrado y sin salir de la red institucional.</p></div>
-<div class="step"><i>2</i><h3>Transcripción local</h3><p>Un modelo de voz open weight instalado en el servidor del hospital convierte el audio en texto. No hay llamadas a APIs externas ni colas de audio fuera del edificio.</p></div>
+<div class="step"><i>2</i><h3>Transcripción local</h3><p>Un modelo de voz open weight instalado en el servidor del hospital convierte el audio en texto. No hay llamadas a interfaces de programación de aplicaciones (API) externas ni colas de audio fuera del edificio.</p></div>
 <div class="step"><i>3</i><h3>Del texto al borrador</h3><p>Sobre la transcripción, un modelo de lenguaje del propio centro la ordena: resumen, informe, parte de evolución o campos para la historia clínica, según la plantilla de cada servicio.</p></div>
 <div class="step"><i>4</i><h3>Revisión y entrega</h3><p>El profesional revisa y confirma antes de que nada se guarde. La IA propone y el profesional dispone y firma. El flujo se diseña para que revisar sea rápido.</p></div>
 </div>
@@ -113,9 +113,9 @@
 
 <section class="s" id="infraestructura"><div class="w">
 <h2>Qué equipo hace falta</h2>
-<p class="lead">Para algunos casos no hace falta un CPD: basta un servidor base con una buena tarjeta gráfica, instalado en vuestra sala técnica y dentro de vuestra red. La voz pide menos que el lenguaje: transcribir tira con modelos de voz pequeños, y el modelo grande solo entra cuando hay que redactar o resumir. Os ayudamos a elegir el equipo adecuado a vuestro caso antes de comprar nada.</p>
+<p class="lead">Para algunos casos no hace falta un centro de proceso de datos (CPD): basta un servidor base con una buena unidad de procesamiento gráfico (GPU), instalado en vuestra sala técnica y dentro de vuestra red. La voz pide menos que el lenguaje: transcribir requiere modelos de voz pequeños, y el modelo grande solo entra cuando hay que redactar o resumir. Os ayudamos a elegir el equipo adecuado a vuestro caso antes de comprar nada.</p>
 <ul class="plain">
-<li>Un servidor normal con una buena tarjeta gráfica. En un proyecto interno movimos un modelo abierto grande con una gráfica de 16 GB, a velocidad de trabajo y con una persona a la vez. Los detalles, con cifras, están en el caso de <a href="../casos-de-exito/ia-local.html">IA local para datos clínicos</a>.</li>
+<li>Un servidor normal con una buena tarjeta gráfica. En un proyecto interno ejecutamos un modelo abierto grande con una tarjeta gráfica de 16 GB, a velocidad de trabajo y con una persona a la vez. Los detalles, con cifras, están en el caso de <a href="../casos-de-exito/ia-local.html">IA local para datos clínicos</a>.</li>
 <li>El audio no sale en ningún caso: da igual que la voz se procese en el mismo equipo o en otro dentro del centro; lo que no cambia es que nada viaja a un servicio externo.</li>
 <li>Vive en vuestra red, separado del resto: en un tramo propio, con accesos limitados y conexiones cifradas. Cómo se segmenta lo acuerda vuestro servicio de informática, no lo imponemos nosotros.</li>
 <li>El equipo es vuestro y se queda en vuestro centro. Os ayudamos a elegirlo y lo dejamos instalado allí. Nosotros no nos quedamos copia de vuestros audios ni de vuestros textos.</li>
@@ -124,10 +124,10 @@
 
 <section class="s" id="como-empezar"><div class="w">
 <h2>Cómo lo planteamos</h2>
-<p class="lead">Sin atajos: primero entender el caso, luego probar en pequeño y solo después llevarlo a producción.</p>
+<p class="lead">Con método: primero entender el caso, luego probar en pequeño y solo después llevarlo a producción.</p>
 <div class="steps">
 <div class="step"><i>1</i><h3>Diagnóstico</h3><p>Vemos qué se dicta hoy, cuánto tiempo se va en redactar y qué plantillas usa cada servicio. Os lleváis un informe corto: si tiene sentido, con qué servicio empezar y qué haría falta. Y si no lo tiene, también os lo decimos.</p></div>
-<div class="step"><i>2</i><h3>Piloto acotado</h3><p>Un solo servicio, pocos usuarios, audios de prueba y sus plantillas. Se mide lo único que importa: cuánto tiempo ahorra, cuántos fallos aparecen y si el personal lo usa a gusto.</p></div>
+<div class="step"><i>2</i><h3>Piloto acotado</h3><p>Un solo servicio, pocos usuarios, audios de prueba y sus plantillas. Se mide lo único que importa: cuánto tiempo ahorra, cuántos fallos aparecen y si el personal lo usa en su trabajo diario.</p></div>
 <div class="step"><i>3</i><h3>Puesta en marcha y cuidado</h3><p>Si el piloto convence y hay visto bueno de informática, DPO y responsables del servicio, se instala en vuestro equipo y se deja documentado. Después lo mantenemos: actualizaciones, vigilancia, formación y cambios cuando la normativa o los modelos se mueven.</p></div>
 </div>
 </div></section>
@@ -138,21 +138,21 @@
 <li><strong>Copiar el flujo de la nube tal cual:</strong> asumir que la transcripción privada es «lo mismo pero en local» ignora el dimensionamiento, la concurrencia y el mantenimiento de modelos. El hardware y el reparto de carga se diseñan.</li>
 <li><strong>Confundir transcribir con redactar:</strong> un texto literal de la conversación no es un informe. El valor está en dejar el borrador con las plantillas de cada servicio, no en pasar el audio a texto sin más.</li>
 <li><strong>Omitir la revisión humana:</strong> nadie debería firmar un documento clínico generado por IA sin leerlo. El flujo debe contemplar la revisión como paso obligado, no como opción.</li>
-<li><strong>Modelo genérico sin preparar:</strong> la terminología de un servicio —siglas, medicamentos, procedimientos— no la trae de casa ningún modelo genérico. Preparar las plantillas y el vocabulario de cada servicio es lo que separa una demo de algo usable.</li>
+<li><strong>Modelo genérico sin preparar:</strong> la terminología de un servicio —siglas, medicamentos, procedimientos— no la incorpora de serie ningún modelo genérico. Preparar las plantillas y el vocabulario de cada servicio es lo que separa una demo de algo usable.</li>
 <li><strong>Dejar el mantenimiento sin dueño:</strong> los modelos, la seguridad y la normativa cambian. Sin un responsable de mantenimiento, el sistema se degrada en meses.</li>
 </ul>
 </div></section>
 
 <section class="s" id="caso"><div class="w">
 <h2>Un caso real</h2>
-<p class="lead">Montamos un sistema de IA local para datos clínicos en un equipo modesto con una gráfica de 16 GB y un modelo abierto grande, trabajando de uno en uno y sin que nada saliera del edificio. <a href="../casos-de-exito/ia-local.html">El caso completo, con el hardware y los números, está aquí</a>.</p>
+<p class="lead">Implantamos un sistema de IA local para datos clínicos en un equipo modesto con una tarjeta gráfica de 16 GB y un modelo abierto grande, trabajando de uno en uno y sin que nada saliera del edificio. <a href="../casos-de-exito/ia-local.html">El caso completo, con el hardware y los números, está aquí</a>.</p>
 </div></section>
 
 <section class="s" id="relacionados"><div class="w">
 <h2>Guías y servicios relacionados</h2>
 <div class="ind two">
 <a href="ia-privada-en-hospitales.html">Guía: IA privada en hospitales<span>›</span></a>
-<a href="hardware-ia-local.html">Guía: qué hardware necesitas para un modelo de IA local<span>›</span></a>
+<a href="hardware-ia-local.html">Guía: qué hardware necesitáis para un modelo de IA local<span>›</span></a>
 <a href="../servicios/ia-privada-automatizacion.html">Servicio: IA privada y automatización<span>›</span></a>
 <a href="../soluciones/#voz">Solución: reconocimiento de voz con IA, en privado<span>›</span></a>
 <a href="../casos-de-exito/ia-local.html">Caso de éxito: IA local para datos clínicos<span>›</span></a>
@@ -161,18 +161,18 @@
 
 <section class="cta dark" id="contacto"><div class="w">
 <h2>Empieza por una conversación de treinta minutos</h2>
-<p>Cuéntanos qué necesitas y te decimos honestamente si podemos ayudarte.</p>
+<p>Contadnos qué necesitáis y os diremos con claridad si podemos ayudaros.</p>
 <form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
 <input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
 <input type="hidden" name="_gotcha">
 <input type="hidden" name="_next" value="https://www.ageinglabtech.com/gracias.html">
 <div class="cf-grid">
 <label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
-<label>Tu correo<input type="email" name="email" autocomplete="email" required></label>
+<label>Vuestro correo<input type="email" name="email" autocomplete="email" required></label>
 <label>Empresa (opcional)<input type="text" name="empresa"></label>
 <label>¿Qué os interesa?
 <select name="interes" required>
-<option value="" disabled>Elige una opción</option>
+<option value="" disabled>Elegid una opción</option>
 <option value="IA privada y automatización" selected>IA privada y automatización</option>
 <option value="Decisiones con IA">Decisiones con IA</option>
 <option value="Software a medida">Software a medida</option>
@@ -183,7 +183,7 @@
 <option value="Aún no lo sé">Aún no lo sé</option>
 </select>
 </label>
-<label class="cf-full">Cuéntanos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+<label class="cf-full">Contadnos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
 </div>
 <div class="cf-actions">
 <button type="submit" class="btn btn-primary">Contactar</button>
@@ -193,7 +193,7 @@
 </main>
 
 <footer><div class="w"><div class="cols">
-<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> en el Centro de Tecnología Biomédica de la UPM. Te acercamos al futuro desde la ciencia.</p></div>
+<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> en el Centro de Tecnología Biomédica de la UPM. Os acercamos al futuro desde la ciencia.</p></div>
 <div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a><a href="/#metodo">Cómo trabajamos</a></div>
 <div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
 <div><h3>Nosotros</h3><a href="/#nosotros">Quiénes somos</a><a href="/#equipo">Equipo</a><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>
