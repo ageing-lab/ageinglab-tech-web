@@ -202,9 +202,9 @@ a.addEventListener('click',function(e){
 e.preventDefault();
 var s=document.querySelector(a.getAttribute('href'));
 if(!s)return;
-var d=s.querySelector('details');
+var d=s.tagName==='DETAILS'?s:s.querySelector('details');
 if(d)d.open=true;
-s.scrollIntoView({block:'start'});
+(d||s).scrollIntoView({block:'start'});
 });
 });
 
