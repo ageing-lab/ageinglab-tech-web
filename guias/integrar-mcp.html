@@ -50,6 +50,42 @@
 <link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
 <link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="../styles.css">
+<style>
+/* Chat de ejemplo MCP (solo guias/integrar-mcp.html) */
+.mcq{margin:0;max-width:none}
+.mcq-k{margin:0;font:600 13px/1 "Source Sans 3",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.mcq-t{margin:10px 0 0;font:700 clamp(20px,2.2vw,26px)/1.2 "Bricolage Grotesque",sans-serif;letter-spacing:-.01em}
+.mcq-sub{margin:8px 0 0;color:var(--mute);font-size:17px;max-width:44em}
+.mcq-tools{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.mcq-tools li{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid var(--line);border-radius:99px;background:var(--soft);font-size:14px}
+.mcq-tools code{font:600 13px/1 ui-monospace,Menlo,Consolas,monospace}
+.mcq-tools span{font-size:12px;color:var(--mute)}
+.mcq-ex{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.mcq-ex>span{font-size:14px;color:var(--mute)}
+.mcq-ex button{padding:7px 13px;border-radius:99px;border:1px solid var(--line);background:transparent;color:inherit;font-size:14px;cursor:pointer}
+.mcq-ex button:hover{border-color:var(--accent)}
+.mcq-log{margin:16px 0 0;border:1px solid var(--line);border-radius:12px;background:var(--soft);padding:18px;display:flex;flex-direction:column;gap:10px;min-height:220px;max-height:380px;overflow:auto}
+.mcq-msg{max-width:42em;padding:10px 14px;border-radius:12px;font-size:16.5px;line-height:1.5}
+.mcq-msg.bot{background:var(--bg);border:1px solid var(--line);align-self:flex-start}
+.mcq-msg.user{background:var(--navy);color:#fff;align-self:flex-end}
+.mcq-step{align-self:flex-start;font:600 13px/1.5 ui-monospace,Menlo,Consolas,monospace;color:var(--mute)}
+.mcq-step i{display:inline-block;width:8px;height:8px;margin-right:8px;border-radius:50%;background:var(--accent);animation:mcq-pulse 1s ease-in-out infinite}
+@keyframes mcq-pulse{50%{opacity:.25}}
+.mcq-confirm{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.mcq-confirm button{padding:8px 14px;border-radius:8px;font-size:14.5px;font-weight:600;cursor:pointer}
+.mcq-confirm [data-mcp-ok]{background:var(--navy);color:#fff;border:1px solid var(--navy)}
+.mcq-confirm [data-mcp-no]{background:transparent;border:1px solid var(--line);color:inherit}
+.mcq-form{display:flex;gap:10px;margin-top:14px}
+.mcq-form input{flex:1;min-width:0;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:inherit;font:inherit}
+.mcq-form .btn{border:0;cursor:pointer;white-space:nowrap}
+.mcq-form .btn:disabled{opacity:.6;cursor:default}
+.mcq-foot{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline;margin-top:12px}
+.mcq-off{display:inline-flex;align-items:center;gap:9px;font-size:15px;color:var(--mute);cursor:pointer}
+.mcq-off input{width:18px;height:18px;accent-color:#b3261e}
+.mcq-audit{margin:0;font:500 13.5px/1.5 ui-monospace,Menlo,Consolas,monospace;color:var(--mute)}
+@media(max-width:600px){.mcq-form{flex-direction:column}.mcq-form .btn{width:100%}}
+@media (prefers-reduced-motion:reduce){.mcq-step i{animation:none}}
+</style>
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Guías","item":"https://www.ageinglabtech.com/guias/"},{"@type":"ListItem","position":3,"name":"MCP: conectar la IA a vuestros sistemas","item":"https://www.ageinglabtech.com/guias/integrar-mcp.html"}]}</script>
@@ -124,8 +160,8 @@
 </div></section>
 
 <section class="s" id="ejemplo"><div class="w">
-<h2>Lo que un MCP entrega a la IA</h2>
-<p class="lead">Un ejemplo con datos ficticios: elegid una pregunta y mirad qué recibe la IA del servidor antes de responder.</p>
+<h2>Un chat que consulta vuestros sistemas antes de responder</h2>
+<p class="lead">Escribid una pregunta con vuestras palabras y observad cómo la IA decide qué herramienta MCP utilizar. Todo con datos ficticios y todo en vuestro navegador.</p>
 <details class="prueba" id="demo-mcp">
 <summary>
 <span class="pr-dot" aria-hidden="true"></span>
@@ -133,28 +169,32 @@
 <span class="pr-ar" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
 </summary>
 <div class="pr-c">
-<div class="mcp" data-mcp>
-<p class="mcp-k">Probadlo aquí mismo</p>
-<p class="mcp-t">La IA solo responde con lo que le entrega el servidor</p>
-<p class="mcp-sub">El servidor ficticio expone dos sistemas: la agenda (ver huecos, registrar citas con confirmación) y los documentos (leer protocolos). Elegid una pregunta y pulsad «Enviar a la IA». Todo corre en vuestro navegador.</p>
-<div class="mcp-bar">
-<label>Pregunta
-<select data-mcp-q>
-<option value="huecos">¿Qué huecos hay mañana en cardiología?</option>
-<option value="protocolo">¿Cuál es el protocolo de caídas vigente?</option>
-<option value="cita">Pide cita para el jueves a las 10:00</option>
-</select>
-</label>
-<label class="mcp-notok"><input type="checkbox" data-mcp-off> Sin conexión a los sistemas</label>
-<button type="button" class="btn alt" data-mcp-go>Enviar a la IA</button>
-<button type="button" class="btn fantasma" data-mcp-confirm hidden>Confirmar la cita</button>
+<div class="mcq" data-mcp-chat>
+<p class="mcq-k">Demostración con datos ficticios</p>
+<p class="mcq-t">La IA solo responde con lo que le entregan vuestros sistemas</p>
+<p class="mcq-sub">Este conector ficticio expone dos sistemas: la agenda (ver huecos, registrar citas con confirmación) y los documentos (leer protocolos). Pedid huecos, preguntad por el protocolo de caídas o pedid una cita.</p>
+<ul class="mcq-tools" aria-label="Herramientas MCP disponibles">
+<li><code>agenda.buscar_huecos</code><span>lectura</span></li>
+<li><code>documentos.leer_documento</code><span>lectura</span></li>
+<li><code>agenda.crear_cita</code><span>requiere confirmación</span></li>
+</ul>
+<div class="mcq-ex">
+<span>Probad con:</span>
+<button type="button" data-mcp-ex>¿Qué huecos hay mañana en cardiología?</button>
+<button type="button" data-mcp-ex>¿Cuál es el protocolo de caídas vigente?</button>
+<button type="button" data-mcp-ex>Reserva cardiología el jueves a las 10:00</button>
 </div>
-<div class="mcp-grid" data-mcp-grid>
-<div><p class="mcp-h">Lo que el servidor MCP entrega a la IA</p><pre data-mcp-given># Pulsad «Enviar a la IA» para verlo…</pre></div>
-<div><p class="mcp-h">Lo que la IA responde</p><pre data-mcp-says># La respuesta aparecerá aquí…</pre></div>
+<div class="mcq-log" data-mcp-log role="log" aria-live="polite" aria-label="Conversación de ejemplo"></div>
+<form class="mcq-form" data-mcp-form>
+<label class="sr-only" for="mcq-in">Escribid vuestra pregunta</label>
+<input id="mcq-in" data-mcp-in type="text" autocomplete="off" placeholder="Escribid vuestra pregunta…" maxlength="280">
+<button class="btn alt" type="submit" data-mcp-send>Enviar</button>
+</form>
+<div class="mcq-foot">
+<label class="mcq-off"><input type="checkbox" data-mcp-off> Simular sin conexión a los sistemas</label>
+<p class="mcq-audit" data-mcp-audit># La auditoría aparecerá aquí…</p>
 </div>
-<p class="mcp-audit" data-mcp-audit aria-live="polite"># El log de auditoría aparecerá aquí…</p>
-<noscript><p class="mcp-sub">Activa JavaScript para usar el ejemplo.</p></noscript>
+<noscript><p class="mcq-sub">Activa JavaScript para usar el ejemplo.</p></noscript>
 </div>
 </div>
 </details>
@@ -246,76 +286,101 @@
 
 <script src="../js/main.js"></script>
 <script>
-/* Ejemplo MCP (solo integrar-mcp.html): lo que el servidor entrega a la IA, todo ficticio y en local */
+/* Chat de ejemplo MCP (solo guias/integrar-mcp.html): texto libre, todo ficticio y en local */
 (function(){
-var root=document.querySelector('[data-mcp]');
+var root=document.querySelector('[data-mcp-chat]');
 if(!root)return;
 function evDemo(demo,extra){try{if(typeof gtag==='function'){var p={page:location.pathname,demo:demo,via:'button'};if(extra)for(var k in extra)p[k]=extra[k];gtag('event','demo_open',p)}}catch(e){}}
-var sel=root.querySelector('[data-mcp-q]'),off=root.querySelector('[data-mcp-off]'),
-go=root.querySelector('[data-mcp-go]'),confirm=root.querySelector('[data-mcp-confirm]'),
-given=root.querySelector('[data-mcp-given]'),says=root.querySelector('[data-mcp-says]'),
-audit=root.querySelector('[data-mcp-audit]');
-var Q={
-huecos:{tool:'agenda.buscar_huecos',args:{servicio:'cardiología',fecha:'2026-10-15'},
-ok:{huecos:['09:20','10:05','12:40'],nota:'Planta 2 · traer tarjeta sanitaria'},
-answer:'Mañana en cardiología quedan tres huecos: 09:20, 10:05 y 12:40 (planta 2). Decidme cuál os viene bien y lo reservo.'},
-protocolo:{tool:'documentos.leer_documento',args:{id:'protocolo-caidas-v3'},
-ok:{titulo:'Protocolo de caídas v3',vigente_desde:'2026-03-01',extracto:'Valorar el riesgo de caídas en las primeras 24 h del ingreso; reevaluar tras cada caída o cambio de medicación.'},
-answer:'Según el protocolo de caídas v3, vigente desde el 01/03/2026: hay que valorar el riesgo en las primeras 24 horas del ingreso y reevaluarlo tras cada caída o cambio de medicación.'},
-cita:{tool:'agenda.crear_cita',args:{servicio:'cardiología',fecha:'2026-10-15',hora:'10:00'},
-pending:{estado:'pendiente_confirmacion',resumen:'Cardiología · jueves 10:00 · paciente de ejemplo'},
-pendingAnswer:'He preparado la cita (cardiología, jueves 10:00) pero aún no la he registrado. Revisadla y confirmadla con el botón de abajo.',
-done:{estado:'registrada',localizador:'CITA-4821'},
-doneAnswer:'Cita registrada: cardiología, jueves 10:00. Localizador CITA-4821.'}
-};
+var log=root.querySelector('[data-mcp-log]'),form=root.querySelector('[data-mcp-form]'),
+input=root.querySelector('[data-mcp-in]'),send=root.querySelector('[data-mcp-send]'),
+off=root.querySelector('[data-mcp-off]'),audit=root.querySelector('[data-mcp-audit]');
+var reduced=false;try{reduced=matchMedia('(prefers-reduced-motion:reduce)').matches}catch(e){}
+var sending=false,pending=null;
 function now(){var d=new Date();function p(x){return (x<10?'0':'')+x}return p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds())}
-function pack(q,res){return JSON.stringify({servidor:q.tool.split('.')[0],herramienta:q.tool,argumentos:q.args,resultado:res},null,2)}
-var sending=false,reduced=false;
-try{reduced=matchMedia('(prefers-reduced-motion:reduce)').matches}catch(e){}
-function placeholder(){
-given.textContent='# Pulsad «Enviar a la IA» para verlo…';
-says.textContent='# La respuesta aparecerá aquí…';
-audit.textContent='# El log de auditoría aparecerá aquí…';
-confirm.hidden=true;
+function norm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+function scroll(){log.scrollTop=log.scrollHeight}
+function say(who,text){
+var d=document.createElement('div');
+d.className='mcq-msg '+who;d.textContent=text;log.appendChild(d);scroll();return d;
 }
-function send(){
-var key=sel.value,q=Q[key],cut=off.checked;
-evDemo('mcp-ejemplo',{pregunta:key,conexion:cut?'sin-conexion':'ok'});
-function paint(){
+function step(tool){
+var d=document.createElement('div');
+d.className='mcq-step';
+var i=document.createElement('i');i.setAttribute('aria-hidden','true');d.appendChild(i);
+d.appendChild(document.createTextNode('Consultando '+tool+'…'));
+log.appendChild(d);scroll();return d;
+}
+function setAudit(t){audit.textContent=now()+' '+t}
+function intentOf(raw){
+var t=norm(raw);
+if(/(caida|protocolo)/.test(t))return 'protocolo';
+if(/(reserva|reservar|registra|apunta|crea cita|pon cita|quiero cita|pide cita|cita el jueves|jueves a las)/.test(t))return 'cita';
+if(/(hueco|disponib|libre|agenda|cardiologia|manana|cita)/.test(t))return 'huecos';
+return 'otro';
+}
+function answer(kind,cut){
 if(cut){
-given.textContent=pack(q,{error:'sin_conexion',detalle:'El servidor MCP no está disponible'});
-says.textContent='No tengo acceso a vuestros sistemas ahora mismo, así que no puedo consultar ese dato. Sin el conector, no me lo invento: conectadlo e intentadlo de nuevo.';
-audit.textContent=now()+' '+q.tool+' ERROR · sin conexión · queda registrado en auditoría';
-confirm.hidden=true;
-}else if(key==='cita'){
-given.textContent=pack(q,q.pending);
-says.textContent=q.pendingAnswer;
-audit.textContent=now()+' '+q.tool+' pendiente de confirmación · usuario demo@centro.local';
-confirm.hidden=false;
-}else{
-given.textContent=pack(q,q.ok);
-says.textContent=q.answer;
-audit.textContent=now()+' '+q.tool+' 200 · usuario demo@centro.local';
-confirm.hidden=true;
+say('bot','No tengo acceso a vuestros sistemas ahora mismo, así que no puedo consultar ese dato. Sin el conector, no me lo invento: volved a conectarlo e intentadlo de nuevo.');
+setAudit('ERROR · sin conexión · queda registrado en auditoría');
+evDemo('mcp-chat',{intencion:kind,conexion:'sin-conexion'});
+return;
 }
-}
-if(reduced){paint();return}
-if(sending)return;
-sending=true;go.disabled=true;go.textContent='Enviando…';
-setTimeout(function(){paint();go.disabled=false;go.textContent='Enviar a la IA';sending=false},650);
-}
-confirm.addEventListener('click',function(){
-var q=Q.cita;
-evDemo('mcp-ejemplo',{pregunta:'cita-confirmada',conexion:'ok'});
-given.textContent=pack(q,q.done);
-says.textContent=q.doneAnswer;
-audit.textContent=now()+' '+q.tool+' 200 · registrada CITA-4821 · usuario demo@centro.local';
-confirm.hidden=true;
+if(kind==='huecos'){
+say('bot','Mañana en cardiología quedan tres huecos: 09:20, 10:05 y 12:40 (planta 2). Decidme cuál os viene bien y la registro.');
+setAudit('agenda.buscar_huecos 200 · usuario demo@centro.local');
+}else if(kind==='protocolo'){
+say('bot','Según el protocolo de caídas v3, vigente desde el 01/03/2026: hay que valorar el riesgo en las primeras 24 horas del ingreso y reevaluarlo tras cada caída o cambio de medicación.');
+setAudit('documentos.leer_documento 200 · usuario demo@centro.local');
+}else if(kind==='cita'){
+pending={resumen:'Cardiología · jueves 10:00 · paciente de ejemplo'};
+var d=say('bot','He preparado la cita (cardiología, jueves 10:00) pero aún no la he registrado. Confirmadla para continuar.');
+var box=document.createElement('div');box.className='mcq-confirm';
+var ok=document.createElement('button');ok.type='button';ok.setAttribute('data-mcp-ok','');ok.textContent='Confirmar la cita';
+var no=document.createElement('button');no.type='button';no.setAttribute('data-mcp-no','');no.textContent='Descartar';
+box.appendChild(ok);box.appendChild(no);d.appendChild(box);scroll();ok.focus();
+setAudit('agenda.crear_cita pendiente de confirmación · usuario demo@centro.local');
+ok.addEventListener('click',function(){
+box.remove();pending=null;
+say('bot','Cita registrada: cardiología, jueves 10:00. Localizador CITA-4821.');
+setAudit('agenda.crear_cita 200 · registrada CITA-4821 · usuario demo@centro.local');
+evDemo('mcp-chat',{intencion:'cita-confirmada',conexion:'ok'});
 });
-go.addEventListener('click',send);
-sel.addEventListener('change',placeholder);
-off.addEventListener('change',placeholder);
-placeholder();
+no.addEventListener('click',function(){
+box.remove();pending=null;
+say('bot','De acuerdo, no he registrado nada.');
+setAudit('agenda.crear_cita cancelada por el usuario');
+});
+}else{
+say('bot','Puedo consultar la agenda y leer protocolos. Probad, por ejemplo: «¿Qué huecos hay mañana en cardiología?».');
+setAudit('sin llamada a herramientas · fuera de alcance');
+}
+evDemo('mcp-chat',{intencion:kind,conexion:'ok'});
+}
+function handle(raw){
+raw=(raw||'').trim();
+if(!raw||sending||pending)return;
+say('user',raw);
+var kind=intentOf(raw),cut=off.checked;
+var tool=kind==='protocolo'?'documentos.leer_documento':kind==='cita'?'agenda.crear_cita':kind==='huecos'?'agenda.buscar_huecos':null;
+sending=true;send.disabled=true;
+if(reduced){
+if(tool&&!(kind==='otro')){var s=step(tool);s.remove()}
+answer(kind,cut);sending=false;send.disabled=false;return;
+}
+var s=tool?step(tool):null;
+send.textContent='Consultando…';
+setTimeout(function(){
+if(s)s.remove();
+answer(kind,cut);
+sending=false;send.disabled=false;send.textContent='Enviar';
+},650);
+}
+form.addEventListener('submit',function(e){e.preventDefault();handle(input.value);input.value='';input.focus()});
+root.querySelectorAll('[data-mcp-ex]').forEach(function(b){
+b.addEventListener('click',function(){input.value=b.textContent;handle(b.textContent);input.value=''});
+});
+off.addEventListener('change',function(){pending=null});
+say('bot','Soy un asistente de ejemplo conectado por MCP a la agenda y a los documentos. Preguntadme por huecos, protocolos o pedidme una cita.');
 })();
 </script>
 </body>
