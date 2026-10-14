@@ -55,7 +55,7 @@ var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 var sc=document.createElement('div');sc.className='ck-scrim';sc.setAttribute('aria-hidden','true');
 var b=document.createElement('div');
 b.className='cookies';b.setAttribute('role','region');b.setAttribute('aria-label','Aviso de cookies');
-b.innerHTML='<div class="ck-cookie" aria-hidden="true"><img src="/img/cookie.svg" alt="" width="132" height="132" decoding="async"></div><div class="ck-crumbs" aria-hidden="true"></div><div class="ck-card"><div class="ck-txt"><strong>Tú decides qué cookies guardamos</strong><p>Usamos cookies propias y de Google Analytics para saber qué partes de la web te resultan útiles. Si las rechazas, no se guardará ninguna cookie de seguimiento. <a href="/cookies.html">Política de cookies</a></p></div><div class="ck-acc"><button type="button" class="ck-ok">Aceptar</button><button type="button" class="ck-no">Rechazar</button></div></div>';
+b.innerHTML='<div class="ck-cookie" aria-hidden="true"><img src="/img/cookie.svg" alt="" width="132" height="132" decoding="async"></div><div class="ck-crumbs" aria-hidden="true"></div><div class="ck-card"><div class="ck-txt"><strong>Vosotros decidís qué cookies guardamos</strong><p>Usamos cookies propias y de Google Analytics para saber qué partes de la web os resultan útiles. Si las rechazáis, no se guardará ninguna cookie de seguimiento. <a href="/cookies.html">Política de cookies</a></p></div><div class="ck-acc"><button type="button" class="ck-ok">Aceptar</button><button type="button" class="ck-no">Rechazar</button></div></div>';
 document.body.appendChild(sc);document.body.appendChild(b);
 var busy=false;
 function close(){b.classList.remove('in');b.classList.add('out');sc.classList.remove('in');sc.classList.add('out');setTimeout(function(){b.remove();sc.remove()},350)}
@@ -196,7 +196,7 @@ else if(e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}
 var back=0;try{back=+sessionStorage.getItem(KEY)||0}catch(e){}
 if(back>=1)enter(back,true);
 })();
-/* "Prueba tú mismo" del hero: despliega la demo y baja hasta ella */
+/* "Probad vosotros mismos" del hero: despliega la demo y baja hasta ella */
 [].forEach.call(document.querySelectorAll('.hero a[data-prueba]'),function(a){
 a.addEventListener('click',function(e){
 e.preventDefault();
@@ -278,7 +278,7 @@ if(!a||a.hasAttribute('data-prueba'))return;
 ev('cta_click',{page:location.pathname,cta:label(a),target:a.getAttribute('href')||''});
 },true);
 
-/* 3 · Apertura de demos: "Prueba tú mismo" (hero) y acordeones de las fichas */
+/* 3 · Apertura de demos: "Probad vosotros mismos" (hero) y acordeones de las fichas */
 document.addEventListener('click',function(e){
 var t=e.target;
 if(!t||!t.closest)return;

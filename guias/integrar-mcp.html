@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<script>
+  // Consent Mode v2: denied por defecto
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  try{if(localStorage.getItem('al-consent')==='granted')gtag('consent','update',{'ad_storage':'granted','analytics_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'})}catch(e){}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EGJV0V53RW"></script>
+<script>
+  gtag('js', new Date());
+
+  gtag('config', 'G-EGJV0V53RW');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#0b1f4b">
+<link rel="apple-touch-icon" href="../img/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable">
+<meta name="apple-mobile-web-app-title" content="AgeingLab Tech">
+<title>MCP: conectar la IA a vuestros sistemas | AgeingLab Tech</title>
+<meta name="description" content="Qué es el Model Context Protocol (MCP), para qué sirve conectar la IA a vuestros datos y cómo lo integramos sin que los datos salgan.">
+<link rel="canonical" href="https://www.ageinglabtech.com/guias/integrar-mcp.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MCP: conectar la IA a vuestros sistemas | AgeingLab Tech">
+<meta property="og:description" content="Qué es el Model Context Protocol (MCP), para qué sirve conectar la IA a vuestros datos y cómo lo integramos sin que los datos salgan.">
+<meta property="og:url" content="https://www.ageinglabtech.com/guias/integrar-mcp.html">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="AgeingLab Tech">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MCP: conectar la IA a vuestros sistemas | AgeingLab Tech">
+<meta name="twitter:description" content="Qué es el Model Context Protocol (MCP), para qué sirve conectar la IA a vuestros datos y cómo lo integramos sin que los datos salgan.">
+<link rel="icon" href="../img/icons/favicon.ico">
+<meta property="og:image" content="https://www.ageinglabtech.com/img/hero-poster.webp">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta name="twitter:image" content="https://www.ageinglabtech.com/img/hero-poster.webp">
+<meta property="og:image:alt" content="MCP: conectar la IA a vuestros sistemas">
+<meta name="twitter:image:alt" content="MCP: conectar la IA a vuestros sistemas">
+<link rel="preload" as="font" type="font/woff2" href="../fonts/bricolage-grotesque-latin-1.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../fonts/source-sans-3-latin-1.woff2" crossorigin>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../styles.css">
+<script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
+<script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Guías","item":"https://www.ageinglabtech.com/guias/"},{"@type":"ListItem","position":3,"name":"MCP: conectar la IA a vuestros sistemas","item":"https://www.ageinglabtech.com/guias/integrar-mcp.html"}]}</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"MCP: conectar la IA a vuestros sistemas",
+  "description":"Qué es el Model Context Protocol (MCP), para qué sirve conectar la IA a vuestros datos y cómo lo integramos sin que los datos salgan.",
+  "url":"https://www.ageinglabtech.com/guias/integrar-mcp.html",
+  "datePublished":"2026-10-14",
+  "dateModified":"2026-10-14",
+  "image":"https://www.ageinglabtech.com/img/hero-poster.webp","inLanguage":"es",
+  "author":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"},"publisher":{"@type":"Organization","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/","logo":{"@type":"ImageObject","url":"https://www.ageinglabtech.com/img/icons/icon-512.png","width":512,"height":512}},
+  "isPartOf":{"@type":"WebSite","name":"AgeingLab Tech","url":"https://www.ageinglabtech.com/"}
+}</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header id="hd"><div class="w">
+<a class="logo" href="/"><img class="logo-mark" src="../img/logo.svg" alt="" width="32" height="32"><span>AgeingLab Tech</span></a>
+<nav aria-label="Principal">
+<a href="../servicios/">Servicios</a>
+<a href="/#sectores">Sectores</a>
+<a href="../soluciones/">Soluciones</a>
+<a href="../casos-de-exito/">Casos de éxito</a>
+<a href="/#metodo">Cómo trabajamos</a>
+<a href="/#nosotros">Quiénes somos</a>
+<div class="theme" role="group" aria-label="Apariencia"><span class="thumb" aria-hidden="true"></span><button type="button" class="t" data-v="light" aria-pressed="false" title="Tema claro" aria-label="Claro"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg></button><button type="button" class="t" data-v="dark" aria-pressed="false" title="Tema oscuro" aria-label="Oscuro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.2A8.6 8.6 0 1 1 10.8 3.4a6.8 6.8 0 0 0 9.8 9.8z"/></svg></button><button type="button" class="t" data-v="auto" aria-pressed="true" title="Tema automático" aria-label="Automático"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path class="fill" d="M12 3.4a8.6 8.6 0 0 1 0 17.2z"/></svg></button></div>
+</nav>
+<a class="btn" href="/#contacto">Contacto</a>
+<button class="burger" id="bg" aria-expanded="false" aria-label="Abrir menú">Menú</button>
+</div></header>
+
+<main id="main">
+<div class="hero dark case-hero"><div class="w">
+<nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../guias/" style="color:var(--mu)">Guías</a> <span aria-hidden="true">/</span> <span>MCP</span></nav>
+<h1>MCP: cómo conectar la IA a vuestros sistemas</h1>
+<p>El Model Context Protocol (MCP) es el conector abierto que permite que un modelo de inteligencia artificial (IA) consulte vuestros datos y use vuestras herramientas. Esta guía explica qué es, para qué sirve y cómo lo integramos nosotros en vuestro hospital, centro o empresa.</p>
+<a class="btn alt" href="#contacto">Hablemos de vuestro proyecto</a> <a class="btn fantasma" href="#demo-mcp" data-prueba>Ver un ejemplo</a>
+</div></div>
+
+<section class="s" id="que-es"><div class="w">
+<h2>Qué es MCP</h2>
+<p class="lead">MCP es un protocolo abierto que separa tres piezas: el modelo que razona, el conector que expone vuestros datos y el programa donde trabajáis.</p>
+<ul class="plain">
+<li><strong>Servidor MCP:</strong> un conector que expone vuestros datos y acciones con reglas claras: leer la agenda, buscar en el historial, consultar el stock, registrar un parte. Cada organización expone solo lo que decide.</li>
+<li><strong>Cliente y programa anfitrión:</strong> el asistente que usáis (Claude, un chat interno, vuestra aplicación) se conecta a uno o varios servidores MCP y pide lo que necesita en cada momento.</li>
+<li><strong>Tres formas de exponer:</strong> <em>recursos</em> para leer datos, <em>herramientas</em> para ejecutar acciones y <em>plantillas</em> para repetir tareas habituales con el mismo formato.</li>
+<li><strong>Estándar abierto:</strong> el conector que se escribe una vez vale para cualquier modelo y programa compatible. No depende de un proveedor concreto.</li>
+</ul>
+</div></section>
+
+<section class="s" id="diferencia"><div class="w">
+<h2>Qué cambia frente a una integración a medida</h2>
+<p class="lead">Antes, cada conexión entre la IA y cada sistema era un desarrollo propio. Con MCP, el conector se escribe una vez y sirve para todos los usos.</p>
+<ul class="plain">
+<li>Sin MCP, conectar el chat a la historia clínica, a la agenda y al gestor documental son tres desarrollos distintos, cada uno atado a un modelo concreto.</li>
+<li>Con MCP, cada sistema expone un servidor con sus permisos. El modelo consulta los tres con las mismas reglas, y si cambiáis de modelo no hay que rehacer las conexiones.</li>
+<li>Si solo necesitáis que la IA responda preguntas generales, no necesitáis MCP. Lo necesitáis cuando la respuesta depende de vuestros datos o cuando la IA tiene que hacer algo en vuestros sistemas.</li>
+</ul>
+</div></section>
+
+<section class="s" id="para-que"><div class="w">
+<h2>Para qué sirve en vuestra organización</h2>
+<p class="lead">Sirve cuando la IA necesita contexto vuestro para responder o actuar. Estos son los usos que más nos piden.</p>
+<div class="why">
+<div><h3>Consultar vuestros datos con lenguaje normal</h3><p>Preguntar "¿qué huecos hay mañana en cardiología?" o "¿cuál es el protocolo de caídas vigente?" y que la IA lo busque en la agenda o en vuestros documentos, no que lo invente.</p></div>
+<div><h3>Hacer gestiones dentro de vuestros sistemas</h3><p>Registrar una cita, abrir una incidencia, actualizar un parte o preparar un borrador de informe en vuestra aplicación, siempre con vuestra confirmación.</p></div>
+<div><h3>Reunir varios sistemas en una respuesta</h3><p>Unir en una sola consulta lo que hoy está repartido: la historia clínica, los resultados de laboratorio y las notas de enfermería, cada uno con su permiso.</p></div>
+</div>
+</div></section>
+
+<section class="s" id="ejemplo"><div class="w">
+<h2>Lo que un MCP entrega a la IA</h2>
+<p class="lead">Un ejemplo con datos ficticios: elegid una pregunta y mirad qué recibe la IA del servidor antes de responder.</p>
+<details class="prueba" id="demo-mcp">
+<summary>
+<span class="pr-dot" aria-hidden="true"></span>
+<span class="pr-l"><span class="pr-et">Demo interactiva</span><span class="pr-t">Probad vosotros mismos</span></span>
+<span class="pr-ar" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+</summary>
+<div class="pr-c">
+<div class="mcp" data-mcp>
+<p class="mcp-k">Probadlo aquí mismo</p>
+<p class="mcp-t">La IA solo responde con lo que le entrega el servidor</p>
+<p class="mcp-sub">El servidor ficticio expone dos sistemas: la agenda (ver huecos, registrar citas con confirmación) y los documentos (leer protocolos). Elegid una pregunta y pulsad «Enviar a la IA». Todo corre en vuestro navegador.</p>
+<div class="mcp-bar">
+<label>Pregunta
+<select data-mcp-q>
+<option value="huecos">¿Qué huecos hay mañana en cardiología?</option>
+<option value="protocolo">¿Cuál es el protocolo de caídas vigente?</option>
+<option value="cita">Pide cita para el jueves a las 10:00</option>
+</select>
+</label>
+<label class="mcp-notok"><input type="checkbox" data-mcp-off> Sin conexión a los sistemas</label>
+<button type="button" class="btn alt" data-mcp-go>Enviar a la IA</button>
+<button type="button" class="btn fantasma" data-mcp-confirm hidden>Confirmar la cita</button>
+</div>
+<div class="mcp-grid" data-mcp-grid>
+<div><p class="mcp-h">Lo que el servidor MCP entrega a la IA</p><pre data-mcp-given># Pulsad «Enviar a la IA» para verlo…</pre></div>
+<div><p class="mcp-h">Lo que la IA responde</p><pre data-mcp-says># La respuesta aparecerá aquí…</pre></div>
+</div>
+<p class="mcp-audit" data-mcp-audit aria-live="polite"># El log de auditoría aparecerá aquí…</p>
+<noscript><p class="mcp-sub">Activa JavaScript para usar el ejemplo.</p></noscript>
+</div>
+</div>
+</details>
+</div></section>
+
+<section class="s" id="como"><div class="w">
+<h2>Cómo lo integramos nosotros</h2>
+<p class="lead">Lo llevamos como cualquier integración en salud: alcance corto, permisos cerrados y prueba con vuestro caso antes de abrirlo a más gente.</p>
+<div class="steps">
+<div class="step"><i>1</i><h3>Elegimos un caso concreto</h3><p>Una tarea repetida con datos claros: buscar en protocolos, consultar la agenda, resumir historiales. Un caso que se pueda probar en semanas.</p></div>
+<div class="step"><i>2</i><h3>Definimos qué expone cada servidor</h3><p>Qué datos se leen, qué acciones se permiten y quién puede usarlas. Lo que no está en la lista, la IA no lo toca.</p></div>
+<div class="step"><i>3</i><h3>Construimos los conectores</h3><p>Desarrollamos el servidor MCP sobre vuestros sistemas actuales (historia clínica, agenda, documental, base de datos) con su interfaz de programación de aplicaciones (API) o su acceso directo, según lo que ya tengáis.</p></div>
+<div class="step"><i>4</i><h3>Cerramos permisos y registro</h3><p>Autenticación por usuario, mínimos permisos y registro de cada lectura y cada acción. En salud, cada acceso queda anotado.</p></div>
+<div class="step"><i>5</i><h3>Lo conectamos a vuestro modelo, también en local</h3><p>Funciona con modelos en la nube y con modelos en vuestro propio equipo. Si los datos no deben salir del edificio, el modelo y los conectores corren dentro.</p></div>
+<div class="step"><i>6</i><h3>Probamos con vuestro equipo y lo ampliamos</h3><p>Se prueba con usuarios reales y sus preguntas reales. Si funciona, se añaden más datos y más acciones.</p></div>
+</div>
+</div></section>
+
+<section class="s" id="errores"><div class="w">
+<h2>Errores comunes al integrar MCP</h2>
+<ul class="plain">
+<li><strong>Exponer demasiados datos de golpe:</strong> abrir todo el sistema en el primer conector retrasa la aprobación. Un servidor corto con un caso claro se aprueba antes.</li>
+<li><strong>Permitir acciones sin confirmación:</strong> leer es una cosa, escribir es otra. Las acciones que cambian datos piden confirmación del profesional.</li>
+<li><strong>Dejar los permisos en el conector:</strong> el servidor MCP no sustituye vuestro control de acceso. Cada petición se autoriza con el usuario que la hace.</li>
+<li><strong>No registrar lo que hace la IA:</strong> cada consulta y cada acción deben quedar en el registro de auditoría, igual que cualquier acceso directo.</li>
+<li><strong>Confiar en conectores públicos sin revisarlos:</strong> hay servidores MCP abiertos de calidad desigual. Los que tocan datos clínicos se revisan y se adaptan antes de usarlos.</li>
+</ul>
+</div></section>
+
+<section class="s" id="faq"><div class="w">
+<h2>Preguntas que nos hacen</h2>
+<div class="steps" style="grid-template-columns:1fr">
+<div class="step"><h3>¿MCP envía nuestros datos al proveedor del modelo?</h3><p>Solo lo que el modelo necesita para esa respuesta, y solo si usáis un modelo en la nube. Si usáis un modelo local, los datos no salen de vuestro equipo. Lo explicamos en la <a href="ia-privada-en-hospitales.html">guía de IA privada en hospitales</a>.</p></div>
+<div class="step"><h3>¿Vale para nuestros sistemas actuales?</h3><p>Sí, si tienen una vía de acceso: interfaz de programación de aplicaciones (API), base de datos o exportación. El servidor MCP se apoya en lo que ya tenéis; no pide cambiar de sistema.</p></div>
+<div class="step"><h3>¿Y con la historia clínica?</h3><p>Sí. Cuando el intercambio sigue el estándar sanitario, el servidor MCP se apoya en él. Lo explicamos en la <a href="integrar-fhir.html">guía de integración con FHIR</a>.</p></div>
+<div class="step"><h3>¿Cuánto tarda una primera integración?</h3><p>Un primer conector con un caso acotado se prueba en semanas. Ampliarlo a más sistemas depende de vuestros accesos y permisos, no del protocolo.</p></div>
+</div>
+</div></section>
+
+<section class="s" id="relacionados"><div class="w">
+<h2>Guías y servicios relacionados</h2>
+<div class="ind two">
+<a href="ia-privada-en-hospitales.html">Guía: IA privada en hospitales<span>›</span></a>
+<a href="integrar-fhir.html">Guía: cómo integrar con FHIR<span>›</span></a>
+<a href="../servicios/ia-privada-automatizacion.html">Servicio: IA privada y automatización<span>›</span></a>
+<a href="../servicios/software-a-medida.html">Servicio: software a medida<span>›</span></a>
+</div>
+</div></section>
+
+<section class="cta dark" id="contacto"><div class="w">
+<h2>Empieza por una conversación de treinta minutos</h2>
+<p>Contadnos qué necesitáis y os diremos con claridad si podemos ayudaros.</p>
+<form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
+<input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
+<input type="hidden" name="_gotcha">
+<input type="hidden" name="_next" value="https://www.ageinglabtech.com/gracias.html">
+<div class="cf-grid">
+<label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
+<label>Vuestro correo<input type="email" name="email" autocomplete="email" required></label>
+<label>Empresa (opcional)<input type="text" name="empresa"></label>
+<label>¿Qué os interesa?
+<select name="interes" required>
+<option value="" disabled>Elegid una opción</option>
+<option value="IA privada y automatización" selected>IA privada y automatización</option>
+<option value="Decisiones con IA">Decisiones con IA</option>
+<option value="Software a medida">Software a medida</option>
+<option value="IoT y hardware">IoT y hardware</option>
+<option value="Interfaces para mayores">Interfaces para mayores</option>
+<option value="Investigación e innovación">Investigación e innovación</option>
+<option value="Soluciones">Soluciones</option>
+<option value="Aún no lo sé">Aún no lo sé</option>
+</select>
+</label>
+<label class="cf-full">Contadnos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
+</div>
+<div class="cf-actions">
+<button type="submit" class="btn btn-primary">Contactar</button>
+</div>
+</form>
+</div></section>
+</main>
+
+<footer><div class="w"><div class="cols">
+<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es una iniciativa tecnológica que aplica tecnología desarrollada y utilizada en el contexto de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a>, laboratorio de investigación del Centro de Tecnología Biomédica (CTB) de la Universidad Politécnica de Madrid (UPM). Los servicios de esta web los presta AgeingLab Tech y no constituyen actividad institucional de la UPM. Os acercamos al futuro desde la ciencia.</p></div>
+<div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a><a href="/#metodo">Cómo trabajamos</a></div>
+<div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
+<div><h3>Nosotros</h3><a href="/#nosotros">Quiénes somos</a><a href="/#equipo">Equipo</a><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>
+</div><div class="base">© 2026 AgeingLab Tech · Con tecnología aplicada desde <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> (CTB – UPM) · Madrid, España</div></div></footer>
+
+<script src="../js/main.js"></script>
+<script>
+/* Ejemplo MCP (solo integrar-mcp.html): lo que el servidor entrega a la IA, todo ficticio y en local */
+(function(){
+var root=document.querySelector('[data-mcp]');
+if(!root)return;
+function evDemo(demo,extra){try{if(typeof gtag==='function'){var p={page:location.pathname,demo:demo,via:'button'};if(extra)for(var k in extra)p[k]=extra[k];gtag('event','demo_open',p)}}catch(e){}}
+var sel=root.querySelector('[data-mcp-q]'),off=root.querySelector('[data-mcp-off]'),
+go=root.querySelector('[data-mcp-go]'),confirm=root.querySelector('[data-mcp-confirm]'),
+given=root.querySelector('[data-mcp-given]'),says=root.querySelector('[data-mcp-says]'),
+audit=root.querySelector('[data-mcp-audit]');
+var Q={
+huecos:{tool:'agenda.buscar_huecos',args:{servicio:'cardiología',fecha:'2026-10-15'},
+ok:{huecos:['09:20','10:05','12:40'],nota:'Planta 2 · traer tarjeta sanitaria'},
+answer:'Mañana en cardiología quedan tres huecos: 09:20, 10:05 y 12:40 (planta 2). Decidme cuál os viene bien y lo reservo.'},
+protocolo:{tool:'documentos.leer_documento',args:{id:'protocolo-caidas-v3'},
+ok:{titulo:'Protocolo de caídas v3',vigente_desde:'2026-03-01',extracto:'Valorar el riesgo de caídas en las primeras 24 h del ingreso; reevaluar tras cada caída o cambio de medicación.'},
+answer:'Según el protocolo de caídas v3, vigente desde el 01/03/2026: hay que valorar el riesgo en las primeras 24 horas del ingreso y reevaluarlo tras cada caída o cambio de medicación.'},
+cita:{tool:'agenda.crear_cita',args:{servicio:'cardiología',fecha:'2026-10-15',hora:'10:00'},
+pending:{estado:'pendiente_confirmacion',resumen:'Cardiología · jueves 10:00 · paciente de ejemplo'},
+pendingAnswer:'He preparado la cita (cardiología, jueves 10:00) pero aún no la he registrado. Revisadla y confirmadla con el botón de abajo.',
+done:{estado:'registrada',localizador:'CITA-4821'},
+doneAnswer:'Cita registrada: cardiología, jueves 10:00. Localizador CITA-4821.'}
+};
+function now(){var d=new Date();function p(x){return (x<10?'0':'')+x}return p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds())}
+function pack(q,res){return JSON.stringify({servidor:q.tool.split('.')[0],herramienta:q.tool,argumentos:q.args,resultado:res},null,2)}
+var sending=false,reduced=false;
+try{reduced=matchMedia('(prefers-reduced-motion:reduce)').matches}catch(e){}
+function placeholder(){
+given.textContent='# Pulsad «Enviar a la IA» para verlo…';
+says.textContent='# La respuesta aparecerá aquí…';
+audit.textContent='# El log de auditoría aparecerá aquí…';
+confirm.hidden=true;
+}
+function send(){
+var key=sel.value,q=Q[key],cut=off.checked;
+evDemo('mcp-ejemplo',{pregunta:key,conexion:cut?'sin-conexion':'ok'});
+function paint(){
+if(cut){
+given.textContent=pack(q,{error:'sin_conexion',detalle:'El servidor MCP no está disponible'});
+says.textContent='No tengo acceso a vuestros sistemas ahora mismo, así que no puedo consultar ese dato. Sin el conector, no me lo invento: conectadlo e intentadlo de nuevo.';
+audit.textContent=now()+' '+q.tool+' ERROR · sin conexión · queda registrado en auditoría';
+confirm.hidden=true;
+}else if(key==='cita'){
+given.textContent=pack(q,q.pending);
+says.textContent=q.pendingAnswer;
+audit.textContent=now()+' '+q.tool+' pendiente de confirmación · usuario demo@centro.local';
+confirm.hidden=false;
+}else{
+given.textContent=pack(q,q.ok);
+says.textContent=q.answer;
+audit.textContent=now()+' '+q.tool+' 200 · usuario demo@centro.local';
+confirm.hidden=true;
+}
+}
+if(reduced){paint();return}
+if(sending)return;
+sending=true;go.disabled=true;go.textContent='Enviando…';
+setTimeout(function(){paint();go.disabled=false;go.textContent='Enviar a la IA';sending=false},650);
+}
+confirm.addEventListener('click',function(){
+var q=Q.cita;
+evDemo('mcp-ejemplo',{pregunta:'cita-confirmada',conexion:'ok'});
+given.textContent=pack(q,q.done);
+says.textContent=q.doneAnswer;
+audit.textContent=now()+' '+q.tool+' 200 · registrada CITA-4821 · usuario demo@centro.local';
+confirm.hidden=true;
+});
+go.addEventListener('click',send);
+sel.addEventListener('change',placeholder);
+off.addEventListener('change',placeholder);
+placeholder();
+})();
+</script>
+</body>
+</html>

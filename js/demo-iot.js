@@ -248,7 +248,7 @@ if (typeof document !== 'undefined') {
         t.textContent = 'Mesa vacía';
         const s = document.createElement('span');
         s.className = 'io-vacio-t';
-        s.textContent = 'Arrastra piezas hasta aquí o pulsa sobre ellas en la paleta.';
+        s.textContent = 'Arrastrad piezas hasta aquí o pulsad sobre ellas en la paleta.';
         v.append(i, t, s);
         mesa.append(v);
       }
@@ -289,7 +289,7 @@ if (typeof document !== 'undefined') {
       lineas();
       const vacio = !piezas.length;
       const msgs = vacio
-        ? [{ nivel: 'info', texto: 'Añade piezas a la mesa: aquí te diremos qué encaja, qué falta y qué conviene revisar.' }]
+        ? [{ nivel: 'info', texto: 'Añadid piezas a la mesa: aquí os diremos qué encaja, qué falta y qué conviene revisar.' }]
         : evaluar(piezas.map((q) => q.k));
       resultado(msgs);
       puntuacion(msgs, vacio);

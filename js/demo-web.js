@@ -10,15 +10,15 @@ if (typeof document !== 'undefined') {
   const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; };
   const on = { cab: true, por: true, ser: false, nos: false, faq: false, con: false, pie: false };
   let orden = ['por', 'ser', 'nos', 'faq', 'con'], estilo = 'sobrio', movil = false;
-  const nombre = () => $('wb-nombre').value.trim() || 'Tu negocio';
-  const lema = () => $('wb-lema').value.trim() || 'Una frase que explique lo que haces';
+  const nombre = () => $('wb-nombre').value.trim() || 'Vuestro negocio';
+  const lema = () => $('wb-lema').value.trim() || 'Una frase que explique lo que hacéis';
   const bloque = (titulo) => { const s = el('div', 'wb-s'); if (titulo) s.append(el('div', 'wb-h', titulo)); return s; };
 
   const CONSTR = {
     cab: () => { const h = el('div', 'wb-cab'), nav = el('div', 'wb-nav'); h.append(el('strong', '', nombre())); orden.filter((k) => on[k]).forEach((k) => nav.append(el('span', '', CORTO[k]))); h.append(nav); return h; },
-    por: () => { const s = el('div', 'wb-s wb-por'); s.append(el('div', 'wb-t', lema()), el('p', '', 'Aquí iría una descripción breve de lo que ofreces y a quién se lo ofreces.'), el('span', 'wb-bt', 'Contáctanos')); return s; },
+    por: () => { const s = el('div', 'wb-s wb-por'); s.append(el('div', 'wb-t', lema()), el('p', '', 'Aquí iría una descripción breve de lo que ofrecéis y a quién se lo ofrecéis.'), el('span', 'wb-bt', 'Contáctanos')); return s; },
     ser: () => { const s = bloque('Servicios'), g = el('div', 'wb-g'); ['Servicio uno', 'Servicio dos', 'Servicio tres'].forEach((t) => { const c = el('div', 'wb-c'); c.append(el('strong', '', t), el('p', '', 'Texto de ejemplo para explicar este servicio.')); g.append(c); }); s.append(g); return s; },
-    nos: () => { const s = bloque('Sobre nosotros'); s.append(el('p', '', `Aquí contarías la historia de ${nombre()}, quién está detrás y por qué hacéis lo que hacéis.`)); return s; },
+    nos: () => { const s = bloque('Sobre nosotros'); s.append(el('p', '', `Aquí contaríais la historia de ${nombre()}, quién está detrás y por qué hacéis lo que hacéis.`)); return s; },
     faq: () => { const s = bloque('Preguntas frecuentes'); ['Primera pregunta de ejemplo', 'Segunda pregunta de ejemplo', 'Tercera pregunta de ejemplo'].forEach((q) => { const d = el('details'); d.append(el('summary', '', q), el('p', '', 'Respuesta de ejemplo.')); s.append(d); }); return s; },
     con: () => { const s = bloque('Contacto'), f = el('div', 'wb-f'); ['Nombre', 'Correo'].forEach((p) => { const i = el('input'); i.placeholder = p; i.disabled = true; i.setAttribute('aria-label', p); f.append(i); }); f.append(el('span', 'wb-bt', 'Enviar')); s.append(f); return s; },
     pie: () => { const f = el('div', 'wb-pie'); f.append(el('span', '', `© ${new Date().getFullYear()} ${nombre()}`), el('span', '', 'Privacidad · Aviso legal · Cookies')); return f; },
@@ -29,8 +29,8 @@ if (typeof document !== 'undefined') {
     $('wb-marco').classList.toggle('wb-m', movil);
     const claves = [on.cab && 'cab', ...orden.filter((k) => on[k]), on.pie && 'pie'].filter(Boolean);
     claves.forEach((k) => p.append(CONSTR[k]()));
-    if (!claves.length) p.append(el('p', 'wb-vacio', 'Tu web está vacía. Marca secciones en el panel.'));
-    $('wb-n').textContent = claves.length === 1 ? 'Tu web tiene 1 sección.' : `Tu web tiene ${claves.length} secciones.`;
+    if (!claves.length) p.append(el('p', 'wb-vacio', 'Vuestra web está vacía. Marcad secciones en el panel.'));
+    $('wb-n').textContent = claves.length === 1 ? 'Vuestra web tiene 1 sección.' : `Vuestra web tiene ${claves.length} secciones.`;
   }
 
   function lista() {

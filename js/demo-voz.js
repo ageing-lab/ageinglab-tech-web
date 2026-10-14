@@ -1,10 +1,10 @@
 // Demo: voz a texto en el navegador (Whisper + Transformers.js). El audio no sale del dispositivo.
 // Primera versión: librería y modelo desde el CDN de jsDelivr / Hugging Face, cargados con import()
 // al pulsar «Activar la demo», para que la interfaz siga funcionando si el CDN no responde.
-// Para dejar de depender de terceros, alójalos tú y cambia AUTOALOJADO a true (ver rutas abajo).
+// Para dejar de depender de terceros, alojadlos vosotros y cambiad AUTOALOJADO a true (ver rutas abajo).
 
 const CDN = 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3';
-const MODELO = 'onnx-community/whisper-base'; // multilingüe. Prueba también whisper-small
+const MODELO = 'onnx-community/whisper-base'; // multilingüe. Probad también whisper-small
 const AUTOALOJADO = false;
 const MAX_SEG = 30;
 const BARRAS = 24;
@@ -80,11 +80,11 @@ async function transcribe() {
   cierraAudio();
   if (stream) { stream.getTracks().forEach((t) => t.stop()); stream = null; }
   micOn(false);
-  hint.textContent = 'Pulsa el micrófono para grabar otra vez.';
+  hint.textContent = 'Pulsad el micrófono para grabar otra vez.';
   ocupado = true;
   btnGrabar.disabled = true;
   setK('work');
-  msg('Transcribiendo en tu dispositivo…', 'work');
+  msg('Transcribiendo en vuestro dispositivo…', 'work');
   salida.setAttribute('aria-busy', 'true');
   try {
     const buf = await new Blob(trozos).arrayBuffer();
@@ -93,12 +93,12 @@ async function transcribe() {
     ctx.close();
     const r = await asr(audio, { language: 'spanish', task: 'transcribe', chunk_length_s: 30 });
     const t = ((r && r.text) || '').trim();
-    salida.textContent = t || 'No se ha entendido nada. Prueba a hablar más cerca del micrófono.';
+    salida.textContent = t || 'No se ha entendido nada. Probad a hablar más cerca del micrófono.';
     pintaCopiar();
-    msg(t ? 'Hecho. Nada de esto ha salido de tu navegador.' : 'No se ha entendido nada. Prueba otra vez.', t ? 'ok' : 'err');
+    msg(t ? 'Hecho. Nada de esto ha salido de vuestro navegador.' : 'No se ha entendido nada. Probad otra vez.', t ? 'ok' : 'err');
   } catch (err) {
     console.error(err);
-    msg('No se ha podido transcribir la grabación. Inténtalo de nuevo.', 'err');
+    msg('No se ha podido transcribir la grabación. Intentadlo de nuevo.', 'err');
   } finally {
     salida.setAttribute('aria-busy', 'false');
     ocupado = false;
@@ -112,7 +112,7 @@ async function empieza() {
     st = await navigator.mediaDevices.getUserMedia({ audio: true });
   } catch (err) {
     console.error(err);
-    msg('No se puede usar el micrófono. Permite el acceso en el navegador e inténtalo de nuevo.', 'err');
+    msg('No se puede usar el micrófono. Permitid el acceso en el navegador e intentadlo de nuevo.', 'err');
     return;
   }
   stream = st;
@@ -126,12 +126,12 @@ async function empieza() {
     console.error(err);
     stream.getTracks().forEach((t) => t.stop());
     stream = null;
-    msg('Este navegador no ha podido iniciar la grabación. Inténtalo con otro navegador.', 'err');
+    msg('Este navegador no ha podido iniciar la grabación. Intentadlo con otro navegador.', 'err');
     return;
   }
   micOn(true);
-  msg('Grabando en tu dispositivo…', 'rec');
-  hint.textContent = 'Pulsa para parar y transcribir.';
+  msg('Grabando en vuestro dispositivo…', 'rec');
+  hint.textContent = 'Pulsad para parar y transcribir.';
   tiempo.textContent = '0:00 / ' + fmt(MAX_SEG);
   tiempo.classList.remove('hot');
   arrancaNivel();
@@ -187,8 +187,8 @@ if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
       btnCargar.hidden = true;
       prog.hidden = true;
       panelRec.hidden = false;
-      hint.textContent = 'Pulsa el micrófono y habla en español. Máximo ' + MAX_SEG + ' segundos. Puedes desconectar el wifi y probar: sigue funcionando sin internet.';
-      msg('Listo. Puedes desconectar el wifi y probar: sigue transcribiendo sin salir a internet.', 'ok');
+      hint.textContent = 'Pulsad el micrófono y hablad en español. Máximo ' + MAX_SEG + ' segundos. Podéis desconectar el wifi y probar: sigue funcionando sin internet.';
+      msg('Listo. Podéis desconectar el wifi y probar: sigue transcribiendo sin salir a internet.', 'ok');
       btnGrabar.focus();
     } catch (err) {
       console.error(err);
@@ -196,7 +196,7 @@ if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
       btnCargar.disabled = false;
       txtCargar.textContent = 'Reintentar';
       prog.hidden = true;
-      msg('No se ha podido cargar el modelo. Comprueba tu conexión e inténtalo de nuevo.', 'err');
+      msg('No se ha podido cargar el modelo. Comprobad vuestra conexión e intentadlo de nuevo.', 'err');
     }
   });
 }

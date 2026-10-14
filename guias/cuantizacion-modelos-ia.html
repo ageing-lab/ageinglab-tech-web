@@ -28,17 +28,17 @@
 <meta name="apple-mobile-web-app-capable">
 <meta name="apple-mobile-web-app-title" content="AgeingLab Tech">
 <title>Cuantizar modelos de IA: guía práctica | AgeingLab Tech</title>
-<meta name="description" content="Qué es cuantizar un modelo de IA, cuánta memoria ahorra cada nivel y ejemplos con Qwen3: del modelo original al que cabe en tu tarjeta.">
+<meta name="description" content="Qué es cuantizar un modelo de IA, cuánta memoria ahorra cada nivel y ejemplos con Qwen3: del modelo original al que cabe en vuestra tarjeta.">
 <link rel="canonical" href="https://www.ageinglabtech.com/guias/cuantizacion-modelos-ia.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cuantizar modelos de IA: guía práctica | AgeingLab Tech">
-<meta property="og:description" content="Qué es cuantizar un modelo de IA, cuánta memoria ahorra cada nivel y ejemplos con Qwen3: del modelo original al que cabe en tu tarjeta.">
+<meta property="og:description" content="Qué es cuantizar un modelo de IA, cuánta memoria ahorra cada nivel y ejemplos con Qwen3: del modelo original al que cabe en vuestra tarjeta.">
 <meta property="og:url" content="https://www.ageinglabtech.com/guias/cuantizacion-modelos-ia.html">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="AgeingLab Tech">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Cuantizar modelos de IA: guía práctica | AgeingLab Tech">
-<meta name="twitter:description" content="Qué es cuantizar un modelo de IA, cuánta memoria ahorra cada nivel y ejemplos con Qwen3: del modelo original al que cabe en tu tarjeta.">
+<meta name="twitter:description" content="Qué es cuantizar un modelo de IA, cuánta memoria ahorra cada nivel y ejemplos con Qwen3: del modelo original al que cabe en vuestra tarjeta.">
 <link rel="icon" href="../img/icons/favicon.ico">
 <meta property="og:image" content="https://www.ageinglabtech.com/img/hero-poster.webp">
 <meta property="og:image:width" content="1920">
@@ -52,13 +52,13 @@
 <link rel="stylesheet" href="../styles.css">
 <script>if(!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('js')</script>
 <script>(function(){try{var t=localStorage.getItem('al-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Guías","item":"https://www.ageinglabtech.com/guias/"},{"@type":"ListItem","position":3,"name":"Cuantizar modelos de IA: que quepan en tu equipo","item":"https://www.ageinglabtech.com/guias/cuantizacion-modelos-ia.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ageinglabtech.com/"},{"@type":"ListItem","position":2,"name":"Guías","item":"https://www.ageinglabtech.com/guias/"},{"@type":"ListItem","position":3,"name":"Cuantizar modelos de IA: que quepan en vuestro equipo","item":"https://www.ageinglabtech.com/guias/cuantizacion-modelos-ia.html"}]}</script>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"Article",
-  "headline":"Cuantizar modelos de IA: que quepan en tu equipo",
-  "description":"Qué es cuantizar un modelo de IA, cuánta memoria ahorra cada nivel y ejemplos con Qwen3: del modelo original al que cabe en tu tarjeta.",
+  "headline":"Cuantizar modelos de IA: que quepan en vuestro equipo",
+  "description":"Qué es cuantizar un modelo de IA, cuánta memoria ahorra cada nivel y ejemplos con Qwen3: del modelo original al que cabe en vuestra tarjeta.",
   "url":"https://www.ageinglabtech.com/guias/cuantizacion-modelos-ia.html",
   "datePublished":"2026-10-12",
   "dateModified":"2026-10-12",
@@ -100,7 +100,7 @@
 <li><strong>Q8:</strong> ~1 byte por parámetro. El mismo 32B baja a unos 34 GB, casi sin pérdida apreciable.</li>
 <li><strong>Q4:</strong> ~0,6 bytes por parámetro. El 32B se queda en unos 20 GB: el equilibrio típico, con algo de pérdida.</li>
 <li><strong>Q2–Q3:</strong> menos de la mitad que Q4, y ahí la pérdida ya se nota.</li>
-<li><strong>Y suma la memoria de trabajo:</strong> el contexto y el programa también ocupan. Calcula un 20% por encima del archivo.</li>
+<li><strong>Y suma la memoria de trabajo:</strong> el contexto y el programa también ocupan. Calculad un 20% por encima del archivo.</li>
 </ul>
 </div></section>
 
@@ -108,7 +108,7 @@
 <h2>Los formatos sin complicaciones</h2>
 <p class="lead">El nivel dice cuánto ocupa; el formato dice con qué programa se usa.</p>
 <div class="why">
-<div><h3>GGUF</h3><p>El de llama.cpp y Ollama. El que usarás en local casi seguro. El nombre dice el nivel: Q8_0, Q6_K, Q4_K_M… la M es el punto de partida recomendado.</p></div>
+<div><h3>GGUF</h3><p>El de llama.cpp y Ollama. El que usaréis en local casi seguro. El nombre dice el nivel: Q8_0, Q6_K, Q4_K_M… la M es el punto de partida recomendado.</p></div>
 <div><h3>AWQ y GPTQ</h3><p>Compresión de 4 bits pensada para servir en unidad de procesamiento gráfico (GPU) con programas como vLLM. Si el modelo se ejecuta en un servidor, consultad estos formatos.</p></div>
 <div><h3>FP8</h3><p>A medio camino entre el original y los 4 bits. DeepSeek V3 salió directamente así. Para equipo serio.</p></div>
 <div><h3>NF4</h3><p>Para programar y ajustar modelos en Python, no para servirlos.</p></div>
@@ -131,8 +131,8 @@
 <h2>Preguntas que nos hacen</h2>
 <div class="steps" style="grid-template-columns:1fr">
 <div class="step"><h3>¿Se nota la pérdida?</h3><p>En Q8 casi no; en Q4 un poco, y depende de la tarea: para redactar y resumir se nota menos que para mates o código. Se prueba con vuestro caso.</p></div>
-<div class="step"><h3>¿Qué formato uso?</h3><p>En local con Ollama o llama.cpp: GGUF Q4_K_M para empezar. En servidor con vLLM: AWQ o FP8.</p></div>
-<div class="step"><h3>¿Comprimo yo o descargo?</h3><p>Descargad: casi todos los modelos abiertos traen versiones ya comprimidas. Comprimir por vuestra cuenta solo compensa en casos raros.</p></div>
+<div class="step"><h3>¿Qué formato usamos?</h3><p>En local con Ollama o llama.cpp: GGUF Q4_K_M para empezar. En servidor con vLLM: AWQ o FP8.</p></div>
+<div class="step"><h3>¿Comprimimos o descargamos?</h3><p>Descargad: casi todos los modelos abiertos traen versiones ya comprimidas. Comprimir por vuestra cuenta solo compensa en casos raros.</p></div>
 <div class="step"><h3>¿La compresión vale para mezcla de expertos (MoE, Mixture of Experts)?</h3><p>Sí, con la misma regla: se comprimen los totales. Por eso un MoE grande sigue sin caber en poco equipo. Lo explicamos en la <a href="modelos-moe-vs-densos.html">guía de MoE frente a denso</a>.</p></div>
 </div>
 </div></section>
@@ -181,11 +181,11 @@
 </main>
 
 <footer><div class="w"><div class="cols">
-<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es un servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> en el Centro de Tecnología Biomédica de la UPM. Os acercamos al futuro desde la ciencia.</p></div>
+<div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es una iniciativa tecnológica que aplica tecnología desarrollada y utilizada en el contexto de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a>, laboratorio de investigación del Centro de Tecnología Biomédica (CTB) de la Universidad Politécnica de Madrid (UPM). Los servicios de esta web los presta AgeingLab Tech y no constituyen actividad institucional de la UPM. Os acercamos al futuro desde la ciencia.</p></div>
 <div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a><a href="/#metodo">Cómo trabajamos</a></div>
 <div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
 <div><h3>Nosotros</h3><a href="/#nosotros">Quiénes somos</a><a href="/#equipo">Equipo</a><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>
-</div><div class="base">© 2026 AgeingLab Tech · Servicio de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> – CTB – UPM · Madrid, España</div></div></footer>
+</div><div class="base">© 2026 AgeingLab Tech · Con tecnología aplicada desde <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> (CTB – UPM) · Madrid, España</div></div></footer>
 
 <script src="../js/main.js"></script>
 </body>

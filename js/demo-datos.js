@@ -244,7 +244,7 @@ if (typeof document !== 'undefined') {
   async function leer(f) {
     if (!f) return;
     if (!/\.csv$/i.test(f.name) && !/csv|text\/plain/.test(f.type || '')) return ponMsg('Solo se aceptan archivos CSV.', 'err');
-    if (f.size > 1e6) return ponMsg('El archivo pesa más de 1 MB. Prueba con uno más pequeño.', 'err');
+    if (f.size > 1e6) return ponMsg('El archivo pesa más de 1 MB. Probad con uno más pequeño.', 'err');
     archivo = f.name.replace(/\.csv$/i, '') || 'datos';
     $('dd-file-t').textContent = f.name;
     ponMsg('Leyendo «' + f.name + '» y revisando sus columnas…');
@@ -282,7 +282,7 @@ if (typeof document !== 'undefined') {
     limpio = false;
     $('dd-res').hidden = true;
     $('dd-archivo').value = '';
-    $('dd-file-t').textContent = 'Arrastra aquí tu CSV o haz clic para elegirlo';
+    $('dd-file-t').textContent = 'Arrastrad aquí vuestro CSV o haced clic para elegirlo';
     ponMsg('', 'idle');
     $('dd-revisar').focus();
   });

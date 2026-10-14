@@ -1,4 +1,4 @@
-var CACHE='ageinglab-v17';
+var CACHE='ageinglab-v19';
 var CORE=[
 '/',
 '/styles.css',
@@ -34,6 +34,7 @@ var CORE=[
   '/guias/hardware-ia-local.html',
   '/guias/modelos-moe-vs-densos.html',
   '/guias/cuantizacion-modelos-ia.html',
+  '/guias/integrar-mcp.html',
 '/servicios/',
 '/servicios/ia-privada-automatizacion.html',
 '/servicios/decisiones-con-ia.html',
