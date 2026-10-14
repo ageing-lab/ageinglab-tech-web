@@ -125,8 +125,9 @@ section.s{padding:84px 0;border-top:1px solid var(--line)}
 .prueba[open] .pr-ar{transform:rotate(180deg);border-color:var(--mint)}
 .pr-c{padding:30px 30px 38px;background:var(--bg);color:var(--ink);border-radius:0 0 18px 18px}
 .pr-c>.gm,.pr-c>.mem,.pr-c>.sala,.pr-c>.fhir,.pr-c>.tok-sim,.pr-c>.stk{margin:0;max-width:none}
-.pr-c>.demo-sep{margin:34px 0 0;font:700 clamp(20px,2.2vw,26px)/1.2 "Bricolage Grotesque",sans-serif;letter-spacing:-.01em}
-.pr-c>.demo-sep-sub{margin:8px 0 18px;color:var(--mute);font-size:17px;max-width:44em}
+/* Aire entre la demo plegada y el texto que sigue, y entre ese texto y su guía relacionada */
+.txt .prueba{margin-bottom:28px}
+.txt p.rel{margin-top:10px}
 .prueba[open] .pr-c{animation:pr-in .5s cubic-bezier(.2,.75,.3,1) both}
 @keyframes pr-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.pr-dot{animation:none}.prueba[open] .pr-c{animation:none}}
