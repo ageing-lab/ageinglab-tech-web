@@ -192,7 +192,7 @@
 <div class="hero dark case-hero"><div class="w">
 <nav aria-label="Miga de pan" style="margin-bottom:18px"><a href="/" style="color:var(--mu)">Inicio</a> <span aria-hidden="true">/</span> <a href="../casos-de-exito/" style="color:var(--mu)">Casos de éxito</a> <span aria-hidden="true">/</span> <span>IA local</span></nav>
 <h1>IA local para datos clínicos en un servidor de bajo presupuesto</h1>
-<p>Desplegamos un sistema de inteligencia artificial (IA) local para nuestro propio equipo, que usamos a diario para trabajar con datos clínicos sin que salgan del edificio: un servidor de ≈1.200 € con unidad de procesamiento gráfico (GPU) RTX 5060 Ti de 16 GB, modelo Qwen 27B a 30 tokens/s de media, con registro de peticiones y acceso por interfaz de programación de aplicaciones (API) desde nuestras herramientas.</p>
+<p>Desplegamos un sistema de inteligencia artificial (IA) local para nuestro propio equipo, que usamos a diario para trabajar con datos clínicos sin que salgan del edificio: un servidor de ≈1.200 € con unidad de procesamiento gráfico (GPU) RTX 5060 Ti de 16 GB, modelo Qwen 27B a 30 tokens/s de media, con registro de peticiones y acceso por interfaz de programación de aplicaciones (API) desde nuestras herramientas. Es la misma arquitectura que desplegamos para clientes, adaptada a su infraestructura y a sus requisitos de acceso y trazabilidad.</p>
 <a class="btn alt" href="#contacto">Hablemos de vuestro proyecto</a> <a class="btn fantasma" href="#demo-tokens" data-prueba>Probar velocidad</a> <a class="btn fantasma" href="#demo-stack" data-prueba>Probar recorrido</a>
 </div></div>
 
@@ -201,7 +201,7 @@
 <ol class="ba">
 <li><span class="k">Antes</span><h3>Sin IA disponible para datos clínicos</h3><p>Los datos clínicos no podían salir del edificio, así que no era posible apoyarse en servicios de IA en la nube para las tareas de desarrollo.</p></li>
 <li><span class="k">Ahora</span><h3>IA local en un servidor propio</h3><p>Un servidor de ≈1.200 € con GPU de 16 GB, dentro de la red interna, que ejecuta Qwen 27B a 30 tokens/s de media con registro de cada petición.</p></li>
-<li class="res"><span class="k">Resultado</span><ul><li><strong>30 tokens/s de media</strong><span>con un modelo open weight de 27B (Qwen, denso)</span></li><li><strong>≈1.200 €</strong><span>presupuesto de todo el servidor</span></li><li><strong>100 %</strong><span>del dato clínico permanece dentro del edificio</span></li><li><strong>Registro y API local</strong><span>peticiones con log y acceso desde Copilot, Opencode y chat interno</span></li></ul></li>
+<li class="res"><span class="k">Resultado</span><ul><li><strong>30 tokens/s de media</strong><span>con un modelo open weight de 27B (Qwen, denso)</span></li><li><strong>≈1.200 €</strong><span>presupuesto de todo el servidor</span></li><li><strong>100 %</strong><span>del dato clínico permanece dentro del edificio en esta configuración</span></li><li><strong>Registro y API local</strong><span>peticiones con log y acceso desde Copilot, Opencode y chat interno</span></li></ul></li>
 </ol>
 </div></section>
 
@@ -320,7 +320,7 @@
 
 <section class="s" id="resultados"><div class="w">
 <h2>Resultados</h2>
-<div class="txt"><p>Trabajamos en tareas de desarrollo con datos clínicos que no salen nunca del edificio: la IA corre en un servidor propio, con Qwen 27B que responde a 30 tokens por segundo de media.</p><p>Cada petición queda registrada, el acceso queda limitado a la red interna y todo el hardware cuesta ≈1.200 €.</p></div>
+<div class="txt"><p>Trabajamos en tareas de desarrollo con datos clínicos que no salen del edificio: la IA corre en un servidor propio, con Qwen 27B que responde a 30 tokens por segundo de media.</p><p>En esta configuración, cada petición queda registrada, el acceso queda limitado a la red interna y todo el hardware cuesta ≈1.200 €. En cada proyecto ajustamos el registro, los permisos y la segmentación de red a los requisitos de la organización.</p></div>
 </div></section>
 
 <section class="s" id="otros"><div class="w">
@@ -329,7 +329,7 @@
 </div></section>
 
 <section class="cta dark" id="contacto"><div class="w">
-<h2>¿Vuestros datos no pueden salir fuera?</h2>
+<h2>Cuéntanos qué necesitáis construir</h2>
 <p>Contadnos qué requisitos de datos tenéis y evaluaremos si un sistema en vuestra propia infraestructura lo resuelve.</p>
 <form class="contact-form" action="https://formspree.io/f/myeyrqnr" method="POST">
 <input type="hidden" name="_subject" value="Consulta general — AgeingLab Tech">
@@ -338,24 +338,24 @@
 <div class="cf-grid">
 <label>Nombre<input type="text" name="nombre" autocomplete="name" required></label>
 <label>Vuestro correo<input type="email" name="email" autocomplete="email" required></label>
-<label>Empresa (opcional)<input type="text" name="empresa"></label>
-<label>¿Qué os interesa?
+<label>Empresa (opcional)<input type="text" name="empresa" autocomplete="organization"></label>
+<label>¿Qué necesitáis?
 <select name="interes" required>
 <option value="" disabled>Elegid una opción</option>
+<option value="Software a medida">Desarrollo de software a medida</option>
 <option value="IA privada y automatización">IA privada y automatización</option>
-<option value="Decisiones con IA">Decisiones con IA</option>
-<option value="Software a medida">Software a medida</option>
-<option value="IoT y hardware">IoT y hardware</option>
-<option value="Interfaces para mayores">Interfaces para mayores</option>
+<option value="IoT y hardware">IoT, hardware y dispositivos conectados</option>
+<option value="Interfaces para mayores">Interfaces para personas mayores</option>
+<option value="Decisiones con IA">Análisis de datos y decisiones con IA</option>
 <option value="Investigación e innovación">Investigación e innovación</option>
-<option value="Soluciones">Soluciones</option>
-<option value="Aún no lo sé" selected>Aún no lo sé</option>
+<option value="Soluciones">Soluciones de IA privada</option>
+<option value="Aún no lo sé">Aún no lo sé</option>
 </select>
 </label>
 <label class="cf-full">Contadnos brevemente vuestro caso<textarea name="mensaje" rows="4" required></textarea></label>
 </div>
 <div class="cf-actions">
-<button type="submit" class="btn btn-primary">Contactar</button>
+<button type="submit" class="btn btn-primary">Hablemos de vuestro proyecto</button>
 </div>
 </form>
 </div></section>
@@ -366,7 +366,7 @@
 <footer><div class="w"><div class="cols">
 <div><h3>AgeingLab Tech</h3><p>AgeingLab Tech es una iniciativa tecnológica que aplica tecnología desarrollada y utilizada en el contexto de <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a>, laboratorio de investigación del Centro de Tecnología Biomédica (CTB) de la Universidad Politécnica de Madrid (UPM). Los servicios de esta web los presta AgeingLab Tech y no constituyen actividad institucional de la UPM. Os acercamos al futuro desde la ciencia.</p></div>
 <div><h3>Qué hacemos</h3><a href="../servicios/">Todos los servicios</a><a href="../servicios/ia-privada-automatizacion.html">IA privada y automatización</a><a href="../servicios/decisiones-con-ia.html">Decisiones con IA</a><a href="../servicios/software-a-medida.html">Software a medida</a><a href="../servicios/iot-y-hardware.html">IoT y hardware</a><a href="../servicios/interfaces-para-mayores.html">Interfaces para mayores</a><a href="../servicios/investigacion-e-innovacion.html">Investigación e innovación</a><a href="/#metodo">Cómo trabajamos</a></div>
-<div><h3>Sectores</h3><a href="/#sector-salud">Salud</a><a href="/#sector-envejecimiento">Envejecimiento y cuidados</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público</a><a href="/#sector-investigacion">Investigación</a><a href="/#sector-a-medida">Tecnología a medida</a></div>
+<div><h3>Sectores</h3><a href="/#sector-salud">Salud y envejecimiento</a><a href="/#sector-tecnologia-medica">Tecnología médica</a><a href="/#sector-publico">Sector público e investigación</a></div>
 <div><h3>Nosotros</h3><a href="/#nosotros">Quiénes somos</a><a href="/#equipo">Equipo</a><a href="../soluciones/">Soluciones</a><a href="../guias/">Guías</a><a href="../casos-de-exito/">Casos de éxito</a><a href="/#contacto">Contacto</a><a href="../cookies.html">Política de cookies</a><a href="../privacidad.html">Política de privacidad</a><a href="../aviso-legal.html">Aviso legal</a></div>
 </div><div class="base">© 2026 AgeingLab Tech · Con tecnología aplicada desde <a href="https://ageinglab.ctb.upm.es/" target="_blank" rel="noopener">AgeingLab</a> (CTB – UPM) · Madrid, España</div></div></footer>
 

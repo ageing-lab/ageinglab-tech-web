@@ -277,7 +277,26 @@ section.ba-s{padding:56px 0}
 .sol a.soon p{color:#c9d4ec}.sol a.soon .n,.sol a.soon .go{color:var(--mint)}
 .pill{display:inline-block;margin:0 0 12px;padding:5px 10px;border:1px solid currentColor;border-radius:999px;font:600 12px/1 "Source Sans 3",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
 .sol .pill{margin:0;color:var(--mint)}
+.pill a{color:inherit;text-decoration:none}
+.pill a:hover{text-decoration:underline}
 @media (max-width:900px){.sol{grid-template-columns:1fr}.sol a+a{border-left:0;border-top:1px solid var(--line)}}
+
+/* Etiqueta de nivel comercial (servicio principal, especialidad, etc.) */
+.eyebrow{display:inline-block;margin:0 0 12px;font:600 12px/1 "Source Sans 3",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+
+/* Necesidades del visitante y agrupación comercial de servicios */
+.needs{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:36px;background:var(--line);border:1px solid var(--line)}
+.needs .need{display:flex;flex-direction:column;gap:8px;padding:28px 26px;background:var(--bg)}
+.needs .k{font:600 12px/1 "Source Sans 3",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.needs h3{margin:0;font-size:clamp(19px,1.9vw,23px);line-height:1.2}
+.needs h3 a{color:inherit;text-decoration:none}
+.needs h3 a:hover{text-decoration:underline;text-underline-offset:3px}
+.needs p{margin:0;color:var(--mute);font-size:16px}
+.needs .go{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:auto;padding-top:10px;font-weight:600}
+.needs .go a{color:var(--accent);text-decoration:none}
+.needs .go a:hover{text-decoration:underline}
+.needs .need:last-child:nth-child(odd){grid-column:1/-1}
+@media (max-width:760px){.needs{grid-template-columns:1fr}.needs .need:last-child:nth-child(odd){grid-column:auto}}
 
 /* Cabecera: sin saltos de línea y menú móvil desde 1180px (ahora hay 6 enlaces) */
 nav>a,.mi>button,.logo{white-space:nowrap}
